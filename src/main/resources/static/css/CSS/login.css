@@ -1,0 +1,234 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-oct-2019, 8:27:25
+    Author     : hhidalgo
+*/
+* {
+     -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+     box-sizing: border-box; 
+}
+
+html, body {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/*LOGIN */
+ .form-structor {
+    border-radius: 15px;  
+    top: 0%;
+    height: 800px;
+    width: 400px;  
+    margin: 80px auto 20px;
+    /*position: absolute;
+    overflow: hidden;*/
+    z-index:1;
+}
+
+.form-structor2 {
+    border-radius: 15px;  
+    top: 0%;
+    left: 50%;
+    height: 580px;
+    width: 400px;  
+    margin: 60px auto 20px;
+    position: absolute;
+    overflow: hidden;
+    z-index:1;
+}
+
+.login {
+    overflow: hidden;
+    background-color: white;
+    padding: 30px 30px 20px 30px;
+    border-radius: 10px;
+    position: relative;
+    z-index:2;
+    /*
+    top: 50%;
+    left: 50%;
+    
+    width: 400px;
+    
+    transform: translate(-50%, -50%);
+    */
+    transition: transform 300ms, box-shadow 300ms;   
+    box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+}
+
+ .login::before, .login::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+}
+ .login::before {
+    left: 10%;
+    bottom: -110%;
+    background-color: rgba(69, 105, 144, 0.15);
+    animation: wawes 20s infinite linear;   
+}
+ .login::after {
+    left: 20%;
+    bottom: -115%;
+    background-color: rgba(2, 128, 144, 0.2);
+    animation: wawes 30s infinite;	
+}
+
+ .login > .input-group > input {
+    font-family: 'Asap', sans-serif;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 100%;
+    border: 0;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+}
+
+ .login > .input-group > button {
+     cursor: pointer;
+    font-family: 'Asap', sans-serif;
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /*user-select: none;*/
+    background-color: #00a28a;
+    border: 1px solid transparent;
+    padding: 5px 15px;
+    font-size: 17px;
+    line-height: 1.5;
+    border-radius: 5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@keyframes wawes {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+ 
+ a {
+    text-decoration: none;
+    /*color: rgba(255, 255, 255, 0.6);*/
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+}
+ 
+.card-login {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 400px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-body-login {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+
+.card-login > .card-body-login > img {
+    display: block;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: table;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+    margin: 15px 0px;
+}
+
+@media (min-width: 768px) {
+    .login .input-group .input-group-addon {
+        width: auto;
+    }
+}
+/*
+.input-group-addon:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-addon:last-child {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+*/
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: table-cell;
+}
+
+.input-group-addon, .input-group-btn {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#login-page-full {
+    background: url(../../img/school.jpg) no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    /*position: absolute;*/
+    z-index:0;
+}

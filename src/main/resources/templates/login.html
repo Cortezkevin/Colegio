@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Iniciar sesión | SUM | Sistema Único de Matrícula </title>
+
+
+        <!-- Estilos -->
+        <link href="css/css/login.css" type="text/css" rel="stylesheet"/>
+        <link href="css/css/all.min.css" type="text/css" rel="stylesheet"/>
+        <link href="css/css/fontawesome.min.css" type="text/css" rel="stylesheet"/>         
+    </head>
+    
+    <body id="login-page-full">
+        <div class="form-structor">
+            <div class="card-login" style="background: none repeat scroll 0 0 #34495e;">
+                <div class="card-body-login">
+                    <img src="img/logo.png" alt="Logo"/>
+                </div>
+            </div>
+              
+            
+            <div class="card-login">
+			<form class="login text-center" role="form" th:action="@{/login}"
+				method="post" id="formLogin">
+				<input type="hidden" value="1" />
+				<div class="input-group">
+					<span class="input-group-addon"><span class="fa fa-user"></span></span>
+					<input type="text" name="usuario" placeholder="Usuario" required
+						value=""> <span class="input-group-addon">@iep.edu.pe</span>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style="width: 7px;"><span
+						class="fa fa-key"></span></span> <input type="password" name="clave"
+						value="" placeholder="Contraseña" required>
+				</div>
+				<div class="input-group text-center">
+					<button type="submit" class="btn btn-info">INGRESAR</button>
+
+				</div>
+
+
+			</form>
+		</div>  
+            
+        </div>
+
+    </body>
+</html>
+        

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<br>
+	<br>
+	<br>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Matricula</th>
+				<th scope="col">ID Usuario</th>
+				<th scope="col">ID Nivel</th>
+				<th scope="col">ID Grado</th>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Fecha</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="matricula :${lstMat}">
+				<td th:text="${matricula.idMatricula}"></td>
+				<td th:text="${matricula.idUsuario}"></td>
+				<td th:text="${matricula.idNivel}"></td>
+				<td th:text="${matricula.idGrado}"></td>
+				<td th:text="${matricula.idSeccion}"></td>
+				<td th:text="${matricula.estado}"></td>
+				<td th:text="${matricula.fecha}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Matriculas/RegistrarMatricula}">Registrar Matricula</a>
+
+</body>
+</html>

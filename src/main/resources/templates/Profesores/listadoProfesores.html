@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<nav th:replace="menu2::menu"></nav>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-lg">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<!--  <th scope="col">Codigo</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">DNI</th>
+							<th scope="col">Email</th>
+							<th scope="col">Cargo</th>
+							<th scope="col">Telefono</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Contraseña</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Acciones</th>-->
+							<th scope="col">Codigo</th>
+							<th scope="col">Codigo Persona</th>
+							<th scope="col">Codigo usuario</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Acciones</th>
+							<th></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="profesoresForm :${lstprofesores}">
+							<!--  <td th:text="${profesoresForm.codigo}"></td>
+							<td th:text="${profesoresForm.nombre}"></td>
+							<td th:text="${profesoresForm.apellido}"></td>
+							<td th:text="${profesoresForm.dni}"></td>
+							<td th:text="${profesoresForm.email}"></td>
+							<td th:text="${profesoresForm.cargo}"></td>
+							<td th:text="${profesoresForm.telefono}"></td>
+							<td th:text="${profesoresForm.usuario}"></td>
+							<td th:text="${profesoresForm.clave}"></td>
+							<td th:text="${profesoresForm.estado}"></td>-->
+							<td th:text="${profesoresForm.idProfesor}"></td>
+							<td th:text="${profesoresForm.idPersona}"></td>
+							<td th:text="${profesoresForm.idUsuario}"></td>
+							<td th:text="${profesoresForm.estado}"></td>
+							<td><a class="nav-link"
+								th:href="@{/Profesores/EditarProfesores}">Editar</a></td>
+							<td><a class="nav-link"
+								th:href="@{/Profesores/eliminarProfesores}">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="nav-link" th:href="@{/Profesores/RegistrarProfesores}">Registrar
+					Profesor</a> <a class="nav-link" th:href="@{/login}">Regresar</a>
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+</body>
+</html>
