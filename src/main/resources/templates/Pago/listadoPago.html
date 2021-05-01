@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Pago</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Fecha</th>
+				<th scope="col">ID Grado</th>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">ID Nivel</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="pago :${lstpago}">
+				<td th:text="${pago.idPago}"></td>
+				<td th:text="${pago.estado}"></td>
+				<td th:text="${pago.fechaPago}"></td>
+				<td th:text="${pago.idGrado}"></td>
+				<td th:text="${pago.idSeccion}"></td>
+				<td th:text="${pago.idNivel}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Pago/RegistrarPago}">Registrar Pago</a>
+</body>
+</html>

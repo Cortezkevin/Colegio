@@ -51,7 +51,7 @@
 		</div>
 	</nav>
 
-	<div  class="wrapper fixed-left">
+	<div class="wrapper fixed-left">
 		<nav id="sidebar">
 			<div class="sidebar-header">
 				<img alt="" src="img/golondrina.png" class="profile_image">
@@ -62,13 +62,21 @@
 
 			<ul class="list-unstyled components">
 				<li><a href=""><i class="fas fa-home"></i>Home</a></li>
-				<li><a th:href="@{/Matriculas/ListadoMatricula}"><i class="fas fa-clipboard"></i>Matricula</a></li>
+				<li><a th:href="@{/Matriculas/ListadoMatricula}"><i
+						class="fas fa-clipboard"></i>Matricula</a></li>
 				<li><a href=""><i class="fas fa-user-cog"></i>Settings</a></li>
 				<li><a href=""><i class="fas fa-hands-helping"></i>Services</a>
-				<li><a th:href="@{/listar}"><i
-						class="fas fa-hands-helping"></i>Usuarios</a></li>
+				<li><a th:href="@{/listar}"><i class="fas fa-hands-helping"></i>Usuarios</a></li>
 				<li><a th:href="@{/Profesores/Listado}"><i
 						class="fas fa-hands-helping"></i>Profesores</a></li>
+				<li><a th:href="@{/Nivel/ListaNivel}"><i
+						class="fas fa-hands-helping"></i>Niveles</a></li>
+				<li><a th:href="@{/Grado/ListaGrado}"><i
+						class="fas fa-hands-helping"></i>Grados</a></li>
+				<li><a th:href="@{/Seccion/ListaSeccion}"><i
+						class="fas fa-hands-helping"></i>Secciones</a></li>
+						<li><a th:href="@{/Pago/ListaPago}"><i
+						class="fas fa-hands-helping"></i>Pago Matricula</a></li>
 				<li><a href=""><i class="fas fa-info"></i>About</a></li>
 			</ul>
 		</nav>

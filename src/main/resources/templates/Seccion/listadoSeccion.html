@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">Nombre</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="seccion :${lstseccion}">
+				<td th:text="${seccion.idSeccion}"></td>
+				<td th:text="${seccion.nombre}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Seccion/RegistrarSeccion}">Registrar Seccion</a>
+</body>
+</html>
