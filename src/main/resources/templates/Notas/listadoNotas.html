@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Nota</th>
+				<th scope="col">ID Alumno</th>
+				<th scope="col">ID Curso</th>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">ID Profesor</th>
+				<th scope="col">examen1</th>
+				<th scope="col">examen2</th>
+				<th scope="col">examen3</th>
+				
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="notas :${lstnotas}">
+				<td th:text="${notas.idNota}"></td>
+				<td th:text="${notas.idAlumno}"></td>
+				<td th:text="${notas.idCurso}"></td>
+				<td th:text="${notas.idSeccion}"></td>
+				<td th:text="${notas.idProfesor}"></td>
+				<td th:text="${notas.examen1}"></td>
+				<td th:text="${notas.examen2}"></td>
+				<td th:text="${notas.examen3}"></td>				
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Notas/RegistrarNotas}">Registrar Nota</a>
+</body>
+</html>
