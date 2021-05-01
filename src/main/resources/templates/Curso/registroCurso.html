@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-lg">
+				<form th:action="@{/Curso/RegistrarCurso}" th:object="${cursoForm}"
+					method="post">
+					<div class="form-group">
+						<label for="exampleInputEmail1">ID Nivel</label> <input
+							th:field="*{idNivel}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">ID Grado</label> <input
+							th:field="*{idGrado}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Nombre</label> <input
+							th:field="*{nombre}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Descipcion</label> <input
+							th:field="*{descripcion}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Estado</label> <input
+							th:field="*{estado}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+</body>
+</html>

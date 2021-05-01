@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Curso Programado</th>
+				<th scope="col">ID Curso</th>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">ID Profesor</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="cursoProgramado :${lstcurso}">
+				<td th:text="${cursoProgramado.idCursoProgramado}"></td>
+				<td th:text="${cursoProgramado.idCurso}"></td>
+				<td th:text="${cursoProgramado.idSeccion}"></td>
+				<td th:text="${cursoProgramado.idProfesor}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/CursoProgramado/RegistrarCursoProgramado}">Registrar Curso Programado</a>
+</body>
+</html>

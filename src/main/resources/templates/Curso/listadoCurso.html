@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Curso</th>
+				<th scope="col">ID Nivel</th>
+				<th scope="col">ID Grado</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Estado</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="curso :${lstcurso}">
+				<td th:text="${curso.idCurso}"></td>
+				<td th:text="${curso.idNivel}"></td>
+				<td th:text="${curso.idGrado}"></td>
+				<td th:text="${curso.nombre}"></td>
+				<td th:text="${curso.descripcion}"></td>
+				<td th:text="${curso.estado}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Curso/RegistrarCurso}">Registrar Curso</a>
+</body>
+</html>
