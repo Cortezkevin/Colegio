@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
 <!-- Required meta tags -->
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,14 +15,16 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
 <!-- style menu -->
-<link rel="stylesheet" href="css/css/menu.css">
-<script src="css/icons/icons.js"></script>
+<link rel="stylesheet" href="../css/css/menu.css">
+<script src="../css/icons/icons.js"></script>
+<link rel="stylesheet" href="../css/css/listGrados.css">
 <title>menu</title>
 <!-- others -->
 <script type="text/javascript"
-	th:href="@{/script/jquery/jQuery_v3.6.0.js}"></script>
+	th:src="@{/script/jquery/jQuery_v3.6.0.js}"></script>
 <script type="text/javascript"
-	th:href="@{/script/bootstrap/bootstrap.js}"></script>
+	th:src="@{/script/bootstrap/bootstrap.bundle.js}"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
 </head>
 
 <body>
@@ -42,16 +44,15 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link" id="link"
-					href="#"> <i class="fas fa-sign-out-alt"></i> LogOut<span
+					href="#"><i class="fas fa-id-card"></i> Username <span
 						class="sr-only">(current) </span></a></li>
-				<li class="nav-item"><a class="nav-link" id="link" href="#">
-						<i class="fas fa-id-card"></i>Username
-				</a></li>
+				<li class="nav-item"><a class="nav-link" id="link" href="#"><i
+						class="fas fa-sign-out-alt"></i> LogOut</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<div class="wrapper fixed-left">
+	<div  th:fragment="barra" class="wrapper fixed-left">
 		<nav id="sidebar">
 			<div class="sidebar-header">
 				<img alt="" src="img/golondrina.png" class="profile_image">
@@ -60,26 +61,19 @@
 				</h3>
 			</div>
 
-			<ul class="list-unstyled components">
-				<li><a href=""><i class="fas fa-home"></i>Home</a></li>
+			<ul class="list-unstyled components" >
+				<li><a href=""><i class="fas fa-home" id="icon"></i>Home</a></li>
 				<li><a th:href="@{/Matriculas/ListadoMatricula}"><i
-						class="fas fa-clipboard"></i>Matricula</a></li>
-				<li><a href=""><i class="fas fa-user-cog"></i>Settings</a></li>
-				<li><a href=""><i class="fas fa-hands-helping"></i>Services</a>
-				<li><a th:href="@{/listar}"><i class="fas fa-hands-helping"></i>Usuarios</a></li>
-				<li><a th:href="@{/Profesores/Listado}"><i
-						class="fas fa-hands-helping"></i>Profesores</a></li>
-				<li><a th:href="@{/Nivel/ListaNivel}"><i
-						class="fas fa-hands-helping"></i>Niveles</a></li>
-				<li><a th:href="@{/Grado/ListaGrado}"><i
-						class="fas fa-hands-helping"></i>Grados</a></li>
+						class="fas fa-clipboard" id="icon"></i>Matricula</a></li>
+				<li><a href=""><i class="fas fa-user-cog" id="icon"></i>Settings</a></li>
+				<li><a th:href="@{/listar}"><i class="fas fa-user" id="icon"></i>Usuarios</a></li>
+				<li><a th:href="@{/Profesores/Listado}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Profesores</a></li>
+				<li><a th:href="@{/Nivel/ListaNivel}"><i class="fas fa-layer-group" id="icon"></i>Niveles</a></li>
+				<li><a th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
 				<li><a th:href="@{/Seccion/ListaSeccion}"><i
-						class="fas fa-hands-helping"></i>Secciones</a></li>
-				<li><a th:href="@{/Pago/ListaPago}"><i
-						class="fas fa-hands-helping"></i>Pago Matricula</a></li>
-				<li><a th:href="@{/Notas/ListaNotas}"><i
-						class="fas fa-hands-helping"></i>Notas</a></li>
-				<li><a href=""><i class="fas fa-info"></i>About</a></li>
+						class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
+				<li><a th:href="@{/Pago/ListaPago}"><i class="fas fa-money-check-alt" id="icon"></i>Pago Matricula</a></li>
+				<li><a th:href="@{/Notas/ListaNotas}"><i class="fas fa-check" id="icons"></i>Notas</a></li>
 			</ul>
 		</nav>
 
@@ -90,9 +84,7 @@
 	<div>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
+
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -102,13 +94,6 @@
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"></script>
 		<script src="css/icons/script.js"></script>
-		<script>
-			function menuToggle() {
-				const sidebar = document.querySelector('.sidebar');
-				const sidebar = document.querySelector('.sidebar');
-				const sidebar = document.querySelector('.sidebar');
-			}
-		</script>
 	</div>
 </body>
 </html>

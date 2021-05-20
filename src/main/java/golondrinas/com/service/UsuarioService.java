@@ -1,45 +1,37 @@
 package golondrinas.com.service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import golondrinas.com.interfaceService.IUsuarioService;
-import golondrinas.com.interfaces.IUsuario;
+import golondrinas.com.interfaces.UsuarioRepository;
 import golondrinas.com.model.Usuario;
 
 
 @Service
-public class UsuarioService implements IUsuarioService{
+public class UsuarioService{
 
 	@Autowired
-	private IUsuario data;
-	@Override
-	public List<Usuario> listar() {
-		// TODO Auto-generated method stub
-		return (List<Usuario>)data.findAll();
-	}
+	private UsuarioRepository repository;
 
-	@Override
-	public Optional<Usuario> listarId(int userid) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Usuario> listarUsuarios(){
+		return repository.listarUsuarios();
 	}
-
-	@Override
-	public int save(Usuario u) {
-		data.save(u);
-		return 0;
+	
+	public void registrarUsuario(Usuario u) {
+		if(u.getIdusuario() == null ) {
+			repository.RegistrarUsuario(u.getNombreusuario(),u.getPassword(),u.getIdcargo(),u.getIdpersona());
+		}else {
+			repository.ActualizarUsuario(u.getIdusuario(),u.getNombreusuario(),u.getPassword(),u.getIdcargo(),u.getIdpersona());
+		}
 	}
-
-	@Override
-	public void delete(int userid) {
-		// TODO Auto-generated method stub
-		
+	
+	public void eliminarUsuario(Usuario u) {
+		repository.EliminarUsuario(u.getIdusuario());
 	}
-
+	
 	
 	
 }

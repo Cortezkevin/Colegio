@@ -20,10 +20,14 @@ public class SeccionService {
 	}
 	
 	public void registrarSeccion(Seccion s) {
-		repository.save(s);
+		repository.registrarSeccion(s.getNombre());
 	}
 	
-	public Optional<Seccion> BuscarPorId(Integer id){
-		return repository.findById(id);
+	public void actualizarSeccion(Seccion s) {
+		repository.actualizarSeccion(s.getIdseccion(), s.getNombre(), s.getEstado());
+	}
+	
+	public void eliminarSeccion(Seccion s) {
+		repository.eliminarSeccion(s.getIdseccion());
 	}
 }

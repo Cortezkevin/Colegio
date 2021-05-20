@@ -2,9 +2,12 @@ package golondrinas.com.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,80 +15,81 @@ import javax.persistence.Table;
 public class Horario {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idHorario;
+	private String idHorario;
 	
 	@Column(name="idNivel")
-	private Integer idNivel;
+	private String idNivel;
 	
 	@Column(name="idGrado")
-	private Integer idGrado;
+	private String idGrado;
 	
 	@Column(name="idCursoProgramado")
-	private Integer idCursoProgramado;
+	private String idCursoProgramado;
 	
-	@Column(name="idHora")
-	private Integer idHora;
+	@ManyToOne
+	@JoinColumn(name="id_hora", nullable = false,
+	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_hora) references hora(id_hora)"))
+	private Hora hor;
 	
 	@Column(name="estado")
 	private String estado;
 
-	public Integer getIdHorario() {
+	public String getIdHorario() {
 		return idHorario;
 	}
 
-	public Integer getIdNivel() {
+	public String getIdNivel() {
 		return idNivel;
 	}
 
-	public Integer getIdGrado() {
+	public String getIdGrado() {
 		return idGrado;
 	}
 
-	public Integer getIdCursoProgramado() {
+	public String getIdCursoProgramado() {
 		return idCursoProgramado;
 	}
 
-	public Integer getIdHora() {
-		return idHora;
+	public Hora getHor() {
+		return hor;
 	}
 
 	public String getEstado() {
 		return estado;
 	}
 
-	public void setIdHorario(Integer idHorario) {
+	public void setIdHorario(String idHorario) {
 		this.idHorario = idHorario;
 	}
 
-	public void setIdNivel(Integer idNivel) {
+	public void setIdNivel(String idNivel) {
 		this.idNivel = idNivel;
 	}
 
-	public void setIdGrado(Integer idGrado) {
+	public void setIdGrado(String idGrado) {
 		this.idGrado = idGrado;
 	}
 
-	public void setIdCursoProgramado(Integer idCursoProgramado) {
+	public void setIdCursoProgramado(String idCursoProgramado) {
 		this.idCursoProgramado = idCursoProgramado;
 	}
 
-	public void setIdHora(Integer idHora) {
-		this.idHora = idHora;
+	public void setHor(Hora hor) {
+		this.hor = hor;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Horario(Integer idHorario, Integer idNivel, Integer idGrado, Integer idCursoProgramado, Integer idHora,
+	public Horario(String idHorario, String idNivel, String idGrado, String idCursoProgramado, Hora hor,
 			String estado) {
 		super();
 		this.idHorario = idHorario;
 		this.idNivel = idNivel;
 		this.idGrado = idGrado;
 		this.idCursoProgramado = idCursoProgramado;
-		this.idHora = idHora;
+		this.hor = hor;
 		this.estado = estado;
 	}
 
@@ -93,6 +97,7 @@ public class Horario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 }

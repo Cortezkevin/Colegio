@@ -12,51 +12,50 @@ import javax.persistence.Table;
 public class ProfesoresForm {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idProfesor;
+	private String idProfesor;
 	
 	@Column(name="idPersona")
-	private Integer idPersona;
+	private String idPersona;
 	
 	@Column(name="idUsuario")
-	private Integer idUsuario;
+	private String idUsuario;
 	
 	@Column(name="Estado")
 	private String Estado;
 
-	public Integer getIdProfesor() {
+	public String getIdProfesor() {
 		return idProfesor;
 	}
 
-	public void setIdProfesor(Integer idProfesor) {
-		this.idProfesor = idProfesor;
-	}
-
-	public Integer getIdPersona() {
+	public String getIdPersona() {
 		return idPersona;
 	}
 
-	public void setIdPersona(Integer idPersona) {
-		this.idPersona = idPersona;
-	}
-
-	public Integer getIdUsuario() {
+	public String getIdUsuario() {
 		return idUsuario;
-	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 
 	public String getEstado() {
 		return Estado;
 	}
 
+	public void setIdProfesor(String idProfesor) {
+		this.idProfesor = idProfesor;
+	}
+
+	public void setIdPersona(String idPersona) {
+		this.idPersona = idPersona;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 	public void setEstado(String estado) {
 		Estado = estado;
 	}
 
-	public ProfesoresForm(Integer idProfesor, Integer idPersona, Integer idUsuario, String estado) {
+	public ProfesoresForm(String idProfesor, String idPersona, String idUsuario, String estado) {
 		super();
 		this.idProfesor = idProfesor;
 		this.idPersona = idPersona;
@@ -69,12 +68,5 @@ public class ProfesoresForm {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	
-	
-	
-	
-	 
-	
+
 }

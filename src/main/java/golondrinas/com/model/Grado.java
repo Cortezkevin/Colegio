@@ -1,29 +1,34 @@
 package golondrinas.com.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+
 import javax.persistence.Id;
+
 import javax.persistence.Table;
 
 @Entity
-@Table(name="grado")
+@Table(name = "grado")
 public class Grado {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idGrado;
-	
-	@Column(name="nombre")
+	private String idgrado;
+
+	@Column(name = "nombre")
 	private String nombre;
 
-	public Integer getIdGrado() {
-		return idGrado;
+	@Column(name = "estado")
+	private String estado;
+
+	public String getIdgrado() {
+		return idgrado;
 	}
 
-	public void setIdGrado(Integer idGrado) {
-		this.idGrado = idGrado;
+	public void setIdgrado(String idgrado) {
+		this.idgrado = idgrado;
 	}
 
 	public String getNombre() {
@@ -34,17 +39,26 @@ public class Grado {
 		this.nombre = nombre;
 	}
 
-	public Grado(Integer idGrado, String nombre) {
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Grado(String idgrado, String nombre, String estado) {
 		super();
-		this.idGrado = idGrado;
+		this.idgrado = idgrado;
 		this.nombre = nombre;
+		this.estado = estado;
 	}
 
 	public Grado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
-	
-	
+
 }

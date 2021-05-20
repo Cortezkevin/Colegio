@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import golondrinas.com.model.Matricula;
+import golondrinas.com.model.Nivel;
+import golondrinas.com.service.GradoService;
 import golondrinas.com.service.MatriculaService;
+import golondrinas.com.service.NivelService;
+import golondrinas.com.service.SeccionService;
 
 @Controller
 @RequestMapping("/Matriculas")
@@ -19,6 +23,15 @@ public class MatriculaController {
 
 	@Autowired
 	private MatriculaService service;
+	
+	@Autowired
+	private NivelService nService;
+	
+	@Autowired
+	private GradoService gService;
+	
+	@Autowired
+	private SeccionService sService;
 	
 	@GetMapping("/ListadoMatricula") 
 	public String ListaMatricula(Model model) {
@@ -29,6 +42,9 @@ public class MatriculaController {
 	
 	@GetMapping("/RegistrarMatricula")
 	public String RegistrarMatricula(Model model) {
+		model.addAttribute("lstNivel",nService.listarNivel());
+		model.addAttribute("lstGrado",gService.listarGrado());
+		model.addAttribute("lstSeccion",sService.listarSeccion());
 		model.addAttribute("matriculaForm",new Matricula());
 		return "Matriculas/registrarMatricula";
 	}

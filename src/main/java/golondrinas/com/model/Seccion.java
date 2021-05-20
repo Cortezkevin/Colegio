@@ -1,51 +1,80 @@
 package golondrinas.com.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="seccion")
+@Table(name = "seccion")
 public class Seccion {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idSeccion;
-	
-	@Column(name="nombre")
+	private String idseccion;
+
+	@Column(name = "nombre")
 	private String nombre;
 
-	public Integer getIdSeccion() {
-		return idSeccion;
+	@OneToMany(mappedBy = "seccion")
+	private Collection<Matricula> itemsMatricula = new ArrayList<>();
+
+	@Column(name="estado")
+	private String estado;
+
+	public String getIdseccion() {
+		return idseccion;
+	}
+
+	public void setIdseccion(String idseccion) {
+		this.idseccion = idseccion;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setIdSeccion(Integer idSeccion) {
-		this.idSeccion = idSeccion;
-	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public Seccion(Integer idSeccion, String nombre) {
+	public Collection<Matricula> getItemsMatricula() {
+		return itemsMatricula;
+	}
+
+	public void setItemsMatricula(Collection<Matricula> itemsMatricula) {
+		this.itemsMatricula = itemsMatricula;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Seccion(String idseccion, String nombre, Collection<Matricula> itemsMatricula, String estado) {
 		super();
-		this.idSeccion = idSeccion;
+		this.idseccion = idseccion;
 		this.nombre = nombre;
+		this.itemsMatricula = itemsMatricula;
+		this.estado = estado;
 	}
 
 	public Seccion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 	
-	
+
+
 }

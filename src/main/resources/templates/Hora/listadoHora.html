@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Hora</th>
+				<th scope="col">Hora Inicio</th>
+				<th scope="col">Hora Fin</th>
+				<th scope="col">Dia</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="hora :${lsthora}">
+				<td th:text="${hora.idHora}"></td>
+				<td th:text="${hora.horaInicio}"></td>
+				<td th:text="${hora.horaFin}"></td>
+				<td th:text="${hora.dia}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Hora/RegistrarHora}">Registrar Hora</a>
+</body>
+</html>

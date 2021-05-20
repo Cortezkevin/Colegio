@@ -12,107 +12,76 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userid;
+	private String idusuario;
 	
-	@Column(name="username")
-	private String username;
+	@Column(name="nombreusuario")
+	private String nombreusuario;
 	
-	@Column(name="password")
+	@Column(name="contraseña")
 	private String password;
 	
-	@Column(name="nombre")
-	private String nombre;
-	
-	@Column(name="apellido")
-	private String apellido;
-	
-	@Column(name="dni")
-	private Integer dni;
-	
-	@Column(name="gmail")
-	private String gmail;
-	
-	@Column(name="cargo")	
-	private String cargo;
+	@Column(name="idcargo")	
+	private String idcargo;
 
-	@Column(name="celular")
-	private Long celular;
+	@Column(name="idpersona")
+	private String idpersona;
 	
-	public Integer getUserid() {
-		return userid;
+	@Column(name="estado")
+	private String estado;
+
+	public String getIdusuario() {
+		return idusuario;
 	}
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+
+	public String getNombreusuario() {
+		return nombreusuario;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
 	public String getPassword() {
 		return password;
 	}
+
+	public String getIdcargo() {
+		return idcargo;
+	}
+
+	public String getIdpersona() {
+		return idpersona;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setIdusuario(String idusuario) {
+		this.idusuario = idusuario;
+	}
+
+	public void setNombreusuario(String nombreusuario) {
+		this.nombreusuario = nombreusuario;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public void setIdcargo(String idcargo) {
+		this.idcargo = idcargo;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setIdpersona(String idpersona) {
+		this.idpersona = idpersona;
 	}
-	public String getApellido() {
-		return apellido;
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	public Integer getDni() {
-		return dni;
-	}
-	public void setDni(Integer dni) {
-		this.dni = dni;
-	}
-	public String getGmail() {
-		return gmail;
-	}
-	public void setGmail(String gmail) {
-		this.gmail = gmail;
-	}
-	public String getCargo() {
-		return cargo;
-	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-	public Long getCelular() {
-		return celular;
-	}
-	public void setCelular(Long celular) {
-		this.celular = celular;
-	}
-	public Usuario(Integer userid, String username, String password, String nombre, String apellido, Integer dni,
-			String gmail, String cargo, Long celular) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.password = password;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.dni = dni;
-		this.gmail = gmail;
-		this.cargo = cargo;
-		this.celular = celular;
-	}
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
+
+
 	
 }

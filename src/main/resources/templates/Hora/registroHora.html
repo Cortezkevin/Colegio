@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-lg">
+				<form th:action="@{/Hora/RegistrarHora}" th:object="${horaForm}"
+					method="post">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Hora Inicio</label> <input
+							th:field="*{horaInicio}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Hora Fin</label> <input
+							th:field="*{horaFin}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Dia</label> <input
+							th:field="*{dia}" type="text" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+</body>
+</html>

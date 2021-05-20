@@ -12,51 +12,50 @@ import javax.persistence.Table;
 public class CursoProgramado {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idCursoProgamado;
+	private String idCursoProgamado;
 	
 	@Column(name="idCurso")
-	private Integer idCurso;
+	private String idCurso;
 	
 	@Column(name="idSeccion")
-	private Integer idSeccion;
+	private String idSeccion;
 	
 	@Column(name="idProfesor")
-	private Integer idProfesor;
+	private String idProfesor;
 
-	public Integer getIdCursoProgamado() {
+	public String getIdCursoProgamado() {
 		return idCursoProgamado;
 	}
 
-	public Integer getIdCurso() {
+	public String getIdCurso() {
 		return idCurso;
 	}
 
-	public Integer getIdSeccion() {
+	public String getIdSeccion() {
 		return idSeccion;
 	}
 
-	public Integer getIdProfesor() {
+	public String getIdProfesor() {
 		return idProfesor;
 	}
 
-	public void setIdCursoProgamado(Integer idCursoProgamado) {
+	public void setIdCursoProgamado(String idCursoProgamado) {
 		this.idCursoProgamado = idCursoProgamado;
 	}
 
-	public void setIdCurso(Integer idCurso) {
+	public void setIdCurso(String idCurso) {
 		this.idCurso = idCurso;
 	}
 
-	public void setIdSeccion(Integer idSeccion) {
+	public void setIdSeccion(String idSeccion) {
 		this.idSeccion = idSeccion;
 	}
 
-	public void setIdProfesor(Integer idProfesor) {
+	public void setIdProfesor(String idProfesor) {
 		this.idProfesor = idProfesor;
 	}
 
-	public CursoProgramado(Integer idCursoProgamado, Integer idCurso, Integer idSeccion, Integer idProfesor) {
+	public CursoProgramado(String idCursoProgamado, String idCurso, String idSeccion, String idProfesor) {
 		super();
 		this.idCursoProgamado = idCursoProgamado;
 		this.idCurso = idCurso;
@@ -68,6 +67,6 @@ public class CursoProgramado {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 }

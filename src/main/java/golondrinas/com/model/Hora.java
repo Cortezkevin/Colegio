@@ -1,10 +1,14 @@
 package golondrinas.com.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +16,7 @@ import javax.persistence.Table;
 public class Hora {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idHora;
+	private String idHora;
 
 	@Column(name="horaInicio")
 	private String horaInicio;
@@ -24,7 +27,10 @@ public class Hora {
 	@Column(name="dia")
 	private String dia;
 
-	public Integer getIdHora() {
+	@OneToMany(mappedBy = "hor")
+	private Collection<Horario> itemsHorario=new ArrayList<>();
+
+	public String getIdHora() {
 		return idHora;
 	}
 
@@ -40,7 +46,11 @@ public class Hora {
 		return dia;
 	}
 
-	public void setIdHora(Integer idHora) {
+	public Collection<Horario> getItemsHorario() {
+		return itemsHorario;
+	}
+
+	public void setIdHora(String idHora) {
 		this.idHora = idHora;
 	}
 
@@ -56,18 +66,27 @@ public class Hora {
 		this.dia = dia;
 	}
 
-	public Hora(Integer idHora, String horaInicio, String horaFin, String dia) {
+	public void setItemsHorario(Collection<Horario> itemsHorario) {
+		this.itemsHorario = itemsHorario;
+	}
+
+	public Hora(String idHora, String horaInicio, String horaFin, String dia, Collection<Horario> itemsHorario) {
 		super();
 		this.idHora = idHora;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.dia = dia;
+		this.itemsHorario = itemsHorario;
 	}
 
 	public Hora() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	
 	
 	
 

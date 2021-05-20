@@ -12,42 +12,41 @@ import javax.persistence.Table;
 public class NotaBimestre {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idHora;
+	private String idNotaBimestre;
 	
 	@Column(name="promedio")
 	private Double promedio;
 
 	@Column(name="")
-	private Integer idNota;
+	private String idNota;
 
-	public Integer getIdHora() {
-		return idHora;
+	public String getIdNotaBimestre() {
+		return idNotaBimestre;
 	}
 
 	public Double getPromedio() {
 		return promedio;
 	}
 
-	public Integer getIdNota() {
+	public String getIdNota() {
 		return idNota;
 	}
 
-	public void setIdHora(Integer idHora) {
-		this.idHora = idHora;
+	public void setIdNotaBimestre(String idNotaBimestre) {
+		this.idNotaBimestre = idNotaBimestre;
 	}
 
 	public void setPromedio(Double promedio) {
 		this.promedio = promedio;
 	}
 
-	public void setIdNota(Integer idNota) {
+	public void setIdNota(String idNota) {
 		this.idNota = idNota;
 	}
 
-	public NotaBimestre(Integer idHora, Double promedio, Integer idNota) {
+	public NotaBimestre(String idNotaBimestre, Double promedio, String idNota) {
 		super();
-		this.idHora = idHora;
+		this.idNotaBimestre = idNotaBimestre;
 		this.promedio = promedio;
 		this.idNota = idNota;
 	}
@@ -56,7 +55,6 @@ public class NotaBimestre {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	
 }

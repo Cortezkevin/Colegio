@@ -1,34 +1,47 @@
 package golondrinas.com.model;
 
+import javax.persistence.ForeignKey;
+
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="Matriculas")
-public class Matricula {
+@Table(name="matricula")
+public class Matricula{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idMatricula;
+	private String idMatricula;
 	
 	@Column(name="idAlumno")
-	private Integer idAlumno;
+	private String idAlumno;
 	
 	@Column(name="idUsuario")
-	private Integer idUsuario;
+	private String idUsuario;
 	
-	@Column(name="idNivel")
-	private Integer idNivel;
+	@ManyToOne
+	@JoinColumn(name="id_nivel", nullable = false,
+	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_nivel) references nivel(id_nivel)"))
+	private Nivel nivel;
 	
-	@Column(name="idGrado")
-	private Integer idGrado;
+	@ManyToOne
+	@JoinColumn(name="id_grado", nullable = false,
+	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_grado) references grado(id_grado)"))
+	private Grado grado;
 	
-	@Column(name="idSeccion")
-	private Integer idSeccion;
+	@ManyToOne
+	@JoinColumn(name="id_seccion", nullable = false,
+			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_seccion) references seccion(id_seccion)"))
+	private Seccion seccion;
 	
 	@Column(name="estado")
 	private String estado;
@@ -36,79 +49,79 @@ public class Matricula {
 	@Column(name="fecha")
 	private String fecha;
 
-	public Integer getIdMatricula() {
+	public String getIdMatricula() {
 		return idMatricula;
 	}
 
-	public void setIdMatricula(Integer idMatricula) {
-		this.idMatricula = idMatricula;
-	}
-
-	public Integer getIdAlumno() {
+	public String getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(Integer idAlumno) {
-		this.idAlumno = idAlumno;
-	}
-
-	public Integer getIdUsuario() {
+	public String getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
+	public Nivel getNivel() {
+		return nivel;
 	}
 
-	public Integer getIdNivel() {
-		return idNivel;
+	public Grado getGrado() {
+		return grado;
 	}
 
-	public void setIdNivel(Integer idNivel) {
-		this.idNivel = idNivel;
-	}
-
-	public Integer getIdGrado() {
-		return idGrado;
-	}
-
-	public void setIdGrado(Integer idGrado) {
-		this.idGrado = idGrado;
-	}
-
-	public Integer getIdSeccion() {
-		return idSeccion;
-	}
-
-	public void setIdSeccion(Integer idSeccion) {
-		this.idSeccion = idSeccion;
+	public Seccion getSeccion() {
+		return seccion;
 	}
 
 	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	public String getFecha() {
 		return fecha;
+	}
+
+	public void setIdMatricula(String idMatricula) {
+		this.idMatricula = idMatricula;
+	}
+
+	public void setIdAlumno(String idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+
+	public void setGrado(Grado grado) {
+		this.grado = grado;
+	}
+
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-	public Matricula(Integer idMatricula, Integer idAlumno, Integer idUsuario, Integer idNivel, Integer idGrado,
-			Integer idSeccion, String estado, String fecha) {
+	public Matricula(String idMatricula, String idAlumno, String idUsuario, Nivel nivel, Grado grado, Seccion seccion,
+			String estado, String fecha) {
 		super();
 		this.idMatricula = idMatricula;
 		this.idAlumno = idAlumno;
 		this.idUsuario = idUsuario;
-		this.idNivel = idNivel;
-		this.idGrado = idGrado;
-		this.idSeccion = idSeccion;
+		this.nivel = nivel;
+		this.grado = grado;
+		this.seccion = seccion;
 		this.estado = estado;
 		this.fecha = fecha;
 	}
@@ -117,6 +130,5 @@ public class Matricula {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 }

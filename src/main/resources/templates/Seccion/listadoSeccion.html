@@ -6,23 +6,141 @@
 </head>
 <body>
 	<nav th:replace="menu2::menu"></nav>
+	
+		
+	<div class="container-fluid cont" id="colorBack">
+		<div class="row">
+			<div class="col-lg-6 col-md8 xs-12" id="colorBack">
+				<h2 align="center">Registro de Secciones</h2>
+		<form th:action="@{/Seccion//ListaSeccion}" th:object="${seccionForm}"
+					method="post">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Nombre</label> <input th:field="*{nombre}"
+					 type="text" class="form-control"
+					id="exampleInputEmail1" aria-describedby="emailHelp">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>	
+	</div>
+	<div class="col-lg-6 col-md8 xs-12" id="colorBack">
+		<h2 align="center">Listar Secciones</h2>
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">ID Seccion</th>
 				<th scope="col">Nombre</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Actualizar</th>
+				<th scope="col">Eliminar</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr th:each="seccion :${lstseccion}">
-				<td th:text="${seccion.idSeccion}"></td>
+				<td th:text="${seccion.idseccion}"></td>
 				<td th:text="${seccion.nombre}"></td>
-				<td><a class="btn btn-warning">Editar</a> <a
-					class="btn btn-danger">Eliminar</a></td>
+				<td th:text="${seccion.estado}"></td>
+				<td><a class="btn btn-info btnactualizarseccion"
+				th:data-codseccion="${seccion.idseccion}"
+				th:data-nomseccion="${seccion.nombre}"
+				th:data-estadoseccion="${seccion.estado}">Editar</a></td>
+				<td><a class="btn btn-danger btneliminarseccion"
+				th:data-codseccion="${seccion.idseccion}"
+				th:data-nomseccion="${seccion.nombre}">Eliminar</a></td>
 			</tr>
 		</tbody>
 	</table>
+	</div>
+	</div>
+	<div th:replace="menu2::barra"></div>
 	<a th:href="@{/Seccion/RegistrarSeccion}">Registrar Seccion</a>
-</body>
+	
+	<!-- Modal Actualizar -->
+	
+	<div class="modal fade" id="modalseccion" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Curso</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomgrado">Ingrese Seccion:</label> 
+							<input type="text" class="form-control" id="txtnomseccion"
+								maxlength="35">
+								<span id="errornomseccion" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="txtestadogrado">Ingrese Estado:</label> 
+							<input type="text" class="form-control" id="txtestadoseccion"
+								maxlength="35">
+								<span id="errorestadoseccion" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidseccion" value="0">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btnactualizarseccion" 
+					class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Eliminar -->
+	<!-- Eliminar -->
+	<div class="modal fade" id="modaleliminarseccion" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Curso</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddidseccioneliminar" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btneliminarseccion" 
+					class="btn btn-primary">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+		<div>
+			<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+					integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+					crossorigin="anonymous"></script>
+			<script src="../css/icons/script.js"></script>
+			<script type="text/javascript"
+					th:src="@{/script/jsweb/curso/listarSeccion.js}"></script>
+			
+			
+		</div>
+	</body>
 </html>

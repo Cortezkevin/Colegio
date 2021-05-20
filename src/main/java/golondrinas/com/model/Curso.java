@@ -12,14 +12,13 @@ import javax.persistence.Table;
 public class Curso {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idCurso;
+	private String idCurso;
 	
 	@Column(name="idNivel")
-	private Integer idNivel;
+	private String idNivel;
 	
 	@Column(name="idGrado")
-	private Integer idGrado;
+	private String idGrado;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -30,15 +29,15 @@ public class Curso {
 	@Column(name="estado")
 	private String estado;
 
-	public Integer getIdCurso() {
+	public String getIdCurso() {
 		return idCurso;
 	}
 
-	public Integer getIdNivel() {
+	public String getIdNivel() {
 		return idNivel;
 	}
 
-	public Integer getIdGrado() {
+	public String getIdGrado() {
 		return idGrado;
 	}
 
@@ -54,15 +53,15 @@ public class Curso {
 		return estado;
 	}
 
-	public void setIdCurso(Integer idCurso) {
+	public void setIdCurso(String idCurso) {
 		this.idCurso = idCurso;
 	}
 
-	public void setIdNivel(Integer idNivel) {
+	public void setIdNivel(String idNivel) {
 		this.idNivel = idNivel;
 	}
 
-	public void setIdGrado(Integer idGrado) {
+	public void setIdGrado(String idGrado) {
 		this.idGrado = idGrado;
 	}
 
@@ -78,7 +77,7 @@ public class Curso {
 		this.estado = estado;
 	}
 
-	public Curso(Integer idCurso, Integer idNivel, Integer idGrado, String nombre, String descripcion, String estado) {
+	public Curso(String idCurso, String idNivel, String idGrado, String nombre, String descripcion, String estado) {
 		super();
 		this.idCurso = idCurso;
 		this.idNivel = idNivel;
@@ -92,7 +91,8 @@ public class Curso {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	
 
 }

@@ -20,10 +20,17 @@ public class GradoService {
 	}
 	
 	public void registrarGrado(Grado g) {
-		repository.save(g);
+			repository.registrarGrado(g.getNombre());
 	}
 	
-	public Optional<Grado> BuscarPorId(Integer id){
+	/*public Optional<Grado> BuscarPorId(String id){
 		return repository.findById(id);
+	}*/
+	public void actualizarGrado(Grado g) {
+			repository.actualizarGrado(g.getIdgrado(), g.getNombre(),g.getEstado());
+	}
+	
+	public void eliminarGrado(Grado objGrado) {
+		repository.eliminarGrado(objGrado.getIdgrado());
 	}
 }

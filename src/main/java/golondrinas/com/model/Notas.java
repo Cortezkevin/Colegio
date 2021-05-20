@@ -12,20 +12,19 @@ import javax.persistence.Table;
 public class Notas {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idNota; 
+	private String idNota; 
 	
 	@Column(name="idAlumno")
-	private Integer idAlumno;
+	private String idAlumno;
 	
 	@Column(name="idCurso")
-	private Integer idCurso; 
+	private String idCurso; 
 	
 	@Column(name="idSeccion")
-	private Integer idSeccion; 
+	private String idSeccion; 
 	
 	@Column(name="idProfesor")
-	private Integer idProfesor; 
+	private String idProfesor; 
 	
 	@Column(name="examen1")
 	private String examen1;
@@ -36,23 +35,23 @@ public class Notas {
 	@Column(name="examen3")
 	private String examen3;
 
-	public Integer getIdNota() {
+	public String getIdNota() {
 		return idNota;
 	}
 
-	public Integer getIdAlumno() {
+	public String getIdAlumno() {
 		return idAlumno;
 	}
 
-	public Integer getIdCurso() {
+	public String getIdCurso() {
 		return idCurso;
 	}
 
-	public Integer getIdSeccion() {
+	public String getIdSeccion() {
 		return idSeccion;
 	}
 
-	public Integer getIdProfesor() {
+	public String getIdProfesor() {
 		return idProfesor;
 	}
 
@@ -68,23 +67,23 @@ public class Notas {
 		return examen3;
 	}
 
-	public void setIdNota(Integer idNota) {
+	public void setIdNota(String idNota) {
 		this.idNota = idNota;
 	}
 
-	public void setIdAlumno(Integer idAlumno) {
+	public void setIdAlumno(String idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
-	public void setIdCurso(Integer idCurso) {
+	public void setIdCurso(String idCurso) {
 		this.idCurso = idCurso;
 	}
 
-	public void setIdSeccion(Integer idSeccion) {
+	public void setIdSeccion(String idSeccion) {
 		this.idSeccion = idSeccion;
 	}
 
-	public void setIdProfesor(Integer idProfesor) {
+	public void setIdProfesor(String idProfesor) {
 		this.idProfesor = idProfesor;
 	}
 
@@ -100,8 +99,8 @@ public class Notas {
 		this.examen3 = examen3;
 	}
 
-	public Notas(Integer idNota, Integer idAlumno, Integer idCurso, Integer idSeccion, Integer idProfesor,
-			String examen1, String examen2, String examen3) {
+	public Notas(String idNota, String idAlumno, String idCurso, String idSeccion, String idProfesor, String examen1,
+			String examen2, String examen3) {
 		super();
 		this.idNota = idNota;
 		this.idAlumno = idAlumno;
@@ -117,6 +116,7 @@ public class Notas {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	
 	

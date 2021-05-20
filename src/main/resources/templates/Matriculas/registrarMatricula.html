@@ -10,8 +10,8 @@
 		<div class="row">
 			<div class="col-sm"></div>
 			<div class="col-lg">
-				<form th:action="@{/Matriculas/RegistrarMatricula}" th:object="${matriculaForm}"
-					method="post">
+				<form th:action="@{/Matriculas/RegistrarMatricula}"
+					th:object="${matriculaForm}" method="post">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Codigo Alumno</label> <input
 							th:field="*{idAlumno}" type="text" class="form-control"
@@ -23,19 +23,28 @@
 							id="exampleInputPassword1">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Codigo Nivel</label> <input
-							th:field="*{idNivel}" type="text" class="form-control"
-							id="exampleInputPassword1">
+						<label for="exampleFormControlSelect1">Nivel </label> <select
+							th:field="*{nivel}" class="form-control"
+							id="exampleFormControlSelect1">
+							<option th:each="n : ${lstNivel}" th:value="${n.idNivel}"
+								th:text="${n.nombre}"></option>
+						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Codigo Grado</label> <input
-							th:field="*{idGrado}" type="text" class="form-control"
-							id="exampleInputPassword1">
+						<label for="exampleFormControlSelect1">Grado </label> <select
+							th:field="*{grado}" class="form-control"
+							id="exampleFormControlSelect1">
+							<option th:each="g : ${lstGrado}" th:value="${g.idGrado}"
+								th:text="${g.nombre}"></option>
+						</select>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Codigo Seccion</label> <input
-							th:field="*{idSeccion}" type="text" class="form-control"
-							id="exampleInputPassword1">
+						<label for="exampleFormControlSelect1">Seccion </label> <select
+							th:field="*{seccion}" class="form-control"
+							id="exampleFormControlSelect1">
+							<option th:each="s : ${lstSeccion}" th:value="${s.idSeccion}"
+								th:text="${s.nombre}"></option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Estado</label> <input
