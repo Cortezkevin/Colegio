@@ -149,8 +149,8 @@ $(document).on("click", ".btnverdetalle", function() {
 					"<td>" + value.nombreusuario  + "</td>" +
 					"<td class='text-center'>" + value.password + "</td>" +
 					"<td class='text-center'>" + value.cargo + "</td>" +
-					"<td class='text-center'>" + value.nombres + "</td>" +
-					"<td class='text-center'>" + value.apellidos + "</td>" +
+					"<td class='text-center'>" + value.nombre + "</td>" +
+					"<td class='text-center'>" + value.apellido + "</td>" +
 				"</tr>")
 			});
 			$("#modaldetalleusuario").modal("show");

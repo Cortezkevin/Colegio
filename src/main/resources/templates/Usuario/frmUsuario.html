@@ -113,7 +113,7 @@
 						class="form-control" id="cbopersonas">
 						<option value="0">Seleccione</option>
 						<option th:each="persona :${lstPersonas}"
-							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
+							th:text=${persona.nombre} th:value="${persona.idpersona}"></option>
 					</select>
 				</div>
 				<div class="modal-footer">

@@ -26,7 +26,7 @@ public class PersonaService {
 		if(persona.getIdpersona() == null) {
 			repository.registrarPersona(persona.getNombre(), persona.getApellido(),
 					persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
-					persona.getEdad(), persona.getGenero(), persona.getEstado());
+					persona.getEdad(), persona.getGenero());
 		
 		}else {
 			repository.actualizarPersona(persona.getIdpersona(), persona.getNombre(), persona.getApellido(),

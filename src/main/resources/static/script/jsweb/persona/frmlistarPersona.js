@@ -7,7 +7,7 @@ $(document).on("click", "#btnagregarpersona", function() {
 	$("#txtdni").val("");
 	$("#txtedad").val("");
 	$("#txtgenero").val("");
-	$("#txtestado").val("");
+	//("#txtestado").val("");
 	$("#hddidpersona").val("0");
 
 	$("#modalpersona").modal("show");
@@ -69,6 +69,13 @@ $(document).on("click", "#btnregistrarpersona", function() {
 	}else{
 		$("#erroredad").text("");
 	}
+	
+	if($("#txtgenero").val() === ""){
+		$("#errorgenero").text("Es obligatorio el genero de la persona");
+	}else{
+		$("#errorgenero").text("");
+	}
+	
 	 if($("#txtnombre").val() !== "" && $("#txtapellido").val !== "" &&
 	 $("#txtdireccion").val() !== "" && $("#txttelefono").val() !== "" &&
 	 $("#txtemail").val() !== "" && $("#txtdni").val() !== "" &&
@@ -88,7 +95,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 				        dni: $("#txtdni").val(),
 				        edad: $("#txtedad").val(),
 				        genero: $("#txtgenero").val(),
-				        estado:$("#txtestado").val()
+				        //estado:$("#txtestado").val()
 
 			}),
 			success: function(resultado){
@@ -100,7 +107,6 @@ $(document).on("click", "#btnregistrarpersona", function() {
 					//actualizar lista 
 				}
 				mostrarMensaje(resultado.mensaje, estilo);
-				
 			}
 		});
 	} else {
@@ -118,14 +124,14 @@ $(document).on("click", "#btnregistrarpersona", function() {
 				dni: $("#txtdni").val(),
 				edad: $("#txtedad").val(),
 				genero: $("#txtgenero").val(),
-				estado:$("#txtestado").val()
+				//estado:$("#txtestado").val()
 
 			}),
 			success: function(resultado){
 				var estilo = "danger";
 			if (resultado.respuesta) {
 				estilo = "success";
-				ListarCursos();
+				ListarPersona();
 			}
 			mostrarMensaje(resultado.mensaje, estilo);
 			}
@@ -133,7 +139,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 
 	}
 	
-	$("#modalpersona").model("hide");
+	$("#modalpersona").modal("hide");
 	}
 });
 		
@@ -161,7 +167,7 @@ $(document).on("click", "#btneliminarpersona", function() {
 				var estilo = "danger";
 			if (resultado.respuesta) {
 				estilo = "success";
-				ListarCursos();
+				ListarPersona();
 			}
 			mostrarMensaje(resultado.mensaje, estilo);
 				$("#modaleliminarpersona").modal("hide");

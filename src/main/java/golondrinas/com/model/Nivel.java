@@ -18,43 +18,47 @@ import javax.persistence.Table;
 public class Nivel{
 
 	@Id
-	private String idNivel;
+	private String idnivel;
 	
 	@Column(name="nombre")
 	private String nombre;
-
+	
+	@Column(name="estado")
+	private String estado;
+/*
 	@OneToMany(mappedBy = "nivel")
 	private Collection<Matricula> itemsMatricula=new ArrayList<>();
+*/
 
-	public String getIdNivel() {
-		return idNivel;
+	public String getIdnivel() {
+		return idnivel;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public Collection<Matricula> getItemsMatricula() {
-		return itemsMatricula;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setIdNivel(String idNivel) {
-		this.idNivel = idNivel;
+	public void setIdnivel(String idnivel) {
+		this.idnivel = idnivel;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public void setItemsMatricula(Collection<Matricula> itemsMatricula) {
-		this.itemsMatricula = itemsMatricula;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public Nivel(String idNivel, String nombre, Collection<Matricula> itemsMatricula) {
+	public Nivel(String idnivel, String nombre, String estado) {
 		super();
-		this.idNivel = idNivel;
+		this.idnivel = idnivel;
 		this.nombre = nombre;
-		this.itemsMatricula = itemsMatricula;
+		this.estado = estado;
 	}
 
 	public Nivel() {
@@ -62,7 +66,6 @@ public class Nivel{
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	
 	
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment>
+<head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
 <script type="text/javascript"
@@ -169,12 +169,12 @@
 								<span id="errorgenero" class="text-danger"></span>
 						</div>
 						
-							<div class="form-group">
+							<!--  <div class="form-group">
 							<label for="txtestado">Ingrese Estado:</label> 
 							<input type="text" class="form-control" id="txtestado"
 								maxlength="35">
 								<span id="errorestado" class="text-danger"></span>
-						</div>
+						</div>-->
 						<input type="hidden" id="hddidpersona" value="0">
 						
 						
