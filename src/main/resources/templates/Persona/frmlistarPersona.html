@@ -14,7 +14,7 @@
 	th:src="@{/script/jsweb/persona/frmlistarPersona.js}"></script>
 
 <body>
-
+	<nav th:replace="menu2::menu"></nav>
 	<div class="card">
 		<div class="card-header badge-danger">LISTADO DE PERSONAS</div>
 		<div class="card-body">
@@ -23,9 +23,8 @@
 				Registrar Persona</button>
 
 			<hr />
-			
-			<div id="mensaje">
-			</div>
+
+			<div id="mensaje"></div>
 			<table id="tblpersona" class="table table-bordered table-dark">
 
 				<thead>
@@ -68,8 +67,7 @@
 								th:data-apellido="${persona.apellido}"
 								th:data-direccion="${persona.direccion}"
 								th:data-telefono="${persona.telefono}"
-								th:data-email="${persona.email}" 
-								th:data-dni="${persona.dni}"
+								th:data-email="${persona.email}" th:data-dni="${persona.dni}"
 								th:data-edad="${persona.edad}"
 								th:data-genero="${persona.genero}"
 								th:data-estado="${persona.estado}">Actualizar</button>
@@ -81,8 +79,7 @@
 								th:data-apellido="${persona.apellido}"
 								th:data-direccion="${persona.direccion}"
 								th:data-telefono="${persona.telefono}"
-								th:data-email="${persona.email}" 
-								th:data-dni="${persona.dni}"
+								th:data-email="${persona.email}" th:data-dni="${persona.dni}"
 								th:data-edad="${persona.edad}"
 								th:data-genero="${persona.genero}"
 								th:data-estado="${persona.estado}">Eliminar</button>
@@ -110,74 +107,63 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="txtnombre">Ingrese Nombre:</label> 
-							<input type="text" class="form-control" id="txtnombre"
-								maxlength="35">
-								<span id="errornombre" class="text-danger"></span>
+							<label for="txtnombre">Ingrese Nombre:</label> <input type="text"
+								class="form-control" id="txtnombre" maxlength="35"> <span
+								id="errornombre" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtapellido">Ingrese Apellido:</label> 
-							<input type="text" class="form-control" id="txtapellido"
-								maxlength="35">
-								<span id="errorapellido" class="text-danger"></span>
+							<label for="txtapellido">Ingrese Apellido:</label> <input
+								type="text" class="form-control" id="txtapellido" maxlength="35">
+							<span id="errorapellido" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtdireccion">Ingrese Direccion:</label> 
-							<input type="text" class="form-control" id="txtdireccion"
-								maxlength="35">
-								<span id="errordireccion" class="text-danger"></span>
+							<label for="txtdireccion">Ingrese Direccion:</label> <input
+								type="text" class="form-control" id="txtdireccion"
+								maxlength="35"> <span id="errordireccion"
+								class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txttelefono">Ingrese Telefono:</label> 
-							<input type="text" class="form-control" id="txttelefono"
-								maxlength="11">
-								<span id="errortelefono" class="text-danger"></span>
+							<label for="txttelefono">Ingrese Telefono:</label> <input
+								type="text" class="form-control" id="txttelefono" maxlength="11">
+							<span id="errortelefono" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtemail">Ingrese Correo:</label> 
-							<input type="text" class="form-control" id="txtemail"
-								maxlength="35">
-								
-								<span id="erroremail" class="text-danger"></span>
+							<label for="txtemail">Ingrese Correo:</label> <input type="text"
+								class="form-control" id="txtemail" maxlength="35"> <span
+								id="erroremail" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtdni">Ingrese DNI :</label> 
-							<input type="text" class="form-control" id="txtdni"
-								maxlength="8">
-								
-								<span id="errordni" class="text-danger"></span>
+							<label for="txtdni">Ingrese DNI :</label> <input type="text"
+								class="form-control" id="txtdni" maxlength="8"> <span
+								id="errordni" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtedad">Ingrese Edad:</label> 
-							<input type="text" class="form-control" id="txtedad"
-								maxlength="2">
-								
-								<span id="erroredad" class="text-danger"></span>
+							<label for="txtedad">Ingrese Edad:</label> <input type="text"
+								class="form-control" id="txtedad" maxlength="2"> <span
+								id="erroredad" class="text-danger"></span>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="txtgenero">Ingrese Genero:</label> 
-							<input type="text" class="form-control" id="txtgenero"
-								maxlength="35">
-								
-								<span id="errorgenero" class="text-danger"></span>
+							<label for="txtgenero">Ingrese Genero:</label> <input type="text"
+								class="form-control" id="txtgenero" maxlength="35"> <span
+								id="errorgenero" class="text-danger"></span>
 						</div>
-						
-							<!--  <div class="form-group">
+
+						<!--  <div class="form-group">
 							<label for="txtestado">Ingrese Estado:</label> 
 							<input type="text" class="form-control" id="txtestado"
 								maxlength="35">
 								<span id="errorestado" class="text-danger"></span>
 						</div>-->
 						<input type="hidden" id="hddidpersona" value="0">
-						
-						
+
+
 					</form>
 
 
@@ -186,7 +172,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btnregistrarpersona"class="btn btn-primary">Guardar</button>
+					<button type="button" id="btnregistrarpersona"
+						class="btn btn-primary">Guardar</button>
 				</div>
 			</div>
 		</div>
@@ -208,16 +195,16 @@
 					</button>
 				</div>
 				<div class="modal-body">
-				<label id="mensajeeliminar"></label>
-				<input type="hidden" id="hddidpersonaeliminar" value="0">
-											
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidpersonaeliminar" value="0">
+
 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btneliminarpersona" 
-					class="btn btn-danger">Eliminar</button>
+					<button type="button" id="btneliminarpersona"
+						class="btn btn-danger">Eliminar</button>
 				</div>
 			</div>
 		</div>

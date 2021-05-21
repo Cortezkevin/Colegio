@@ -16,14 +16,25 @@ public class NivelService {
 	private NivelRepository repository;
 	
 	public List<Nivel> listarNivel(){
-		return repository.findAll();
+		return repository.listarNiveles();
 	}
 	
 	public void registrarNivel(Nivel n) {
-		repository.save(n);
+		if (n.getIdnivel() == null) {
+			
+			repository.RegistrarNivel(n.getNombre());
+		}
+		
+		else {
+			
+			repository.ActualizarNivel(n.getIdnivel(), n.getNombre());
+		}
+		
 	}
 	
-	public Optional<Nivel> BuscarPorId(Integer id){
-		return repository.findById(id);
+	
+	public void eliminarNivel(Nivel n) {
+		
+		repository.EliminarNivel(n.getIdnivel());
 	}
 }
