@@ -20,60 +20,41 @@ public class Seccion {
 
 	@Column(name = "nombre")
 	private String nombre;
-
+/*
 	@OneToMany(mappedBy = "seccion")
 	private Collection<Matricula> itemsMatricula = new ArrayList<>();
-
+*/
 	@Column(name="estado")
 	private String estado;
-
 	public String getIdseccion() {
 		return idseccion;
 	}
-
-	public void setIdseccion(String idseccion) {
-		this.idseccion = idseccion;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Collection<Matricula> getItemsMatricula() {
-		return itemsMatricula;
-	}
-
-	public void setItemsMatricula(Collection<Matricula> itemsMatricula) {
-		this.itemsMatricula = itemsMatricula;
-	}
-
 	public String getEstado() {
 		return estado;
 	}
-
+	public void setIdseccion(String idseccion) {
+		this.idseccion = idseccion;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
-	public Seccion(String idseccion, String nombre, Collection<Matricula> itemsMatricula, String estado) {
+	public Seccion(String idseccion, String nombre, String estado) {
 		super();
 		this.idseccion = idseccion;
 		this.nombre = nombre;
-		this.itemsMatricula = itemsMatricula;
 		this.estado = estado;
 	}
-
 	public Seccion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	
 
 

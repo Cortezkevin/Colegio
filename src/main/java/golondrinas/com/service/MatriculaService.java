@@ -17,18 +17,19 @@ public class MatriculaService {
 	private MatriculaRepository repository;
 	
 	public List<Matricula> listarMatriculas(){
-		return repository.findAll();
+		return repository.listarMatricula();
 	}
 	
 	public void RegistrarMatricula(Matricula m) {
-		repository.save(m);
+		if(m.getIdmatricula() == null) {
+			repository.RegistrarMatricula(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+		}else {
+		repository.ActualizarMatricula(m.getIdmatricula(),m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+		}
 	}
 	
-	public Optional<Matricula> BuscarPorId(Integer id){
-		return repository.findById(id);
-	}
 	
-	public void Actualizar(Matricula m) {
-		repository.save(m);
+	public void EliminarMatricula(Matricula m) {
+		repository.EliminarMatricula(m.getIdmatricula());
 	}
 }

@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Matricula;
-import golondrinas.com.model.Nivel;
+import golondrinas.com.model.response.ResultadoResponse;
+import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.MatriculaService;
 import golondrinas.com.service.NivelService;
@@ -23,37 +26,62 @@ public class MatriculaController {
 
 	@Autowired
 	private MatriculaService service;
-	
+
+	@Autowired
+	private AlumnoService aservice;
+
 	@Autowired
 	private NivelService nService;
-	
+
 	@Autowired
 	private GradoService gService;
-	
+
 	@Autowired
 	private SeccionService sService;
-	
-	@GetMapping("/ListadoMatricula") 
-	public String ListaMatricula(Model model) {
+
+	@GetMapping("/frmMatricula")
+	public String frmMatricula(Model model) {
 		List<Matricula> lstMatriculas = service.listarMatriculas();
-		model.addAttribute("lstMat",lstMatriculas);
-		return "Matriculas/listadoMatriculas";
+		model.addAttribute("lstMat", lstMatriculas);
+		model.addAttribute("lstAlumno", aservice.listarALumno());
+		model.addAttribute("lstNivel", nService.listarNivel());
+		model.addAttribute("lstGrado", gService.listarGrado());
+		model.addAttribute("lstSeccion", sService.listarSeccion());
+		return "Matriculas/frmMatricula";
 	}
-	
-	@GetMapping("/RegistrarMatricula")
-	public String RegistrarMatricula(Model model) {
-		model.addAttribute("lstNivel",nService.listarNivel());
-		model.addAttribute("lstGrado",gService.listarGrado());
-		model.addAttribute("lstSeccion",sService.listarSeccion());
-		model.addAttribute("matriculaForm",new Matricula());
-		return "Matriculas/registrarMatricula";
+
+	@PostMapping("/registrarMatricula")
+	@ResponseBody
+	public ResultadoResponse registrarMatricula(@RequestBody Matricula objMatricula) {
+		String mensaje = "Matricula registrada correctamente";
+		Boolean respuesta = true;
+		try {
+			service.RegistrarMatricula(objMatricula);
+		} catch (Exception ex) {
+			mensaje = "Matricula no registrada";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
-	@PostMapping("/RegistrarMatricula")
-	public String RegistrarMatricula(@ModelAttribute("matriculaForm") Matricula matriculaForm) {
-		service.RegistrarMatricula(matriculaForm);
-		return "redirect:/Matriculas/ListadoMatricula";
+
+	@GetMapping("/listarMatriculas")
+	@ResponseBody
+	public List<Matricula> listarMatriculas() {
+		return service.listarMatriculas();
 	}
-	
-	
+
+	@DeleteMapping("/eliminarMatricula")
+	@ResponseBody
+	public ResultadoResponse eliminarMatricula(@RequestBody Matricula objMatricula) {
+		String mensaje = "Matricula eliminada de forma logica";
+		Boolean respuesta = true;
+		try {
+			service.EliminarMatricula(objMatricula);
+		} catch (Exception ex) {
+			mensaje = "Matricula no eliminada";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
+	}
+
 }
