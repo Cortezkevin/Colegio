@@ -67,18 +67,4 @@ public class CargoController {
 		return new ResultadoResponse(respuesta, mensaje);
 	}
 	
-	/*
-	@GetMapping("/ListaCargo")
-	public String ListaCargo(Model model) {
-		List<Cargo> lst= service.listarCargos();
-		model.addAttribute("lstcargo",lst);
-		model.addAttribute("cargoForm", new Cargo());
-		return "Cargo/frmCargos";
-	}
-	
-	@PostMapping("/ListaCargo")
-	public String RegistrarCargo(@ModelAttribute("cargoForm") Cargo cargoForm) {
-		service.registrarCargo(cargoForm);
-		return "redirect:/Cargo/ListaCargo";
-	}*/
 }
