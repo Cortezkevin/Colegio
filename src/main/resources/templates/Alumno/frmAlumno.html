@@ -21,8 +21,8 @@
 				<thead>
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col">ID Usuario</th>
 						<th scope="col">ID Persona</th>
+						<th scope="col">ID Usuario</th>
 						<th scope="col">ID Nivel</th>
 						<th scope="col">ID Grado</th>
 						<th scope="col">Estado</th>
@@ -76,7 +76,7 @@
 						<option value="0">Seleccione</option>
 						<option th:each="persona :${lstpersona}"
 							th:text=${persona.nombre} th:value="${persona.idpersona}"></option>
-					</select> <span id="errorcodpersona" class="text-danger"></span>
+					</select> <span id="errorpersona" class="text-danger"></span>
 				</div>
 				<input type="hidden" id="hddidalumno" value="0">
 				<div class="modal-body">
@@ -85,7 +85,7 @@
 						<option value="0">Seleccione</option>
 						<option th:each="usuario :${lstusuario}"
 							th:text=${usuario.nombreusuario} th:value="${usuario.idusuario}"></option>
-					</select>
+					</select><span id="errorusuario" class="text-danger"></span>
 				</div>
 				<div class="modal-body">
 					<label for="cbonivel">Seleccione nivel</label> <select
@@ -93,7 +93,7 @@
 						<option value="0">Seleccione</option>
 						<option th:each="nivel :${lstnivel}" th:text=${nivel.nombre}
 							th:value="${nivel.idnivel}"></option>
-					</select>
+					</select><span id="errornivel" class="text-danger"></span>
 				</div>
 				<div class="modal-body">
 					<label for="cbogrado">Seleccione grado</label> <select
@@ -101,7 +101,7 @@
 						<option value="0">Seleccione</option>
 						<option th:each="grado :${lstgrado}" th:text=${grado.nombre}
 							th:value="${grado.idgrado}"></option>
-					</select>
+					</select><span id="errorgrado" class="text-danger"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

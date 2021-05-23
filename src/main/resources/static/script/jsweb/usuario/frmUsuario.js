@@ -5,6 +5,7 @@ $(document).on("click", "#btnagregarusuario", function() {
 	$("#modalusuario").modal("show");
 });
 $(document).on("click", ".btnactualizarusuario", function() {
+	alert($(this).attr("data-codusuario"));
 	$("#txtnomusuario").val($(this).attr("data-nomusuario"));
 	$("#txtcontraseña").val($(this).attr("data-contraseña"));
 	$("#cbocargos").val($(this).attr("data-codcargo"));
@@ -13,11 +14,27 @@ $(document).on("click", ".btnactualizarusuario", function() {
 	$("#modalusuario").modal("show");
 });
 $(document).on("click", "#btnregistrarusuario", function() {
+	//validar ingreso de nombre de usuario
 	if ($("#txtnomusuario").val() === "") {
 		$("#errornomusuario").text("Es obligatorio el nombre de usuario.");
 	} else {
 		$("#errornomusuario").text("");
 	}
+	// validar ingreso contraseña
+	if ($("#txtcontraseña").val() === "") {
+		$("#errorcontraseña").text("Es obligatorio una contraseña.");
+	} else {
+		$("#errorcontraseña").text("");
+	}
+	// validar seleccion de cargo
+	var idcargo = $("#cbocargos").val();
+	if(idcargo === "0"){
+		$("#errorcargo").text("Es obligatorio seleccionar un cargo.");}
+	// validar seleccion de persona		
+	var idpersona = $("#cbopersonas").val();
+	if(idpersona === "0"){
+		$("#errorpersona").text("Es obligatorio seleccionar una persona.");}
+	//	
 	if ($("#txtnomusuario").val() !== "") {
 		if ($("#hddidusuario").val() === "0") {
 			$.ajax({
@@ -65,7 +82,7 @@ $(document).on("click", "#btnregistrarusuario", function() {
 	}
 });
 $(document).on("click", ".btneliminarusuario", function() {
-	//alert($(this).attr("data-codcurso"));
+	alert($(this).attr("data-codusuario"));
 	$("#mensajeeliminar").text("¿Está seguro de eliminar al usuario: " +
 		$(this).attr("data-nomusuario") + "?");
 	$("#hddidusuarioeliminar").val($(this).attr("data-codusuario"));
@@ -105,7 +122,7 @@ function ListarUsuarios() {
 					"<td>" + value.idcargo + "</td>" +
 					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.estado + "</td>" +
-					"<td><button type='button' class='btn btn-success btndetalleusuario' " +
+					"<td><button type='button' class='btn btn-success btnverdetalle' " +
 					" data-codusuario='" + value.idusuario + "'>Ver Detalle</button>" +
 					"</td>"+
 					"<td><button type='button' class='btn btn-info btnactualizarusuario' " +
@@ -134,23 +151,25 @@ function mostrarMensaje(mensaje, estilo) {
 		+ "<span aria-hidden='true'>&times;</span></button></div>"
 	);
 }
+
+
 $(document).on("click", ".btnverdetalle", function() {
 	$.ajax({
 		type: "GET",
 		url: "/Usuario/listarDetalleUsuario",
-		data: {
-			idusuario: $(this).attr("data-codusuario")
-		},
 		dataType: 'json',
-		seccess: function(resultado) {
+		data: {
+			idusuario: $(this).attr("data-codusuario"),
+		},
+		success: function(resultado) {
 			$("#tbldetalle > tbody").html("");
 			$.each(resultado, function(index, value) {
 				$("#tbldetalle > tbody").append("<tr>" +
 					"<td>" + value.nombreusuario  + "</td>" +
 					"<td class='text-center'>" + value.password + "</td>" +
 					"<td class='text-center'>" + value.cargo + "</td>" +
-					"<td class='text-center'>" + value.nombre + "</td>" +
-					"<td class='text-center'>" + value.apellido + "</td>" +
+					"<td class='text-center'>" + value.nombres + "</td>" +
+					"<td class='text-center'>" + value.apellidos + "</td>" +
 				"</tr>")
 			});
 			$("#modaldetalleusuario").modal("show");

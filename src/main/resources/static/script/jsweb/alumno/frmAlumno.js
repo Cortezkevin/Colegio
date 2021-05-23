@@ -1,8 +1,8 @@
 $(document).on("click", "#btnagregaralumno", function() {
-	$("#cbopersona").val("");
-	$("#cbousuario").val("");
-	$("#cbonivel").val("");
-	$("#cbogrado").val("");
+	$("#cbopersona").val("0");
+	$("#cbousuario").val("0");
+	$("#cbonivel").val("0");
+	$("#cbogrado").val("0");
 	
 	$("#hddidalumno").val("0");
 	$("#modalalumno").modal("show");
@@ -21,12 +21,27 @@ $(document).on("click", ".btnactualizaralumno", function() {
 
 
 $(document).on("click", "#btnregistraralumno", function() {
-	if ($("#cbopersona").val() === "") {
-		$("#errorcodpersona").text("Es obligatorio el Id del persona.");
-	} else {
-		$("#errorcodpersona").text("");
+	
+	var idpersona = $("#cbopersona").val();
+	if(idpersona === "0"){
+		$("#errorpersona").text("Es obligatorio seleccionar una persona.");
 	}
-	if ($("#cbopersona").val() !== "") {
+	
+	var idusuario = $("#cbousuario").val();
+	if(idusuario === "0"){
+		$("#errorusuario").text("Es obligatorio seleccionar un usuario.");
+	}
+	
+	var idnivel = $("#cbonivel").val();
+	if(idnivel === "0"){
+		$("#errornivel").text("Es obligatorio seleccionar un nivel.");
+	}
+	
+	var idgrado = $("#cbogrado").val();
+	if(idgrado === "0"){
+		$("#errorgrado").text("Es obligatorio seleccionar un grado.");
+	}
+	if ($("#cbopersona").val() !== "0") {
 		if ($("#hddidalumno").val() === "0") {
 			$.ajax({
 				type: "POST",
@@ -47,7 +62,8 @@ $(document).on("click", "#btnregistraralumno", function() {
 					mostrarMensaje(resultado.mensaje, estilo);
 				}
 			});
-		} else {
+		} 
+		else {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json",
@@ -117,8 +133,6 @@ function mostrarMensaje(mensaje, estilo) {
 		+ "<span aria-hidden='true'>&times;</span></button></div>"
 	);
 }
-
-
 
 function ListarAlumnos() {
 	$.ajax({

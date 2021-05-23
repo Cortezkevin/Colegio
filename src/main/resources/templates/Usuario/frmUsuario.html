@@ -107,6 +107,8 @@
 						<option th:each="cargo :${lstCargos}" th:text=${cargo.nombre}
 							th:value="${cargo.idcargo}"></option>
 					</select>
+					 <span id="errorcargo"
+								class="text-danger"></span>
 				</div>
 				<div class="modal-body">
 					<label for="cbopersonas">Seleccione Persona</label> <select
@@ -115,6 +117,8 @@
 						<option th:each="persona :${lstPersonas}"
 							th:text=${persona.nombre} th:value="${persona.idpersona}"></option>
 					</select>
+					 <span id="errorpersona"
+								class="text-danger"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
