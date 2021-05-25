@@ -2,8 +2,6 @@ package golondrinas.com.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,104 +10,130 @@ import javax.persistence.Table;
 public class Notas {
 
 	@Id
-	private String idNota; 
+	private String idnota; 
 	
-	@Column(name="idAlumno")
-	private String idAlumno;
+	@Column(name="idalumno")
+	private String idalumno;
 	
-	@Column(name="idCurso")
-	private String idCurso; 
+	@Column(name="idcurso")
+	private String idcurso; 
 	
-	@Column(name="idSeccion")
-	private String idSeccion; 
+	@Column(name="idseccion")
+	private String idseccion; 
 	
-	@Column(name="idProfesor")
-	private String idProfesor; 
+	@Column(name="idprofesor")
+	private String idprofesor; 
 	
 	@Column(name="examen1")
-	private String examen1;
+	private Double examen1;
 	
 	@Column(name="examen2")
-	private String examen2;
+	private Double examen2;
 	
 	@Column(name="examen3")
-	private String examen3;
+	private Double examen3;
+	
+	@Column(name="examen4")
+	private Double examen4;
+	
+	@Column(name = "estado")
+	private String estado;
 
-	public String getIdNota() {
-		return idNota;
+	public String getIdnota() {
+		return idnota;
 	}
 
-	public String getIdAlumno() {
-		return idAlumno;
+	public String getIdalumno() {
+		return idalumno;
 	}
 
-	public String getIdCurso() {
-		return idCurso;
+	public String getIdcurso() {
+		return idcurso;
 	}
 
-	public String getIdSeccion() {
-		return idSeccion;
+	public String getIdseccion() {
+		return idseccion;
 	}
 
-	public String getIdProfesor() {
-		return idProfesor;
+	public String getIdprofesor() {
+		return idprofesor;
 	}
 
-	public String getExamen1() {
+	public Double getExamen1() {
 		return examen1;
 	}
 
-	public String getExamen2() {
+	public Double getExamen2() {
 		return examen2;
 	}
 
-	public String getExamen3() {
+	public Double getExamen3() {
 		return examen3;
 	}
 
-	public void setIdNota(String idNota) {
-		this.idNota = idNota;
+	public void setIdnota(String idnota) {
+		this.idnota = idnota;
 	}
 
-	public void setIdAlumno(String idAlumno) {
-		this.idAlumno = idAlumno;
+	public void setIdalumno(String idalumno) {
+		this.idalumno = idalumno;
 	}
 
-	public void setIdCurso(String idCurso) {
-		this.idCurso = idCurso;
+	public void setIdcurso(String idcurso) {
+		this.idcurso = idcurso;
 	}
 
-	public void setIdSeccion(String idSeccion) {
-		this.idSeccion = idSeccion;
+	public void setIdseccion(String idseccion) {
+		this.idseccion = idseccion;
 	}
 
-	public void setIdProfesor(String idProfesor) {
-		this.idProfesor = idProfesor;
+	public void setIdprofesor(String idprofesor) {
+		this.idprofesor = idprofesor;
 	}
 
-	public void setExamen1(String examen1) {
+	public void setExamen1(Double examen1) {
 		this.examen1 = examen1;
 	}
 
-	public void setExamen2(String examen2) {
+	public void setExamen2(Double examen2) {
 		this.examen2 = examen2;
 	}
 
-	public void setExamen3(String examen3) {
+	public void setExamen3(Double examen3) {
 		this.examen3 = examen3;
 	}
 
-	public Notas(String idNota, String idAlumno, String idCurso, String idSeccion, String idProfesor, String examen1,
-			String examen2, String examen3) {
+
+
+	public Double getExamen4() {
+		return examen4;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setExamen4(Double examen4) {
+		this.examen4 = examen4;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Notas(String idnota, String idalumno, String idcurso, String idseccion, String idprofesor, Double examen1,
+			Double examen2, Double examen3, Double examen4, String estado) {
 		super();
-		this.idNota = idNota;
-		this.idAlumno = idAlumno;
-		this.idCurso = idCurso;
-		this.idSeccion = idSeccion;
-		this.idProfesor = idProfesor;
+		this.idnota = idnota;
+		this.idalumno = idalumno;
+		this.idcurso = idcurso;
+		this.idseccion = idseccion;
+		this.idprofesor = idprofesor;
 		this.examen1 = examen1;
 		this.examen2 = examen2;
 		this.examen3 = examen3;
+		this.examen4 = examen4;
+		this.estado = estado;
 	}
 
 	public Notas() {
@@ -118,6 +142,7 @@ public class Notas {
 	}
 
 	
+
 	
 	
 }

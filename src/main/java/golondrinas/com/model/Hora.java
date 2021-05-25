@@ -16,67 +16,55 @@ import javax.persistence.Table;
 public class Hora {
 
 	@Id
-	private String idHora;
+	private String idhora;
 
-	@Column(name="horaInicio")
-	private String horaInicio;
+	@Column(name="horainicio")
+	private String horainicio;
 
-	@Column(name="horaFin")
-	private String horaFin;
+	@Column(name="horafin")
+	private String horafin;
 
 	@Column(name="dia")
 	private String dia;
 
-	@OneToMany(mappedBy = "hor")
-	private Collection<Horario> itemsHorario=new ArrayList<>();
-
-	public String getIdHora() {
-		return idHora;
+	public String getIdhora() {
+		return idhora;
 	}
 
-	public String getHoraInicio() {
-		return horaInicio;
+	public String getHorainicio() {
+		return horainicio;
 	}
 
-	public String getHoraFin() {
-		return horaFin;
+	public String getHorafin() {
+		return horafin;
 	}
 
 	public String getDia() {
 		return dia;
 	}
 
-	public Collection<Horario> getItemsHorario() {
-		return itemsHorario;
+	public void setIdhora(String idhora) {
+		this.idhora = idhora;
 	}
 
-	public void setIdHora(String idHora) {
-		this.idHora = idHora;
+	public void setHorainicio(String horainicio) {
+		this.horainicio = horainicio;
 	}
 
-	public void setHoraInicio(String horaInicio) {
-		this.horaInicio = horaInicio;
-	}
-
-	public void setHoraFin(String horaFin) {
-		this.horaFin = horaFin;
+	public void setHorafin(String horafin) {
+		this.horafin = horafin;
 	}
 
 	public void setDia(String dia) {
 		this.dia = dia;
 	}
 
-	public void setItemsHorario(Collection<Horario> itemsHorario) {
-		this.itemsHorario = itemsHorario;
-	}
-
-	public Hora(String idHora, String horaInicio, String horaFin, String dia, Collection<Horario> itemsHorario) {
+	public Hora(String idhora, String horainicio, String horafin, String dia) {
 		super();
-		this.idHora = idHora;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
+		this.idhora = idhora;
+		this.horainicio = horainicio;
+		this.horafin = horafin;
 		this.dia = dia;
-		this.itemsHorario = itemsHorario;
 	}
 
 	public Hora() {
@@ -85,9 +73,6 @@ public class Hora {
 	}
 
 	
-	
-	
-	
-	
+
 
 }

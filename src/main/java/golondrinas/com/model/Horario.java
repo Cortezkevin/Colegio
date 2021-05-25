@@ -15,81 +15,66 @@ import javax.persistence.Table;
 public class Horario {
 
 	@Id
-	private String idHorario;
+	private String idhorario;
 	
-	@Column(name="idNivel")
-	private String idNivel;
+	@Column(name="idnivel")
+	private String idnivel;
 	
-	@Column(name="idGrado")
-	private String idGrado;
+	@Column(name="idgrado")
+	private String idgrado;
 	
-	@Column(name="idCursoProgramado")
-	private String idCursoProgramado;
-	
-	@ManyToOne
-	@JoinColumn(name="id_hora", nullable = false,
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_hora) references hora(id_hora)"))
-	private Hora hor;
+	@Column(name="idcursoprogramado")
+	private String idcursoprogramado;
 	
 	@Column(name="estado")
 	private String estado;
 
-	public String getIdHorario() {
-		return idHorario;
+	public String getIdhorario() {
+		return idhorario;
 	}
 
-	public String getIdNivel() {
-		return idNivel;
+	public String getIdnivel() {
+		return idnivel;
 	}
 
-	public String getIdGrado() {
-		return idGrado;
+	public String getIdgrado() {
+		return idgrado;
 	}
 
-	public String getIdCursoProgramado() {
-		return idCursoProgramado;
-	}
-
-	public Hora getHor() {
-		return hor;
+	public String getIdcursoprogramado() {
+		return idcursoprogramado;
 	}
 
 	public String getEstado() {
 		return estado;
 	}
 
-	public void setIdHorario(String idHorario) {
-		this.idHorario = idHorario;
+	public void setIdhorario(String idhorario) {
+		this.idhorario = idhorario;
 	}
 
-	public void setIdNivel(String idNivel) {
-		this.idNivel = idNivel;
+	public void setIdnivel(String idnivel) {
+		this.idnivel = idnivel;
 	}
 
-	public void setIdGrado(String idGrado) {
-		this.idGrado = idGrado;
+	public void setIdgrado(String idgrado) {
+		this.idgrado = idgrado;
 	}
 
-	public void setIdCursoProgramado(String idCursoProgramado) {
-		this.idCursoProgramado = idCursoProgramado;
-	}
-
-	public void setHor(Hora hor) {
-		this.hor = hor;
+	public void setIdcursoprogramado(String idcursoprogramado) {
+		this.idcursoprogramado = idcursoprogramado;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Horario(String idHorario, String idNivel, String idGrado, String idCursoProgramado, Hora hor,
-			String estado) {
+	public Horario(String idhorario, String idnivel, String idgrado, String idcursoprogramado, String estado) {
 		super();
-		this.idHorario = idHorario;
-		this.idNivel = idNivel;
-		this.idGrado = idGrado;
-		this.idCursoProgramado = idCursoProgramado;
-		this.hor = hor;
+		this.idhorario = idhorario;
+		this.idnivel = idnivel;
+		this.idgrado = idgrado;
+		this.idcursoprogramado = idcursoprogramado;
 		this.estado = estado;
 	}
 
@@ -98,6 +83,5 @@ public class Horario {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	
 }
