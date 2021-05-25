@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import golondrinas.com.model.DetalleMatricula;
 import golondrinas.com.model.Matricula;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
+import golondrinas.com.service.DetalleMatriculaService;
+import golondrinas.com.service.DetallerUsuarioService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.MatriculaService;
 import golondrinas.com.service.NivelService;
@@ -38,6 +42,9 @@ public class MatriculaController {
 
 	@Autowired
 	private SeccionService sService;
+	
+	@Autowired
+	private DetalleMatriculaService dmservice;
 
 	@GetMapping("/frmMatricula")
 	public String frmMatricula(Model model) {
@@ -82,6 +89,12 @@ public class MatriculaController {
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
+	}
+	
+	@GetMapping("/listarDetalleMatricula")
+	@ResponseBody
+	public List<DetalleMatricula> listarDetalleMatricula(@RequestParam("idmatricula") String idmatricula){
+		return dmservice.listarDetalleMatriculas(idmatricula);
 	}
 
 }

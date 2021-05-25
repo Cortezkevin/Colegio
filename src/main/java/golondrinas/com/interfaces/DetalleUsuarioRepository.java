@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 import golondrinas.com.model.DetalleUsuario;
 
 @Repository
-public interface DetalleUsuarioRepository extends JpaRepository<DetalleUsuario, String>{
+public interface DetalleUsuarioRepository extends JpaRepository<DetalleUsuario, String> {
 
-	@Query(value="{call sp_MantListarDetalleUsuario(:idusuario)}",
-			nativeQuery = true)
+	@Query(value = "{call sp_MantListarDetalleUsuario(:idusuario)}", nativeQuery = true)
 	List<DetalleUsuario> listarDetalleUsuario(@Param("idusuario") String idusuario);
 }

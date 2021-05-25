@@ -4,7 +4,7 @@ $(document).on("click", "#btnagregarmatricula", function() {
 	$("#cbogrado").val("0");
 	$("#cboseccion").val("0");
 	$("#txtnomfecha").val("0");
-	
+
 	$("#hddidmatricula").val("0");
 	$("#modalmatricula").modal("show");
 });
@@ -14,11 +14,27 @@ $(document).on("click", ".btnactualizarmatricula", function() {
 	$("#cbogrado").val($(this).attr("data-codgrado"));
 	$("#cboseccion").val($(this).attr("data-codseccion"));
 	$("#txtnomfecha").val($(this).attr("data-fecha"));
-	
+
 	$("#hddidmatricula").val($(this).attr("data-codmatricula"));
 	$("#modalmatricula").modal("show");
 });
 $(document).on("click", "#btnregistrarmatricula", function() {
+	var idalumno = $("#cboalumnos").val();
+	if (idalumno === "0") {
+		$("#erroralumno").text("Es obligatorio seleccionar una Almuno.");
+	}
+	var idnivel = $("#cbonivel").val();
+	if (idnivel === "0") {
+		$("#errornivel").text("Es obligatorio seleccionar una Nivel.");
+	}
+	var idgrado = $("#cbogrado").val();
+	if (idgrado === "0") {
+		$("#errorgrado").text("Es obligatorio seleccionar una Grado.");
+	}
+	var idseccion = $("#cboseccion").val();
+	if (idseccion === "0") {
+		$("#errorseccion").text("Es obligatorio seleccionar una Seccion.");
+	}
 	if ($("#txtnomfecha").val() === "") {
 		$("#errornomfecha").text("Es obligatorio la fecha.");
 	} else {
@@ -35,7 +51,7 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val(),
 					idseccion: $("#cboseccion").val(),
-					fecha: $("#txtnomfecha").val(),
+					fecha: $("#txtnomfecha").val()
 				}),
 				success: function(resultado) {
 					var estilo = "danger";
@@ -57,7 +73,7 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val(),
 					idseccion: $("#cboseccion").val(),
-					fecha: $("#txtnomfecha").val(),
+					fecha: $("#txtnomfecha").val()
 				}),
 				success: function(resultado) {
 					var estilo = "danger";
@@ -70,7 +86,7 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 			});
 		}
 		$("#modalmatricula").modal("hide");
-	}
+	} //cierre del if
 });
 $(document).on("click", ".btneliminarmatricula", function() {
 	//alert($(this).attr("data-codcurso"));
@@ -109,11 +125,14 @@ function ListarMatriculas() {
 				$("#tblmatricula > tbody").append("<tr>" +
 					"<td>" + value.idmatricula + "</td>" +
 					"<td>" + value.idalumno + "</td>" +
-					"<td>" + value.idnivel+ "</td>" +
+					"<td>" + value.idnivel + "</td>" +
 					"<td>" + value.idgrado + "</td>" +
 					"<td>" + value.idseccion + "</td>" +
 					"<td>" + value.fecha + "</td>" +
 					"<td>" + value.estado + "</td>" +
+					"<td><button type='button' class='btn btn-info btndetallematricula' " +
+					" data-codmatricula='" + value.idmatricula + "'>Ver Detalle</button>" +
+					"</td>" +
 					"<td><button type='button' class='btn btn-info btnactualizarmatricula' " +
 					" data-codmatricula='" + value.idmatricula + "'" +
 					" data-codalumno='" + value.idalumno + "'" +
@@ -141,3 +160,30 @@ function mostrarMensaje(mensaje, estilo) {
 		+ "<span aria-hidden='true'>&times;</span></button></div>"
 	);
 }
+
+
+
+
+$(document).on("click", ".btndetallematricula", function() {
+	
+	$.ajax({
+		type: "GET",
+		url: "/Matriculas/listarDetalleMatricula",
+		dataType: 'json',
+		data: {
+			idmatricula: $(this).attr("data-codmatricula"),
+		},
+		success: function(resultado) {
+			$("#tbldetalle > tbody").html("");
+			$.each(resultado, function(index, value) {
+				$("#tbldetalle > tbody").append("<tr>" +
+					"<td>" + value.alumno  + "</td>" +
+					"<td class='text-center'>" + value.nivel + "</td>" +
+					"<td class='text-center'>" + value.grado + "</td>" +
+					"<td class='text-center'>" + value.seccion + "</td>" +
+				"</tr>")
+			});
+			$("#modaldetallematricula").modal("show");
+		}
+	});
+});

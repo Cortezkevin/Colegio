@@ -22,9 +22,9 @@ public class MatriculaService {
 	
 	public void RegistrarMatricula(Matricula m) {
 		if(m.getIdmatricula() == null) {
-			repository.RegistrarMatricula(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+			repository.RegistrarMatricula(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());  //(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
 		}else {
-		repository.ActualizarMatricula(m.getIdmatricula(),m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+			repository.ActualizarMatricula(m.getIdmatricula(),m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
 		}
 	}
 	

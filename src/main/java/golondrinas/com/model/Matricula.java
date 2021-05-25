@@ -1,17 +1,10 @@
 package golondrinas.com.model;
 
-import javax.persistence.ForeignKey;
-
 import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -56,7 +49,7 @@ public class Matricula{
 	private String estado;
 	
 	@Column(name="fecha")
-	private String fecha;
+	private Date fecha;
 
 	public String getIdmatricula() {
 		return idmatricula;
@@ -82,7 +75,7 @@ public class Matricula{
 		return estado;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
@@ -110,12 +103,12 @@ public class Matricula{
 		this.estado = estado;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
 	public Matricula(String idmatricula, String idalumno, String idnivel, String idgrado, String idseccion,
-			String estado, String fecha) {
+			String estado, Date fecha) {
 		super();
 		this.idmatricula = idmatricula;
 		this.idalumno = idalumno;
@@ -130,6 +123,9 @@ public class Matricula{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
 
 
 	
