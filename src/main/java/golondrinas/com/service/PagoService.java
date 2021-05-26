@@ -16,15 +16,20 @@ public class PagoService {
 	private PagoRepository repository;
 	
 	public List<Pago> listarPago(){
-		return repository.findAll();
+		return repository.listadoPagos();
 	}
 	
 	public void registrarPago(Pago p) {
-		repository.save(p);
+		if(p.getIdpago() == null) {
+			repository.RegistrarPago(p.getIdmatricula(), p.getFechapago(), p.getMonto());
+		}else {
+			repository.ActualizarPago(p.getIdpago(),p.getIdmatricula(), p.getFechapago(), p.getMonto());
+		}
 	}
 	
-	public Optional<Pago> BuscarPorId(Integer id){
-		return repository.findById(id);
+	public void eliminarPago(Pago p){
+	 repository.EliminarPago(p.getIdpago());
 	}
+	
 	
 }

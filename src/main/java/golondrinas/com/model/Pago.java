@@ -13,79 +13,67 @@ import javax.persistence.Table;
 public class Pago {
 
 	@Id
-	private String idPago;
+	private String idpago;
+	
+	@Column(name="idmatricula")
+	private String idmatricula;
+
+	@Column(name="fechapago")
+	private String fechapago;
+	
+	@Column(name="monto")
+	private Double monto;
 	
 	@Column(name="estado")
 	private String estado;
-	
-	@Column(name="fechaPago")
-	private String fechaPago;
-	
-	@Column(name="idGrado")
-	private String idGrado;
-	
-	@Column(name="idSeccion")
-	private String idSeccion;
-	
-	@Column(name="idNivel")
-	private String idNivel;
 
-	public String getIdPago() {
-		return idPago;
+	public String getIdpago() {
+		return idpago;
+	}
+
+	public String getIdmatricula() {
+		return idmatricula;
+	}
+
+	public String getFechapago() {
+		return fechapago;
+	}
+
+	public Double getMonto() {
+		return monto;
 	}
 
 	public String getEstado() {
 		return estado;
 	}
 
-	public String getFechaPago() {
-		return fechaPago;
+	public void setIdpago(String idpago) {
+		this.idpago = idpago;
 	}
 
-	public String getIdGrado() {
-		return idGrado;
+	public void setIdmatricula(String idmatricula) {
+		this.idmatricula = idmatricula;
 	}
 
-	public String getIdSeccion() {
-		return idSeccion;
+	public void setFechapago(String fechapago) {
+		this.fechapago = fechapago;
 	}
 
-	public String getIdNivel() {
-		return idNivel;
-	}
-
-	public void setIdPago(String idPago) {
-		this.idPago = idPago;
+	public void setMonto(Double monto) {
+		this.monto = monto;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public void setFechaPago(String fechaPago) {
-		this.fechaPago = fechaPago;
-	}
-
-	public void setIdGrado(String idGrado) {
-		this.idGrado = idGrado;
-	}
-
-	public void setIdSeccion(String idSeccion) {
-		this.idSeccion = idSeccion;
-	}
-
-	public void setIdNivel(String idNivel) {
-		this.idNivel = idNivel;
-	}
-
-	public Pago(String idPago, String estado, String fechaPago, String idGrado, String idSeccion, String idNivel) {
+	public Pago(String idpago, String idmatricula, String fechapago, Double monto, String estado) {
 		super();
-		this.idPago = idPago;
+		this.idpago = idpago;
+		this.idmatricula = idmatricula;
+		this.fechapago = fechapago;
+		this.monto = monto;
 		this.estado = estado;
-		this.fechaPago = fechaPago;
-		this.idGrado = idGrado;
-		this.idSeccion = idSeccion;
-		this.idNivel = idNivel;
 	}
 
 	public Pago() {
@@ -94,4 +82,5 @@ public class Pago {
 	}
 
 
+	
 }
