@@ -18,11 +18,8 @@ public class Notas {
 	@Column(name="idcurso")
 	private String idcurso; 
 	
-	@Column(name="idseccion")
-	private String idseccion; 
-	
-	@Column(name="idprofesor")
-	private String idprofesor; 
+	@Column(name="idnotabimestre")
+	private String idnotabimestre;
 	
 	@Column(name="examen1")
 	private Double examen1;
@@ -35,6 +32,9 @@ public class Notas {
 	
 	@Column(name="examen4")
 	private Double examen4;
+	
+	@Column(name="promedio")
+	private Double promedio;
 	
 	@Column(name = "estado")
 	private String estado;
@@ -51,12 +51,8 @@ public class Notas {
 		return idcurso;
 	}
 
-	public String getIdseccion() {
-		return idseccion;
-	}
-
-	public String getIdprofesor() {
-		return idprofesor;
+	public String getIdnotabimestre() {
+		return idnotabimestre;
 	}
 
 	public Double getExamen1() {
@@ -71,6 +67,18 @@ public class Notas {
 		return examen3;
 	}
 
+	public Double getExamen4() {
+		return examen4;
+	}
+
+	public Double getPromedio() {
+		return promedio;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
 	public void setIdnota(String idnota) {
 		this.idnota = idnota;
 	}
@@ -83,12 +91,8 @@ public class Notas {
 		this.idcurso = idcurso;
 	}
 
-	public void setIdseccion(String idseccion) {
-		this.idseccion = idseccion;
-	}
-
-	public void setIdprofesor(String idprofesor) {
-		this.idprofesor = idprofesor;
+	public void setIdnotabimestre(String idnotabimestre) {
+		this.idnotabimestre = idnotabimestre;
 	}
 
 	public void setExamen1(Double examen1) {
@@ -103,36 +107,30 @@ public class Notas {
 		this.examen3 = examen3;
 	}
 
-
-
-	public Double getExamen4() {
-		return examen4;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
 	public void setExamen4(Double examen4) {
 		this.examen4 = examen4;
+	}
+
+	public void setPromedio(Double promedio) {
+		this.promedio = promedio;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Notas(String idnota, String idalumno, String idcurso, String idseccion, String idprofesor, Double examen1,
-			Double examen2, Double examen3, Double examen4, String estado) {
+	public Notas(String idnota, String idalumno, String idcurso, String idnotabimestre, Double examen1, Double examen2,
+			Double examen3, Double examen4, Double promedio, String estado) {
 		super();
 		this.idnota = idnota;
 		this.idalumno = idalumno;
 		this.idcurso = idcurso;
-		this.idseccion = idseccion;
-		this.idprofesor = idprofesor;
+		this.idnotabimestre = idnotabimestre;
 		this.examen1 = examen1;
 		this.examen2 = examen2;
 		this.examen3 = examen3;
 		this.examen4 = examen4;
+		this.promedio = promedio;
 		this.estado = estado;
 	}
 
@@ -140,9 +138,5 @@ public class Notas {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
-	
 	
 }

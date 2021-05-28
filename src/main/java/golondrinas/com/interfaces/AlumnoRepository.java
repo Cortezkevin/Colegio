@@ -17,19 +17,19 @@ import golondrinas.com.model.Alumno;
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, String> {
 
-	@Query(value = "{call sp_MantListarAlumnos}", nativeQuery = true)
+	@Query(value = "{call sp_MantListarAlumnos()}", nativeQuery = true)
 	List<Alumno> listarAlumnos();
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantRegistrarAlumno(:idpersona, :idusuario, :idnivel, :idgrado)}", nativeQuery = true)
-	void RegistrarAlumno(@Param("idpersona") String idpersona, @Param("idusuario") String idusuario, @Param("idnivel") String idnivel,
+	@Query(value = "{call sp_MantRegistrarAlumno(:idpersona,:idapoderado, :idusuario, :idnivel, :idgrado)}", nativeQuery = true)
+	void RegistrarAlumno(@Param("idpersona") String idpersona,@Param("idapoderado") String idapoderado, @Param("idusuario") String idusuario, @Param("idnivel") String idnivel,
 			@Param("idgrado") String idgrado);
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantActualizarAlumno(:idalumno,:idpersona, :idusuario, :idnivel, :idgrado)}", nativeQuery = true)
-	void ActualizarAlumno(@Param("idalumno") String idalumno, @Param("idpersona") String idpersona, @Param("idusuario") String idusuario, @Param("idnivel") String idnivel,
+	@Query(value = "{call sp_MantActualizarAlumno(:idalumno,:idpersona,:idapoderado, :idusuario, :idnivel, :idgrado)}", nativeQuery = true)
+	void ActualizarAlumno(@Param("idalumno") String idalumno, @Param("idpersona") String idpersona,@Param("idapoderado") String idapoderado, @Param("idusuario") String idusuario, @Param("idnivel") String idnivel,
 			@Param("idgrado") String idgrado);
 
 	@Transactional

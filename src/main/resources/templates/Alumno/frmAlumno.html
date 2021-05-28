@@ -22,6 +22,7 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">ID Usuario</th>
+						<th scope="col">ID Apoderado</th>
 						<th scope="col">ID Persona</th>
 						<th scope="col">ID Nivel</th>
 						<th scope="col">ID Grado</th>
@@ -34,6 +35,7 @@
 					<tr th:each="alumno:${lstalumno}">
 						<td th:text="${alumno.idalumno}"></td>
 						<td th:text="${alumno.idusuario}"></td>
+						<td th:text="${alumno.idapoderado}"></td>
 						<td th:text="${alumno.idpersona}"></td>
 						<td th:text="${alumno.idnivel}"></td>
 						<td th:text="${alumno.idgrado}"></td>
@@ -42,6 +44,7 @@
 							<button type="button" class="btn btn-info btnactualizaralumno"
 								th:data-codalumno="${alumno.idalumno}"
 								th:data-codusuario="${alumno.idusuario}"
+								th:data-codapoderado="${alumno.idapoderado}"
 								th:data-codpersona="${alumno.idpersona}"
 								th:data-codnivel="${alumno.idnivel}"
 								th:data-codgrado="${alumno.idgrado}"
@@ -85,6 +88,14 @@
 						<option value="0">Seleccione</option>
 						<option th:each="usuario :${lstusuario}"
 							th:text=${usuario.nombreusuario} th:value="${usuario.idusuario}"></option>
+					</select><span id="errorusuario" class="text-danger"></span>
+				</div>
+				<div class="modal-body">
+					<label for="cboapoderado">Seleccione apoderado</label> <select
+						class="form-control" id="cbousuario">
+						<option value="0">Seleccione</option>
+						<option th:each="apoderado :${lstapoderado}"
+							th:text=${apoderado.nombrecompleto} th:value="${apoderado.idapoderado}"></option>
 					</select><span id="errorusuario" class="text-danger"></span>
 				</div>
 				<div class="modal-body">

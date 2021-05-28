@@ -1,6 +1,9 @@
 $(document).on("click", "#btnagregaralumno", function() {
 	$("#cbopersona").val("0");
 	$("#cbousuario").val("0");
+	
+	$("#cboapoderado").val("0");
+	
 	$("#cbonivel").val("0");
 	$("#cbogrado").val("0");
 	
@@ -11,6 +14,9 @@ $(document).on("click", "#btnagregaralumno", function() {
 $(document).on("click", ".btnactualizaralumno", function() {
 	$("#cbopersona").val($(this).attr("data-codpersona"));
 	$("#cbousuario").val($(this).attr("data-codusuario"));
+	
+	$("#cboapoderado").val($(this).attr("data-apoderado"));
+	
 	$("#cbonivel").val($(this).attr("data-codnivel"));
 	$("#cbogrado").val($(this).attr("data-codgrado"));
 	
@@ -32,6 +38,11 @@ $(document).on("click", "#btnregistraralumno", function() {
 		$("#errorusuario").text("Es obligatorio seleccionar un usuario.");
 	}
 	
+	var idapoderado = $("#cboapoderado").val();
+	if(idapoderado === "0"){
+		$("#errorapoderado").text("Es obligatorio seleccionar un apoderado.");
+	}
+	
 	var idnivel = $("#cbonivel").val();
 	if(idnivel === "0"){
 		$("#errornivel").text("Es obligatorio seleccionar un nivel.");
@@ -50,6 +61,7 @@ $(document).on("click", "#btnregistraralumno", function() {
 				data: JSON.stringify({
 					idpersona: $("#cbopersona").val(),
 					idusuario: $("#cbousuario").val(),
+					idapoderado: $("#cboapoderado").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val()
 				}),
@@ -72,6 +84,7 @@ $(document).on("click", "#btnregistraralumno", function() {
 					idalumno: $("#hddidalumno").val(),
 					idpersona: $("#cbopersona").val(),
 					idusuario: $("#cbousuario").val(),
+					idapoderado: $("#cboapoderado").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val()
 				}),
@@ -145,6 +158,7 @@ function ListarAlumnos() {
 				$("#tblalumno > tbody").append("<tr>" +
 					"<td>" + value.idalumno + "</td>" +
 					"<td>" + value.idusuario + "</td>" +
+					"<td>" + value.idapoderado + "</td>" +
 					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.idnivel + "</td>" +
 					"<td>" + value.idgrado + "</td>" +
@@ -152,6 +166,7 @@ function ListarAlumnos() {
 					"<td><button type='button' class='btn btn-info btnactualizaralumno' " +
 					" data-codalumno='" + value.idalumno + "'" +
 					" data-codusuario='" + value.idusuario + "'" +
+					" data-codapoderado='" + value.idapoderado + "'" +
 					" data-codpersona='" + value.idpersona + "'" +
 					" data-codnivel='" + value.idnivel + "'" +
 					" data-codgrado='" + value.idgrado + "'" +

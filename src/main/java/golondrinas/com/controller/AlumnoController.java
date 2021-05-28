@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import golondrinas.com.model.Alumno;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
+import golondrinas.com.service.ApoderadoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.NivelService;
 import golondrinas.com.service.PersonaService;
@@ -38,12 +39,16 @@ public class AlumnoController {
 
 	@Autowired
 	private AlumnoService service;
+	
+	@Autowired
+	private ApoderadoService aservice;
 
 	@GetMapping("/frmAlumno")
 	public String ListaAlumno(Model model) {
 		model.addAttribute("lstalumno", service.listarALumno());
 		model.addAttribute("lstpersona", pservice.listarPersona());
 		model.addAttribute("lstusuario", uservice.listarUsuarios());
+		model.addAttribute("lstapoderado", aservice.listarApoderado());
 		model.addAttribute("lstnivel", nservice.listarNivel());
 		model.addAttribute("lstgrado", gservice.listarGrado());
 		return "Alumno/frmAlumno";

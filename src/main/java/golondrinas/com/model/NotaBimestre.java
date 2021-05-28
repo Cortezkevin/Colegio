@@ -8,53 +8,102 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "notaBimestre")
+@Table(name = "notabimestres")
 public class NotaBimestre {
 	
 	@Id
-	private String idNotaBimestre;
+	private String idnotabimestre;
 	
-	@Column(name="promedio")
-	private Double promedio;
+	@Column(name="nota_bimestre1")
+	private Double nota_bimestre1;
 
-	@Column(name="")
-	private String idNota;
+	@Column(name="nota_bimestre2")
+	private Double nota_bimestre2;
 
-	public String getIdNotaBimestre() {
-		return idNotaBimestre;
+	@Column(name="nota_bimestre3")
+	private Double nota_bimestre3;
+
+	@Column(name="nota_bimestre4")
+	private Double nota_bimestre4;
+
+	@Column(name="promedio_anual")
+	private Double promedio_anual;
+	
+	@Column(name="estado")
+	private String estado;
+
+	public String getIdnotabimestre() {
+		return idnotabimestre;
 	}
 
-	public Double getPromedio() {
-		return promedio;
+	public Double getNota_bimestre1() {
+		return nota_bimestre1;
 	}
 
-	public String getIdNota() {
-		return idNota;
+	public Double getNota_bimestre2() {
+		return nota_bimestre2;
 	}
 
-	public void setIdNotaBimestre(String idNotaBimestre) {
-		this.idNotaBimestre = idNotaBimestre;
+	public Double getNota_bimestre3() {
+		return nota_bimestre3;
 	}
 
-	public void setPromedio(Double promedio) {
-		this.promedio = promedio;
+	public Double getNota_bimestre4() {
+		return nota_bimestre4;
 	}
 
-	public void setIdNota(String idNota) {
-		this.idNota = idNota;
+	public Double getPromedio_anual() {
+		return promedio_anual;
 	}
 
-	public NotaBimestre(String idNotaBimestre, Double promedio, String idNota) {
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setIdnotabimestre(String idnotabimestre) {
+		this.idnotabimestre = idnotabimestre;
+	}
+
+	public void setNota_bimestre1(Double nota_bimestre1) {
+		this.nota_bimestre1 = nota_bimestre1;
+	}
+
+	public void setNota_bimestre2(Double nota_bimestre2) {
+		this.nota_bimestre2 = nota_bimestre2;
+	}
+
+	public void setNota_bimestre3(Double nota_bimestre3) {
+		this.nota_bimestre3 = nota_bimestre3;
+	}
+
+	public void setNota_bimestre4(Double nota_bimestre4) {
+		this.nota_bimestre4 = nota_bimestre4;
+	}
+
+	public void setPromedio_anual(Double promedio_anual) {
+		this.promedio_anual = promedio_anual;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public NotaBimestre(String idnotabimestre, Double nota_bimestre1, Double nota_bimestre2, Double nota_bimestre3,
+			Double nota_bimestre4, Double promedio_anual, String estado) {
 		super();
-		this.idNotaBimestre = idNotaBimestre;
-		this.promedio = promedio;
-		this.idNota = idNota;
+		this.idnotabimestre = idnotabimestre;
+		this.nota_bimestre1 = nota_bimestre1;
+		this.nota_bimestre2 = nota_bimestre2;
+		this.nota_bimestre3 = nota_bimestre3;
+		this.nota_bimestre4 = nota_bimestre4;
+		this.promedio_anual = promedio_anual;
+		this.estado = estado;
 	}
 
 	public NotaBimestre() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
+	} 
+	
 	
 }
