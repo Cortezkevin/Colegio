@@ -1,12 +1,12 @@
 $(document).on("click", "#btnagregaralumno", function() {
 	$("#cbopersona").val("0");
 	$("#cbousuario").val("0");
-	
+
 	$("#cboapoderado").val("0");
-	
+
 	$("#cbonivel").val("0");
 	$("#cbogrado").val("0");
-	
+
 	$("#hddidalumno").val("0");
 	$("#modalalumno").modal("show");
 });
@@ -14,42 +14,42 @@ $(document).on("click", "#btnagregaralumno", function() {
 $(document).on("click", ".btnactualizaralumno", function() {
 	$("#cbopersona").val($(this).attr("data-codpersona"));
 	$("#cbousuario").val($(this).attr("data-codusuario"));
-	
+
 	$("#cboapoderado").val($(this).attr("data-apoderado"));
-	
+
 	$("#cbonivel").val($(this).attr("data-codnivel"));
 	$("#cbogrado").val($(this).attr("data-codgrado"));
-	
-	
+
+
 	$("#hddidalumno").val($(this).attr("data-codalumno"));
 	$("#modalalumno").modal("show");
 });
 
 
 $(document).on("click", "#btnregistraralumno", function() {
-	
+
 	var idpersona = $("#cbopersona").val();
-	if(idpersona === "0"){
+	if (idpersona === "0") {
 		$("#errorpersona").text("Es obligatorio seleccionar una persona.");
 	}
-	
+
 	var idusuario = $("#cbousuario").val();
-	if(idusuario === "0"){
+	if (idusuario === "0") {
 		$("#errorusuario").text("Es obligatorio seleccionar un usuario.");
 	}
-	
+
 	var idapoderado = $("#cboapoderado").val();
-	if(idapoderado === "0"){
+	if (idapoderado === "0") {
 		$("#errorapoderado").text("Es obligatorio seleccionar un apoderado.");
 	}
-	
+
 	var idnivel = $("#cbonivel").val();
-	if(idnivel === "0"){
+	if (idnivel === "0") {
 		$("#errornivel").text("Es obligatorio seleccionar un nivel.");
 	}
-	
+
 	var idgrado = $("#cbogrado").val();
-	if(idgrado === "0"){
+	if (idgrado === "0") {
 		$("#errorgrado").text("Es obligatorio seleccionar un grado.");
 	}
 	if ($("#cbopersona").val() !== "0") {
@@ -60,8 +60,8 @@ $(document).on("click", "#btnregistraralumno", function() {
 				url: "/Alumno/registrarAlumno",
 				data: JSON.stringify({
 					idpersona: $("#cbopersona").val(),
-					idusuario: $("#cbousuario").val(),
 					idapoderado: $("#cboapoderado").val(),
+					idusuario: $("#cbousuario").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val()
 				}),
@@ -74,7 +74,7 @@ $(document).on("click", "#btnregistraralumno", function() {
 					mostrarMensaje(resultado.mensaje, estilo);
 				}
 			});
-		} 
+		}
 		else {
 			$.ajax({
 				type: "POST",
@@ -83,8 +83,8 @@ $(document).on("click", "#btnregistraralumno", function() {
 				data: JSON.stringify({
 					idalumno: $("#hddidalumno").val(),
 					idpersona: $("#cbopersona").val(),
+					idapoderado: $("#cboapoderado").val(),					
 					idusuario: $("#cbousuario").val(),
-					idapoderado: $("#cboapoderado").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val()
 				}),
@@ -157,17 +157,17 @@ function ListarAlumnos() {
 			$.each(resultado, function(index, value) {
 				$("#tblalumno > tbody").append("<tr>" +
 					"<td>" + value.idalumno + "</td>" +
-					"<td>" + value.idusuario + "</td>" +
+					"<td>" + value.idpersona + "</td>" +					
 					"<td>" + value.idapoderado + "</td>" +
-					"<td>" + value.idpersona + "</td>" +
+					"<td>" + value.idusuario + "</td>" +
 					"<td>" + value.idnivel + "</td>" +
 					"<td>" + value.idgrado + "</td>" +
 					"<td>" + value.estado + "</td>" +
 					"<td><button type='button' class='btn btn-info btnactualizaralumno' " +
 					" data-codalumno='" + value.idalumno + "'" +
-					" data-codusuario='" + value.idusuario + "'" +
+					" data-codpersona='" + value.idpersona + "'" +					
 					" data-codapoderado='" + value.idapoderado + "'" +
-					" data-codpersona='" + value.idpersona + "'" +
+					" data-codusuario='" + value.idusuario + "'" +
 					" data-codnivel='" + value.idnivel + "'" +
 					" data-codgrado='" + value.idgrado + "'" +
 					" data-estado='" + value.estado + "'>Actualizar</button>" +
@@ -180,3 +180,28 @@ function ListarAlumnos() {
 		}
 	})
 }
+
+$(document).on("click", ".btnverdetalle", function() {
+	$.ajax({
+		type: "GET",
+		url: "/Alumno/listarDetalleAlumno",
+		dataType: 'json',
+		data: {
+			idalumno: $(this).attr("data-codalumno"),
+		},
+		success: function(resultado) {
+			$("#tbldetalle > tbody").html("");
+			$.each(resultado, function(index, value) {
+				$("#tbldetalle > tbody").append("<tr>" +
+					"<td>" + value.apoderado  + "</td>" +
+					"<td class='text-center'>" + value.nombres + "</td>" +
+					"<td class='text-center'>" + value.apellidos + "</td>" +
+					"<td class='text-center'>" + value.nombreusuario + "</td>" +
+					"<td class='text-center'>" + value.nivel + "</td>" +
+					"<td class='text-center'>" + value.grado + "</td>" +
+				"</tr>")
+			});
+			$("#modaldetallealumno").modal("show");
+		}
+	});
+});

@@ -103,5 +103,5 @@ public class Alumno {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
 }

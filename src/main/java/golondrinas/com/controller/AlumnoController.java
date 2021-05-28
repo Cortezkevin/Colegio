@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Alumno;
+import golondrinas.com.model.DetalleAlumno;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.ApoderadoService;
+import golondrinas.com.service.DetalleAlumnoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.NivelService;
 import golondrinas.com.service.PersonaService;
@@ -42,6 +45,9 @@ public class AlumnoController {
 	
 	@Autowired
 	private ApoderadoService aservice;
+	
+	@Autowired
+	private DetalleAlumnoService daservice;
 
 	@GetMapping("/frmAlumno")
 	public String ListaAlumno(Model model) {
@@ -99,6 +105,12 @@ public class AlumnoController {
 		}
 
 		return new ResultadoResponse(respuesta, mensaje);
+	}
+	
+	@GetMapping("/listarDetalleAlumno")
+	@ResponseBody
+	public List<DetalleAlumno> listarDetalleAlumnos(@RequestParam("idalumno") String idalumno) {
+		return daservice.listarDetalleAlumnos(idalumno);
 	}
 
 }
