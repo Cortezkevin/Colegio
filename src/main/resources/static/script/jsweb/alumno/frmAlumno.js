@@ -15,7 +15,7 @@ $(document).on("click", ".btnactualizaralumno", function() {
 	$("#cbopersona").val($(this).attr("data-codpersona"));
 	$("#cbousuario").val($(this).attr("data-codusuario"));
 
-	$("#cboapoderado").val($(this).attr("data-apoderado"));
+	$("#cboapoderado").val($(this).attr("data-codapoderado"));
 
 	$("#cbonivel").val($(this).attr("data-codnivel"));
 	$("#cbogrado").val($(this).attr("data-codgrado"));

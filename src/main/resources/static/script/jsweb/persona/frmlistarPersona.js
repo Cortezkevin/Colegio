@@ -87,8 +87,8 @@ $(document).on("click", "#btnregistrarpersona", function() {
 					contentType: "application/json",
 					url: "/Persona/registrarPersona",
 					data: JSON.stringify({
-						nombre: $("#txtnombre").val(),
-						apellido: $("#txtapellido").val(),
+						nombres: $("#txtnombre").val(),
+						apellidos: $("#txtapellido").val(),
 						direccion: $("#txtdireccion").val(),
 				        telefono: $("#txttelefono").val(),
 				        email: $("#txtemail").val(),
@@ -116,8 +116,8 @@ $(document).on("click", "#btnregistrarpersona", function() {
 			url: "/Persona/registrarPersona",
 			data: JSON.stringify({
 				idpersona:$("#hddidpersona").val(),
-				nombre: $("#txtnombre").val(),
-				apellido: $("#txtapellido").val(),
+				nombres: $("#txtnombre").val(),
+				apellidos: $("#txtapellido").val(),
 				direccion: $("#txtdireccion").val(),
 				telefono: $("#txttelefono").val(),
 				email: $("#txtemail").val(),
@@ -213,8 +213,8 @@ function ListarPersona(){
 			$.each(resultado, function(index, value){
 				$("#tblpersona > tbody").append("<tr>"+
 				"<td>"+ value.idpersona + "</td>"+
-				"<td>"+ value.nombre + "</td>"+
-				"<td>"+ value.apellido + "</td>"+
+				"<td>"+ value.nombres + "</td>"+
+				"<td>"+ value.apellidos + "</td>"+
 				"<td>"+ value.direccion + "</td>"+
 				"<td>"+ value.telefono + "</td>"+
 				"<td>"+ value.email + "</td>"+
@@ -225,8 +225,8 @@ function ListarPersona(){
 				
 				"<td><button type='button' class='btn btn-info btnactualizarpersona'"+
 				" data-idpersona='"+value.idpersona+"'"+
-				" data-nombre='"+value.nombre+"'"+
-				" data-apellido='"+value.apellido+"'"+
+				" data-nombre='"+value.nombres+"'"+
+				" data-apellido='"+value.apellidos+"'"+
 				" data-direccion='"+value.direccion+"'"+
 				" data-telefono='"+value.telefono+"'"+
 				" data-email='"+value.email+"'"+
@@ -238,8 +238,8 @@ function ListarPersona(){
 				
 				"<td><button type='button' class='btn btn-danger btneliminarpersona'"+
 				" data-idpersona='"+value.idpersona+"'"+
-				" data-nombre='"+value.nombre+"'"+
-				" data-apellido='"+value.apellido+"'"+
+				" data-nombre='"+value.nombres+"'"+
+				" data-apellido='"+value.apellidos+"'"+
 				" data-direccion='"+value.direccion+"'"+
 				" data-telefono='"+value.telefono+"'"+
 				" data-email='"+value.email+"'"+

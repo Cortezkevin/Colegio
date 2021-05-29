@@ -24,8 +24,8 @@ public class CargoService {
 	}*/
 	
 	public void registrarCargo(Cargo cargo) {
-		if(cargo.getIdcargo() == null) {
-			repository.RegistrarCargo(cargo.getNombre());	
+		if(cargo.getIdcargo() == null ){
+				repository.RegistrarCargo(cargo.getNombre());	
 		}else {
 			repository.ActualizarCargo(cargo.getIdcargo(),
 					cargo.getNombre());
@@ -41,4 +41,27 @@ public class CargoService {
 	}
 	
 	
+	//PRUEBA DE VALIDACION/*
+	
+	/*
+	public boolean validarNombre(String nombre) {
+		List<Cargo> listadoNombres = repository.listarCargoxNombre(); 
+		for (Cargo cargo : listadoNombres) {
+			if(cargo.getNombre().equals(nombre)) {
+				return true;
+			}	
+		}
+		return false;
+	}
+	*/
+	
+
+	/*public List<Cargo> listarCargoxNombre(Cargo c){
+		return repository.listarCargoxNombre(c.getNombre());
+	}
+	
+	public List<Cargo> listarCargoNombre(){
+		return repository.listarCargoxNombre();
+	}
+	*/
 }

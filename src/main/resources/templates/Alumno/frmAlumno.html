@@ -81,7 +81,7 @@
 					<label for="cbopersona">Seleccione persona</label> <select
 						class="form-control" id="cbopersona">
 						<option value="0">Seleccione</option>
-						<option th:each="persona :${lstpersona}" th:text=${persona.nombre}
+						<option th:each="persona :${lstpersona}" th:text=${persona.nombres}
 							th:value="${persona.idpersona}"></option>
 					</select> <span id="errorpersona" class="text-danger"></span>
 				</div>

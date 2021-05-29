@@ -36,4 +36,13 @@ public interface CargoRepository extends JpaRepository<Cargo, String>{
 	@Query(value="{call sp_MantEliminarCargo(:idcargo)}",
 			nativeQuery = true)
 	void EliminarCargo(@Param("idcargo") String idcargo);
+	
+	
+	// PROBANDO VALIDACION POR NOMBRE
+	///
+	/*@Query(value = "{call sp_MantObtenerCargoxNombre(:nombre)}", nativeQuery = true)
+	List<Cargo> listarCargoxNombre(@Param("nombre") String nombre);*/
+	/*
+	@Query(value = "{call sp_MantObtenerListaNombres()}", nativeQuery = true)
+	List<Cargo> listarCargoxNombre();*/
 }

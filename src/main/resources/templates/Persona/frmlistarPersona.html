@@ -48,8 +48,8 @@
 					<tr>
 					<tr th:each="persona :${listPersona}">
 						<td th:text="${persona.idpersona}"></td>
-						<td th:text="${persona.nombre}"></td>
-						<td th:text="${persona.apellido}"></td>
+						<td th:text="${persona.nombres}"></td>
+						<td th:text="${persona.apellidos}"></td>
 						<td th:text="${persona.direccion}"></td>
 						<td th:text="${persona.telefono}"></td>
 						<td th:text="${persona.email}"></td>
@@ -63,8 +63,8 @@
 						<td>
 							<button type="button" class="btn btn-info btnactualizarpersona"
 								th:data-idpersona="${persona.idpersona}"
-								th:data-nombre="${persona.nombre}"
-								th:data-apellido="${persona.apellido}"
+								th:data-nombre="${persona.nombres}"
+								th:data-apellido="${persona.apellidos}"
 								th:data-direccion="${persona.direccion}"
 								th:data-telefono="${persona.telefono}"
 								th:data-email="${persona.email}" th:data-dni="${persona.dni}"
@@ -75,8 +75,8 @@
 						<td>
 							<button type="button" class="btn btn-danger btneliminarpersona"
 								th:data-idpersona="${persona.idpersona}"
-								th:data-nombre="${persona.nombre}"
-								th:data-apellido="${persona.apellido}"
+								th:data-nombre="${persona.nombres}"
+								th:data-apellido="${persona.apellidos}"
 								th:data-direccion="${persona.direccion}"
 								th:data-telefono="${persona.telefono}"
 								th:data-email="${persona.email}" th:data-dni="${persona.dni}"
