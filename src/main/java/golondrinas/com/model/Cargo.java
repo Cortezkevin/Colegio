@@ -2,10 +2,9 @@ package golondrinas.com.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="cargo") 
@@ -14,9 +13,9 @@ public class Cargo {
 	@Id
 	private String idcargo;
 	
+	@Pattern(regexp = "[A-Za-z]")
 	@Column(name="nombre")
 	private String nombre;
-	
 	
 	@Column(name="estado")
 	private String estado;

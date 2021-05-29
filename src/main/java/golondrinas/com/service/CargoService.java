@@ -18,10 +18,6 @@ public class CargoService {
 	public List<Cargo> listarCargos(){
 		return repository.listarCargos();
 	}
-	/*
-	public void registrarCargo(Cargo c) {
-		repository.RegistrarCargo(c.getNombre());
-	}*/
 	
 	public void registrarCargo(Cargo cargo) {
 		if(cargo.getIdcargo() == null ){
@@ -31,37 +27,24 @@ public class CargoService {
 					cargo.getNombre());
 		}
 	}
-	/*
-	public void actulizarCargo(Cargo c) {
-		repository.ActualizarCargo(c.getIdcargo(), c.getNombre());
-	}*/
-	
 	public void eliminarCargo(Cargo c) {
 		repository.EliminarCargo(c.getIdcargo());
 	}
 	
 	
-	//PRUEBA DE VALIDACION/*
+	//DE VALIDACION/*
 	
-	/*
-	public boolean validarNombre(String nombre) {
-		List<Cargo> listadoNombres = repository.listarCargoxNombre(); 
+	public boolean validarNombre(Cargo obj) {
+		List<Cargo> listadoNombres = repository.listarCargoxNombre(obj.getNombre()); 
 		for (Cargo cargo : listadoNombres) {
-			if(cargo.getNombre().equals(nombre)) {
+			if(cargo.getNombre().equals(obj.getNombre())) {
 				return true;
-			}	
+			}
+			break;
 		}
 		return false;
 	}
-	*/
-	
-
-	/*public List<Cargo> listarCargoxNombre(Cargo c){
+	public List<Cargo> listarCargoxNombre(Cargo c){
 		return repository.listarCargoxNombre(c.getNombre());
 	}
-	
-	public List<Cargo> listarCargoNombre(){
-		return repository.listarCargoxNombre();
-	}
-	*/
 }

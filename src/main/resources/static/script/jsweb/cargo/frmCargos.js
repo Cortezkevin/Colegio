@@ -1,3 +1,4 @@
+
 $(document).on("click", "#btnagregarcargo", function() {
 	$("#txtnomcargo").val("");
 	$("#hddidcargo").val("0");
