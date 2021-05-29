@@ -24,12 +24,12 @@ public class PersonaService {
 	
 	public void registrarPersona(Persona persona) {
 		if(persona.getIdpersona() == null) {
-			repository.registrarPersona(persona.getNombre(), persona.getApellido(),
+			repository.registrarPersona(persona.getNombres(), persona.getApellidos(),
 					persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
 					persona.getEdad(), persona.getGenero());
 		
 		}else {
-			repository.actualizarPersona(persona.getIdpersona(), persona.getNombre(), persona.getApellido(),
+			repository.actualizarPersona(persona.getIdpersona(), persona.getNombres(), persona.getApellidos(),
 					persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
 					persona.getEdad(), persona.getGenero());
 		}

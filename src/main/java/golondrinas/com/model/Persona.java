@@ -11,10 +11,10 @@ public class Persona {
 	public String idpersona;
 	
 	@Column(name = "nombres")
-	private String nombre;
+	private String nombres;
 	
 	@Column(name = "apellidos")
-	private String apellido;
+	private String apellidos;
 	
 	@Column(name = "direccion")
 	private  String direccion;
@@ -41,12 +41,12 @@ public class Persona {
 		return idpersona;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombres() {
+		return nombres;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getApellidos() {
+		return apellidos;
 	}
 
 	public String getDireccion() {
@@ -81,12 +81,12 @@ public class Persona {
 		this.idpersona = idpersona;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
 	public void setDireccion(String direccion) {
@@ -117,12 +117,12 @@ public class Persona {
 		this.estado = estado;
 	}
 
-	public Persona(String idpersona, String nombre, String apellido, String direccion, Integer telefono, String email,
+	public Persona(String idpersona, String nombres, String apellidos, String direccion, Integer telefono, String email,
 			Integer dni, Integer edad, String genero, String estado) {
 		super();
 		this.idpersona = idpersona;
-		this.nombre = nombre;
-		this.apellido = apellido;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.email = email;

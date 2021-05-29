@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "alumnos")
+@Table(name = "alumno")
 public class Alumno {
 
 	@Id
@@ -27,6 +27,9 @@ public class Alumno {
 	@Column(name = "idgrado")
 	private String idgrado;
 
+	@Column(name="nombrecompleto")
+	private String nombrecompleto;
+	
 	@Column(name = "estado")
 	private String estado;
 
@@ -52,6 +55,10 @@ public class Alumno {
 
 	public String getIdgrado() {
 		return idgrado;
+	}
+
+	public String getNombrecompleto() {
+		return nombrecompleto;
 	}
 
 	public String getEstado() {
@@ -82,12 +89,16 @@ public class Alumno {
 		this.idgrado = idgrado;
 	}
 
+	public void setNombrecompleto(String nombrecompleto) {
+		this.nombrecompleto = nombrecompleto;
+	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
 	public Alumno(String idalumno, String idpersona, String idapoderado, String idusuario, String idnivel,
-			String idgrado, String estado) {
+			String idgrado, String nombrecompleto, String estado) {
 		super();
 		this.idalumno = idalumno;
 		this.idpersona = idpersona;
@@ -95,6 +106,7 @@ public class Alumno {
 		this.idusuario = idusuario;
 		this.idnivel = idnivel;
 		this.idgrado = idgrado;
+		this.nombrecompleto = nombrecompleto;
 		this.estado = estado;
 	}
 
@@ -103,5 +115,6 @@ public class Alumno {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 
 }

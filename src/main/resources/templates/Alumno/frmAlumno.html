@@ -96,12 +96,12 @@
 				</div>
 				<div class="modal-body">
 					<label for="cboapoderado">Seleccione apoderado</label> <select
-						class="form-control" id="cbousuario">
+						class="form-control" id="cboapoderado">
 						<option value="0">Seleccione</option>
 						<option th:each="apoderado :${lstapoderado}"
 							th:text=${apoderado.nombrecompleto}
 							th:value="${apoderado.idapoderado}"></option>
-					</select><span id="errorusuario" class="text-danger"></span>
+					</select><span id="errorapoderado" class="text-danger"></span>
 				</div>
 				<div class="modal-body">
 					<label for="cbonivel">Seleccione nivel</label> <select

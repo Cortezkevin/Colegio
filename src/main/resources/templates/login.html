@@ -27,19 +27,24 @@
 				<input type="hidden" value="1" />
 				<div class="input-group">
 					<span class="input-group-addon"><span class="fa fa-user"></span></span>
-					<input type="text" name="usuario" placeholder="Usuario" required
+					<input type="text" name="username" placeholder="Usuario" required
 						value=""> <span class="input-group-addon">@iep.edu.pe</span>
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" style="width: 7px;"><span
-						class="fa fa-key"></span></span> <input type="password" name="clave"
+						class="fa fa-key"></span></span> <input type="password" name="password"
 						value="" placeholder="Contraseña" required>
 				</div>
 				<div class="input-group text-center">
 					<button type="submit" class="btn btn-info">INGRESAR</button>
 
 				</div>
-
+				<div th:if="${param.error}" class="alert alert-danger" role="alert">
+		            Usuario o Contraseña Incorrecto.
+		        </div>
+				<div th:if="${param.logout}" class="alert alert-success" role="alert">
+		            Usted se a desconectado.
+		        </div>
 
 			</form>
 		</div>  

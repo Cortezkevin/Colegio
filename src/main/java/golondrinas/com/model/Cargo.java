@@ -17,6 +17,7 @@ public class Cargo {
 	@Column(name="nombre")
 	private String nombre;
 	
+	
 	@Column(name="estado")
 	private String estado;
 

@@ -15,23 +15,21 @@ public class UsuarioService{
 
 	@Autowired
 	private UsuarioRepository repository;
-
+	
 	public List<Usuario> listarUsuarios(){
-		return repository.listarUsuarios();
+		return (List<Usuario>) repository.findAll();
 	}
 	
 	public void registrarUsuario(Usuario u) {
-		if(u.getIdusuario() == null ) {
-			repository.RegistrarUsuario(u.getNombreusuario(),u.getPassword(),u.getIdcargo(),u.getIdpersona());
-		}else {
-			repository.ActualizarUsuario(u.getIdusuario(),u.getNombreusuario(),u.getPassword(),u.getIdcargo(),u.getIdpersona());
-		}
+			repository.RegistrarUsuario(u.getNombreusuario(),u.getContrasena(),u.getIdcargo(),u.getIdpersona(),u.getFoto());
 	}
 	
 	public void eliminarUsuario(Usuario u) {
 		repository.EliminarUsuario(u.getIdusuario());
 	}
 	
-	
+	public void actualizarUsuario(Usuario u) {
+		repository.ActualizarUsuario(u.getIdusuario(),u.getNombreusuario(),u.getContrasena(),u.getEstado(),u.getIdcargo(),u.getIdpersona(),u.getFoto());
+	}
 	
 }
