@@ -13,7 +13,6 @@ public class Cargo {
 	@Id
 	private String idcargo;
 	
-	@Pattern(regexp = "[A-Za-z]")
 	@Column(name="nombre")
 	private String nombre;
 	

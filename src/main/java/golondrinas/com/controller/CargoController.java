@@ -39,13 +39,9 @@ public class CargoController {
 
 	@PostMapping("/registrarCargo")
 	@ResponseBody
-	public ResultadoResponse registrarCargo(@Valid @RequestBody Cargo objCargo, BindingResult result) {
+	public ResultadoResponse registrarCargo( @RequestBody Cargo objCargo) {
 		String mensaje = "Curso registrado correctamente";
 		Boolean respuesta = true;		
-		/*if(result.hasErrors()) {
-			mensaje = "Ingrese letras no numeros";
-			respuesta = false;
-		}*/
 		try {
 				if(service.validarNombre(objCargo) == false) {
 					service.registrarCargo(objCargo);	
