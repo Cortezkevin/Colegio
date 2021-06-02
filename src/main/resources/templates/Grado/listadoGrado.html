@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="menu2::head">
 </head >
-
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<div class="container-fluid cont" id="colorBack">
@@ -12,7 +13,7 @@
 				<form th:action="@{/Grado/ListaGrado}"
 					th:object="${gradoForm}" method="post">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Nombre</label> <input
+						<label for="exampleInputEmail1">Nombre</label> <input onkeypress="return validarLetras(event)"
 							th:field="*{nombre}" type="text" class="form-control"
 							id="exampleInputEmail1" aria-describedby="emailHelp">
 					</div>

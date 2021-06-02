@@ -1,3 +1,23 @@
+
+//VALIDAR SOLO INGRESO DE NUMEROS
+function validarNumeros(e) { // 1
+tecla = (document.all) ? e.keyCode : e.which; // 2
+if (tecla==8) return true; // 3				-->  onkeypress="return validarNumeros(event)"
+patron =/[0-9]/; // 4
+te = String.fromCharCode(tecla); // 5
+return patron.test(te); // 6
+}
+
+//VALIDAR SOLO INGRESO DE LETRAS
+function validarLetras(e) { // 1
+tecla = (document.all) ? e.keyCode : e.which; // 2
+if (tecla==8) return true; // 3				-->  onkeypress="return validarLetras(event)"
+patron =/[A-Za-z\s]/; // 4
+te = String.fromCharCode(tecla); // 5
+return patron.test(te); // 6
+}
+
+
 $(document).on("click", "#btnagregarpersona", function() {
 	$("#txtnombre").val("");
 	$("#txtapellido").val("");
@@ -6,7 +26,7 @@ $(document).on("click", "#btnagregarpersona", function() {
 	$("#txtemail").val("");
 	$("#txtdni").val("");
 	$("#txtedad").val("");
-	$("#txtgenero").val("");
+	$("#txtgenero").val("0");
 	//("#txtestado").val("");
 	$("#hddidpersona").val("0");
 
@@ -28,59 +48,54 @@ $(document).on("click", ".btnactualizarpersona", function() {
 });
 
 $(document).on("click", "#btnregistrarpersona", function() {
+	telefono = 1;
+	dni = 1;
 	if($("#txtnombre").val() === ""){
 		$("#errornombre").text("Es obligatorio el nombre de la persona");
-	}else{
-		$("#errornombre").text("");
-	}
+	}else{$("#errornombre").text("");}
 	
 	if($("#txtapellido").val() === ""){
 		$("#errorapellido").text("Es obligatorio el apellido de la persona");
-	}else{
-		$("#errorapellido").text("");
-	}
+	}else{$("#errorapellido").text("");}
 	
 	if($("#txtdireccion").val() === ""){
 		$("#errordireccion").text("Es obligatorio la direccion de la persona");
-	}else{
-		$("#errordireccion").text("");
-	}
+	}else{$("#errordireccion").text("");}
 	
 	if($("#txttelefono").val() === ""){
 		$("#errortelefono").text("Es obligatorio el telefono de la persona");
-	}else{
-		$("#errortelefono").text("");
-	}
+	}else if($("#txttelefono").val().length < 9){
+		$("#errortelefono").text("El numero de telefono ingresado no es válido");
+		telefono = 2; 
+	}else{$("#errortelefono").text("");}
 	
 	if($("#txtemail").val() === ""){
 		$("#erroremail").text("Es obligatorio el email de la persona");
-	}else{
-		$("#erroremail").text("");
-	}
+	}else{$("#erroremail").text("");}
 	
 	if($("#txtdni").val() === ""){
 		$("#errordni").text("Es obligatorio el dni de la persona");
-	}else{
-		$("#errordni").text("");
-	}
+	}else if($("#txtdni").val().length < 8){
+		$("#errordni").text("El DNI ingresado no es válido");
+		dni = 2; 
+	}else{$("#errordni").text("");}
 	
 	if($("#txtedad").val() === ""){
 		$("#erroredad").text("Es obligatorio la edad de la persona");
-	}else{
-		$("#erroredad").text("");
-	}
+	}else if($("#txtedad").val() >= 0 && $("#txtedad").val() <= 3 ){
+		$("#erroredad").text("La edad ingresada no es valida");
+	}else{$("#erroredad").text("");}
 	
-	if($("#txtgenero").val() === ""){
-		$("#errorgenero").text("Es obligatorio el genero de la persona");
-	}else{
-		$("#errorgenero").text("");
-	}
+	if($("#txtgenero").val() === "0"){
+		$("#errorgenero").text("Es seleccionar el genero de la persona");
+	}else{$("#errorgenero").text("");}
 	
-	 if($("#txtnombre").val() !== "" && $("#txtapellido").val !== "" &&
+	
+	 if($("#txtnombre").val() !== "" && $("#txtapellido").val() !== "" &&
 	 $("#txtdireccion").val() !== "" && $("#txttelefono").val() !== "" &&
 	 $("#txtemail").val() !== "" && $("#txtdni").val() !== "" &&
-	 $("#txtedad").val() !== "" ){
-		
+	 $("#txtedad").val() !== "" &&  $("#txtedad").val() >= 3 &&
+	 dni == 1 && telefono == 1 && $("#txtgenero").val() !== "0"){
 		if ($("#hddidpersona").val() === "0") {
 				$.ajax({
 					type: "POST",

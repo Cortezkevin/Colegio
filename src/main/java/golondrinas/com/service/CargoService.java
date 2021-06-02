@@ -44,7 +44,7 @@ public class CargoService {
 		}
 		return false;
 	}
-	public List<Cargo> listarCargoxNombre(Cargo c){
+	/*public List<Cargo> listarCargoxNombre(Cargo c){
 		return repository.listarCargoxNombre(c.getNombre());
-	}
+	}*/
 }

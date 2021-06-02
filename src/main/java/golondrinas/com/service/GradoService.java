@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.GradoRepository;
+import golondrinas.com.model.Cargo;
 import golondrinas.com.model.Grado;
 
 @Service
@@ -32,5 +33,16 @@ public class GradoService {
 	
 	public void eliminarGrado(Grado objGrado) {
 		repository.eliminarGrado(objGrado.getIdgrado());
+	}
+	
+	public boolean validarNombre(Grado obj) {
+		List<Grado> listadoNombres = repository.listarGradoxNombre(obj.getNombre()); 
+		for (Grado grado : listadoNombres) {
+			if(grado.getNombre().equals(obj.getNombre())) {
+				return true;
+			}
+			break;
+		}
+		return false;
 	}
 }

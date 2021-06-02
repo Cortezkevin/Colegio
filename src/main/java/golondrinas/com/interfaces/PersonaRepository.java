@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.pdfbox.contentstream.operator.state.SetLineJoinStyle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -40,4 +41,13 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 	@Query(value = "{call sp_MantEliminarPersona(:idpersona)}", nativeQuery = true)
 	void eliminarPersona(@Param("idpersona") String idpersona);
 
+	@Query(value = "{call sp_MantListarPersonaxDNI(:dni)}", nativeQuery = true)
+	List<Persona> listarPersonaxDNI(@Param("dni") Integer dni);
+	
+	@Query(value = "{call  sp_ManListarPersonaxTelefono(:telefono)}", nativeQuery = true)
+	List<Persona> listarPersonaxTelefono(@Param("telefono") Integer telefono);
+	
+	@Query(value = "{call sp_ManListarPersonaxEmail(:email)}", nativeQuery = true)
+	List<Persona> listarPersonaxEmail(@Param("email") String email);
+	
 }

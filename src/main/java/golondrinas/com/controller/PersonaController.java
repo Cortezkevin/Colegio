@@ -1,5 +1,6 @@
 package golondrinas.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,33 @@ public class PersonaController {
 
 	@GetMapping("/frmlistarPersona")
 	public String frmlistarPersona(Model model) {
+		List<String> lstGenero = new ArrayList<String>();
+		lstGenero.add("Masculino");
+		lstGenero.add("Femenino");
+		model.addAttribute("lstG", lstGenero);
 		model.addAttribute("listPersona", service.listarPersona());
 		return "Persona/frmlistarPersona";
 	}
-
+	
 	@PostMapping("/registrarPersona")
 	@ResponseBody
 	public ResultadoResponse registrarPersona(@RequestBody Persona objPersona) {
 		String mensaje = "Persona registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			service.registrarPersona(objPersona);
+			if(service.validarDNI(objPersona)==0 && service.validarTelefono(objPersona) == false && service.validarEmail(objPersona) == 0) {
+				service.registrarPersona(objPersona);
+			}else if(service.validarDNI(objPersona) == 1) { 
+				mensaje = "El DNI ingresado ya existe";
+				respuesta = false;
+			}else if(service.validarTelefono(objPersona) == true) {
+				mensaje = "El Telefono ingresado ya existe";
+				respuesta = false;
+			}else if(service.validarEmail(objPersona) == 1){
+				mensaje = "El Email ingresado ya existe";
+				respuesta = false;
+			}
+			
 		} catch (Exception ex) {
 			mensaje = "Persona no registrado";
 			respuesta = false;

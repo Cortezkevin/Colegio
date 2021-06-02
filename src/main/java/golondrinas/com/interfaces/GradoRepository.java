@@ -1,5 +1,7 @@
 package golondrinas.com.interfaces;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +35,8 @@ public interface GradoRepository extends JpaRepository<Grado, String>{
 	@Modifying
 	@Query(value="{call sp_MantEliminarGrado(:idgrado)}", nativeQuery = true)
 	void eliminarGrado(@Param("idgrado")String idgrado);
+	
+	
+	@Query(value= "{call sp_ManListarGradoxNombre(:nombre)}", nativeQuery = true)
+	List<Grado> listarGradoxNombre(@Param("nombre") String nombre); 
 }

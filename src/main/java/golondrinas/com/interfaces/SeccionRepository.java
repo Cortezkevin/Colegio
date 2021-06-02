@@ -1,5 +1,7 @@
 package golondrinas.com.interfaces;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +34,6 @@ public interface SeccionRepository extends JpaRepository<Seccion, String>{
 	void eliminarSeccion(@Param("pidseccion")String idseccion);
 	
 	
+	@Query(value = "{call sp_ManListarSeccionxNombre(:nombre)}", nativeQuery = true)
+	List<Seccion> listarSeccionxNombre(@Param("nombre") String nombre);
 }

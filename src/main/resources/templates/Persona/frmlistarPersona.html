@@ -108,14 +108,16 @@
 					<form>
 						<div class="form-group">
 							<label for="txtnombre">Ingrese Nombre:</label> <input type="text"
-								class="form-control" id="txtnombre" maxlength="35"> <span
-								id="errornombre" class="text-danger"></span>
+								onkeypress="return validarLetras(event)" class="form-control"
+								id="txtnombre" maxlength="35"> <span id="errornombre"
+								class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
 							<label for="txtapellido">Ingrese Apellido:</label> <input
-								type="text" class="form-control" id="txtapellido" maxlength="35">
-							<span id="errorapellido" class="text-danger"></span>
+								onkeypress="return validarLetras(event)" type="text"
+								class="form-control" id="txtapellido" maxlength="35"> <span
+								id="errorapellido" class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
@@ -127,33 +129,45 @@
 
 						<div class="form-group">
 							<label for="txttelefono">Ingrese Telefono:</label> <input
-								type="text" class="form-control" id="txttelefono" maxlength="11">
-							<span id="errortelefono" class="text-danger"></span>
+								type="text" class="form-control" id="txttelefono" maxlength="9"
+								onkeypress="return validarNumeros(event)"> <span
+								id="errortelefono" class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
-							<label for="txtemail">Ingrese Correo:</label> <input type="text"
+							<label for="txtemail">Ingrese Correo:</label> <input type="email"
 								class="form-control" id="txtemail" maxlength="35"> <span
 								id="erroremail" class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
 							<label for="txtdni">Ingrese DNI :</label> <input type="text"
-								class="form-control" id="txtdni" maxlength="8"> <span
-								id="errordni" class="text-danger"></span>
+								onkeypress="return validarNumeros(event)" class="form-control"
+								id="txtdni" maxlength="8"> <span id="errordni"
+								class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
 							<label for="txtedad">Ingrese Edad:</label> <input type="text"
-								class="form-control" id="txtedad" maxlength="2"> <span
-								id="erroredad" class="text-danger"></span>
+								onkeypress="return validarNumeros(event)" class="form-control"
+								id="txtedad" maxlength="2"> <span id="erroredad"
+								class="text-danger"></span>
 						</div>
 
 						<div class="form-group">
-							<label for="txtgenero">Ingrese Genero:</label> <input type="text"
+							<label for="txtgenero">Seleccione Genero</label> <select
+								class="form-control" id="txtgenero">
+								<option value="0">Seleccione</option>
+								<option th:each="genero :${lstG}"
+									th:text=${genero} th:value="${genero}"></option>
+							</select> <span id="errorgenero" class="text-danger"></span>
+						</div>
+						<!-- 
+						<div class="form-group">
+							<label for="txtgenero">Ingrese Genero:</label> <input type="text" onkeypress="return validarLetras(event)"
 								class="form-control" id="txtgenero" maxlength="35"> <span
 								id="errorgenero" class="text-danger"></span>
-						</div>
+						</div> -->
 
 						<!--  <div class="form-group">
 							<label for="txtestado">Ingrese Estado:</label> 
@@ -164,17 +178,18 @@
 						<input type="hidden" id="hddidpersona" value="0">
 
 
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cerrar</button>
+							<button type="button" id="btnregistrarpersona"
+								class="btn btn-primary">Guardar</button>
+						</div>
 					</form>
 
 
 
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btnregistrarpersona"
-						class="btn btn-primary">Guardar</button>
-				</div>
+
 			</div>
 		</div>
 	</div>

@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	
@@ -12,10 +14,10 @@
 		<div class="row">
 			<div class="col-lg-6 col-md8 xs-12" id="colorBack">
 				<h2 align="center">Registro de Secciones</h2>
-		<form th:action="@{/Seccion//ListaSeccion}" th:object="${seccionForm}"
+		<form th:action="@{/Seccion/ListaSeccion}" th:object="${seccionForm}"
 					method="post">
 			<div class="form-group">
-				<label for="exampleInputEmail1">Nombre</label> <input th:field="*{nombre}"
+				<label for="exampleInputEmail1">Nombre</label> <input th:field="*{nombre}" onkeypress="return validarLetras(event)"
 					 type="text" class="form-control"
 					id="exampleInputEmail1" aria-describedby="emailHelp">
 			</div>
