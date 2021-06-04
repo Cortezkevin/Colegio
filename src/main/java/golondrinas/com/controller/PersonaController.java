@@ -43,13 +43,13 @@ public class PersonaController {
 			if(service.validarDNI(objPersona)==0 && service.validarTelefono(objPersona) == false && service.validarEmail(objPersona) == 0) {
 				service.registrarPersona(objPersona);
 			}else if(service.validarDNI(objPersona) == 1) { 
-				mensaje = "El DNI ingresado ya existe";
+				mensaje = "El DNI "+objPersona.getDni().toString()+" ya existe";
 				respuesta = false;
 			}else if(service.validarTelefono(objPersona) == true) {
-				mensaje = "El Telefono ingresado ya existe";
+				mensaje = "El Telefono "+objPersona.getTelefono().toString()+" ya existe";
 				respuesta = false;
 			}else if(service.validarEmail(objPersona) == 1){
-				mensaje = "El Email ingresado ya existe";
+				mensaje = "El Email "+objPersona.getEmail().toString()+" ya existe";
 				respuesta = false;
 			}
 			

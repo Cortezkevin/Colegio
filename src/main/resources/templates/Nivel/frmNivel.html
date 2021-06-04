@@ -3,7 +3,8 @@
 <head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
-	
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>	
 <script type="text/javascript"
 	th:src="@{/script/jsweb/nivel/frmNivel.js}"></script>
 <body>
@@ -63,8 +64,8 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="txtnomnivel">Ingrese el nombre del Nivel:</label> <input
-								type="text" class="form-control" id="txtnomnivel" maxlength="35">
+							<label for="txtnomnivel">Ingrese el nombre del Nivel:</label> <input onkeypress="return validarLetras(event)"
+								type="text" class="form-control" id="txtnomnivel" maxlength="35"> 
 							<span id="errornomnivel" class="text-danger"></span>
 						</div>
 						<input type="hidden" id="hddidnivel" value="0">

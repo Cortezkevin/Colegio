@@ -35,16 +35,20 @@ public class NivelController {
 	@ResponseBody
 	public ResultadoResponse registrarNivel(@RequestBody Nivel objNivel) {
 		
-		String mensaje = "Nivel no registrado";
+		String mensaje = "Nivel registrado correctamente";
 		Boolean respuesta = true;
 		
 		try {
-			service.registrarNivel(objNivel);
+			if(service.validarNombre(objNivel) == false) {
+				service.registrarNivel(objNivel);
+			}else {
+				mensaje = "Nombre de nivel ya existe";
+				respuesta = false;
+			}
 		}
 		
-		catch(Exception ex) {
-			
-			mensaje = "Nivel registado";
+		catch(Exception ex) {	
+			mensaje = "Nivel no registado";
 			respuesta = false;
 		}
 		

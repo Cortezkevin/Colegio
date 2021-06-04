@@ -47,7 +47,7 @@ public class CargoController {
 					service.registrarCargo(objCargo);	
 				}
 				else {
-					mensaje = "Nombre de cargo ya existe";
+					mensaje = "Nombre de cargo "+objCargo.getNombre().toString() +" ya existe";
 					respuesta = false;
 				}
 			} catch (Exception ex) {

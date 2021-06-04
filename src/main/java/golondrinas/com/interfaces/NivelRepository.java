@@ -33,5 +33,7 @@ public interface NivelRepository extends JpaRepository<Nivel, String>{
 	@Query(value = "{call sp_MantEliminarNivel(:idnivel)}", nativeQuery = true)
 	void EliminarNivel(@Param("idnivel") String idnivel);
 	
+	@Query(value = "call sp_MantListarNivelxNombre(:nombre)", nativeQuery = true)
+	List<Nivel> ListarNivelxNombre(@Param("nombre") String nombre);
 	
 }
