@@ -14,17 +14,20 @@ public class NotasService {
 
 	@Autowired
 	private NotasRepository repository;
-	
-	public List<Notas> listarNotas(){
-		return repository.findAll();
+
+	public List<Notas> listarNotas() {
+		return repository.listarNotas();
 	}
-	
+
 	public void registrarNotas(Notas n) {
-		repository.save(n);
+		if (n.getIdnota() == null) {
+			repository.RegistrarNotas(n.getIdalumno(), n.getIdcurso(), n.getIdnotabimestre(), n.getExamen1(),
+					n.getExamen2(), n.getExamen3(), n.getExamen4(), n.getPromedio());
+		} else {
+			repository.ActualizarNotas(n.getIdnota(), n.getIdalumno(), n.getIdcurso(), n.getIdnotabimestre(),
+					n.getExamen1(), n.getExamen2(), n.getExamen3(), n.getExamen4(), n.getPromedio());
+		}
 	}
-	
-	public Optional<Notas> BuscarPorId(Integer id){
-		return repository.findById(id);
-	}
-	
+
+
 }
