@@ -42,7 +42,7 @@ public class NotasController {
 		List<Notas> lst = service.listarNotas();
 		model.addAttribute("lstnotas", lst);
 		model.addAttribute("lstalumnos", aservice.listarALumno());
-		model.addAttribute("lstcursos", cservice.listarCurso());
+		model.addAttribute("lstcursos", cservice.listarCursos());
 		model.addAttribute("lstnotasbimestre", nbservice.listarNotaBimestre());
 		return "Notas/frmNotas";
 	}

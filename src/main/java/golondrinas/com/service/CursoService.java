@@ -1,7 +1,6 @@
 package golondrinas.com.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,19 +10,26 @@ import golondrinas.com.model.Curso;
 
 @Service
 public class CursoService {
-
-	@Autowired
-	private CursoRepository repository;
 	
-	public List<Curso> listarCurso(){
+	@Autowired
+	private CursoRepository repository;	
+	
+	public List<Curso> listarCursos(){
 		return repository.findAll();
 	}
 	
-	public void registrarCurso(Curso c) {
-		repository.save(c);
-	}
 	
-	public Optional<Curso> listarPorId(Integer id){
-		return repository.findById(id);
+	public void registrarCurso(Curso curso) {
+		if(curso.getIdcurso() == null) {
+			repository.registrarCurso(curso.getIdnivel(),curso.getIdgrado(),curso.getNombre(), curso.getDescripcion());	
+		}else {
+			repository.actualizarCurso(curso.getIdcurso(),
+					curso.getIdnivel(), curso.getIdgrado(), curso.getNombre(), curso.getDescripcion()
+					);
+		}
 	}
+	public void eliminarCurso(Curso curso) {
+		repository.eliminarCurso(curso.getIdcurso());
+	}
+
 }
