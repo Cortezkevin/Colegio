@@ -15,18 +15,24 @@ public class Alumno {
 	@Column(name = "idpersona")
 	private String idpersona;
 	
-	@Column(name = "idapoderado")
-	private String idapoderado;
-
 	@Column(name = "idusuario")
 	private String idusuario;
 
-	@Column(name = "idnivel")
-	private String idnivel;
+	@Column(name = "idmatricula")
+	private String idmatricula;
+	
+	@Column(name = "nivel")
+	private String nivel;
 
-	@Column(name = "idgrado")
-	private String idgrado;
-
+	@Column(name = "grado")
+	private String grado;
+	
+	@Column(name = "seccion")
+	private String seccion;
+	
+	@Column(name = "apoderado")
+	private String apoderado;
+	
 	@Column(name="nombrecompleto")
 	private String nombrecompleto;
 	
@@ -41,20 +47,28 @@ public class Alumno {
 		return idpersona;
 	}
 
-	public String getIdapoderado() {
-		return idapoderado;
-	}
-
 	public String getIdusuario() {
 		return idusuario;
 	}
 
-	public String getIdnivel() {
-		return idnivel;
+	public String getIdmatricula() {
+		return idmatricula;
 	}
 
-	public String getIdgrado() {
-		return idgrado;
+	public String getNivel() {
+		return nivel;
+	}
+
+	public String getGrado() {
+		return grado;
+	}
+
+	public String getSeccion() {
+		return seccion;
+	}
+
+	public String getApoderado() {
+		return apoderado;
 	}
 
 	public String getNombrecompleto() {
@@ -73,20 +87,28 @@ public class Alumno {
 		this.idpersona = idpersona;
 	}
 
-	public void setIdapoderado(String idapoderado) {
-		this.idapoderado = idapoderado;
-	}
-
 	public void setIdusuario(String idusuario) {
 		this.idusuario = idusuario;
 	}
 
-	public void setIdnivel(String idnivel) {
-		this.idnivel = idnivel;
+	public void setIdmatricula(String idmatricula) {
+		this.idmatricula = idmatricula;
 	}
 
-	public void setIdgrado(String idgrado) {
-		this.idgrado = idgrado;
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
+	}
+
+	public void setGrado(String grado) {
+		this.grado = grado;
+	}
+
+	public void setSeccion(String seccion) {
+		this.seccion = seccion;
+	}
+
+	public void setApoderado(String apoderado) {
+		this.apoderado = apoderado;
 	}
 
 	public void setNombrecompleto(String nombrecompleto) {
@@ -97,15 +119,17 @@ public class Alumno {
 		this.estado = estado;
 	}
 
-	public Alumno(String idalumno, String idpersona, String idapoderado, String idusuario, String idnivel,
-			String idgrado, String nombrecompleto, String estado) {
+	public Alumno(String idalumno, String idpersona, String idusuario, String idmatricula, String nivel, String grado,
+			String seccion, String apoderado, String nombrecompleto, String estado) {
 		super();
 		this.idalumno = idalumno;
 		this.idpersona = idpersona;
-		this.idapoderado = idapoderado;
 		this.idusuario = idusuario;
-		this.idnivel = idnivel;
-		this.idgrado = idgrado;
+		this.idmatricula = idmatricula;
+		this.nivel = nivel;
+		this.grado = grado;
+		this.seccion = seccion;
+		this.apoderado = apoderado;
 		this.nombrecompleto = nombrecompleto;
 		this.estado = estado;
 	}

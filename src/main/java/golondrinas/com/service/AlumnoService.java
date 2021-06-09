@@ -21,11 +21,13 @@ public class AlumnoService {
 	public void registrarAlumno(Alumno a) {
 		if (a.getIdalumno() == null) {
 
-			repository.RegistrarAlumno(a.getIdpersona(),a.getIdapoderado(), a.getIdusuario(), a.getIdnivel(), a.getIdgrado());
+			repository.RegistrarAlumno(a.getIdpersona(),a.getIdusuario(), a.getIdmatricula(), a.getNivel(), a.getGrado(), a.getSeccion(),
+					a.getApoderado());
 		}
 
 		else {
-			repository.ActualizarAlumno(a.getIdalumno(), a.getIdpersona(),a.getIdapoderado(), a.getIdusuario(), a.getIdnivel(), a.getIdgrado());
+			repository.ActualizarAlumno(a.getIdalumno(),a.getIdpersona(),a.getIdusuario(), a.getIdmatricula(), a.getNivel(), a.getGrado(), a.getSeccion(),
+					a.getApoderado());
 		}
 	}
 

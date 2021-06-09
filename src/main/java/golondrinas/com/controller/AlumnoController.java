@@ -20,6 +20,7 @@ import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.ApoderadoService;
 import golondrinas.com.service.DetalleAlumnoService;
 import golondrinas.com.service.GradoService;
+import golondrinas.com.service.MatriculaService;
 import golondrinas.com.service.NivelService;
 import golondrinas.com.service.PersonaService;
 import golondrinas.com.service.UsuarioService;
@@ -31,20 +32,23 @@ public class AlumnoController {
 	@Autowired
 	private UsuarioService uservice;
 	
-	@Autowired
+	/*@Autowired
 	private GradoService gservice;
 	
 	@Autowired
 	private NivelService nservice;
-
+*/
 	@Autowired
 	private PersonaService pservice;
 
 	@Autowired
 	private AlumnoService service;
-	
+	/*
 	@Autowired
 	private ApoderadoService aservice;
+	*/
+	@Autowired
+	private MatriculaService mservice;
 	
 	@Autowired
 	private DetalleAlumnoService daservice;
@@ -54,9 +58,10 @@ public class AlumnoController {
 		model.addAttribute("lstalumno", service.listarALumno());
 		model.addAttribute("lstpersona", pservice.listarPersona());
 		model.addAttribute("lstusuario", uservice.listarUsuarios());
-		model.addAttribute("lstapoderado", aservice.listarApoderado());
+		model.addAttribute("lstmatricula", mservice.listarMatriculas());
+		/*model.addAttribute("lstapoderado", aservice.listarApoderado());
 		model.addAttribute("lstnivel", nservice.listarNivel());
-		model.addAttribute("lstgrado", gservice.listarGrado());
+		model.addAttribute("lstgrado", gservice.listarGrado());*/
 		return "Alumno/frmAlumno";
 	}
 

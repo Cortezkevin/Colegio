@@ -15,6 +15,7 @@
 		<div class="card-header badge-danger">LISTADO DE MATRICULAS</div>
 		<div class="card-body">
 
+			<h3 align="center">REGISTRO DE MATRICULAS</h3>
 			<button type="button" id="btnagregarmatricula"
 				class="btn btn-primary">Registrar Matricula</button>
 			<hr />
@@ -24,10 +25,14 @@
 				<thead>
 					<tr>
 						<th scope="col">Id</th>
-						<th scope="col">ID Alumno</th>
+						<th scope="col">ID Persona</th>
+						<th scope="col">ID Apoderado</th>
 						<th scope="col">ID Nivel</th>
 						<th scope="col">Id Grado</th>
 						<th scope="col">Id Seccion</th>
+						<th scope="col">Usuario</th>
+						<th scope="col">Contraseña</th>
+						<th scope="col">Monto</th>
 						<th scope="col">Fecha</th>
 						<th scope="col">Estado</th>
 						<th scope="col">Actualizar</th>
@@ -37,30 +42,38 @@
 				<tbody>
 					<tr th:each="matricula:${lstMat}">
 						<td th:text="${matricula.idmatricula}"></td>
-						<td th:text="${matricula.idalumno}"></td>
+						<td th:text="${matricula.idpersona}"></td>
+						<td th:text="${matricula.idapoderado}"></td>
 						<td th:text="${matricula.idnivel}"></td>
 						<td th:text="${matricula.idgrado}"></td>
 						<td th:text="${matricula.idseccion}"></td>
+						<td th:text="${matricula.nombreusuario}"></td>
+						<td th:text="${matricula.contrasena}"></td>
+						<td th:text="${matricula.monto}"></td>
 						<td th:text="${matricula.fecha}"></td>
 						<td th:text="${matricula.estado}"></td>
 						<td>
-						<button type="button" class="btn btn-success btndetallematricula"
-						|		th:data-codmatricula="${matricula.idmatricula}">Ver Detalle</button>
+							<button type="button" class="btn btn-success btndetallematricula"
+								|		th:data-codmatricula="${matricula.idmatricula}">Ver
+								Detalle</button>
 						</td>
 						<td>
 							<button type="button" class="btn btn-info btnactualizarmatricula"
 								th:data-codmatricula="${matricula.idmatricula}"
-								th:data-codalumno="${matricula.idalumno}"
+								th:data-codpersona="${matricula.idpersona}"
+								th:data-codapoderado="${matricula.idapoderado}"
 								th:data-codnivel="${matricula.idnivel}"
 								th:data-codgrado="${matricula.idgrado}"
 								th:data-codseccion="${matricula.idseccion}"
+								th:data-nombreusuario="${matricula.nombreusuario}"
+								th:data-contrasena="${matricula.contrasena}"
 								th:data-fecha="${matricula.fecha}"
 								th:data-estado="${matricula.estado}">Actualizar</button>
 						</td>
 						<td>
 							<button type="button" class="btn btn-danger btneliminarmatricula"
 								th:data-codmatricula="${matricula.idmatricula}"
-								th:data-codalumno="${matricula.idalumno}">Eliminar</button>
+								th:data-codpersona="${matricula.idpersona}">Eliminar</button>
 						</td>
 					</tr>
 				</tbody>
@@ -83,12 +96,21 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<label for="cboalumnos">Seleccione alumno</label> <select
-						class="form-control" id="cboalumnos">
+					<label for="cbopersonas">Seleccione Persona</label> <select
+						class="form-control" id="cbopersonas">
 						<option value="0">Seleccione</option>
-						<option th:each="alumno :${lstAlumno}" th:text=${alumno.nombrecompleto}
-							th:value="${alumno.idalumno}"></option>
-					</select> <span id="erroralumno" class="text-danger"></span>
+						<option th:each="persona :${lstPersona}"
+							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
+					</select> <span id="errorpersona" class="text-danger"></span>
+				</div>
+				<div class="modal-body">
+					<label for="cboapoderados">Seleccione Apoderado</label> <select
+						class="form-control" id="cboapoderados">
+						<option value="0">Seleccione</option>
+						<option th:each="apoderado :${lstApoderado}"
+							th:text=${apoderado.nombrecompleto}
+							th:value="${apoderado.idapoderado}"></option>
+					</select> <span id="errorapoderado" class="text-danger"></span>
 				</div>
 				<div class="modal-body">
 					<label for="cbonivel">Seleccione Nivel</label> <select
@@ -117,7 +139,36 @@
 					</select> <span id="errorseccion" class="text-danger"></span><input
 						type="hidden" id="hddidmatricula" value="0">
 				</div>
-
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomusuario">Ingrese Nombre de  Usuario:</label> <input
+								type="text" class="form-control" id="txtnomusuario" maxlength="35">
+							<span id="errornomusuario" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidmatricula" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtcontrasena">Ingrese Contraseña:</label> <input
+								type="text" class="form-control" id="txtcontrasena" maxlength="35">
+							<span id="errornomcontrasena" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidmatricula" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtmonto">Ingrese Monto:</label> <input
+								type="text" class="form-control" id="txtmonto" maxlength="35">
+							<span id="errormonto" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidmatricula" value="0">
+					</form>
+				</div>
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
@@ -168,7 +219,7 @@
 
 
 
-<!-- Modal Ver Detalle Usuario -->
+	<!-- Modal Ver Detalle Usuario -->
 	<div class="modal fade" id="modaldetallematricula" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

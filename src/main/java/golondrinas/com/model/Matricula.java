@@ -15,12 +15,12 @@ public class Matricula{
 	@Id
 	private String idmatricula;
 	
-	@Column(name="idalumno")
-	private String idalumno;
-	/*
-	@Column(name="idusuario")
-	private String idusuario;
-	*/
+	@Column(name="idpersona")
+	private String idpersona;
+
+	@Column(name="idapoderado")
+	private String idapoderado;
+	
 	@Column(name="idnivel")
 	private String idnivel;
 	
@@ -29,34 +29,32 @@ public class Matricula{
 	
 	@Column(name="idseccion")
 	private String idseccion;
-	/*
-	@ManyToOne
-	@JoinColumn(name="id_nivel", nullable = false,
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_nivel) references nivel(id_nivel)"))
-	private Nivel nivel;
+
+	@Column(name="nombreusuario")
+	private String nombreusuario;
 	
-	@ManyToOne
-	@JoinColumn(name="id_grado", nullable = false,
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_grado) references grado(id_grado)"))
-	private Grado grado;
+	@Column(name="contrasena")
+	private String contrasena;
 	
-	@ManyToOne
-	@JoinColumn(name="id_seccion", nullable = false,
-			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key(id_seccion) references seccion(id_seccion)"))
-	private Seccion seccion;
-	*/
-	@Column(name="estado")
-	private String estado;
+	@Column(name = "monto")
+	private Double monto;
 	
 	@Column(name="fecha")
 	private Date fecha;
 
+	@Column(name="estado")
+	private String estado;
+	
 	public String getIdmatricula() {
 		return idmatricula;
 	}
 
-	public String getIdalumno() {
-		return idalumno;
+	public String getIdpersona() {
+		return idpersona;
+	}
+
+	public String getIdapoderado() {
+		return idapoderado;
 	}
 
 	public String getIdnivel() {
@@ -71,6 +69,18 @@ public class Matricula{
 		return idseccion;
 	}
 
+	public String getNombreusuario() {
+		return nombreusuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public Double getMonto() {
+		return monto;
+	}
+
 	public String getEstado() {
 		return estado;
 	}
@@ -83,8 +93,12 @@ public class Matricula{
 		this.idmatricula = idmatricula;
 	}
 
-	public void setIdalumno(String idalumno) {
-		this.idalumno = idalumno;
+	public void setIdpersona(String idpersona) {
+		this.idpersona = idpersona;
+	}
+
+	public void setIdapoderado(String idpoderado) {
+		this.idapoderado = idpoderado;
 	}
 
 	public void setIdnivel(String idnivel) {
@@ -99,6 +113,18 @@ public class Matricula{
 		this.idseccion = idseccion;
 	}
 
+	public void setNombreusuario(String nombreusuario) {
+		this.nombreusuario = nombreusuario;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public void setMonto(Double monto) {
+		this.monto = monto;
+	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
@@ -107,14 +133,18 @@ public class Matricula{
 		this.fecha = fecha;
 	}
 
-	public Matricula(String idmatricula, String idalumno, String idnivel, String idgrado, String idseccion,
-			String estado, Date fecha) {
+	public Matricula(String idmatricula, String idpersona, String idapoderado, String idnivel, String idgrado,
+			String idseccion, String nombreusuario, String contrasena, Double monto, String estado, Date fecha) {
 		super();
 		this.idmatricula = idmatricula;
-		this.idalumno = idalumno;
+		this.idpersona = idpersona;
+		this.idapoderado = idapoderado;
 		this.idnivel = idnivel;
 		this.idgrado = idgrado;
 		this.idseccion = idseccion;
+		this.nombreusuario = nombreusuario;
+		this.contrasena = contrasena;
+		this.monto = monto;
 		this.estado = estado;
 		this.fecha = fecha;
 	}
@@ -124,7 +154,6 @@ public class Matricula{
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	
 
 

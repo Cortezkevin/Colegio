@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.MatriculaRepository;
 import golondrinas.com.model.Matricula;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class MatriculaService {
 
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	
 	@Autowired
 	private MatriculaRepository repository;
 	
@@ -21,9 +26,11 @@ public class MatriculaService {
 	
 	public void RegistrarMatricula(Matricula m) {
 		if(m.getIdmatricula() == null) {
-			repository.RegistrarMatricula(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());  //(m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+			repository.RegistrarMatricula(m.getIdpersona(),m.getIdapoderado(), m.getIdnivel(), 
+					m.getIdgrado(), m.getIdseccion(),m.getNombreusuario(), encoder.encode(m.getContrasena()), m.getMonto(), m.getFecha());  
 		}else {
-			repository.ActualizarMatricula(m.getIdmatricula(),m.getIdalumno(), m.getIdnivel(), m.getIdgrado(), m.getIdseccion(), m.getFecha());
+			repository.ActualizarMatricula(m.getIdmatricula(),m.getIdpersona(),m.getIdapoderado(), m.getIdnivel(), 
+					m.getIdgrado(), m.getIdseccion(),m.getNombreusuario(), encoder.encode(m.getContrasena()), m.getMonto(), m.getFecha());
 		}
 	}
 	

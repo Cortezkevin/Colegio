@@ -1,27 +1,37 @@
 $(document).on("click", "#btnagregarmatricula", function() {
-	$("#cboalumnos").val("0");
+	$("#cbopersonas").val("0");
+	$("#cboapoderados").val("0");
 	$("#cbonivel").val("0");
 	$("#cbogrado").val("0");
 	$("#cboseccion").val("0");
-	$("#txtnomfecha").val("0");
+	$("#txtnomusuario").val("");
+	$("#txtcontrasena").val("");
+	$("#txtmonto").val("");
+	$("#txtnomfecha").val("");
 
 	$("#hddidmatricula").val("0");
 	$("#modalmatricula").modal("show");
 });
 $(document).on("click", ".btnactualizarmatricula", function() {
-	$("#cboalumnos").val($(this).attr("data-codalumno"));
+	$("#cbopersonas").val($(this).attr("data-codpersona"));
+	$("#cboapoderados").val($(this).attr("data-codapoderado"));
+	
 	$("#cbonivel").val($(this).attr("data-codnivel"));
 	$("#cbogrado").val($(this).attr("data-codgrado"));
 	$("#cboseccion").val($(this).attr("data-codseccion"));
+	
+	$("#txtnomusuario").val($(this).attr("data-nombreusuario"));
+	$("#txtcontrasena").val($(this).attr("data-contrasena"));
+	$("#txtmonto").val($(this).attr("data-monto"));
 	$("#txtnomfecha").val($(this).attr("data-fecha"));
 
 	$("#hddidmatricula").val($(this).attr("data-codmatricula"));
 	$("#modalmatricula").modal("show");
 });
 $(document).on("click", "#btnregistrarmatricula", function() {
-	var idalumno = $("#cboalumnos").val();
-	if (idalumno === "0") {
-		$("#erroralumno").text("Es obligatorio seleccionar una Almuno.");
+	var idpersona = $("#cbopersonas").val();
+	if (idpersona === "0") {
+		$("#errorpersona").text("Es obligatorio seleccionar una Persona.");
 	}
 	var idnivel = $("#cbonivel").val();
 	if (idnivel === "0") {
@@ -47,10 +57,14 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 				contentType: "application/json",
 				url: "/Matriculas/registrarMatricula",
 				data: JSON.stringify({
-					idalumno: $("#cboalumnos").val(),
+					idpersona: $("#cbopersonas").val(),
+					idapoderado: $("#cboapoderados").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val(),
 					idseccion: $("#cboseccion").val(),
+					nombreusuario: $("#txtnomusuario").val(),
+					contrasena: $("#txtcontrasena").val(),
+					monto: $("#txtmonto").val(),
 					fecha: $("#txtnomfecha").val()
 				}),
 				success: function(resultado) {
@@ -69,10 +83,14 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 				url: "/Matriculas/registrarMatricula",
 				data: JSON.stringify({
 					idmatricula: $("#hddidmatricula").val(),
-					idalumno: $("#cboalumnos").val(),
+					idpersona: $("#cbopersonas").val(),
+					idapoderado: $("#cboapoderados").val(),
 					idnivel: $("#cbonivel").val(),
 					idgrado: $("#cbogrado").val(),
 					idseccion: $("#cboseccion").val(),
+					nombreusuario: $("#txtnomusuario").val(),
+					contrasena: $("#txtcontrasena").val(),
+					monto: $("#txtmonto").val(),
 					fecha: $("#txtnomfecha").val()
 				}),
 				success: function(resultado) {
@@ -124,10 +142,14 @@ function ListarMatriculas() {
 			$.each(resultado, function(index, value) {
 				$("#tblmatricula > tbody").append("<tr>" +
 					"<td>" + value.idmatricula + "</td>" +
-					"<td>" + value.idalumno + "</td>" +
+					"<td>" + value.idpersona + "</td>" +
+					"<td>" + value.idapoderado + "</td>" +
 					"<td>" + value.idnivel + "</td>" +
 					"<td>" + value.idgrado + "</td>" +
 					"<td>" + value.idseccion + "</td>" +
+					"<td>" + value.nombreusuario + "</td>" +
+					"<td>" + value.contrasena + "</td>" +
+					"<td>" + value.monto + "</td>" +
 					"<td>" + value.fecha + "</td>" +
 					"<td>" + value.estado + "</td>" +
 					"<td><button type='button' class='btn btn-info btndetallematricula' " +
@@ -135,16 +157,20 @@ function ListarMatriculas() {
 					"</td>" +
 					"<td><button type='button' class='btn btn-info btnactualizarmatricula' " +
 					" data-codmatricula='" + value.idmatricula + "'" +
-					" data-codalumno='" + value.idalumno + "'" +
+					" data-codpersona='" + value.idpersona + "'" +
+					" data-codapoderado='" + value.idapoderado + "'" +
 					" data-codnivel='" + value.idnivel + "'" +
 					" data-codgrado='" + value.idgrado + "'" +
 					" data-codseccion='" + value.idseccion + "'" +
+					" data-nombreusuario='" + value.nombreusuario + "'" +
+					" data-contrasena='" + value.contrasena + "'" +
+					" data-monto='" + value.monto + "'" +
 					" data-fecha='" + value.fecha + "'" +
 					" data-estado='" + value.estado + "'>Actualizar</button>" +
 					"</td>" +
 					"<td><button type='button' class='btn btn-danger btneliminarmatricula' " +
 					" data-codmatricula='" + value.idmatricula + "'" +
-					" data-codalumno='" + value.idalumno + "'>Eliminar</button>" +
+					" data-codpersona='" + value.idpersona + "'>Eliminar</button>" +
 					"</td></tr>")
 			})
 		}

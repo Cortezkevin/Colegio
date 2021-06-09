@@ -3,6 +3,7 @@
 <head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
+
 <script type="text/javascript"
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <script type="text/javascript"
@@ -13,6 +14,7 @@
 		<div class="card-header badge-danger">LISTADO DE ALUMNOS</div>
 		<div class="card-body">
 
+			<h3 align="center">REGISTRO DE ALUMNOS</h3>
 			<button type="button" id="btnagregaralumno" class="btn btn-primary">Registrar
 				Alumno</button>
 			<hr />
@@ -23,10 +25,13 @@
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">ID Persona</th>
-						<th scope="col">ID Apoderado</th>
 						<th scope="col">ID Usuario</th>
-						<th scope="col">ID Nivel</th>
-						<th scope="col">ID Grado</th>
+						<th scope="col">ID Matricula</th>
+						<th scope="col">Nivel</th>
+						<th scope="col">Grado</th>
+						<th scope="col">Seccion</th>
+						<th scope="col">Apoderado</th>
+						<th scope="col">Nombre Completo</th>
 						<th scope="col">Estado</th>
 						<th scope="col">Actualizar</th>
 						<th scope="col">Eliminar</th>
@@ -36,10 +41,13 @@
 					<tr th:each="alumno:${lstalumno}">
 						<td th:text="${alumno.idalumno}"></td>
 						<td th:text="${alumno.idpersona}"></td>
-						<td th:text="${alumno.idapoderado}"></td>
 						<td th:text="${alumno.idusuario}"></td>
-						<td th:text="${alumno.idnivel}"></td>
-						<td th:text="${alumno.idgrado}"></td>
+						<td th:text="${alumno.idmatricula}"></td>
+						<td th:text="${alumno.nivel}"></td>
+						<td th:text="${alumno.grado}"></td>
+						<td th:text="${alumno.seccion}"></td>
+						<td th:text="${alumno.apoderado}"></td>
+						<td th:text="${alumno.nombrecompleto}"></td>
 						<td th:text="${alumno.estado}"></td>
 						<td>
 							<button type="button" class="btn btn-success btnverdetalle"
@@ -49,10 +57,12 @@
 							<button type="button" class="btn btn-info btnactualizaralumno"
 								th:data-codalumno="${alumno.idalumno}"
 								th:data-codpersona="${alumno.idpersona}"
-								th:data-codapoderado="${alumno.idapoderado}"
 								th:data-codusuario="${alumno.idusuario}"
-								th:data-codnivel="${alumno.idnivel}"
-								th:data-codgrado="${alumno.idgrado}"
+								th:data-codmatricula="${alumno.idmatricula}"
+								th:data-nivel="${alumno.nivel}"
+								th:data-grado="${alumno.grado}"
+								th:data-seccion="${alumno.seccion}"
+								th:data-apoderado="${alumno.apoderado}"
 								th:data-estado="${alumno.estado}">Actualizar</button>
 						</td>
 						<td>
@@ -82,8 +92,8 @@
 					<label for="cbopersona">Seleccione persona</label> <select
 						class="form-control" id="cbopersona">
 						<option value="0">Seleccione</option>
-						<option th:each="persona :${lstpersona}" th:text=${persona.nombres}
-							th:value="${persona.idpersona}"></option>
+						<option th:each="persona :${lstpersona}"
+							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
 					</select> <span id="errorpersona" class="text-danger"></span>
 				</div>
 				<input type="hidden" id="hddidalumno" value="0">
@@ -96,14 +106,15 @@
 					</select><span id="errorusuario" class="text-danger"></span>
 				</div>
 				<div class="modal-body">
-					<label for="cboapoderado">Seleccione apoderado</label> <select
-						class="form-control" id="cboapoderado">
+					<label for="cbomatricula">Seleccione matricula</label> <select
+						class="form-control" id="cbomatricula">
 						<option value="0">Seleccione</option>
-						<option th:each="apoderado :${lstapoderado}"
-							th:text=${apoderado.nombrecompleto}
-							th:value="${apoderado.idapoderado}"></option>
-					</select><span id="errorapoderado" class="text-danger"></span>
+						<option th:each="matricula :${lstmatricula}"
+							th:text=${matricula.idmatricula}
+							th:value="${matricula.idmatricula}"></option>
+					</select><span id="errormatricula" class="text-danger"></span>
 				</div>
+				<!-- 
 				<div class="modal-body">
 					<label for="cbonivel">Seleccione nivel</label> <select
 						class="form-control" id="cbonivel">
@@ -119,6 +130,47 @@
 						<option th:each="grado :${lstgrado}" th:text=${grado.nombre}
 							th:value="${grado.idgrado}"></option>
 					</select><span id="errorgrado" class="text-danger"></span>
+				</div>
+				 -->
+				 <div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomnivel">Ingrese Nivel:</label> <input
+								type="text" class="form-control" id="txtnomnivel" maxlength="35">
+							<span id="errornomnivel" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomgrado">Ingrese Grado:</label> <input
+								type="text" class="form-control" id="txtnomgrado" maxlength="35">
+							<span id="errornomgrado" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomseccion">Ingrese Seccion:</label> <input
+								type="text" class="form-control" id="txtnomseccion" maxlength="35">
+							<span id="errornomseccion" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomapoderado">Ingrese Apoderado:</label> <input
+								type="text" class="form-control" id="txtnomapoderado" maxlength="35">
+							<span id="errornomapoderado" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -192,6 +244,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -17,11 +17,13 @@ import golondrinas.com.model.DetalleMatricula;
 import golondrinas.com.model.Matricula;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
+import golondrinas.com.service.ApoderadoService;
 import golondrinas.com.service.DetalleMatriculaService;
 import golondrinas.com.service.DetallerUsuarioService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.MatriculaService;
 import golondrinas.com.service.NivelService;
+import golondrinas.com.service.PersonaService;
 import golondrinas.com.service.SeccionService;
 
 @Controller
@@ -32,7 +34,10 @@ public class MatriculaController {
 	private MatriculaService service;
 
 	@Autowired
-	private AlumnoService aservice;
+	private PersonaService pservice;
+	
+	@Autowired
+	private ApoderadoService apservice;
 
 	@Autowired
 	private NivelService nService;
@@ -49,7 +54,8 @@ public class MatriculaController {
 	@GetMapping("/frmMatricula")
 	public String frmMatricula(Model model) {
 		model.addAttribute("lstMat", service.listarMatriculas());
-		model.addAttribute("lstAlumno", aservice.listarALumno());
+		model.addAttribute("lstPersona", pservice.listarPersona());
+		model.addAttribute("lstApoderado", apservice.listarApoderado());
 		model.addAttribute("lstNivel", nService.listarNivel());
 		model.addAttribute("lstGrado", gService.listarGrado());
 		model.addAttribute("lstSeccion", sService.listarSeccion());

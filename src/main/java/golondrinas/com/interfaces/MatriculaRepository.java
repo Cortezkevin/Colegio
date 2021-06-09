@@ -18,22 +18,20 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String> {
 
 	@Query(value = "{call sp_MantListarMatriculas()}", nativeQuery = true)
 	List<Matricula> listarMatricula();
- //falaba el tranasacccional :v SQL ERROR 1000S --> error al ejecutar la peticion o algo asi :v
-	//SQL Error: 0, SQLState: S1000
-	@Transactional
-	@Modifying
-	@Query(value = "{call sp_MantRegistrarMatricula(:idalumno, :idnivel, :idgrado, :idseccion, :fecha)}", nativeQuery = true)
-	void RegistrarMatricula(@Param("idalumno") String idalumno, @Param("idnivel") String idnivel,
-			@Param("idgrado") String idgrado, @Param("idseccion") String idseccion, @Param("fecha") Date fecha);
-
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantActualizarMatricula(:idmatricula, :idalumno, :idnivel, :idgrado, :idseccion, :fecha)}", nativeQuery = true)
-	void ActualizarMatricula(@Param("idmatricula") String idmatricula, @Param("idalumno") String idalumno,
-			@Param("idnivel") String idnivel, @Param("idgrado") String idgrado, @Param("idseccion") String idseccion,
-			@Param("fecha") Date fecha);
-	
+	@Query(value = "{call sp_MantRegistrarMatricula(:idpersona, :idapoderado, :idnivel, :idgrado, :idseccion, :nombreusuario, :contrasena, :monto ,:fecha)}", nativeQuery = true)
+	void RegistrarMatricula(@Param("idpersona") String idpersona,@Param("idapoderado") String idapoderado, @Param("idnivel") String idnivel,
+			@Param("idgrado") String idgrado, @Param("idseccion") String idseccion, @Param("nombreusuario") String nombreusuario,@Param("contrasena") String contrasena,
+			@Param("monto") Double monto, @Param("fecha") Date fecha);
+
+	@Transactional
+	@Modifying
+	@Query(value = "{call sp_MantActualizarMatricula(:idmatricula,:idpersona, :idapoderado, :idnivel, :idgrado, :idseccion, :nombreusuario, :contrasena, :monto ,:fecha)}", nativeQuery = true)
+	void ActualizarMatricula(@Param("idmatricula") String idmatricula, @Param("idpersona") String idpersona,@Param("idapoderado") String idapoderado, @Param("idnivel") String idnivel,
+			@Param("idgrado") String idgrado, @Param("idseccion") String idseccion, @Param("nombreusuario") String nombreusuario,@Param("contrasena") String contrasena,
+			@Param("monto") Double monto, @Param("fecha") Date fecha);
 
 	@Transactional
 	@Modifying
