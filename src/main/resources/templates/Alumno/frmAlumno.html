@@ -33,6 +33,7 @@
 						<th scope="col">Apoderado</th>
 						<th scope="col">Nombre Completo</th>
 						<th scope="col">Estado</th>
+						<th scope="col">Ver Detalle</th>
 						<th scope="col">Actualizar</th>
 						<th scope="col">Eliminar</th>
 					</tr>
@@ -63,12 +64,13 @@
 								th:data-grado="${alumno.grado}"
 								th:data-seccion="${alumno.seccion}"
 								th:data-apoderado="${alumno.apoderado}"
+								th:data-nombrecompleto="${alumno.nombrecompleto}"
 								th:data-estado="${alumno.estado}">Actualizar</button>
 						</td>
 						<td>
 							<button type="button" class="btn btn-danger btneliminaralumno"
 								th:data-codalumno="${alumno.idalumno}"
-								th:data-codpersona="${alumno.idpersona}">Eliminar</button>
+								th:data-codpersona="${alumno.nombrecompleto}">Eliminar</button>
 						</td>
 					</tr>
 				</tbody>
@@ -114,24 +116,6 @@
 							th:value="${matricula.idmatricula}"></option>
 					</select><span id="errormatricula" class="text-danger"></span>
 				</div>
-				<!-- 
-				<div class="modal-body">
-					<label for="cbonivel">Seleccione nivel</label> <select
-						class="form-control" id="cbonivel">
-						<option value="0">Seleccione</option>
-						<option th:each="nivel :${lstnivel}" th:text=${nivel.nombre}
-							th:value="${nivel.idnivel}"></option>
-					</select><span id="errornivel" class="text-danger"></span>
-				</div>
-				<div class="modal-body">
-					<label for="cbogrado">Seleccione grado</label> <select
-						class="form-control" id="cbogrado">
-						<option value="0">Seleccione</option>
-						<option th:each="grado :${lstgrado}" th:text=${grado.nombre}
-							th:value="${grado.idgrado}"></option>
-					</select><span id="errorgrado" class="text-danger"></span>
-				</div>
-				 -->
 				 <div class="modal-body">
 					<form>
 						<div class="form-group">
