@@ -36,7 +36,7 @@ public class MatriculaController {
 	@Autowired
 	private PersonaService pservice;
 	
-	@Autowired
+	@Autowired   
 	private ApoderadoService apservice;
 
 	@Autowired
