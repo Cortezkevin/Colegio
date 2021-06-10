@@ -21,6 +21,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 			nativeQuery = true)
 	List<Usuario> listarUsuarios();
 	*/
+	@Query(value = "{call sp_ManSelectUsuario()}", nativeQuery = true) 
+	List<Usuario> listarSelectUsuario(); 
+	 
 	@Transactional
 	@Modifying
 	@Query(value="{call sp_MantRegistrarUsuario(:nombreUsuario, :contraseña, :idcargo, :idpersona,:foto)}",

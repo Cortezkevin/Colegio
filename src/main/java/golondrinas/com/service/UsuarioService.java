@@ -20,6 +20,9 @@ public class UsuarioService{
 		return (List<Usuario>) repository.findAll();
 	}
 	
+	public List<Usuario> listarSelectUsuario(){
+		return repository.listarSelectUsuario();
+	}
 	public void registrarUsuario(Usuario u) {
 			repository.RegistrarUsuario(u.getNombreusuario(),u.getContrasena(),u.getIdcargo(),u.getIdpersona(),u.getFoto());
 	}

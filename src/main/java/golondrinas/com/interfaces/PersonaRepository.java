@@ -19,6 +19,9 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 	@Query(value = "{call sp_ManListarPersona()}", nativeQuery = true)
 	List<Persona> listarPersona();
 
+	@Query(value = "{call sp_ManSelectPersona()}", nativeQuery = true)
+	List<Persona> listarSelectPersona(); 
+	
 	@Transactional
 	@Modifying
 	@Query(value = "{call sp_MantRegistrarPersona(:nombreper, :apellidoper, :direccionper, :telefonoper, :emailper, :dniper, :edadper, :generoper)}", nativeQuery = true)
@@ -41,7 +44,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 	@Query(value = "{call sp_MantEliminarPersona(:idpersona)}", nativeQuery = true)
 	void eliminarPersona(@Param("idpersona") String idpersona);
 
-	@Query(value = "{call sp_MantListarPersonaxDNI(:dni)}", nativeQuery = true)
+	@Query(value = "{call sp_ManListarPersonaxDNI(:dni)}", nativeQuery = true)
 	List<Persona> listarPersonaxDNI(@Param("dni") Integer dni);
 	
 	@Query(value = "{call  sp_ManListarPersonaxTelefono(:telefono)}", nativeQuery = true)

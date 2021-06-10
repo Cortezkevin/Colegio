@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder.Case;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.PersonaRepository;
@@ -19,6 +20,10 @@ public class PersonaService {
 
 	public List<Persona> listarPersona() {
 		return repository.findAll();
+	}
+	
+	public List<Persona> listarSelectPersona(){
+		return repository.listarSelectPersona();
 	}
 
 	public void registrarPersona(Persona persona) {
