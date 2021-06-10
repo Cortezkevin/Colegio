@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import golondrinas.com.model.Profesor;
 import golondrinas.com.model.response.ResultadoResponse;
+import golondrinas.com.service.PersonaService;
 import golondrinas.com.service.ProfesoreService;
+import golondrinas.com.service.UsuarioService;
 
 
 
@@ -24,12 +26,19 @@ public class ProfesorController {
 	@Autowired
 	private ProfesoreService service;
 	
+	@Autowired
+	private PersonaService pservice;
+	
+	@Autowired
+	private UsuarioService uservice;
+	
 	@GetMapping("/frmProfesor")
 	public String ListarProfesor(Model model) {
 		
 		List<Profesor> listProfesor = service.listarProfesor();
 		model.addAttribute("lstprofesor",listProfesor);
-		
+		model.addAttribute("lstpersona",pservice.listarSelectPersona());
+		model.addAttribute("lstusuario",uservice.listarSelectUsuario());
 		return "Profesor/frmProfesor";
 	}
 	

@@ -32,21 +32,12 @@ public class AlumnoController {
 	@Autowired
 	private UsuarioService uservice;
 	
-	/*@Autowired
-	private GradoService gservice;
-	
-	@Autowired
-	private NivelService nservice;
-*/
 	@Autowired
 	private PersonaService pservice;
 
 	@Autowired
 	private AlumnoService service;
-	/*
-	@Autowired
-	private ApoderadoService aservice;
-	*/
+
 	@Autowired
 	private MatriculaService mservice;
 	
@@ -56,12 +47,9 @@ public class AlumnoController {
 	@GetMapping("/frmAlumno")
 	public String ListaAlumno(Model model) {
 		model.addAttribute("lstalumno", service.listarALumno());
-		model.addAttribute("lstpersona", pservice.listarPersona());
-		model.addAttribute("lstusuario", uservice.listarUsuarios());
+		model.addAttribute("lstpersona", pservice.listarSelectPersona());
+		model.addAttribute("lstusuario", uservice.listarSelectUsuario());
 		model.addAttribute("lstmatricula", mservice.listarMatriculas());
-		/*model.addAttribute("lstapoderado", aservice.listarApoderado());
-		model.addAttribute("lstnivel", nservice.listarNivel());
-		model.addAttribute("lstgrado", gservice.listarGrado());*/
 		return "Alumno/frmAlumno";
 	}
 
