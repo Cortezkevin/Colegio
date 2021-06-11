@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+</head>
+
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/alumno/frmAlumno.js}"></script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<div class="card">
+		<div class="card-header badge-danger">LISTADO DE ALUMNOS</div>
+		<div class="card-body">
+
+			<h3 align="center">REGISTRO DE ALUMNOS</h3>
+			<button type="button" id="btnagregaralumno" class="btn btn-primary">Registrar
+				Alumno</button>
+			<hr />
+			<div id="mensaje"></div>
+
+			<table id="tblalumno" class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">ID Persona</th>
+						<th scope="col">ID Usuario</th>
+						<th scope="col">ID Matricula</th>
+						<th scope="col">Nivel</th>
+						<th scope="col">Grado</th>
+						<th scope="col">Seccion</th>
+						<th scope="col">Apoderado</th>
+						<th scope="col">Nombre Completo</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Ver Detalle</th>
+						<th scope="col">Actualizar</th>
+						<th scope="col">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="alumno:${lstalumno}">
+						<td th:text="${alumno.idalumno}"></td>
+						<td th:text="${alumno.idpersona}"></td>
+						<td th:text="${alumno.idusuario}"></td>
+						<td th:text="${alumno.idmatricula}"></td>
+						<td th:text="${alumno.nivel}"></td>
+						<td th:text="${alumno.grado}"></td>
+						<td th:text="${alumno.seccion}"></td>
+						<td th:text="${alumno.apoderado}"></td>
+						<td th:text="${alumno.nombrecompleto}"></td>
+						<td th:text="${alumno.estado}"></td>
+						<td>
+							<button type="button" class="btn btn-success btnverdetalle"
+								th:data-codalumno="${alumno.idalumno}">Ver Detalle</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-info btnactualizaralumno"
+								th:data-codalumno="${alumno.idalumno}"
+								th:data-codpersona="${alumno.idpersona}"
+								th:data-codusuario="${alumno.idusuario}"
+								th:data-codmatricula="${alumno.idmatricula}"
+								th:data-nivel="${alumno.nivel}"
+								th:data-grado="${alumno.grado}"
+								th:data-seccion="${alumno.seccion}"
+								th:data-apoderado="${alumno.apoderado}"
+								th:data-nombrecompleto="${alumno.nombrecompleto}"
+								th:data-estado="${alumno.estado}">Actualizar</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger btneliminaralumno"
+								th:data-codalumno="${alumno.idalumno}"
+								th:data-codpersona="${alumno.nombrecompleto}">Eliminar</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Modal Registrar y Actualizar Grado -->
+	<div class="modal fade" id="modalalumno" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Alumno</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label for="cbopersona">Seleccione persona</label> <select
+						class="form-control" id="cbopersona">
+						<option value="0">Seleccione</option>
+						<option th:each="persona :${lstpersona}"
+							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
+					</select> <span id="errorpersona" class="text-danger"></span>
+				</div>
+				<input type="hidden" id="hddidalumno" value="0">
+				<div class="modal-body">
+					<label for="cbousuario">Seleccione usuario</label> <select
+						class="form-control" id="cbousuario">
+						<option value="0">Seleccione</option>
+						<option th:each="usuario :${lstusuario}"
+							th:text=${usuario.nombreusuario} th:value="${usuario.idusuario}"></option>
+					</select><span id="errorusuario" class="text-danger"></span>
+				</div>
+				<div class="modal-body">
+					<label for="cbomatricula">Seleccione matricula</label> <select
+						class="form-control" id="cbomatricula">
+						<option value="0">Seleccione</option>
+						<option th:each="matricula :${lstmatricula}"
+							th:text=${matricula.idmatricula}
+							th:value="${matricula.idmatricula}"></option>
+					</select><span id="errormatricula" class="text-danger"></span>
+				</div>
+				 <div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomnivel">Ingrese Nivel:</label> <input onkeypress="return validarLetras(event)"
+								type="text" class="form-control" id="txtnomnivel" maxlength="35">
+							<span id="errornomnivel" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomgrado">Ingrese Grado:</label> <input onkeypress="return validarLetras(event)"
+								type="text" class="form-control" id="txtnomgrado" maxlength="35">
+							<span id="errornomgrado" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomseccion">Ingrese Seccion:</label> <input onkeypress="return validarLetras(event)"
+								type="text" class="form-control" id="txtnomseccion" maxlength="35">
+							<span id="errornomseccion" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="txtnomapoderado">Ingrese Apoderado:</label> <input onkeypress="return validarLetras(event)"
+								type="text" class="form-control" id="txtnomapoderado" maxlength="35">
+							<span id="errornomapoderado" class="text-danger"></span>
+						</div>
+						<input type="hidden" id="hddidalumno" value="0">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btnregistraralumno"
+						class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Eliminar Alumno -->
+	<div class="modal fade" id="modaleliminaralumno" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Cargo</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidalumnoeliminar" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btneliminaralumno" class="btn btn-danger">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal Ver Detalle Alumno -->
+	<div class="modal fade" id="modaldetallealumno" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Detalle del
+						Alumno</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table id="tbldetalle" class="table">
+						<thead>
+							<tr>
+								<th>Apoderado</th>
+								<th>Nombres</th>
+								<th>Apellidos</th>
+								<th>Nombre de Usuario</th>
+								<th>Nivel</th>
+								<th>Grado</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
