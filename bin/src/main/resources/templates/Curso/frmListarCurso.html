@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript"
+	th:src="@{/script/jquery/jQuery_v3.6.0.js}"></script>
+<script type="text/javascript"
+	th:src="@{/script/bootstrap/bootstrap.bundle.js}"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+
+<script type="text/javascript"
+	th:src="@{/script/jsweb/curso/frmListarCurso.js}"></script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+
+    <div class="card">
+    <div class="card-header badge-danger">LISTADO DE CURSOS</div>
+    <div class="card-body">
+    
+    <button type="button" id="btnagregarcurso" class="btn btn-primary">
+				Registrar Curso</button>
+			<hr />
+			<div id="mensaje"> </div>
+
+			<table id="tblcurso" class="table table-bordered table-dark">
+
+				<thead>
+					<tr>
+						<th scope="col">idCurso</th>
+						<th scope="col">idNivel</th>
+						<th scope="col">idGrado</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Descripcion</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Actualizar</th>
+						<th scope="col">Eliminar</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr>
+					<tr th:each="curso :${listcursos}">
+						<td th:text="${curso.idcurso}"></td>
+						<td th:text="${curso.idnivel}"></td>
+						<td th:text="${curso.idgrado}"></td>
+						<td th:text="${curso.nombre}"></td>
+						<td th:text="${curso.descripcion}"></td>
+						<td th:text="${curso.estado}"></td>
+						
+
+
+
+						<td>
+							<button type="button" class="btn btn-info btnactualizarcurso"
+								th:data-idcurso="${curso.idcurso}"
+								th:data-idnivel="${curso.idnivel}"
+								th:data-idgrado="${curso.idgrado}"
+								th:data-nomcurso="${curso.nombre}"
+						        th:data-descripcion="${curso.descripcion}"
+						        th:data-estado="${curso.estado}">Actualizar</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger btneliminarcurso"
+								th:data-idcurso="${curso.idcurso}"
+								th:data-idnivel="${curso.idnivel}"
+								th:data-idgrado="${curso.idgrado}"
+								th:data-nomcurso="${curso.nombre}"
+						        th:data-descripcion="${curso.descripcion}"
+								th:data-estado="${curso.estado}">Eliminar</button>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	
+	
+		<!-- Modal Registrar y Actualizar Curso -->
+	<div class="modal fade" id="modalcurso" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Curso</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="cbonivel">Seleccione Nivel</label> <select
+								class="form-control" id="cbonivel">
+								<option value="0">Seleccione</option>
+								<option th:each="nivel :${lstnivel}"
+									th:text=${nivel.nombre} th:value="${nivel.idnivel}"></option>
+							</select> <span id="errornivel" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="cbogrado">Seleccione Grado</label> <select
+								class="form-control" id="cbogrado">
+								<option value="0">Seleccione</option>
+								<option th:each="grado :${lstgrado}"
+									th:text=${grado.nombre} th:value="${grado.idgrado}"></option>
+							</select> <span id="errorgrado" class="text-danger"></span>
+						</div>
+					
+					
+						<div class="form-group">
+							<label for="txtnomcurso">Ingrese el nombre del curso:</label> 
+							<input type="text" class="form-control" id="txtnomcurso"
+								maxlength="35">
+							<span id="errornomcurso" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="txtdescripcion">Ingrese la descripcion del curso:</label> 
+							<input type="text" class="form-control" id="txtdescripcion"
+								maxlength="80">
+							<span id="errordescripcurso" class="text-danger"></span>								
+						</div>
+						<input type="hidden" id="hddidcurso" value="0">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btnregistrarcurso" 
+					class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!-- Modal Registrar y Actualizar Curso -->
+	<div class="modal fade" id="modaleliminarcurso" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Curso</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddidcursoeliminar" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btneliminarcurso" 
+					class="btn btn-danger">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+	
+	
+</body>
+</html>

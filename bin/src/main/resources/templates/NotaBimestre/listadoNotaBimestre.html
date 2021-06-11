@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Nota Bimestre</th>
+				<th scope="col">ID Nota</th>
+				<th scope="col">Promedio</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="notaBimestre :${lsthora}">
+				<td th:text="${notaBimestre.idNotaBimestre}"></td>
+				<td th:text="${notaBimestre.idNota}"></td>
+				<td th:text="${notaBimestre.promedio}"></td>
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/NotaBimestre/RegistrarNotaBimestre}">Registrar Nota Bimestre</a>
+
+</body>
+</html>

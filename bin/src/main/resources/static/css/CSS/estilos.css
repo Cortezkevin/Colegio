@@ -1,0 +1,75 @@
+/*cambia de minuscula a muyuscula todas las primeras letras.*/
+p.capitalize{text-transform: capitalize;}
+/* uppercase, lowercase: todo en mayuscula o minuscula*/
+#heroe{
+	
+	background: url(../img/school.jpg) no-repeat center center fixed;
+    background-size: cover;
+	
+}
+.bg{
+	background-image: url(img/school.jpg);
+	bacground-position: center center; 	
+	}
+.container-fluid {
+  width: 500px;
+  margin-top: 2em;
+}
+/*borde de un div*/
+sapn.baseline {
+	vertical-align: baseline;
+}
+span.sub {
+	vertical-align: sub
+}
+span.super {
+	vertical-align: super;
+}
+span.pixel {
+	vertical-align: 20px;
+	text-decoration: line-through;
+}
+
+/* subir o bajar el texto*/
+.main {
+	height: 150px;
+	width: 400px;
+	background-color: yellow;
+	display: inline-table
+}
+
+.paragraph {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/*decoracion text*/
+p.none {
+    text-decoration: none;
+}
+p.inherit {
+    text-decoration: inherit;
+}
+p.overline {
+    text-decoration: overline;
+}
+p.underline {
+    text-decoration: underline;
+}
+p.line-through {
+    text-decoration: line-through;
+}
+/*SANGRIA PRIMERA LINEA*/
+p{text-indent: 60px}
+
+/*sombra al texto*/
+h1{
+	color:blue;
+	font-size:30pt;
+	text-shadow: 5px 2px 4px grey;
+}
+#hero2{
+	font-size: 20pt;
+	text-shadow: rgb(0,0,255,1) -1px -2px 0.5em;
+}
+

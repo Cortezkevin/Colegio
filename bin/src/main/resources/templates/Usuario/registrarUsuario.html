@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	    $(document).ready(function() {
+	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+	        $('#userList').DataTable();
+	    } );
+	</script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<div class="container-fluid cont" id="colorBack">
+	
+		<div class="row">
+			
+			<div class="col-lg">
+				<form th:action="@{/Usuario/registrarUsuario}" th:object="${usuarioForm}" method="post" enctype="multipart/form-data">				
+					<div class="form-group">
+						<label for="exampleInputEmail1">Nombre de Usuario</label> <input th:field="*{nombreusuario}" type="text"
+							class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp">
+					</div>
+					<div class="form-group">
+					<label for="exampleInputEmail1">Contraseña</label>
+					<input th:field="*{contrasena}" type="text" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp">
+					</div>
+					
+					<div class="form-group">
+						<label for="cbocargos">Seleccione cargo</label> 
+						<select	class="form-control" id="cbusuario" th:field="*{idcargo}">
+						<option value="0">Seleccione</option>
+						<option th:each="cargo :${lstCargos}" th:text=${cargo.nombre}
+							th:value="${cargo.idcargo}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="cbopersonas">Seleccione Persona</label> 
+						<select class="form-control" id="cbopersonas" th:field="*{idpersona}" >
+							<option value="0">Seleccione</option>
+							<option th:each="persona :${lstPersonas}"
+								th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+					<img id="imgpreview"  width="100" height="100" border="1" >
+						<label for="exampleInputPassword1">Foto</label> <input name="picture"
+							
+							type="file" class="form-control" id="txtfoto" accept="image/*">
+					</div>
+					<script type="text/javascript">
+						(function(){
+							function filePreview(input){
+								if(input.files && input.files[0]){
+									var reader=new FileReader();
+									
+									reader.onload=function(e){
+										$('#imgpreview').attr("src",e.target.result);
+										
+									}
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+							$('#txtfoto').change(function(){
+								filePreview(this);
+							});
+						})();
+						
+						
+						</script>
+					
+					<button type="submit" class="btn btn-primary" >Registrar</button>
+				</form>
+
+			</div>
+			<div class="col-sm"></div>
+		</div>
+	</div>
+	<div th:replace="menu2::barra"></div>
+	<div>
+		
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="../css/icons/script.js"></script>
+		
+	</div>
+</body>
+</html>
