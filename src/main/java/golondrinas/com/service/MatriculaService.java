@@ -38,4 +38,14 @@ public class MatriculaService {
 	public void EliminarMatricula(Matricula m) {
 		repository.EliminarMatricula(m.getIdmatricula());
 	}
+	
+	
+	public boolean validarEstado(Matricula m) {
+		String lista = repository.listarEstado(m.getIdpersona());
+		if(lista.equals("Ocupado")) {
+			return false;					
+		}
+		
+		return true;
+	}
 }

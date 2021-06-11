@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 </head>
 <script type="text/javascript"
-	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>	
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <script type="text/javascript"
 	th:src="@{/script/jsweb/nivel/frmNivel.js}"></script>
 <body>
@@ -13,12 +13,13 @@
 		<div class="card-header badge-danger">LISTADO DE NIVELES</div>
 		<div class="card-body">
 
-			<button type="button" id="btnagregarnivel" class="btn btn-primary">Registrar Niveles</button>
-			<hr/>
+			<button type="button" id="btnagregarnivel" class="btn btn-primary">Registrar
+				Niveles</button>
+			<hr />
 			<div id="mensaje"></div>
 
-			<table id="tblnivel" class="table">
-				<thead>
+			<table id="tblnivel" class="table table-striped table-bordered table-hover ">
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
 						<th scope="col">Nombre</th>
@@ -64,9 +65,10 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="txtnomnivel">Ingrese el nombre del Nivel:</label> <input onkeypress="return validarLetras(event)"
-								type="text" class="form-control" id="txtnomnivel" maxlength="35"> 
-							<span id="errornomnivel" class="text-danger"></span>
+							<label for="txtnomnivel">Ingrese el nombre del Nivel:</label> <input
+								onkeypress="return validarLetras(event)" type="text"
+								class="form-control" id="txtnomnivel" maxlength="35"> <span
+								id="errornomnivel" class="text-danger"></span>
 						</div>
 						<input type="hidden" id="hddidnivel" value="0">
 					</form>
@@ -80,8 +82,8 @@
 			</div>
 		</div>
 	</div>
-	
-		<!-- Modal Eliminar Grado -->
+
+	<!-- Modal Eliminar Grado -->
 	<div class="modal fade" id="modaleliminarnivel" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -94,17 +96,24 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<label id="mensajeeliminar"></label>
-					<input type="hidden" id="hddidniveleliminar" value="0">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidniveleliminar" value="0">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btneliminarnivel" 
-					class="btn btn-danger">Eliminar</button>
+					<button type="button" id="btneliminarnivel" class="btn btn-danger">Eliminar</button>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div th:replace="menu2::barra"></div>
+	<div>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+
 	</div>
 </body>
 </html>

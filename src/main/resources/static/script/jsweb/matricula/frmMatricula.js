@@ -203,10 +203,12 @@ $(document).on("click", ".btndetallematricula", function() {
 			$("#tbldetalle > tbody").html("");
 			$.each(resultado, function(index, value) {
 				$("#tbldetalle > tbody").append("<tr>" +
-					"<td>" + value.alumno  + "</td>" +
+					"<td>" + value.persona  + "</td>" +
+					"<td class='text-center'>" + value.apoderado + "</td>" +
 					"<td class='text-center'>" + value.nivel + "</td>" +
 					"<td class='text-center'>" + value.grado + "</td>" +
 					"<td class='text-center'>" + value.seccion + "</td>" +
+					"<td class='text-center'>" + value.usuario + "</td>" +
 				"</tr>")
 			});
 			$("#modaldetallematricula").modal("show");

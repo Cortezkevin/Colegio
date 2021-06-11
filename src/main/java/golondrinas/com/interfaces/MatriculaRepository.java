@@ -18,6 +18,9 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String> {
 
 	@Query(value = "{call sp_MantListarMatriculas()}", nativeQuery = true)
 	List<Matricula> listarMatricula();
+	
+	@Query(value = "call sp_MantListarEstadoXPersona(:idpersona)", nativeQuery = true)
+	String listarEstado(@Param("idpersona") String idpersona);
 
 	@Transactional
 	@Modifying

@@ -10,7 +10,7 @@
 <body>
 
 
-<nav th:replace="menu2::menu"></nav>
+	<nav th:replace="menu2::menu"></nav>
 	<div class="card">
 		<div class="card-header badge-danger">LISTADO DE PROFESORES</div>
 		<div class="card-body">
@@ -20,8 +20,8 @@
 			<hr />
 			<div id="mensaje"></div>
 
-			<table id="tblprofesor" class="table">
-				<thead>
+			<table id="tblprofesor" class="table table-striped table-bordered table-hover ">
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">ID Persona</th>
@@ -113,13 +113,20 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btneliminarprofesor" 
-					class="btn btn-danger">Eliminar</button>
+					<button type="button" id="btneliminarprofesor"
+						class="btn btn-danger">Eliminar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div th:replace="menu2::barra"></div>
+	<div>
 
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+
+	</div>
 
 </body>
 </html>

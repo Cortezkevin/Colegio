@@ -5,11 +5,11 @@ $(document).on("click", "#btnagregarusuario", function() {
 	$("#modalusuario").modal("show");
 });
 $(document).on("click", ".btnactualizarusuario", function() {
-	alert($(this).attr("data-codusuario"));
 	$("#txtnomusuario").val($(this).attr("data-nomusuario"));
 	$("#txtcontraseña").val($(this).attr("data-contraseña"));
 	$("#cbocargos").val($(this).attr("data-codcargo"));
 	$("#cbopersonas").val($(this).attr("data-codpersona"));
+	$("#txtestado").val($(this).attr("data-estado"));
 	$("#hddidusuario").val($(this).attr("data-codusuario"));
 	$("#modalusuario").modal("show");
 });
@@ -66,7 +66,8 @@ $(document).on("click", "#btnregistrarusuario", function() {
 					nombreusuario: $("#txtnomusuario").val(),
 					password: $("#txtcontraseña").val(),
 					idcargo: $("#cbocargos").val(),
-					idpersona: $("#cbopersonas").val()
+					idpersona: $("#cbopersonas").val(),
+					estado: $("#txtestado").val()
 				}),
 				success: function(resultado) {
 					var estilo = "danger";
@@ -131,7 +132,8 @@ function ListarUsuarios() {
 					" data-contraseña='" + value.password + "'" +
 					" data-codcargo='" + value.idcargo + "'" +
 					" data-codpersona='" + value.idpersona + "'" +
-					" data-estado='" + value.estado + "'>Actualizar</button>" +
+					" data-estado='" + value.estado + "'" +
+					" data-foto='" + value.foto + "'>Actualizar</button>" +
 					"</td>" +
 					"<td><button type='button' class='btn btn-danger btneliminarusuario' " +
 					" data-codusuario='" + value.idusuario + "'" +

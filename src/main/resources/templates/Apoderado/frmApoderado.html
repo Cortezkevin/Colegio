@@ -7,16 +7,17 @@
 	th:src="@{/script/jsweb/apoderado/frmApoderado.js}"></script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
-		<div class="card">
+	<div class="card">
 		<div class="card-header badge-danger">LISTADO DE APODERADOS</div>
 		<div class="card-body">
 
-			<button type="button" id="btnagregarapoderado" class="btn btn-primary">Registrar Apoderado</button>
+			<button type="button" id="btnagregarapoderado"
+				class="btn btn-primary">Registrar Apoderado</button>
 			<hr />
 			<div id="mensaje"></div>
 
-			<table id="tblapoderado" class="table">
-				<thead>
+			<table id="tblapoderado" class="table table-striped table-bordered table-hover ">
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">IDApoderado</th>
 						<th scope="col">IDPersona</th>
@@ -45,13 +46,13 @@
 								th:data-codpersona="${apoderado.idpersona}"
 								th:data-nomapoderado="${apoderado.nombrecompleto}">Eliminar</button>
 						</td>
-					</tr> 
+					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- Modal Registrar y Actualizar Apoderado -->
 	<div class="modal fade" id="modalapoderado" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,8 +71,8 @@
 						<option value="0">Seleccione</option>
 						<option th:each="persona :${lstpersona}"
 							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
-					</select> <span id="errorpersona" class="text-danger"></span>
-					<input type="hidden" id="hddidapoderado" value = "0" /> 
+					</select> <span id="errorpersona" class="text-danger"></span> <input
+						type="hidden" id="hddidapoderado" value="0" />
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -82,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal Eliminar Apoderado -->
 	<div class="modal fade" id="modaleliminarapoderado" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,19 +97,26 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<label id="mensajeeliminar"></label>
-					<input type="hidden" id="hddidapoderadoeliminar" value="0">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidapoderadoeliminar" value="0">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btneliminarapoderado" 
-					class="btn btn-danger">Eliminar</button>
+					<button type="button" id="btneliminarapoderado"
+						class="btn btn-danger">Eliminar</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+	<div th:replace="menu2::barra"></div>
+	<div>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+
+	</div>
 
 </body>
 </html>

@@ -24,6 +24,7 @@ import golondrinas.com.model.Usuario;
 public class userDetailService implements UserDetailsService{
 	@Autowired
 	UsuarioRepository userrepo;
+	
 	@Autowired
 	CargoRepository cargorepo;
 	
@@ -33,7 +34,7 @@ public class userDetailService implements UserDetailsService{
 		UserDetails user = null;
 		if(appUser.getEstado().equals("Eliminado")) {
 			new UsernameNotFoundException("User does not exist!");
-		}else if(appUser.getEstado().equals("Activo")) {
+		}else if(appUser.getEstado().equals("Activo") || appUser.getEstado().equals("Ocupado")) {
 			Set<GrantedAuthority> grantList=new HashSet<GrantedAuthority>();
 			//Cargo aea= cargorepo.findAll();
 		

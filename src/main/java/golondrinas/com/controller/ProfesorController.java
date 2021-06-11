@@ -37,8 +37,8 @@ public class ProfesorController {
 		
 		List<Profesor> listProfesor = service.listarProfesor();
 		model.addAttribute("lstprofesor",listProfesor);
-		model.addAttribute("lstpersona",pservice.listarSelectPersona());
-		model.addAttribute("lstusuario",uservice.listarSelectUsuario());
+		model.addAttribute("lstpersona",pservice.listarPersona());
+		model.addAttribute("lstusuario",uservice.listarUsuarios());
 		return "Profesor/frmProfesor";
 	}
 	

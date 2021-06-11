@@ -7,12 +7,12 @@ import javax.persistence.Id;
 @Entity
 public class DetalleMatricula {
 	
-	//error de id 
-	/*@Id
-	private String idmatricula;*/
 	@Id
-	@Column(name="alumno")
-	private String alumno;
+	@Column(name="persona")
+	private String persona;
+	
+	@Column(name="apoderado")
+	private String apoderado;
 	
 	@Column(name="nivel")
 	private String nivel;
@@ -23,8 +23,15 @@ public class DetalleMatricula {
 	@Column(name="seccion")
 	private String seccion;
 
-	public String getAlumno() {
-		return alumno;
+	@Column(name="usuario")
+	private String usuario;
+
+	public String getPersona() {
+		return persona;
+	}
+
+	public String getApoderado() {
+		return apoderado;
 	}
 
 	public String getNivel() {
@@ -39,8 +46,16 @@ public class DetalleMatricula {
 		return seccion;
 	}
 
-	public void setAlumno(String alumno) {
-		this.alumno = alumno;
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setPersona(String persona) {
+		this.persona = persona;
+	}
+
+	public void setApoderado(String apoderado) {
+		this.apoderado = apoderado;
 	}
 
 	public void setNivel(String nivel) {
@@ -55,6 +70,10 @@ public class DetalleMatricula {
 		this.seccion = seccion;
 	}
 
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 	
+
 	
 }

@@ -54,7 +54,7 @@ public class MatriculaController {
 	@GetMapping("/frmMatricula")
 	public String frmMatricula(Model model) {
 		model.addAttribute("lstMat", service.listarMatriculas());
-		model.addAttribute("lstPersona", pservice.listarSelectPersona());
+		model.addAttribute("lstPersona", pservice.listarPersona());
 		model.addAttribute("lstApoderado", apservice.listarApoderado());
 		model.addAttribute("lstNivel", nService.listarNivel());
 		model.addAttribute("lstGrado", gService.listarGrado());
@@ -68,7 +68,12 @@ public class MatriculaController {
 		String mensaje = "Matricula registrada correctamente";
 		Boolean respuesta = true;
 		try {
-			service.RegistrarMatricula(objMatricula);
+			if(service.validarEstado(objMatricula) == false) {
+				mensaje = "Matricula la Persona Seleccionada ya esta en uso";
+				respuesta = false;
+			}else {
+				service.RegistrarMatricula(objMatricula);
+			}	
 		} catch (Exception ex) {
 			mensaje = "Matricula no registrada";
 			respuesta = false;
@@ -101,5 +106,7 @@ public class MatriculaController {
 	public List<DetalleMatricula> listarDetalleMatricula(@RequestParam("idmatricula") String idmatricula){
 		return dmservice.listarDetalleMatriculas(idmatricula);
 	}
+	
+	
 
 }
