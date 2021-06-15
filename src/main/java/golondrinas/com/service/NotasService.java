@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.NotasRepository;
+import golondrinas.com.model.AlumnosXAula;
 import golondrinas.com.model.Notas;
 
 @Service
@@ -15,6 +16,10 @@ public class NotasService {
 	@Autowired
 	private NotasRepository repository;
 
+	public List<AlumnosXAula> listarAlumnoxAula(String nivel, String grado, String seccion){
+		return repository.listarAlumnoxAula(nivel, grado, seccion);
+	}
+	
 	public List<Notas> listarNotas() {
 		return repository.listarNotas();
 	}

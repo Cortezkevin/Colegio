@@ -11,20 +11,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Alumno;
+import golondrinas.com.model.AlumnosXAula;
 import golondrinas.com.model.Notas;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.CursoService;
+import golondrinas.com.service.GradoService;
+import golondrinas.com.service.NivelService;
 import golondrinas.com.service.NotaBimestreService;
 import golondrinas.com.service.NotasService;
+import golondrinas.com.service.SeccionService;
 
 @Controller
 @RequestMapping("/Notas")
 public class NotasController {
 
+	@Autowired
+	private NivelService nivelservice;
+	
+	@Autowired
+	private GradoService gradoservice;
+	
+	@Autowired
+	private SeccionService seccionservice;
+	
 	@Autowired
 	private NotasService service;
 
@@ -36,17 +50,24 @@ public class NotasController {
 
 	@Autowired
 	private NotaBimestreService nbservice;
+	
 
 	@GetMapping("/frmNotas")
 	public String frmNotas(Model model) {
-		List<Notas> lst = service.listarNotas();
-		model.addAttribute("lstnotas", lst);
-		model.addAttribute("lstalumnos", aservice.listarALumno());
-		model.addAttribute("lstcursos", cservice.listarCursos());
-		model.addAttribute("lstnotasbimestre", nbservice.listarNotaBimestre());
+		model.addAttribute("lstnivel", nivelservice.listarNivel());
+		model.addAttribute("lstgrado", gradoservice.listarGrado());
+		model.addAttribute("lstseccion", seccionservice.listarSeccion());
 		return "Notas/frmNotas";
 	}
 
+	@GetMapping("/frmAlumnosxAula")
+	@ResponseBody
+	public List<AlumnosXAula> listarAlumno(@RequestParam("nivel") String nivel,
+			@RequestParam("grado") String grado, @RequestParam("seccion") String seccion) {
+		return service.listarAlumnoxAula(nivel, grado, seccion);
+	}
+	
+	
 	@PostMapping("/registrarNotas")
 	@ResponseBody
 	public ResultadoResponse registrarNotas(@RequestBody Notas objnota) {

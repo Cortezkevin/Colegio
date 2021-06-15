@@ -37,14 +37,51 @@ $(document).on("click", "#btnregistrarprofesor", function() {
 					idpersona: $("#cbopersona").val(),
 					idusuario: $("#cbousuario").val(),
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarProfesor();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarProfesor();;
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalprofesor").modal("hide");
+			}
 			});
 		} 
 		else {
@@ -57,14 +94,51 @@ $(document).on("click", "#btnregistrarprofesor", function() {
 					idpersona: $("#cbopersona").val(),
 					idusuario: $("#cbousuario").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarProfesor();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarProfesor();;
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalprofesor").modal("hide");
+			}
 			});
 		}
 		$("#modalprofesor").modal("hide");
@@ -88,15 +162,45 @@ $(document).on("click", "#btneliminarprofesor", function() {
 		data: JSON.stringify({
 			idprofesor: $("#hddidprofesoreliminar").val()
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarProfesor();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarProfesor();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminarprofesor").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminarprofesor").modal("hide");
-		}
 	});
 });
 

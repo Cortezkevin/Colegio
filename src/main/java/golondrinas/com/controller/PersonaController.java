@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +36,7 @@ public class PersonaController {
 	@PostMapping("/registrarPersona")
 	@ResponseBody
 	public ResultadoResponse registrarPersona(@RequestBody Persona objPersona) {
-		String mensaje = "Persona registrado correctamente";
+		String mensaje = "Persona "+objPersona.getNombres()+" registrado correctamente";
 		Boolean respuesta = true;
 		try {
 			if(service.validarDNI(objPersona)==0 && service.validarTelefono(objPersona) == false && service.validarEmail(objPersona) == 0) {
@@ -54,11 +53,28 @@ public class PersonaController {
 			}
 			
 		} catch (Exception ex) {
-			mensaje = "Persona no registrado";
+			mensaje = "Persona no registrada";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
+	
+	
+	@PostMapping("/actualizarPersona")
+	@ResponseBody
+	public ResultadoResponse actualizarPersona(@RequestBody Persona objPersona) {
+		String mensaje = "Persona "+ objPersona.getNombres() +" actualizado correctamente";
+		Boolean respuesta = true;
+		try {
+			service.actualizarPersona(objPersona);
+		}catch (Exception ex) {
+			mensaje = "Persona "+objPersona.getNombres()+" no actualizado";
+			respuesta = false;
+		}
+		
+		return new ResultadoResponse(respuesta, mensaje);
+	}
+	
 
 	@GetMapping("/listarPersona")
 	@ResponseBody

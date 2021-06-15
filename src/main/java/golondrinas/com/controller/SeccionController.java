@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import golondrinas.com.model.Cargo;
 import golondrinas.com.model.Seccion;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.SeccionService;
@@ -80,4 +81,10 @@ public class SeccionController {
 		return new ResultadoResponse(respuesta, mensaje);
 	}
 
+	@GetMapping("/listarSecciones")
+	@ResponseBody
+	public List<Seccion> listarSecciones() {
+		return service.listarSeccion();
+	}
+	
 }

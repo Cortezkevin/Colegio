@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<div th:replace="menu2::barra"></div>
+	
+	 <div class="card">
+		<div class="card-header badge-danger">ALUMNOS</div>
+		<div class="card-body">
+			<div class="form-group">
+				<label for="cbonivel">Seleccione Nivel:</label> <select
+					class="form-control" id="cbonivel">
+					<option value="0">Seleccione</option>
+					<option th:each="nivel :${lstnivel}"
+						th:text="${nivel.nombre}"
+						th:value="${nivel.nombre}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="cbogrado">Seleccione Grado:</label> <select
+					class="form-control" id="cbogrado">
+					<option value="0">Seleccione</option>
+					<option th:each="grado :${lstgrado}"
+						th:text="${grado.nombre}"
+						th:value="${grado.nombre}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="cboseccion">Seleccione Sección:</label> <select
+					class="form-control" id="cboseccion">
+					<option value="0">Seleccione</option>
+					<option th:each="seccion :${lstseccion}"
+						th:text="${seccion.nombre}"
+						th:value="${seccion.nombre}"></option>
+				</select>
+			</div>
+			<hr />
+			<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- 
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID Nota</th>
+				<th scope="col">ID Alumno</th>
+				<th scope="col">ID Curso</th>
+				<th scope="col">ID Seccion</th>
+				<th scope="col">ID Profesor</th>
+				<th scope="col">examen1</th>
+				<th scope="col">examen2</th>
+				<th scope="col">examen3</th>
+				
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="notas :${lstnotas}">
+				<td th:text="${notas.idNota}"></td>
+				<td th:text="${notas.idAlumno}"></td>
+				<td th:text="${notas.idCurso}"></td>
+				<td th:text="${notas.idSeccion}"></td>
+				<td th:text="${notas.idProfesor}"></td>
+				<td th:text="${notas.examen1}"></td>
+				<td th:text="${notas.examen2}"></td>
+				<td th:text="${notas.examen3}"></td>				
+				<td><a class="btn btn-warning">Editar</a> <a
+					class="btn btn-danger">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/Notas/RegistrarNotas}">Registrar Nota</a>
+	 -->
+	
+	
+	
+	<div>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+		<script type="text/javascript" th:src="@{/script/jsweb/curso/listarGrado.js}"></script>
+	</div>
+</body>
+</html>

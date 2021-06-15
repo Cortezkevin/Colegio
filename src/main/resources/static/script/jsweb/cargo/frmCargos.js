@@ -36,14 +36,51 @@ $(document).on("click", "#btnregistrarcargo", function() {
 				data: JSON.stringify({
 					nombre: $("#txtnomcargo").val(),
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarCargos();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarCargos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalcargo").modal("hide");
+			}
 			});
 		} else {
 			$.ajax({
@@ -54,14 +91,51 @@ $(document).on("click", "#btnregistrarcargo", function() {
 					idcargo: $("#hddidcargo").val(),
 					nombre: $("#txtnomcargo").val(),
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarCargos();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarCargos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalcargo").modal("hide");
+			}
 			});
 		}
 		$("#modalcargo").modal("hide");
@@ -86,15 +160,45 @@ $(document).on("click", "#btneliminarcargo", function() {
 		data: JSON.stringify({
 			idcargo: $("#hddidcargoeliminar").val()
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarCargos();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarCargos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminarcargo").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminarcargo").modal("hide");
-		}
 	});
 });
 /*

@@ -19,7 +19,7 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String> {
 	@Query(value = "{call sp_MantListarMatriculas()}", nativeQuery = true)
 	List<Matricula> listarMatricula();
 	
-	@Query(value = "call sp_MantListarEstadoXPersona(:idpersona)", nativeQuery = true)
+	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
 	String listarEstado(@Param("idpersona") String idpersona);
 
 	@Transactional
@@ -31,13 +31,13 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String> {
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantActualizarMatricula(:idmatricula,:idpersona, :idapoderado, :idnivel, :idgrado, :idseccion, :nombreusuario, :contrasena, :monto ,:fecha)}", nativeQuery = true)
+	@Query(value = "{call sp_MantActualizarMatriculav2(:idmatricula,:idpersona, :idapoderado, :idnivel, :idgrado, :idseccion, :nombreusuario, :contrasena, :monto ,:fecha)}", nativeQuery = true)
 	void ActualizarMatricula(@Param("idmatricula") String idmatricula, @Param("idpersona") String idpersona,@Param("idapoderado") String idapoderado, @Param("idnivel") String idnivel,
 			@Param("idgrado") String idgrado, @Param("idseccion") String idseccion, @Param("nombreusuario") String nombreusuario,@Param("contrasena") String contrasena,
 			@Param("monto") Double monto, @Param("fecha") Date fecha);
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantEliminarMatricula(:idmatricula)}", nativeQuery = true)
+	@Query(value = "{call sp_MantEliminarMatriculav2(:idmatricula)}", nativeQuery = true)
 	void EliminarMatricula(@Param("idmatricula") String idmatricula);
 }

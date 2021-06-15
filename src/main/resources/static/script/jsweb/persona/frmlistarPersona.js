@@ -114,21 +114,56 @@ $(document).on("click", "#btnregistrarpersona", function() {
 
 			}),
 			success: function(resultado){
-				var estilo = "danger";
 				if(resultado.respuesta){
-					estilo ="success";
-					ListarPersona();
 					
-					//actualizar lista 
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarPersona();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
-				mostrarMensaje(resultado.mensaje, estilo);
+				$("#modalpersona").modal("hide");
 			}
 		});
 	} else {
 		$.ajax({
 			type: "POST",
 			contentType: "application/json",
-			url: "/Persona/registrarPersona",
+			url: "/Persona/actualizarPersona",
 			data: JSON.stringify({
 				idpersona:$("#hddidpersona").val(),
 				nombres: $("#txtnombre").val(),
@@ -143,12 +178,49 @@ $(document).on("click", "#btnregistrarpersona", function() {
 
 			}),
 			success: function(resultado){
-				var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarPersona();
-			}
-			mostrarMensaje(resultado.mensaje, estilo);
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarPersona();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modalpersona").modal("hide");
 			}
 		});
 
@@ -179,12 +251,42 @@ $(document).on("click", "#btneliminarpersona", function() {
 
 			}),
 			success: function(resultado){
-				var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarPersona();
-			}
-			mostrarMensaje(resultado.mensaje, estilo);
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarPersona();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
 				$("#modaleliminarpersona").modal("hide");
 			}
 		});

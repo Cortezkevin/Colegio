@@ -60,7 +60,7 @@ $(document).on("click", "#btnactualizarseccion",function(){
 						  icon: 'success',
 						  title: resultado.mensaje
 						})
-					
+					ListarSecciones();
 				}else{
 					const Toast = Swal.mixin({
 						  toast: true,
@@ -97,7 +97,6 @@ $(document).on("click","#btneliminarseccion",function(){
 			}),
 			success: function(resultado){
 				if(resultado.respuesta){
-					
 					const Toast = Swal.mixin({
 						  toast: true,
 						  position: 'top-end',
@@ -109,11 +108,12 @@ $(document).on("click","#btneliminarseccion",function(){
 						    toast.addEventListener('mouseleave', Swal.resumeTimer)
 						  }
 						})
-						
+
 						Toast.fire({
 						  icon: 'success',
 						  title: resultado.mensaje
 						})
+					ListarSecciones();
 				}else{
 					const Toast = Swal.mixin({
 						  toast: true,
@@ -139,11 +139,32 @@ $(document).on("click","#btneliminarseccion",function(){
 	
 });
 
+function ListarSecciones() {
+	$.ajax({
+		type: "GET",
+		url: "/Seccion/listarSecciones",
+		dataType: "json",
+		success: function(resultado) {
+			$("#tblseccion > tbody").html("");
+			$.each(resultado, function(index, value) {
+				$("#tblseccion > tbody").append("<tr>" +
+					"<td>" + value.idseccion + "</td>" +
+					"<td>" + value.nombre + "</td>" +
+					"<td>" + value.estado + "</td>" +
+					"<td><button type='button' class='btn btn-info btnactualizarseccion' " +
+					" data-codseccion='" + value.idseccion + "'" +
+					" data-nomseccion='" + value.nombre + "'" +
+					" data-estadoseccion='" + value.estado + "'>Actualizar</button>" +
+					"</td>" +
+					"<td><button type='button' class='btn btn-danger btneliminarseccion' " +
+					" data-codseccion='" + value.idseccion + "'" +
+					" data-nomseccion='" + value.nombre + "'>Eliminar</button>" +
+					"</td></tr>")
+			})
 
-
-
-
-
+		}
+	})
+}
 
 
 

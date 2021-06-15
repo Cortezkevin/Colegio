@@ -67,14 +67,51 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 					monto: $("#txtmonto").val(),
 					fecha: $("#txtnomfecha").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarMatriculas();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarMatriculas();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalmatricula").modal("hide");
+			}
 			});
 		} else {
 			$.ajax({
@@ -93,14 +130,51 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 					monto: $("#txtmonto").val(),
 					fecha: $("#txtnomfecha").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarMatriculas();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarMatriculas();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalmatricula").modal("hide");
+			}
 			});
 		}
 		$("#modalmatricula").modal("hide");
@@ -108,8 +182,8 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 });
 $(document).on("click", ".btneliminarmatricula", function() {
 	//alert($(this).attr("data-codcurso"));
-	$("#mensajeeliminar").text("¿Está seguro de eliminar la matricula del alumno: " +
-		$(this).attr("data-codalumno") + "?");
+	$("#mensajeeliminar").text("¿Está seguro de eliminar la matricula de la persona: " +
+		$(this).attr("data-codpersona") + "?");
 	$("#hddidmatriculaeliminar").val($(this).attr("data-codmatricula"));
 	$("#modaleliminarmatricula").modal("show");
 });
@@ -121,15 +195,45 @@ $(document).on("click", "#btneliminarmatricula", function() {
 		data: JSON.stringify({
 			idmatricula: $("#hddidmatriculaeliminar").val()
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarMatriculas();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarMatriculas();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminarmatricula").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminarmatricula").modal("hide");
-		}
 	});
 });
 function ListarMatriculas() {

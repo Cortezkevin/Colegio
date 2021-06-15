@@ -36,14 +36,51 @@ $(document).on("click", "#btnregistrarapoderado", function() {
 				data: JSON.stringify({
 					idpersona: $("#cbopersona").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarApoderado();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarApoderado();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalapoderado").modal("hide");
+			}
 			});
 		} else {  
 			$.ajax({
@@ -54,14 +91,51 @@ $(document).on("click", "#btnregistrarapoderado", function() {
 					idapoderado: $("#hddidapoderado").val(),
 					idpersona: $("#cbopersona").val()
 				}),   
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarApoderado();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarApoderado();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalapoderado").modal("hide");
+			}
 			});
 		}
 		$("#modalapoderado").modal("hide");
@@ -85,15 +159,45 @@ $(document).on("click", "#btneliminarapoderado", function() {
 		data: JSON.stringify({
 			idapoderado: $("#hddidapoderadoeliminar").val()  
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarApoderado();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarApoderado();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminarapoderado").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminarApoderado").modal("hide");
-		}
 	});
 });
 

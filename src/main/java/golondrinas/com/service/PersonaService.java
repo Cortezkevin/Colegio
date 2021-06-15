@@ -27,7 +27,11 @@ public class PersonaService {
 	}
 
 	public void registrarPersona(Persona persona) {
-		if (persona.getIdpersona() == null) {
+		
+		repository.registrarPersona(persona.getNombres(), persona.getApellidos(), persona.getDireccion(),
+				persona.getTelefono(), persona.getEmail(), persona.getDni(), persona.getEdad(),
+				persona.getGenero());
+		/*if (persona.getIdpersona() == null) {
 			repository.registrarPersona(persona.getNombres(), persona.getApellidos(), persona.getDireccion(),
 					persona.getTelefono(), persona.getEmail(), persona.getDni(), persona.getEdad(),
 					persona.getGenero());
@@ -36,9 +40,15 @@ public class PersonaService {
 			repository.actualizarPersona(persona.getIdpersona(), persona.getNombres(), persona.getApellidos(),
 					persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
 					persona.getEdad(), persona.getGenero());
-		}
+		}*/
 
 	}
+	public void actualizarPersona(Persona persona) {
+		repository.actualizarPersona(persona.getIdpersona(), persona.getNombres(), persona.getApellidos(),
+				persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
+				persona.getEdad(), persona.getGenero());
+	}
+	
 
 	public void eliminarPersona(Persona persona) {
 		repository.eliminarPersona(persona.getIdpersona());

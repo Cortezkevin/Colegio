@@ -78,14 +78,51 @@ $(document).on("click", "#btnregistraralumno", function() {
 					seccion: $("#txtnomseccion").val(),
 					apoderado: $("#txtnomapoderado").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarAlumnos();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarAlumnos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalalumno").modal("hide");
+			}
 			});
 		}
 		else {
@@ -102,14 +139,51 @@ $(document).on("click", "#btnregistraralumno", function() {
 					seccion: $("#txtnomseccion").val(),
 					apoderado: $("#txtnomapoderado").val()
 				}),
-				success: function(resultado) {
-					var estilo = "danger";
-					if (resultado.respuesta) {
-						estilo = "success";
-						ListarAlumnos();
-					}
-					mostrarMensaje(resultado.mensaje, estilo);
+				success: function(resultado){
+				if(resultado.respuesta){
+					
+					/*Swal.fire({
+					//title: resultado.mensaje,
+					confirmButtonText: 'Acepto',
+					icon: 'info'
+					});*/
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarAlumnos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
 				}
+				$("#modalalumno").modal("hide");
+			}
 			});
 		}
 		$("#modalalumno").modal("hide");
@@ -134,15 +208,45 @@ $(document).on("click", "#btneliminaralumno", function() {
 		data: JSON.stringify({
 			idalumno: $("#hddidalumnoeliminar").val()
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarAlumnos();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarAlumnos();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminaralumno").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminaralumno").modal("hide");
-		}
 	});
 });
 /*

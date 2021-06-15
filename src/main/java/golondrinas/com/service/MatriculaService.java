@@ -40,12 +40,14 @@ public class MatriculaService {
 	}
 	
 	
-	public boolean validarEstado(Matricula m) {
+	public int validarEstado(Matricula m) {
 		String lista = repository.listarEstado(m.getIdpersona());
+		int num = 0;
 		if(lista.equals("Ocupado")) {
-			return false;					
-		}
-		
-		return true;
+			num = 1;					
+		}else {
+			num = 0;			
+		}		
+		return num;
 	}
 }

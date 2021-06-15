@@ -10,11 +10,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 
+import golondrinas.com.model.AlumnosXAula;
 import golondrinas.com.model.Notas;
 
 @Controller
 public interface NotasRepository extends JpaRepository<Notas, Integer>{
 
+	@Query(value = "{call sp_MantListarAlumnosxAula(:nivel, :grado, :seccion)}", nativeQuery = true)
+	List<AlumnosXAula> listarAlumnoxAula(@Param("nivel") String nivel,
+			@Param("grado") String grado, @Param("seccion") String seccion);
+	
 	@Query(value = "{call sp_MantListarNotas()}", nativeQuery = true)
 	List<Notas> listarNotas();
 	
