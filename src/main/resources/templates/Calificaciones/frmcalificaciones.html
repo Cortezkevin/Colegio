@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="../css/css/calificaciones.css">
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	
+	<div class="principal-calificaciones">
+		<ol>
+			<li><a href="#">Mi Información</a></li>
+			<li><span style="color: #c1bfbf;">/ Historial Academico </span></li>
+		</ol>
+	</div>
+	
+	<div class="contenedor-info">
+		<div class="fila-1">
+			<div class="columna-1 columna-estilos1">
+				<a th:href="@{/Calificaciones/frmcalificaciones}" class="logo-academico"><i class="fa fa-bar-chart-o emerald-bg"></i></a>
+					<span> <a th:href="@{/Calificaciones/frmcalificaciones}">Historial academico de Calificaciones</a></span>
+					<br>
+					<hr>
+					<p>Documento Referencial Sin Valor Oficial</p>
+			</div>
+			<div class="columna-2 columna-estilos">
+				<div class="columna-div">
+					<strong>Codigo</strong> 
+				</div>
+					
+				<div class="columna-div">
+					:<span> #########</span>
+				</div>
+			</div>
+			<div class="columna-3 columna-estilos">
+				<div class="columna-div">
+					<strong>Apellidos y<br> Nombres</strong> 
+				</div>
+					<span>:</span>
+				<div class="columna-div">
+					<span>Rojo Ortiz, Fernando Jesus </span>
+				</div>
+				
+			</div>
+			<div class="columna-4 columna-estilos">
+				<div class="columna-div">
+					<strong>Grado</strong> 
+				</div>
+					
+				<div class="columna-div">
+					:<span> 4to°  </span>
+				</div>
+			</div>
+			<div class="columna-5 columna-estilos">
+				<div class="columna-div">
+					<strong>Periodo Academico</strong>
+				</div>
+					
+				<div class="columna-div">
+					:<span> 2021-2  </span>
+				</div>
+			</div>
+			<div class="columna-6 columna-estilos">
+				<div class="columna-div">
+					<strong>Fecha y Hora</strong>
+				</div>
+					
+				<div class="columna-div" >
+					:<span> yy/MM/dd </span>
+				</div>
+			</div>
+		</div>
+		<div class="fila-2">
+		</div>
+	</div>
+	
+	<div class="tabla-calificaciones">
+		<h3>Historial Académico de Calificaciones</h3>
+	</div>
+
+	<div class="panel-body">
+		<h4><span class="label label-info">Periodo Academico  2021-1</span></h4>
+		<table class="table table-striped table-bordered table-condensed table-hover">
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">#</th>
+					<th scope="col" class="text-center">First</th>
+					<th scope="col" class="text-center">Last</th>
+					<th scope="col" class="text-center">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row" class="text-center">1</th>
+					<td class="text-center">Mark</td>
+					<td class="text-center">Otto</td>
+					<td class="text-center">@mdo</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">2</th>
+					<td class="text-center">Jacob</td>
+					<td class="text-center">Thornton</td>
+					<td class="text-center">@fat</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">3</th>
+					<td class="text-center">Larry</td>
+					<td class="text-center">the Bird</td>
+					<td class="text-center">@twitter</td>
+				</tr>
+			</tbody>
+
+		</table>
+		<h4><span class="label label-info">Periodo Academico  2021-2</span></h4>
+		<table class="table table-striped table-bordered table-condensed table-hover">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">#</th>
+					<th class="text-center" scope="col">First</th>
+					<th class="text-center" scope="col">Last</th>
+					<th class="text-center" scope="col">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="text-center" scope="row">1</th>
+					<td class="text-center">Mark</td>
+					<td class="text-center">Otto</td>
+					<td class="text-center">@mdo</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">2</th>
+					<td class="text-center">Jacob</td>
+					<td class="text-center">Thornton</td>
+					<td class="text-center">@fat</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">3</th>
+					<td class="text-center">Larry</td>
+					<td class="text-center">the Bird</td>
+					<td class="text-center">@twitter</td>
+				</tr>
+			</tbody>
+
+		</table>
+		<h4><span class="label label-info">Periodo Academico  2021-3</span></h4>
+		<table class="table table-striped table-bordered table-condensed table-hover">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">#</th>
+					<th class="text-center" scope="col">First</th>
+					<th class="text-center" scope="col">Last</th>
+					<th class="text-center" scope="col">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="text-center" scope="row">1</th>
+					<td class="text-center">Mark</td>
+					<td class="text-center">Otto</td>
+					<td class="text-center">@mdo</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">2</th>
+					<td class="text-center">Jacob</td>
+					<td class="text-center">Thornton</td>
+					<td class="text-center">@fat</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">3</th>
+					<td class="text-center">Larry</td>
+					<td class="text-center">the Bird</td>
+					<td class="text-center">@twitter</td>
+				</tr>
+			</tbody>
+
+		</table>
+		<h4><span class="label label-info">Periodo Academico  2021-4</span></h4>
+		<table class="table table-striped table-bordered table-condensed table-hover">
+			<thead>
+				<tr>
+					<th class="text-center" scope="col">#</th>
+					<th class="text-center" scope="col">First</th>
+					<th class="text-center" scope="col">Last</th>
+					<th class="text-center" scope="col">Handle</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="text-center" scope="row">1</th>
+					<td class="text-center">Mark</td>
+					<td class="text-center">Otto</td>
+					<td class="text-center">@mdo</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">2</th>
+					<td class="text-center">Jacob</td>
+					<td class="text-center">Thornton</td>
+					<td class="text-center">@fat</td>
+				</tr>
+				<tr>
+					<th class="text-center" scope="row">3</th>
+					<td class="text-center">Larry</td>
+					<td class="text-center">the Bird</td>
+					<td class="text-center">@twitter</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+
+
+
+	<div th:replace="menu2::barra"></div>
+	
+	
+	<div>
+		
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+			<script src="../css/icons/script.js"></script>
+	</div>
+</body>
+</html>

@@ -16,4 +16,8 @@ public class HomeController {
 	public String menu2() {
 		return "menu2";
 	}
+	@GetMapping("/Calificaciones/frmcalificaciones")
+	public String Calificaciones() {
+		return "Calificaciones/frmcalificaciones";
+	}
 }

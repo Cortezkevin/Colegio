@@ -25,6 +25,11 @@
 	margin: 0 20px;
 }
 
+#link:hover{
+	color: #00aae4;
+	
+}
+
 i {
 	margin: 0 5px;
 }
@@ -53,7 +58,7 @@ i {
 	display: flex;
 	width: 100%;
 	align-items: stretch;
-	
+	background-color: #E7EBEE;
 }
 
 #sidebar {
@@ -181,7 +186,132 @@ a[data-toggle="collapse"] {
 	margin-bottom: 10px;
 	display: block;
 	margin-left: auto;
-	margin-right: auto;
-	
+	margin-right: auto;	
+}
+#content {
+	width: 100%;
+	padding: 40px;
+	min-height: 100vh;
+	transition: all 0.3s;
+	margin-top: 70px;
+	display:flex;
+	flex-direction: row;
+	background-color: #E7EBEE;
+	margin-left: 225px;
+	flex-wrap: wrap;
 }
 
+.principal{
+	border: 1px  solid red;	
+    
+}
+.principal1{
+	border: 1px  solid blue;
+	padding: 4px;
+    
+}
+.principal2{
+	border: 1px  solid green;	
+	padding: 4px;
+   
+}
+.profil-box-header{
+	margin:auto;
+	width: 325px;
+	height: 140px;
+	display:flex;
+	flex-direction: row;
+	border-radius: 10px 10px 10px 10px;
+	background-color: #3498db;
+	box-shadow:  0 0 4px #000000;
+}
+.perfil{
+	height: 100px;
+	height: 100px;
+    width: 100px;
+    border: 8px ridge white;
+    margin: 10px;
+    border-radius: 50%;
+    
+}
+.profil-vertical{
+	display:flex;
+	flex-direction: column;
+}
+.profil-box-header .profil-vertical h2{
+	margin-top: 34px;
+	font-size: 17px;
+	color: white;
+	
+}
+.profil-box-header .profil-vertical div{
+	font-size: 10px;
+	color: white;
+}
+.codigo-box{
+	
+	padding: 7px;
+	margin-top:16px;
+	width: 325px;
+	height: 40px;
+	display:flex;
+	flex-direction: row;
+	border: 3px solid white ;
+	box-shadow:  0 0 4px #000000;
+	border-radius: 10px 10px 10px 10px;
+	text-align: center;
+}
+.codigo-box span {
+	height:22px;
+	width:60px;
+	background-color: #3498db;
+	border-radius: 5px 5px 5px 5px; 
+	margin-left: 160px;
+	color: white;
+}
+.codigo-box {
+	font-size: 15px;
+}
+.historial-academico{
+	height:325.66px; 
+	width:310px;
+	margin: auto;
+	box-shadow:  0 0 4px #000000;
+	border-radius: 10px 10px 10px 10px;
+}
+.principal2 .historial-academico .logo-academico i{
+	font-size: 2.4em;
+    display: block;
+    float: left;
+    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    background-color: #428bca;
+    border-radius:50%; 
+}
+.principal2 .historial-academico  a{
+	color: #428bca;
+}
+.dropdown a:hover{
+	text-decoration: none;
+}
+#dropdownMenuLink{
+	color: #fff;
+	font-weight: bold;
+	margin: 0 20px;
+	background-color: #22242A;
+	border-color: #22242A;
+	
+}
+.dropdown{
+	margin-left: 900px;
+}
+#dropdownMenuLink:hover{
+	color: #00aae4;
+}
+.dropdown:checked{
+	text-decoration: none;
+}

@@ -17,7 +17,7 @@
 <!-- style menu -->
 <link rel="stylesheet" href="../css/css/menu.css">
 <script src="../css/icons/icons.js"></script>
-<link rel="stylesheet" href="../css/css/listGrados.css">
+
 <title>menu</title>
 <!-- others -->
 <script type="text/javascript"
@@ -28,9 +28,9 @@
 </head>
 
 <body>
-
 	<nav th:fragment="menu" th:action
 		class="navbar navbar-expand-lg navbar-light blue fixed-top">
+		
 		<button id="sidebarCollapse" class="btn navbar-btn">
 			<i class="fas fa-lg fa-bars"></i>
 		</button>
@@ -40,18 +40,24 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		<div class="dropdown">
+  			<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			<span th:text="${#authentication.getPrincipal().getUsername()}"></span> 
+  			</a>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active"><a class="nav-link" id="link"
-					href="#"><i class="fas fa-id-card"></i> <span th:text="${#authentication.getPrincipal().getUsername()}"></span> <span
-						class="sr-only">(current) </span></a></li>
-				<li class="nav-item"><a class="nav-link" href="#" th:href="@{/logout}" id="link" ><i
-						class="fas fa-sign-out-alt"></i> LogOut</a></li>
-			</ul>
+  			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    			<a class="dropdown-item" href="#"><i class="fas fa-id-card"></i>Mi perfil</a> 
+					<a	class="dropdown-item" href="#"><i class="fa fa-power-off"></i>Cerrar sesión</a> 
+  			</div>
 		</div>
-	</nav>
+		
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="#"
+				th:href="@{/logout}" id="link"><i class="fas fa-sign-out-alt"></i>
+			LogOut</a></li>
+		</ul>
 
+	</nav>
 	<div  th:fragment="barra" class="wrapper fixed-left">
 		<nav id="sidebar">
 			<div class="sidebar-header">
@@ -62,25 +68,67 @@
 			</div>
 
 			<ul class="list-unstyled components" >
-				<li><a href=""><i class="fas fa-home" id="icon"></i>Home</a></li>
-				<li><a th:href="@{/Matriculas/frmMatricula}"><i class="fas fa-clipboard" id="icon"></i>Matricula</a></li>
+				<li><a th:href="@{/menu2}"><i class="fas fa-home" id="icon"></i>Home</a></li>
+				<li><a th:href="@{/Matriculas/frmMatricula}"><i
+						class="fas fa-clipboard" id="icon"></i>Matricula</a></li>
 				<li><a href=""><i class="fas fa-user-cog" id="icon"></i>Settings</a></li>
-				<!--  <li><a th:href="@{/Matriculas/frmMatricula}"><i class="fas fa-check" id="icons"></i>Matriculas</a></li>-->
-				<li><a th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
 				<li><a th:href="@{/Usuario/frmUsuario}"><i class="fas fa-layer-group" id="icon"></i>Usuarios</a></li>
-				<li><a th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>				
+								<li><a th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>
 				<li><a th:href="@{/Nivel/frmNivel}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Nivel</a></li>
 				<li><a th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
-				<li><a th:href="@{/Seccion/ListaSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
+				<li><a th:href="@{/Seccion/ListadoSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
 				<li><a th:href="@{/Persona/frmlistarPersona}"><i class="fas fa-check" id="icons"></i>Persona</a></li>
+				<li><a th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
+				<li><a th:href="@{/Matriculas/frmMatricula}"><i class="fas fa-check" id="icons"></i>Matriculas</a></li>
 				<li><a th:href="@{/Apoderado/frmApoderado}"><i class="fas fa-check" id="icons"></i>Apoderado</a></li>
-				<li><a th:href="@{/Usuario/registrarUsuario}"><i class="fas fa-user" id="icon"></i>Registro de Usuarios</a></li>
+
 			</ul>
 		</nav>
 
-		<div id="content"></div>
+		<div id="content">
+			<!--  <div class="principal"></div>*-->
+			
+			<div class="principal1">
+			
+				<div class="profil-box-header">
+					<img  src="/img/golondrina.png" alt="alumno" class="perfil">
+				<div class="profil-vertical">
+					<h2>
+						Nombre del Estudiante <br>
+						Apellido del Estudiante
+					</h2>
+					<div>
+					<i class="fa fa-graduation-cap"></i>Estudiante
+					</div>
+				</div>
+				</div>
+				<div class="codigo-box" >
+					<i class="fa fa-user fa-lg"></i>Código  <span>U09999</span>
+				</div>
+			</div>
+			
+			<div class="principal2">
+				<div class="historial-academico">
+			
+					<a th:href="@{/Calificaciones/frmcalificaciones}" class="logo-academico"><i class="fa fa-bar-chart-o emerald-bg"></i></a>
+					<span> <a th:href="@{/Calificaciones/frmcalificaciones}">Historial academico de Calificaciones</a></span>
+					<p>### ##### ########## <br> ###
+					 	#### #### ##########
+					 </p>
+					<ul>
+						<li>#####</li>
+						<li>#####</li>
+						<li>#####</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 	</div>
+	
+	
+	
+	
 
 	<div>
 		<!-- Optional JavaScript -->
