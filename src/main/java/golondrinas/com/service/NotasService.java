@@ -15,15 +15,11 @@ public class NotasService {
 
 	@Autowired
 	private NotasRepository repository;
-
-	public List<AlumnosXAula> listarAlumnoxAula(String nivel, String grado, String seccion){
-		return repository.listarAlumnoxAula(nivel, grado, seccion);
-	}
 	
 	public List<Notas> listarNotas() {
 		return repository.listarNotas();
 	}
-
+/*
 	public void registrarNotas(Notas n) {
 		if (n.getIdnota() == null) {
 			repository.RegistrarNotas(n.getIdalumno(), n.getIdcurso(), n.getIdnotabimestre(), n.getExamen1(),
@@ -33,6 +29,15 @@ public class NotasService {
 					n.getExamen1(), n.getExamen2(), n.getExamen3(), n.getExamen4(), n.getPromedio());
 		}
 	}
-
+*/
+	public void registrarNotasv2(Notas n) {
+		repository.RegistrarNotasv2(n.getIdalumno(), n.getIdcurso(), n.getExamen1(),
+				n.getExamen2(), n.getExamen3(), n.getExamen4(), n.getPromedio());
+}
+	
+	public void actualizarNotasv2(Notas n) {
+			repository.ActualizarNotasv2(n.getIdnota(), n.getIdalumno(), n.getIdcurso(),
+					n.getExamen1(), n.getExamen2(), n.getExamen3(), n.getExamen4(), n.getPromedio());
+	}
 
 }

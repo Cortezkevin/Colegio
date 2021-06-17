@@ -18,9 +18,6 @@ public class Notas {
 	@Column(name="idcurso")
 	private String idcurso; 
 	
-	@Column(name="idnotabimestre")
-	private String idnotabimestre;
-	
 	@Column(name="examen1")
 	private Double examen1;
 	
@@ -49,10 +46,6 @@ public class Notas {
 
 	public String getIdcurso() {
 		return idcurso;
-	}
-
-	public String getIdnotabimestre() {
-		return idnotabimestre;
 	}
 
 	public Double getExamen1() {
@@ -91,10 +84,6 @@ public class Notas {
 		this.idcurso = idcurso;
 	}
 
-	public void setIdnotabimestre(String idnotabimestre) {
-		this.idnotabimestre = idnotabimestre;
-	}
-
 	public void setExamen1(Double examen1) {
 		this.examen1 = examen1;
 	}
@@ -119,13 +108,12 @@ public class Notas {
 		this.estado = estado;
 	}
 
-	public Notas(String idnota, String idalumno, String idcurso, String idnotabimestre, Double examen1, Double examen2,
-			Double examen3, Double examen4, Double promedio, String estado) {
+	public Notas(String idnota, String idalumno, String idcurso, Double examen1, Double examen2, Double examen3,
+			Double examen4, Double promedio, String estado) {
 		super();
 		this.idnota = idnota;
 		this.idalumno = idalumno;
 		this.idcurso = idcurso;
-		this.idnotabimestre = idnotabimestre;
 		this.examen1 = examen1;
 		this.examen2 = examen2;
 		this.examen3 = examen3;
@@ -138,5 +126,7 @@ public class Notas {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 }

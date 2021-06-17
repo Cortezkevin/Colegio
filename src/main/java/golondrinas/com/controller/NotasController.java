@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Alumno;
 import golondrinas.com.model.AlumnosXAula;
+import golondrinas.com.model.NotaXCurso;
 import golondrinas.com.model.Notas;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
+import golondrinas.com.service.AlumnosXAulaService;
 import golondrinas.com.service.CursoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.NivelService;
 import golondrinas.com.service.NotaBimestreService;
+import golondrinas.com.service.NotaXCursoService;
 import golondrinas.com.service.NotasService;
 import golondrinas.com.service.SeccionService;
 
@@ -41,6 +44,9 @@ public class NotasController {
 	
 	@Autowired
 	private NotasService service;
+	
+	@Autowired
+	private AlumnosXAulaService alservice;
 
 	@Autowired
 	private AlumnoService aservice;
@@ -51,20 +57,31 @@ public class NotasController {
 	@Autowired
 	private NotaBimestreService nbservice;
 	
+	@Autowired
+	private NotaXCursoService ncservice;
 
 	@GetMapping("/frmNotas")
-	public String frmNotas(Model model) {
+	public String frmNota(Model model) {
 		model.addAttribute("lstnivel", nivelservice.listarNivel());
 		model.addAttribute("lstgrado", gradoservice.listarGrado());
 		model.addAttribute("lstseccion", seccionservice.listarSeccion());
+		model.addAttribute("lstcurso", cservice.listarCursos());
 		return "Notas/frmNotas";
 	}
 
 	@GetMapping("/frmAlumnosxAula")
 	@ResponseBody
-	public List<AlumnosXAula> listarAlumno(@RequestParam("nivel") String nivel,
-			@RequestParam("grado") String grado, @RequestParam("seccion") String seccion) {
-		return service.listarAlumnoxAula(nivel, grado, seccion);
+	public List<AlumnosXAula> listarAlumno(@RequestParam("nivel") String n,
+			@RequestParam("grado") String g, @RequestParam("seccion") String s
+			, Model model) {
+		model.addAttribute("lstalu",alservice.listarAlumnoxAula(n, g, s));
+		return alservice.listarAlumnoxAula(n, g, s);
+	}
+	
+	@GetMapping("/frmCursoXNota")
+	@ResponseBody
+	public List<NotaXCurso> listarNotas(@RequestParam("idalumno") String idalumno, Model model) {
+		return ncservice.listarNotaXCurso(idalumno);
 	}
 	
 	
@@ -74,7 +91,7 @@ public class NotasController {
 		String mensaje = "Nota registrada correctamente";
 		Boolean respuesta = true;
 		try {		
-			service.registrarNotas(objnota);
+			service.registrarNotasv2(objnota);
 		}
 		catch (Exception ex) {
 			mensaje = "Nota no registrada";
@@ -82,6 +99,23 @@ public class NotasController {
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
+	
+	@PostMapping("/actualizarNotas")
+	@ResponseBody
+	public ResultadoResponse actualizarNotas(@RequestBody Notas objnota) {
+		String mensaje = "Nota actualizada correctamente";
+		Boolean respuesta = true;
+		try {		
+				service.actualizarNotasv2(objnota);		
+		}
+		catch (Exception ex) {
+			mensaje = "Nota no actualizada";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
+	}
+	
+	
 	
 	
 	@GetMapping("/listarNotas")
