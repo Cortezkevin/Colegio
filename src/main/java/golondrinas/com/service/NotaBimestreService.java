@@ -1,7 +1,5 @@
 package golondrinas.com.service;
 
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +13,22 @@ public class NotaBimestreService {
 	@Autowired
 	private NotaBimestreRepository repository;
 
-	public List<NotaBimestre> listarNotaBimestre() {
-		return repository.findAll();
-	}
 
-	public void registrarNotaBimestre(NotaBimestre n) {
-		repository.save(n);
+	public void RegistrarNotaBimestral(NotaBimestre n) {
+		repository.RegistrarNotaBimestral(n.getIdalumno(), n.getIdcurso(), n.getNota_bimestre1(), n.getNota_bimestre2(),
+				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());
 	}
-
-	public Optional<NotaBimestre> BuscarPorId(Integer id) {
-		return repository.findById(id);
+	
+	public void ActualizarNotaBimestral(NotaBimestre n) {
+		repository.ActualizarNotaBimestral(n.getIdnotabimestre(), n.getIdalumno(), n.getIdcurso(), n.getNota_bimestre1(), n.getNota_bimestre2(),
+				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());
+	}
+	
+	public boolean validarCurso(NotaBimestre n) {
+		String curso = repository.CursoXBimestre(n.getIdalumno(), n.getIdcurso());
+		if(curso  == null) {
+			return true;
+		}
+		return false;
 	}
 }

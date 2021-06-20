@@ -16,7 +16,7 @@ import golondrinas.com.service.NotaBimestreService;
 @Controller
 @RequestMapping("/NotaBimestre") 
 public class NotaBimestreController {
-
+/*
 	@Autowired
 	private NotaBimestreService service;
 
@@ -37,5 +37,5 @@ public class NotaBimestreController {
 	public String RegistrarNotaBimestre(@ModelAttribute("notaBimestreForm") NotaBimestre notaBimestreForm) {
 		service.registrarNotaBimestre(notaBimestreForm);
 		return "redirect:/NotaBimestre/ListaNotaBimestre";
-	}
+	}*/
 }

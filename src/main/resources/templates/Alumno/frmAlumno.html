@@ -8,6 +8,13 @@
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <script type="text/javascript"
 	th:src="@{/script/jsweb/alumno/frmAlumno.js}"></script>
+	
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+        $('.alumnoList').DataTable();
+    } );
+</script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<div class="card">
@@ -21,12 +28,12 @@
 			<div id="mensaje"></div>
 
 			<table id="tblalumno"
-				class="table table-striped table-bordered table-hover ">
+				class="table table-striped table-bordered table-hover alumnoList">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col">ID Persona</th>
-						<th scope="col">ID Usuario</th>
+						<!--<th scope="col">ID Persona</th>
+						<th scope="col">ID Usuario</th>-->
 						<th scope="col">ID Matricula</th>
 						<th scope="col">Nivel</th>
 						<th scope="col">Grado</th>
@@ -42,8 +49,8 @@
 				<tbody>
 					<tr th:each="alumno:${lstalumno}">
 						<td th:text="${alumno.idalumno}"></td>
-						<td th:text="${alumno.idpersona}"></td>
-						<td th:text="${alumno.idusuario}"></td>
+						<!--  <td th:text="${alumno.idpersona}"></td>-->
+						<!--  <td th:text="${alumno.idusuario}"></td>-->
 						<td th:text="${alumno.idmatricula}"></td>
 						<td th:text="${alumno.nivel}"></td>
 						<td th:text="${alumno.grado}"></td>
@@ -229,11 +236,20 @@
 
 	<div th:replace="menu2::barra"></div>
 	<div>
+	<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	
+	
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<script src="../css/icons/script.js"></script>
 	</div>
 </body>
 </html>

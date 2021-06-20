@@ -13,6 +13,12 @@
 <script type="text/javascript"
 	th:src="@{/script/jsweb/persona/frmlistarPersona.js}"></script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+		$('.personaList').DataTable();
+	});
+</script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<div class="card">
@@ -20,15 +26,14 @@
 		<div class="card-body">
 
 			<h3 align="center">REGISTRO DE PERSONA</h3>
-			<button type="button" id="btnagregarpersona" class="btn btn-primary">
-				Registrar Persona</button>
-
+			<button type="button" id="btnagregarpersona" 
+			    class="btn btn-primary"> Registrar Persona</button>
 			<hr />
-
 			<div id="mensaje"></div>
-			<table id="tblpersona" class="table table-bordered table-dark">
 
-				<thead>
+			<table id="tblpersona"
+				class="table table-striped table-bordered table-hover personaList">
+				<thead class="thead-dark">
 					<tr>
 						<th scope="col">idPersona</th>
 						<th scope="col">Nombre</th>
@@ -46,7 +51,7 @@
 
 				</thead>
 				<tbody>
-					<tr>
+					
 					<tr th:each="persona :${listPersona}">
 						<td th:text="${persona.idpersona}"></td>
 						<td th:text="${persona.nombres}"></td>
@@ -93,6 +98,15 @@
 		</div>
 	</div>
 
+	<div th:replace="menu2::barra"></div>
+	<!-- 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+			$('#userList').DataTable();
+		});
+	</script>
+ -->
 	<!-- Modal registrar y actualizar persona -->
 	<div class="modal fade" id="modalpersona" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -159,8 +173,8 @@
 							<label for="txtgenero">Seleccione Genero</label> <select
 								class="form-control" id="txtgenero">
 								<option value="0">Seleccione</option>
-								<option th:each="genero :${lstG}"
-									th:text=${genero} th:value="${genero}"></option>
+								<option th:each="genero :${lstG}" th:text=${genero}
+									th:value="${genero}"></option>
 							</select> <span id="errorgenero" class="text-danger"></span>
 						</div>
 						<!-- 
@@ -226,12 +240,23 @@
 		</div>
 	</div>
 
-<div th:replace="menu2::barra"></div>
+
 	<div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<script src="../css/icons/script.js"></script>				
+		<script src="../css/icons/script.js"></script>
 	</div>
 
 

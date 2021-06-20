@@ -14,6 +14,12 @@ public class NotaBimestre {
 	@Id
 	private String idnotabimestre;
 	
+	@Column(name="idalumno")
+	private String idalumno;
+	
+	@Column(name="idcurso")
+	private String idcurso;
+	
 	@Column(name="nota_bimestre1")
 	private Double nota_bimestre1;
 
@@ -34,6 +40,14 @@ public class NotaBimestre {
 
 	public String getIdnotabimestre() {
 		return idnotabimestre;
+	}
+
+	public String getIdalumno() {
+		return idalumno;
+	}
+
+	public String getIdcurso() {
+		return idcurso;
 	}
 
 	public Double getNota_bimestre1() {
@@ -64,6 +78,14 @@ public class NotaBimestre {
 		this.idnotabimestre = idnotabimestre;
 	}
 
+	public void setIdalumno(String idalumno) {
+		this.idalumno = idalumno;
+	}
+
+	public void setIdcurso(String idcurso) {
+		this.idcurso = idcurso;
+	}
+
 	public void setNota_bimestre1(Double nota_bimestre1) {
 		this.nota_bimestre1 = nota_bimestre1;
 	}
@@ -88,10 +110,12 @@ public class NotaBimestre {
 		this.estado = estado;
 	}
 
-	public NotaBimestre(String idnotabimestre, Double nota_bimestre1, Double nota_bimestre2, Double nota_bimestre3,
-			Double nota_bimestre4, Double promedio_anual, String estado) {
+	public NotaBimestre(String idnotabimestre, String idalumno, String idcurso, Double nota_bimestre1,
+			Double nota_bimestre2, Double nota_bimestre3, Double nota_bimestre4, Double promedio_anual, String estado) {
 		super();
 		this.idnotabimestre = idnotabimestre;
+		this.idalumno = idalumno;
+		this.idcurso = idcurso;
 		this.nota_bimestre1 = nota_bimestre1;
 		this.nota_bimestre2 = nota_bimestre2;
 		this.nota_bimestre3 = nota_bimestre3;
@@ -103,7 +127,9 @@ public class NotaBimestre {
 	public NotaBimestre() {
 		super();
 		// TODO Auto-generated constructor stub
-	} 
+	}
+
+	
 	
 	
 }

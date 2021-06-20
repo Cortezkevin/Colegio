@@ -15,7 +15,7 @@ public class NotaXCursoService {
 	private NotaXCursoRepository repository;
 	
 	
-	public List<NotaXCurso> listarNotaXCurso(String idalumno){
-		return repository.listarNotasXCurso(idalumno);
+	public List<NotaXCurso> listarNotaXCurso(String idalumno, String idbimestre){
+		return repository.listarNotasXCurso(idalumno, idbimestre);
 	}
 }

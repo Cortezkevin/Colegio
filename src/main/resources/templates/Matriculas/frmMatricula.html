@@ -8,29 +8,36 @@
 	th:src="@{/script/jsweb/matricula/frmMatricula.js}"></script>
 <script type="text/javascript"
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
+	
+<script type="text/javascript">
+    $(document).ready(function() {
+        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+        $('.matriculaList').DataTable();
+    } );
+</script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 
 	<div class="container-fluid cont" id="colorBack">
 		<div class="row">
 			<div class="col col-md8 xs-12" id="colorBack">
+				<br/>
 				<h2 align="center">LISTADO DE MATRICULAS</h2>
-
 				<button type="button" id="btnagregarmatricula"
 					class="btn btn-primary">Registrar Matricula</button>
 				<hr />
 				<div id="mensaje"></div>
 
 				<table id="tblmatricula"
-					class="table table-striped table-bordered table-hover ">
+					class="table table-striped table-bordered table-hover matriculaList">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">IDPersona</th>
 							<th scope="col">IDApoderado</th>
-							<th scope="col">IDNivel</th>
+							<!--<th scope="col">IDNivel</th>
 							<th scope="col">IDGrado</th>
-							<th scope="col">IDSeccion</th>
+							<th scope="col">IDSeccion</th>-->
 							<th scope="col">Usuario</th>
 							<th scope="col">Contraseña</th>
 							<th scope="col">Monto</th>
@@ -46,9 +53,9 @@
 							<td th:text="${matricula.idmatricula}"></td>
 							<td th:text="${matricula.idpersona}"></td>
 							<td th:text="${matricula.idapoderado}"></td>
-							<td th:text="${matricula.idnivel}"></td>
+							<!--<td th:text="${matricula.idnivel}"></td>
 							<td th:text="${matricula.idgrado}"></td>
-							<td th:text="${matricula.idseccion}"></td>
+							<td th:text="${matricula.idseccion}"></td>-->
 							<td th:text="${matricula.nombreusuario}"></td>
 							<td th:text="${matricula.contrasena}"></td>
 							<td th:text="${matricula.monto}"></td>
@@ -263,6 +270,16 @@
 
 	<div th:replace="menu2::barra"></div>
 	<div>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	
+	
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>

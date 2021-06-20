@@ -49,7 +49,7 @@
 	<!-- Modal ver notas de cursos -->
 	<div class="modal fade" id="modalcursosnota" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Notas x Curso</h5>
@@ -59,7 +59,116 @@
 					</button>
 				</div>
 				<div class="modal-body">
+				 
+						<label for="cbobimestre">Seleccione Bimestre:</label> <div class="form-row">
+					<div class="col-md-9 mb-3"><select
+							class="form-control" id="cbobimestre">
+							<option value="0">Seleccione</option>
+							<option th:each="bimestre :${lstbimestre}"
+								th:text="${bimestre.nombre}" th:value="${bimestre.idbimestre}"></option>
+						</select><span id="errorbimestre" class="text-danger"></span> <input
+							type="hidden" id="hddidnota" value="0"><input
+							type="hidden" id="hddidalumno" value="0">
+					</div>
+					<button class="col-md-3 mb-3" type="button" id="buscarnotabimestre">Buscar Nota</button>
+					</div>
 					<table id="tblcursonota" class="table">
+						<thead>
+							<tr>
+								<th>Curso</th>
+								<th>Exa. 1</th>
+								<th>Exa. 2</th>
+								<th>Exa. 3</th>
+								<th>Exa. 4</th>
+								<th>Promedio</th>
+								<th>Editar</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+
+
+					<form>
+						<div class="form-group">
+							<label for="cbocurso">Curso:</label> <select disabled = "true"
+								class="form-control" id="cbocurso">
+								<option value="0">Seleccione</option>
+								<option th:each="curso :${lstcurso}" th:text="${curso.nombre}"
+									th:value="${curso.idcurso}"></option>
+							</select><span id="errorcurso" class="text-danger"></span> <input
+								type="hidden" id="hddidnota" value="0"><input
+								type="hidden" id="hddidalumno" value="0">
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label for="txtexamen1">Exa. 1:</label> <input type="text"
+										id="txtexamen1" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen2">Exa. 2:</label> <input type="text"
+										id="txtexamen2" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen3">Exa. 3:</label> <input type="text"
+										id="txtexamen3" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen4">Exa. 4:</label> <input type="text"
+										id="txtexamen4" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtprom">Promedio:</label> <input type="text"
+										id="txtprom" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+							</div>
+						</div>
+						<span id="errornotas2" class="text-danger"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="btnregistrarnota" type="button"
+						class="btn btn-secondary">Guardar</button>
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<div class="modal fade" id="modalcursosnota2" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Notas x Curso</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				 
+						<label for="cbobimestre2">Seleccione Bimestre:</label> <div class="form-row">
+					<div class="col-md-9 mb-3"><select
+							class="form-control" id="cbobimestre2">
+							<option value="0">Seleccione</option>
+							<option th:each="bimestre :${lstbimestre}"
+								th:text="${bimestre.nombre}" th:value="${bimestre.idbimestre}"></option>
+						</select><span id="errorbimestre2" class="text-danger"></span> <input
+							type="hidden" id="hddidnota" value="0"><input
+							type="hidden" id="hddidalumno2" value="0">
+					</div>
+					<button class="col-md-3 mb-3" type="button" id="buscarnotabimestre2">Buscar Nota</button>
+					</div>
+					<table id="tblcursonota2" class="table">
 						<thead>
 							<tr>
 								<th>Curso</th>
@@ -74,46 +183,52 @@
 					</table>
 
 
-				<form>
-					<div class="form-group">
-						<label for="cbocurso">Seleccione Curso:</label> <select
-							class="form-control" id="cbocurso">
-							<option value="0">Seleccione</option>
-							<option th:each="curso :${lstcurso}" th:text="${curso.nombre}"
-								th:value="${curso.idcurso}"></option>
-						</select><span id="errorcurso" class="text-danger"></span> <input
-							type="hidden" id="hddidnota" value="0"><input
-							type="hidden" id="hddidalumno" value="0">
-					</div>
-					<div class="form-group">
-					<div class="row">
-						<div class="col">
-							<label for="txtexamen1">Exa. 1:</label> <input type="text" id="txtexamen1"
-								class="form-control" placeholder="First name" maxlength="2" onkeypress="return validarNumeros(event)">
+					<form>
+						<div class="form-group">
+							<label for="cbocurso3">Seleccione Curso:</label> <select
+								class="form-control" id="cbocurso3">
+								<option value="0">Seleccione</option>
+								<option th:each="curso :${lstcurso}" th:text="${curso.nombre}"
+									th:value="${curso.idcurso}"></option>
+							</select><span id="errorcurso3" class="text-danger"></span> <input
+								type="hidden" id="hddidnota2" value="0"><input
+								type="hidden" id="hddidalumno2" value="0">
 						</div>
-						<div class="col">
-							<label for="txtexamen2">Exa. 2:</label> <input type="text" id="txtexamen2"
-								class="form-control" placeholder="Last name" maxlength="2" onkeypress="return validarNumeros(event)">
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label for="txtexamen11">Exa. 1:</label> <input type="text" 
+										id="txtexamen11" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen22">Exa. 2:</label> <input type="text"
+										id="txtexamen22" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen33">Exa. 3:</label> <input type="text"
+										id="txtexamen33" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtexamen44">Exa. 4:</label> <input type="text"
+										id="txtexamen44" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtprom1">Promedio:</label> <input type="text"
+										id="txtprom1" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+							</div>
 						</div>
-						<div class="col">
-							<label for="txtexamen3">Exa. 3:</label> <input type="text" id="txtexamen3"
-								class="form-control" placeholder="Last name" maxlength="2" onkeypress="return validarNumeros(event)">
-						</div>
-						<div class="col">
-							<label for="txtexamen4">Exa. 4:</label> <input type="text" id="txtexamen4"
-								class="form-control" placeholder="Last name" maxlength="2" onkeypress="return validarNumeros(event)">
-						</div>
-						<div class="col">
-							<label for="txtprom">Promedio:</label> <input type="text" id="txtprom"
-								class="form-control" placeholder="Last name" maxlength="2" onkeypress="return validarNumeros(event)">
-						</div>
-					</div>
-					</div>
-				</form>
+						<span id="errornotas" class="text-danger"></span>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button id="btnregistrarnota" type="button"
-						class="btn btn-secondary" data-dismiss="modal">Guardar</button>
+						class="btn btn-secondary">Guardar</button>
 
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
@@ -121,93 +236,186 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
 
 
-	<!-- Modal Registrar y Actualizar Grado -->
-	<div class="modal fade" id="modalregistronota" tabindex="-1"
+
+
+
+
+
+	<!-- Modal ver notas de cursos -->
+	<div class="modal fade" id="modalnotabimestre" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Registro de
-						Notas</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Notas
+						Bimestrales</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
+					<table id="tblnotabimestre" class="table">
+						<thead>
+							<tr>
+								<th>Curso</th>
+								<th>Bim. 1</th>
+								<th>Bim. 2</th>
+								<th>Bim. 3</th>
+								<th>Bim. 4</th>
+								<th>Prom. Anual</th>
+								<th>Editar</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+
+
 					<form>
 						<div class="form-group">
-							<label for="cbocurso">Seleccione Curso:</label> <select
-								class="form-control" id="cbocurso">
+							<label for="cbocurso2">Seleccione Curso:</label> <select disabled = "true"
+								class="form-control" id="cbocurso2">
 								<option value="0">Seleccione</option>
 								<option th:each="curso :${lstcurso}" th:text="${curso.nombre}"
 									th:value="${curso.idcurso}"></option>
 							</select><span id="errorcurso" class="text-danger"></span> <input
-								type="hidden" id="hddidnota" value="0">
+								type="hidden" id="hddidnotabimestral" value="0"><input
+								type="hidden" id="hddidalumno" value="0">
 						</div>
 						<div class="form-group">
-							<div class="form-group">
-								<label for="txtexamen1">Emamen 1:</label> <input
-									onkeypress="return validarLetras(event)" type="text"
-									class="form-control" id="txtexamen1" maxlength="35"> <span
-									id="errornomnivel" class="text-danger"></span>
+							<div class="row">
+								<div class="col">
+									<label for="txtbim1">Bim. 1:</label> <input type="text"
+										id="txtbim1" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim2">Bim. 2:</label> <input type="text"
+										id="txtbim2" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim3">Bim. 3:</label> <input type="text"
+										id="txtbim3" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim4">Bim. 4:</label> <input type="text"
+										id="txtbim4" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtproma">Promedio:</label> <input type="text"
+										id="txtproma" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
 							</div>
-							<input type="hidden" id="hddidnota" value="0">
 						</div>
-						<div class="form-group">
-							<div class="form-group">
-								<label for="txtexamen2">Emamen 2:</label> <input
-									onkeypress="return validarLetras(event)" type="text"
-									class="form-control" id="txtexamen2" maxlength="35"> <span
-									id="errornomnivel" class="text-danger"></span>
-							</div>
-							<input type="hidden" id="hddidnota" value="0">
-						</div>
-						<div class="form-group">
-							<div class="form-group">
-								<label for="txtexamen3">Emamen 3:</label> <input
-									onkeypress="return validarLetras(event)" type="text"
-									class="form-control" id="txtexamen3" maxlength="35"> <span
-									id="errornomnivel" class="text-danger"></span>
-							</div>
-							<input type="hidden" id="hddidnota" value="0">
-						</div>
-						<div class="form-group">
-							<div class="form-group">
-								<label for="txtexamen4">Emamen 4:</label> <input
-									onkeypress="return validarLetras(event)" type="text"
-									class="form-control" id="txtexamen4" maxlength="35"> <span
-									id="errornomnivel" class="text-danger"></span>
-							</div>
-							<input type="hidden" id="hddidnota" value="0">
-						</div>
-						<div class="form-group">
-							<div class="form-group">
-								<label for="txtprom">Ingrese Promedio:</label> <input
-									onkeypress="return validarLetras(event)" type="text"
-									class="form-control" id="txtprom" maxlength="35"> <span
-									id="errornomgrado" class="text-danger"></span>
-							</div>
-							<input type="hidden" id="hddidnota" value="0">
-						</div>
-
-						<input type="hidden" id="hddidnota" value="0">
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Cerrar</button>
-							<button type="button" id="btnregistrarnota"
-								class="btn btn-primary">Guardar</button>
-						</div>
+						<span id="errornotasbimestre" class="text-danger"></span>
 					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="btnregistrarnotabimestre" type="button"
+						class="btn btn-secondary">Guardar</button>
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+<!-- Modal ver notas de cursos -->
+	<div class="modal fade" id="modalnotabimestre2" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Notas
+						Bimestrales</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table id="tblnotabimestre2" class="table">
+						<thead>
+							<tr>
+								<th>Curso</th>
+								<th>Bim. 1</th>
+								<th>Bim. 2</th>
+								<th>Bim. 3</th>
+								<th>Bim. 4</th>
+								<th>Prom. Anual</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+
+
+					<form>
+						<div class="form-group">
+							<label for="cbocurso4">Seleccione Curso:</label> <select
+								class="form-control" id="cbocurso4">
+								<option value="0">Seleccione</option>
+								<option th:each="curso :${lstcurso}" th:text="${curso.nombre}"
+									th:value="${curso.idcurso}"></option>
+							</select><span id="errorcurso4" class="text-danger"></span> <input
+								type="hidden" id="hddidnotabimestral" value="0"><input
+								type="hidden" id="hddidalumno" value="0">
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label for="txtbim11">Bim. 1:</label> <input type="text"
+										id="txtbim11" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim22">Bim. 2:</label> <input type="text"
+										id="txtbim22" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim33">Bim. 3:</label> <input type="text"
+										id="txtbim33" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtbim44">Bim. 4:</label> <input type="text"
+										id="txtbim44" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+								<div class="col">
+									<label for="txtproma1">Promedio:</label> <input type="text"
+										id="txtproma1" class="form-control" placeholder="00"
+										maxlength="2" onkeypress="return validarNumeros(event)">
+								</div>
+							</div>
+						</div>
+						<span id="errornotasbimestre2" class="text-danger"></span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="btnregistrarnotabimestre" type="button"
+						class="btn btn-secondary">Guardar</button>
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
 
 
 	<div>
@@ -221,9 +429,9 @@
 		<script type="text/javascript"
 			th:src="@{/script/jsweb/curso/listarGrado.js}"></script>
 	</div>
-	
+
 	<div>
-		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>			
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</div>
 	<div th:replace="menu2::barra"></div>
 </body>

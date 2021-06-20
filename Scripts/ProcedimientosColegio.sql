@@ -424,32 +424,6 @@ BEGIN
 END$$
 DELIMITER ;
 
- /*
-DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarUsuario(IN _idusuario CHAR(4),IN _nombreusuario CHAR(20),IN _contraseña CHAR(20), IN _idcargo CHAR(4), IN _idpersona CHAR(4))
-BEGIN
-	UPDATE usuario SET nombreUsuario = _nombreusuario, contraseña = _contraseña,  idCargo=_idcargo, idPersona = _idpersona WHERE IdUsuario= _idusuario;
-END$$
- DELIMITER ;
- */
- /*
-DELIMITER $$
-CREATE  PROCEDURE sp_MantEliminarUsuario(IN _idusuario CHAR(4))
-BEGIN
-	 UPDATE usuario SET estado = "Eliminado" WHERE idUsuario = _idusuario; 
-END$$
- DELIMITER ;*/
- 
-/*
-CREATE PROCEDURE sp_MantObtenerUsuario(IN _idusuario CHAR(4))
-	SELECT	u.idUsuario, u.nombreUsuario, u.contraseña, u.estado, u.idCargo, u.idPersona
-	FROM	 usuario u WHERE u.idUsuario = _idusuario;
-  */
-   
-   
-               ##############################
-     
-   ##PROCEDIMIENTOS ALMACENADOS DE NIVEL
    
     CREATE  PROCEDURE sp_MantListarNivel()
 	select n.idnivel, n.nombre, n.estado from nivel n;
@@ -611,80 +585,40 @@ CREATE  PROCEDURE sp_MantListarAlumnosxAula(in nivel char(20), in grado char(20)
     where a.nivel = nivel and a.grado = grado and a.seccion = seccion;
     
 DELIMITER $$
-create procedure sp_RegistrarNotaxCurso(in _idalumno char(4), in _idcurso char(4), in _examen1 double,
+create procedure sp_RegistrarNotaxCurso(in _idalumno char(4), in _idcurso char(4), in _idbimestre char(4), in _examen1 double,
 						in _examen2 double, in _examen3 double, in _examen4 double, in _promedio  double)
 BEGIN
     SET @idnota = (SELECT CONCAT('NO',RIGHT(CONCAT('00',RIGHT(MAX(idNotas),3) + 1),3)) FROM notas);
-    INSERT INTO Notas(idNotas, idAlumno, idCurso,examen1, examen2, examen3, examen4, promedio, estado) 
-                        VALUES (@idnota,_idalumno, _idcurso, _examen1, _examen2, _examen3, _examen4, _promedio,'Activo');
+    INSERT INTO Notas(idNotas, idAlumno, idCurso, idBimestre,examen1, examen2, examen3, examen4, promedio, estado) 
+                        VALUES (@idnota,_idalumno, _idcurso, _idbimestre,_examen1, _examen2, _examen3, _examen4, _promedio,'Activo');
+												
 END$$
  DELIMITER ;
- /*
- call sp_RegistrarNotaxCurso('A003','C001',12,13,17,18,16)
- select * from alumno
- select * from notas
- delete from notas where idNotas = 'NO007'*/
+
  
- ################################################################
- 
- DELIMITER $$
-create procedure sp_ActualizarNotaxCurso(in _idnota char(5), in _idalumno char(4), in _idcurso char(4), in _examen1 double,
+DELIMITER $$
+create procedure sp_ActualizarNotaxCurso(in _idnota char(5), in _idalumno char(4), in _idcurso char(4), in idbimestre char(4), in _examen1 double,
 						in _examen2 double, in _examen3 double, in _examen4 double, in _promedio  double)
 BEGIN
 	update notas set examen1 = _examen1, examen2 = _examen2, examen3 = _examen3, examen4 = _examen4, promedio = _promedio
     where idnotas = _idnota;
 END$$
  DELIMITER ;
- ################################################################
- /*
- DELIMITER $$
-create procedure sp_ActualizarNotaxCurso(in _idnota char(5), in _idalumno char(4), in _idcurso char(4), in _examen1 double,
-						in _examen2 double, in _examen3 double, in _examen4 double, in _promedio  double)
-BEGIN
-	update notas set examen1 = _examen1, examen2 = _examen2, examen3 = _examen3, examen4 = _examen4, promedio = _promedio
-    where idnotas = _idnota;
-END$$
- DELIMITER ;
- */
  
  
- 
- 
- #select * from curso;
- insert into Notas values ('NO002','A001','C001',15,17,10,18,15,'Activo');
- #call  sp_RegistrarNotaxCurso('A001','C003',18,15,13,10,15);
- 
- CREATE  PROCEDURE sp_MantListarNotaxCurso(in _idalumno char(4))
+ CREATE  PROCEDURE sp_MantListarNotaxCurso(in _idalumno char(4), in _idbimestre char(4))
 Select n.idnotas,n.idalumno, n.idcurso, c.nombre, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio
- from notas n inner join curso c on n.idCurso = c.idCurso where n.idAlumno = _idalumno;
+ from notas n inner join curso c on n.idCurso = c.idCurso where n.idAlumno = _idalumno and n.idBimestre = _idbimestre;
  
-
-
+ 
+ CREATE  PROCEDURE sp_MantListarCursoXBimestreXAlumno(in _idalumno char(4), in _idbimestre char(4), in _idcurso char(4))
+select n.idcurso from notas n where n.idcurso = _idcurso and n.idalumno = _idalumno and n.idbimestre = _idbimestre;
+ 
 CREATE  PROCEDURE sp_MantListarNotas()
 Select * from notas;
    
-   
- /*  ##Registrar NOTAS
-DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarNotas(IN _idalumno char(4), IN _idcurso char(4), IN _idnotabimestre char(5), in _examen1 double,
-																				 in _examen2 double, in _examen3 double, in _examen4 double, in _promedio  double)
-BEGIN
-    SET @idnota = (SELECT CONCAT('NO',RIGHT(CONCAT('00',RIGHT(MAX(idNotas),3) + 1),3)) FROM notas);
-    INSERT INTO Notas(idNotas, idAlumno, idCurso, idNotaBimestre,examen1, examen2, examen3, examen4, promedio, estado) 
-                        VALUES (@idnota,_idalumno, _idcurso, _idnotabimestre, _examen1, _examen2, _examen3, _examen4, _promedio,'Activo');
-END$$
- DELIMITER ;
- 
-#ACTUALIZAR NOTAS
- DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarNotas(IN _idnotas CHAR(5),IN _idalumno char(4), IN _idcurso char(4), IN _idnotabimestre char(5), in _examen1 double,
-																				 in _examen2 double, in _examen3 double, in _examen4 double, in _promedio  double)
-BEGIN
-	##set @nombrecompleto = (select concat(p.nombres,' ',p.apellidos) as nombre_completo from persona p where p.idPersona = _idpersona);
-	UPDATE notas SET idAlumno = _idalumno , idCurso = _idcurso, idNotaBimestre = _idnotabimestre, examen1 = _examen1, examen2 = _examen2,
-    examen3 = _examen3, examen4 = _examen4, promedio = _promedio WHERE idNotas = _idnotas;
-END$$
-DELIMITER ;*/
+CREATE  PROCEDURE sp_MantListarCursoXBimestre(in _idalumno char(4), in _idcurso char(4))
+select n.idcurso from notabimestres n where n.idalumno = _idalumno and n.idcurso = _idcurso;
 
 insert into grado values('G001','Primer Grado','Activo');
 insert into seccion values('S001','Seccion A','Activo');
@@ -705,27 +639,30 @@ insert into pago values('PA001','M001','2002-10-10',350.00,'Activo');
 insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo');
 insert into profesor values('D001','P008','U003','Juan Perez Huapaya Arias','Activo');
 
+ insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
+  insert into Notas values ('NO002','A001','C001','B002',15,17,10,18,15,'Activo');
+  insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
+  
+CREATE  PROCEDURE sp_MantListarNotaBimestre(in _idalumno char(4))
+Select nb.idnotabimestre, nb.idalumno, nb.idcurso, c.nombre, nb.nota_bimestre1,nb.nota_bimestre2,nb.nota_bimestre3,nb.nota_bimestre4,nb.promedio_anual
+ from notabimestres nb inner join curso c on nb.idCurso = c.idCurso
+where nb.idAlumno = _idalumno;
 
-CREATE  PROCEDURE sp_MantListarNotasBimestrales()
-Select * from notasbimestres;
-   
-   
-   ##Registrar NOTAS
+
+
 DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarNotasBimestrales(IN _bimestre1 double,IN _bimestre2 double,IN _bimestre3 double,IN _bimestre4 double, IN _promanual double)
+CREATE PROCEDURE sp_MantRegistrarNotasBimestrales(IN idalumno char(4), IN _idcurso char(4),IN _bimestre1 double,IN _bimestre2 double,IN _bimestre3 double,IN _bimestre4 double, IN _promanual double)
 BEGIN
-    SET @idnotabimestre = (SELECT CONCAT('NB',RIGHT(CONCAT('00',RIGHT(MAX(idNotaBimestre),3) + 1),3)) FROM notabimestres);
-    INSERT INTO Notabimestres(idNotaBimestre, nota_bimestre1, nota_bimestre2, nota_bimestre3,nota_bimestre4, promedio_anul, estado) 
-                        VALUES (@idnotabimestre, _bimestre1, _bimestre2, _bimestre3, _bimestre4, _promanual,'Activo');
+ 	SET @idnotabimestre = (SELECT CONCAT('NB',RIGHT(CONCAT('00',RIGHT(MAX(idNotaBimestre),3) + 1),3)) FROM notabimestres);
+    INSERT INTO Notabimestres(idNotaBimestre, idAlumno, idCurso, nota_bimestre1, nota_bimestre2, nota_bimestre3,nota_bimestre4, promedio_anual, estado) 
+                        VALUES (@idnotabimestre, idalumno, _idcurso, 00, 00, 00, 00, 00,'Activo');        
 END$$
  DELIMITER ;
  
-#ACTUALIZAR NOTAS
- DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarNotasBimestrales(IN _idnotabimestre CHAR(5),IN _bimestre1 double,IN _bimestre2 double,IN _bimestre3 double,IN _bimestre4 double, IN _promanual double)
+DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarNotasBimestrales(IN _idnotabimestre CHAR(5), in _idalumno char(4), in _idcurso char(4),IN _bimestre1 double,IN _bimestre2 double,IN _bimestre3 double,IN _bimestre4 double, IN _promanual double)
 BEGIN
-	##set @nombrecompleto = (select concat(p.nombres,' ',p.apellidos) as nombre_completo from persona p where p.idPersona = _idpersona);
-	UPDATE notabimestres SET nota_bimestre1 = _bimestre1 , nota_bimestre2 = _bimestre2, nota_bimestre3 = _bimestre3, nota_bimestre4 = _bimestre4, promedio_anul = _promanual 
+	UPDATE notabimestres SET nota_bimestre1 = _bimestre1 , nota_bimestre2 = _bimestre2, nota_bimestre3 = _bimestre3, nota_bimestre4 = _bimestre4, promedio_anual = _promanual 
     WHERE idNotaBimestre = _idnotabimestre;
 END$$
 DELIMITER ;

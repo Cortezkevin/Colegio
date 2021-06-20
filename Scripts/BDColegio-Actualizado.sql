@@ -164,10 +164,17 @@ foreign key (idUsuario) references Usuario(idUsuario),
 foreign key (idMatricula) references Matricula(idMatricula)
 );
 
+ create table Bimestre(               ##
+ idBimestre char(4) not null,      ##
+nombre char(20) null,                 ##
+primary key(idBimestre)
+ );
+
 create table Notas(
 idNotas char(5) not null,
 idAlumno char(4) not null,
 idCurso char(4) not null,
+idBimestre char(4) not null,        ##
 examen1 double null,
 examen2 double null,
 examen3 double null,
@@ -176,21 +183,25 @@ promedio double null,
 estado char(20) null,
 primary key(idNotas),
 foreign key (idAlumno) references Alumno(idAlumno),
-foreign key (idCurso) references Curso(idCurso)
+foreign key (idCurso) references Curso(idCurso),
+foreign key (idBimestre) references Bimestre(idBimestre)
 );
 
 create table  NotaBimestres(
 idNotaBimestre char(5) not null,
-idNotas char(5) not null,
-nota_bimestre1 double null,
-nota_bimestre2 double null,
-nota_bimestre3 double null,
-nota_bimestre4 double null,
-promedio_anul double null,
+idAlumno char(4) not null,
+idCurso char(4) not null,
+nota_bimestre1 double null,   
+nota_bimestre2 double null,   
+nota_bimestre3 double null,   
+nota_bimestre4 double null,   
+promedio_anual double null,    
 estado char(20) null,
 primary key (idNotaBimestre),
-foreign key (idNotas) references Notas(idNotas)
+foreign key (idAlumno) references Alumno(idAlumno),
+foreign key (idCurso) references Curso(idCurso)
 );
+
 create table Pago(
 idPago char(5) not null,
 idMatricula char(4) not null,
@@ -217,4 +228,7 @@ foreign key (idMatricula) references Matricula(idMatricula)
  role_id  varchar(255) not null,
  primary key (user_id, role_id)
  );
+ 
+
+ 
 

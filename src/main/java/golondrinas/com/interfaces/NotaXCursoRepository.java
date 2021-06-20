@@ -8,10 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import golondrinas.com.model.NotaXCurso;
+import golondrinas.com.model.Notas;
 
 @Repository
 public interface NotaXCursoRepository extends JpaRepository<NotaXCurso, String>{
 
-	@Query(value = "{call sp_MantListarNotaxCurso(:idalumno)}", nativeQuery = true)
-	List<NotaXCurso> listarNotasXCurso(@Param("idalumno") String idalumno);
+	@Query(value = "{call sp_MantListarNotaxCurso(:idalumno, :idbimestre)}", nativeQuery = true)
+	List<NotaXCurso> listarNotasXCurso(@Param("idalumno") String idalumno, @Param("idbimestre") String idbimestre);
+	
 }

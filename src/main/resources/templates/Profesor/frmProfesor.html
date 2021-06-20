@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+		$('.profesorList').DataTable();
+	});
+</script>
 
 <script type="text/javascript"
 	th:src="@{/script/jsweb/profesor/frmProfesor.js}"></script>
@@ -21,7 +27,7 @@
 			<div id="mensaje"></div>
 
 			<table id="tblprofesor"
-				class="table table-striped table-bordered table-hover ">
+				class="table table-striped table-bordered table-hover profesorList">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">ID</th>
@@ -123,6 +129,15 @@
 
 	<div th:replace="menu2::barra"></div>
 	<div>
+			<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>

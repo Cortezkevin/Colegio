@@ -45,12 +45,28 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 	if (idseccion === "0") {
 		$("#errorseccion").text("Es obligatorio seleccionar una Seccion.");
 	}
+	if ($("#txtnomusuario").val() === "") {
+		$("#errornomusuario").text("Es obligatorio un usuario.");
+	} else {
+		$("#errornomusuario").text("");
+	}
+	if ($("#txtcontrasena").val() === "") {
+		$("#errornomcontrasena").text("Es obligatorio una contraseña.");
+	} else {
+		$("#errornomcontrasena").text("");
+	}
+	if ($("#txtmonto").val() === "") {
+		$("#errormonto").text("Es obligatorio una contraseña.");
+	} else {
+		$("#errormonto").text("");
+	}
 	if ($("#txtnomfecha").val() === "") {
 		$("#errornomfecha").text("Es obligatorio la fecha.");
 	} else {
 		$("#errornomfecha").text("");
 	}
-	if ($("#txtnomfecha").val() !== "") {
+	if ($("#txtnomfecha").val() !== "" && $("#txtmonto").val() !== "" && $("#txtcontrasena").val() !== "" && $("#txtnomusuario").val() !== "" 
+			&& $("#cboseccion").val() !== "0" && $("#cbogrado").val() !== "0" && $("#cbonivel").val() !== "0") {
 		if ($("#hddidmatricula").val() === "0") {
 			$.ajax({
 				type: "POST",
@@ -248,9 +264,9 @@ function ListarMatriculas() {
 					"<td>" + value.idmatricula + "</td>" +
 					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.idapoderado + "</td>" +
-					"<td>" + value.idnivel + "</td>" +
-					"<td>" + value.idgrado + "</td>" +
-					"<td>" + value.idseccion + "</td>" +
+					//"<td>" + value.idnivel + "</td>" +
+					//"<td>" + value.idgrado + "</td>" +
+					//"<td>" + value.idseccion + "</td>" +
 					"<td>" + value.nombreusuario + "</td>" +
 					"<td>" + value.contrasena + "</td>" +
 					"<td>" + value.monto + "</td>" +
