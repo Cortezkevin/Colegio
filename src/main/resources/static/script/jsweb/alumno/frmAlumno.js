@@ -275,8 +275,8 @@ function ListarAlumnos() {
 			$.each(resultado, function(index, value) {
 				$("#tblalumno > tbody").append("<tr>" +
 					"<td>" + value.idalumno + "</td>" +
-					"<td>" + value.idpersona + "</td>" +										
-					"<td>" + value.idusuario + "</td>" +
+					//"<td>" + value.idpersona + "</td>" +										
+					//"<td>" + value.idusuario + "</td>" +
 					"<td>" + value.idmatricula + "</td>" +
 					"<td>" + value.nivel + "</td>" +
 					"<td>" + value.grado + "</td>" +

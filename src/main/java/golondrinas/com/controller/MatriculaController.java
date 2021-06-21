@@ -54,7 +54,7 @@ public class MatriculaController {
 	@GetMapping("/frmMatricula")
 	public String frmMatricula(Model model) {
 		model.addAttribute("lstMat", service.listarMatriculas());
-		model.addAttribute("lstPersona", pservice.listarSelectPersona());
+		model.addAttribute("lstPersona", pservice.listarPersona());
 		model.addAttribute("lstApoderado", apservice.listarApoderado());
 		model.addAttribute("lstNivel", nService.listarNivel());
 		model.addAttribute("lstGrado", gService.listarGrado());
