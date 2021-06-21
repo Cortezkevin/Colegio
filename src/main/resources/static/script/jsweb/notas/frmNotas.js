@@ -79,11 +79,9 @@ $(document).on("click", ".btnvernotas", function(){
 					"</td>" +
 				"</tr>");
 			});	
-			$("#modalcursosnota").modal("show");		
+			$("#modalcursosnota").modal("show");	
 		}
 	});
-	
-	
 $(document).on("click", "#buscarnotabimestre", function(){
 	$.ajax({
 		type: "GET",
@@ -119,6 +117,7 @@ $(document).on("click", "#buscarnotabimestre", function(){
 		}
 	});
 });
+	
 	
 $("#cbobimestre").val("0");	
 });
@@ -229,7 +228,6 @@ $(document).on("click", "#btnregistrarnota", function(){
 	&& $("#txtexamen22").val() < 21 && $("#txtexamen22").val() != "" &&  $("#txtexamen33").val() < 21 && $("#txtexamen33").val() != "" && $("#txtexamen44").val() < 21 && $("#txtexamen44").val() != "" 
 	&& $("#txtprom1").val() < 21 && $("#txtprom1").val() != "" && $("#txtexamen1").val() < 21 && $("#txtexamen1").val() != "" && $("#txtexamen2").val() < 21 && $("#txtexamen2").val() != "" 
 	&&  $("#txtexamen3").val() < 21 && $("#txtexamen3").val() != "" && $("#txtexamen4").val() < 21 && $("#txtexamen4").val() != "" && $("#txtprom").val() < 21 && $("#txtprom").val() != "")) {
-		alert("entra al if")
 		if ($("#hddidnota").val() === "0") {
 			$.ajax({
 				type: "POST",

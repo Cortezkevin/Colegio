@@ -10,8 +10,16 @@
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
-	<div class="card">
-		<div class="card-header badge-danger">ALUMNOS</div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-12">
+       <div class="card">
+		<div class="card-header badge-secondary text-center">ALUMNOS</div>
 		<div class="card-body">
 			<div class="form-group">
 				<label for="cbonivel">Seleccione Nivel:</label> <select
@@ -39,11 +47,21 @@
 						th:text="${seccion.nombre}" th:value="${seccion.nombre}"></option>
 				</select>
 			</div>
-			<button type="button" id="btnbuscar">Buscar</button>
+			<button class="btn btn-success" type="button" id="btnbuscar">Buscar</button>
 			<hr />
 			<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div>
 		</div>
 	</div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+	</div>
+	
+	
+     
+	
+	
 
 
 	<!-- Modal ver notas de cursos -->
@@ -66,11 +84,11 @@
 							<option value="0">Seleccione</option>
 							<option th:each="bimestre :${lstbimestre}"
 								th:text="${bimestre.nombre}" th:value="${bimestre.idbimestre}"></option>
-						</select><span id="errorbimestre" class="text-danger"></span> <input
+						</select><span id="errorbimestre"  class="text-danger"></span> <input
 							type="hidden" id="hddidnota" value="0"><input
 							type="hidden" id="hddidalumno" value="0">
 					</div>
-					<button class="col-md-3 mb-3" type="button" id="buscarnotabimestre">Buscar Nota</button>
+					<button class="col-md-3 mb-3 btn btn-warning" type="button" id="buscarnotabimestre">Buscar Nota</button>
 					</div>
 					<table id="tblcursonota" class="table">
 						<thead>
@@ -166,7 +184,7 @@
 							type="hidden" id="hddidnota" value="0"><input
 							type="hidden" id="hddidalumno2" value="0">
 					</div>
-					<button class="col-md-3 mb-3" type="button" id="buscarnotabimestre2">Buscar Nota</button>
+					<button class="col-md-3 mb-3 btn btn-warning" type="button" id="buscarnotabimestre2">Buscar Nota</button>
 					</div>
 					<table id="tblcursonota2" class="table">
 						<thead>
