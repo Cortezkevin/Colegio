@@ -1,4 +1,4 @@
-$(document).on("click", "#btnagregarusuario", function() {
+$(document).on("click", ".btnagregarusuario", function() {
 	$("#txtnomusuario").val("");
 	$("#txtcontraseña").val("");
 	$("#hddidusuario").val("0");
@@ -7,12 +7,13 @@ $(document).on("click", "#btnagregarusuario", function() {
 $(document).on("click", ".btnactualizarusuario", function() {
 	$("#txtnomusuario").val($(this).attr("data-nomusuario"));
 	$("#txtcontraseña").val($(this).attr("data-contraseña"));
+	$("#txtestado").val($(this).attr("data-estadousuario"));
 	$("#cbocargos").val($(this).attr("data-codcargo"));
 	$("#cbopersonas").val($(this).attr("data-codpersona"));
-	$("#txtestado").val($(this).attr("data-estado"));
 	$("#hddidusuario").val($(this).attr("data-codusuario"));
 	$("#modalusuario").modal("show");
 });
+/*
 $(document).on("click", "#btnregistrarusuario", function() {
 	//validar ingreso de nombre de usuario
 	if ($("#txtnomusuario").val() === "") {
@@ -66,8 +67,7 @@ $(document).on("click", "#btnregistrarusuario", function() {
 					nombreusuario: $("#txtnomusuario").val(),
 					password: $("#txtcontraseña").val(),
 					idcargo: $("#cbocargos").val(),
-					idpersona: $("#cbopersonas").val(),
-					estado: $("#txtestado").val()
+					idpersona: $("#cbopersonas").val()
 				}),
 				success: function(resultado) {
 					var estilo = "danger";
@@ -81,9 +81,8 @@ $(document).on("click", "#btnregistrarusuario", function() {
 		}
 		$("#modalusuario").modal("hide");
 	}
-});
+});*/
 $(document).on("click", ".btneliminarusuario", function() {
-	alert($(this).attr("data-codusuario"));
 	$("#mensajeeliminar").text("¿Está seguro de eliminar al usuario: " +
 		$(this).attr("data-nomusuario") + "?");
 	$("#hddidusuarioeliminar").val($(this).attr("data-codusuario"));
@@ -91,7 +90,7 @@ $(document).on("click", ".btneliminarusuario", function() {
 });
 $(document).on("click", "#btneliminarusuario", function() {
 	$.ajax({
-		type: "DELETE",
+		type: "POST",
 		contentType: "application/json",
 		url: "/Usuario/eliminarUsuario",
 		data: JSON.stringify({
@@ -119,21 +118,22 @@ function ListarUsuarios() {
 				$("#tblusuario > tbody").append("<tr>" +
 					"<td>" + value.idusuario + "</td>" +
 					"<td>" + value.nombreusuario + "</td>" +
-					"<td>" + value.password+ "</td>" +
+					"<td>" + value.contrasena+ "</td>" +
 					"<td>" + value.idcargo + "</td>" +
 					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.estado + "</td>" +
+					"<td><img src='/uploadsFotos/"+value.foto  +"'" +"height='120' width='120' /></td>"+
 					"<td><button type='button' class='btn btn-success btnverdetalle' " +
 					" data-codusuario='" + value.idusuario + "'>Ver Detalle</button>" +
 					"</td>"+
 					"<td><button type='button' class='btn btn-info btnactualizarusuario' " +
 					" data-codusuario='" + value.idusuario + "'" +
 					" data-nomusuario='" + value.nombreusuario + "'" +
-					" data-contraseña='" + value.password + "'" +
+					" data-contraseña='" + value.contrasena + "'" +
+					" data-estadousuario='" + value.estado + "'"+
 					" data-codcargo='" + value.idcargo + "'" +
 					" data-codpersona='" + value.idpersona + "'" +
-					" data-estado='" + value.estado + "'" +
-					" data-foto='" + value.foto + "'>Actualizar</button>" +
+					" data-foto='"+value.foto+"'>Actualizar</button>" +
 					"</td>" +
 					"<td><button type='button' class='btn btn-danger btneliminarusuario' " +
 					" data-codusuario='" + value.idusuario + "'" +
