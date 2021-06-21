@@ -20,4 +20,12 @@ public class HomeController {
 	public String Calificaciones() {
 		return "Calificaciones/frmcalificaciones";
 	}
+	@GetMapping("/Perfil/perfilEstudiante")
+	public String perfilEstudiante() {
+		return "/Perfil/miPerfil";
+	}
+	@GetMapping("/Perfil/cambioContraseña")
+	public String cambioContraseña() {
+		return "/Perfil/cambioContraseña";
+	}
 }

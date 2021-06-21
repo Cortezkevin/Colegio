@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.jsoup.select.Evaluator.IsEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -67,6 +69,7 @@ public class UsuarioController {
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		return "Usuario/registrarUsuario";
 	}
+	/*
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
 		//objUsuario.setFoto(picture.getBytes());
@@ -89,8 +92,60 @@ public class UsuarioController {
 		UserRole.registrarUserRole(objUsuario.getIdcargo());
 		System.out.println("**************"+objUsuario.getIdcargo());
 		return "redirect:/Usuario/frmUsuario";
+	}*/
+	
+	@GetMapping("/actualizarUsuario")
+	public String actualizarUsuario(Model model) {
+		model.addAttribute("usuarioForm", new Usuario());
+		model.addAttribute("lstCargos",cargoservice.listarCargos());
+		model.addAttribute("lstPersonas",personaservice.listarPersona());
+		return "Usuario/actualizarUsuario";
+	}
+	@PostMapping("/actualizarUsuario")
+	public String actualizarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
+		//objUsuario.setFoto(picture.getBytes());
+		
+		if(!foto.isEmpty()) {
+			
+			StringBuilder builder=new StringBuilder();
+			builder.append(System.getProperty("user.home"));
+			builder.append(File.separator);
+			builder.append("uploadsFotos");
+			builder.append(File.separator);
+			builder.append(foto.getOriginalFilename());
+			
+			byte[] bytes= foto.getBytes();
+			Path path=Paths.get(builder.toString());
+			Files.write(path,bytes);
+			objUsuario.setFoto(foto.getOriginalFilename());
+			objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
+		}
+		if(objUsuario.getIdusuario().equals("0")) {
+			service.registrarUsuario(objUsuario);
+		}else {
+			service.actualizarUsuario(objUsuario);
+		}
+		
+		
+		System.out.println("**************"+objUsuario.getIdcargo());
+		System.out.println("**************"+objUsuario.getEstado());
+		System.out.println("**************"+objUsuario.getFoto());
+		System.out.println("**************"+objUsuario.getIdpersona());
+		System.out.println("**************"+objUsuario.getIdusuario());
+		
+		//UserRole.registrarUserRole(objUsuario.getIdcargo());
+		
+		return "redirect:/Usuario/frmUsuario";
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	@PostMapping("/actualizarUsuario")
 	@ResponseBody
 	public ResultadoResponse actualizarUsuario(@RequestBody Usuario objUsuario,@RequestPart("picture")MultipartFile foto )throws IOException {
@@ -98,10 +153,6 @@ public class UsuarioController {
 		Boolean respuesta=true;
 		
 		try {
-			
-			
-			
-			
 			service.actualizarUsuario(objUsuario);
 		} catch (Exception ex) {
 			mensaje ="Error al actualizar";
@@ -111,6 +162,40 @@ public class UsuarioController {
 		
 		return new ResultadoResponse(respuesta,mensaje);
 	}
+	*/
+	
+	@PostMapping("eliminarUsuario")
+	@ResponseBody
+	public ResultadoResponse eliminarUsuario(@RequestBody Usuario objUsuario) {
+		String mensaje = "Usuario eliminado correctamente";
+		Boolean respuesta = true;
+		try {
+			service.eliminarUsuario(objUsuario);
+		}catch (Exception ex) {
+			mensaje= "Usuario no eliminado";
+			respuesta=false;
+		}
+		return new ResultadoResponse(respuesta,mensaje);
+	}
+	
+	
+	
+	
+	
+	
+	/*@PostMapping("/eliminarUsuario")
+	@ResponseBody
+	public ResultadoResponse eliminarUsuario1(@RequestBody Usuario objUsuario) {
+		String mensaje = "Usuario eliminado correctamente";
+		Boolean respuesta = true;
+		try {
+			service.eliminarUsuario(objUsuario);
+		} catch (Exception ex) {
+			mensaje = "Usuario no eliminado";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
+	}*/
 	
 	
 	
@@ -176,19 +261,7 @@ public class UsuarioController {
 		return service.listarUsuarios();
 	}
 	
-	@PostMapping("eliminarUsuario")
-	@ResponseBody
-	public ResultadoResponse eliminarUsuario(@RequestBody Usuario objUsuario) {
-		String mensaje = "Usuario eliminado correctamente";
-		Boolean respuesta = true;
-		try {
-			service.eliminarUsuario(objUsuario);
-		}catch (Exception ex) {
-			mensaje= "Usuario no eliminado";
-			respuesta=false;
-		}
-		return new ResultadoResponse(respuesta,mensaje);
-	}
+	
 	
 	
 	

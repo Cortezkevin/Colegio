@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="../css/css/miPerfil.css">
+<style>
+#content {
+	display: none;
+}
+</style>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+
+	<header>
+		<h3>
+			<span class="header-link">Mi informacion</span> <span>/</span> Mi
+			Perfil
+		</h3>
+	</header>
+
+	<div class="perfil-estudiante">
+		<h3>Mi Perfil</h3>
+	</div>
+
+	<div class="contenedor-perfil-estudiante">
+
+		<div class="card-perfil-estudiante">
+			<div class="contenido-img mg-t-60">
+				<img alt="Estudiante" src="/img/golondrina.png">
+			</div>
+
+			<h3>Nombre Y Apellido del Estudiante</h3>
+			<div class="estudiante">Estudiante</div>
+			<div class="card-contenido">
+				<div class="info-codigo-promedio ">
+					<h3>
+						1234 <span>código</span>
+					</h3>
+					<h3>
+						13.456 <span>Promedio</span>
+					</h3>
+				</div>
+				<div class="mg-t-30">
+					<button type="button" class="btn btn-warning">Descargar Perfil</button>
+
+				</div>
+			</div>
+			<div class="card-info-estudiante mg-t-20">
+				<div class="estudiante-grado mg-15 estudiante-hover"> <i class="fa fa-university"></i>Grado: 4° cuarto Grado</div>
+				<div class="estudiante-escuela mg-15 estudiante-hover"><i class="fa fa-university"></i> Escuela: Institucion
+					educativa particular Las Golondrinas</div>
+				<div class="estudiante-plan-estudios mg-15 estudiante-hover"> <i class="fa fa-graduation-cap"></i>Plan de
+					estudios:2021-2021</div>
+			</div>
+
+		</div>
+
+		<div class="perfil-estudiante-datos">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation"><a
+					class="nav-link active" id="home-tab" data-toggle="tab"
+					href="#home" role="tab" aria-controls="home" aria-selected="true">INFORMACIÓN PERSONAL</a>
+				</li>
+				<li class="nav-item" role="presentation"><a class="nav-link"
+					id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+					aria-controls="profile" aria-selected="false">INFORMACIÓN ACADÉMICA</a></li>
+				<li class="nav-item" role="presentation"><a class="nav-link"
+					id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+					aria-controls="contact" aria-selected="false">CAMBIO DE CONTRASEÑA</a></li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel"
+					aria-labelledby="home-tab">
+
+
+					<div class="accordion-item__container">
+						<table class="table" style="font-size: 15px; color: #344644;">
+							<tbody style="color: #344644;">
+								<tr>
+									<td class="text-center"><i class="fa fa-credit-card"></i>
+									</td>
+									<td><strong>DNI</strong></td>
+									<td><span>74847910</span></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-legal"></i></td>
+									<td><strong>ESTADO CIVIL</strong></td>
+									<td><span>SOLTERO</span></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fas fa-restroom"></i></td>
+									<td><strong>SEXO</strong></td>
+									<td><span> ######## </span></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-calendar"></i></td>
+									<td><strong>FECHA DE NACIMIENTO</strong></td>
+									<td>DD-MM-YYYY</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-map-marker"></i></td>
+									<td><strong>LUGAR DE NACIMIENTO</strong></td>
+									<td>LIMA / LIMA / LIMA</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-phone"></i></td>
+									<td><strong>TELÉFONO</strong></td>
+									<td>#######</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-mobile-phone"></i>
+									</td>
+									<td><strong>CELULAR</strong></td>
+									<td>9########</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-envelope"></i></td>
+									<td><strong>CORREO INSTITUCIONAL</strong></td>
+									<td>userName@golondrinas.edu.pe</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-envelope"></i></td>
+									<td><strong>CORREO PERSONAL</strong></td>
+									<td>userName@gmail.com</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-map-marker"></i></td>
+									<td><strong>DOMICILIO</strong></td>
+									<td>LIMA / LIMA / distrito</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-map-marker"></i></td>
+									<td><strong>DIRECCIÓN</strong></td>
+									<td>Lugar exacto</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+				</div>
+				<div class="tab-pane fade" id="profile" role="tabpanel"
+					aria-labelledby="profile-tab">
+					<div class="accordion-item__container">
+						<table class="table" style="font-size: 15px ">
+							<tbody style="color: #344644;">
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>AÑO DE INGRESO</strong></td>
+									<td>2021</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>MODALIDAD DE INGRESO</strong></td>
+									<td> - Secundaria </td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>COLEGIO DE PROCEDENCIA</strong></td>
+									<td>Estatal-Particularr</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>AÑO / BIMESTRE DE ESTUDIO</strong></td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>PROMEDIO PONDERADO</strong></td>
+									<td><strong> <span style="color: blue">##.##</span>
+
+
+									</strong></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>SITUACIÓN ACADÉMICA</strong></td>
+									<td><strong> <span style="color: green">REGULAR</span>
+
+
+									</strong></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>ESTADO DE PERMANENCIA</strong></td>
+									<td><strong> <span style="color: blue">ACTIVO</span>
+
+
+
+									</strong></td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>ÚLTIMA MATRÍCULA</strong></td>
+									<td>2021-0</td>
+								</tr>
+								<tr>
+									<td class="text-center"><i class="fa fa-tags"></i></td>
+									<td><strong>PROMEDIO DE ÚLTIMA MATRÍCULA</strong></td>
+									<td><span style="color: #229954"><strong>##.0</strong></span>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				<div class="tab-pane fade" id="contact" role="tabpanel"
+					aria-labelledby="contact-tab">
+					<div class="accordion-item__container">
+						<table class="table" style="font-size: 15px; color: #344644">
+							<tbody style="color: #344644;">
+								<tr>
+									<td class="text-center"><i class="fa fa-mail-forward"></i>
+									</td>
+									<td><span class="headline"><strong>Cambie
+												la contraseña del correo institucional,&nbsp;</strong> <a
+											th:href="@{/Perfil/cambioContraseña}"
+											target="_blank"> AQUÍ </a> </span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+	<div th:replace="menu2::barra"></div>
+
+
+	<div>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="../css/icons/script.js"></script>
+		
+	</div>
+</body>
+</html>

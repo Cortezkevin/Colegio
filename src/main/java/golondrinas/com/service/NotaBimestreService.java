@@ -9,11 +9,9 @@ import golondrinas.com.model.NotaBimestre;
 
 @Service
 public class NotaBimestreService {
-
 	@Autowired
 	private NotaBimestreRepository repository;
-
-
+	
 	public void RegistrarNotaBimestral(NotaBimestre n) {
 		repository.RegistrarNotaBimestral(n.getIdalumno(), n.getIdcurso(), n.getNota_bimestre1(), n.getNota_bimestre2(),
 				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());

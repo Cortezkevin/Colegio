@@ -39,16 +39,16 @@ public class NotasController {
 
 	@Autowired
 	private NivelService nivelservice;
-	
+
 	@Autowired
 	private GradoService gradoservice;
-	
+
 	@Autowired
 	private SeccionService seccionservice;
-	
+
 	@Autowired
 	private NotasService service;
-	
+
 	@Autowired
 	private AlumnosXAulaService alservice;
 
@@ -57,16 +57,16 @@ public class NotasController {
 
 	@Autowired
 	private CursoService cservice;
-	
+
 	@Autowired
 	private NotaXCursoService ncservice;
-	
+
 	@Autowired
 	private NBimestreXAlumnoService nbimestreservice;
-	
+
 	@Autowired
 	private BimestreService bimestresservice;
-	
+
 	@Autowired
 	private NotaBimestreService notabservice;
 
@@ -82,122 +82,112 @@ public class NotasController {
 
 	@GetMapping("/frmAlumnosxAula")
 	@ResponseBody
-	public List<AlumnosXAula> listarAlumno(@RequestParam("nivel") String n,
-			@RequestParam("grado") String g, @RequestParam("seccion") String s
-			, Model model) {
-		model.addAttribute("lstalu",alservice.listarAlumnoxAula(n, g, s));
+	public List<AlumnosXAula> listarAlumno(@RequestParam("nivel") String n, @RequestParam("grado") String g,
+			@RequestParam("seccion") String s, Model model) {
+		model.addAttribute("lstalu", alservice.listarAlumnoxAula(n, g, s));
 		return alservice.listarAlumnoxAula(n, g, s);
 	}
-	
+
 	@GetMapping("/frmCursoXNota")
 	@ResponseBody
-	public List<NotaXCurso> listarNotas(@RequestParam("idalumno") String idalumno, @RequestParam("idbimestre") String idbimestre) {
+	public List<NotaXCurso> listarNotas(@RequestParam("idalumno") String idalumno,
+			@RequestParam("idbimestre") String idbimestre) {
 		return ncservice.listarNotaXCurso(idalumno, idbimestre);
 	}
-	
+
 	@GetMapping("/frmNotaBimestreXAlumno")
 	@ResponseBody
 	public List<NBimestreXAlumno> listarNotaBimestreXAlumno(@RequestParam("idalumno") String idalumno) {
 		return nbimestreservice.listarNotaBimestreXAlumno(idalumno);
 	}
-	
-	
+
 	@PostMapping("/registrarNotas")
 	@ResponseBody
 	public ResultadoResponse registrarNotas(@RequestBody Notas objnota) {
 		String mensaje = "Nota registrada correctamente";
 		Boolean respuesta = true;
-		try {		
-			if(service.validarCursos(objnota) == true) {
+		try {
+			if (service.validarCursos(objnota) == true) {
 				service.registrarNotasv2(objnota);
-				}else {
-			mensaje = "El curso seleccionado ya esta registrado";
-			respuesta = false;}
-			
-		}
-		catch (Exception ex) {
+			} else {
+				mensaje = "El curso seleccionado ya esta registrado";
+				respuesta = false;
+			}
+
+		} catch (Exception ex) {
 			mensaje = "Nota no registrada";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
+
 	@PostMapping("/registrarNotaBimestre")
 	@ResponseBody
 	public ResultadoResponse registrarNotaBimestre(@RequestBody NotaBimestre objnota) {
 		String mensaje = "Nota Bimestral registrada correctamente";
 		Boolean respuesta = true;
-		try {		
-			if(notabservice.validarCurso(objnota) == true) {
+		try {
+			if (notabservice.validarCurso(objnota) == true) {
 				notabservice.RegistrarNotaBimestral(objnota);
-			}else {
+			} else {
 				mensaje = "El curso seleccionado ya esta registrado";
 				respuesta = false;
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			mensaje = "Nota Bimestral no registrada";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
+
 	@PostMapping("/actualizarNotas")
 	@ResponseBody
 	public ResultadoResponse actualizarNotas(@RequestBody Notas objnota) {
 		String mensaje = "Nota actualizada correctamente";
 		Boolean respuesta = true;
-		try {		
-				service.actualizarNotasv2(objnota);		
-		}
-		catch (Exception ex) {
+		try {
+			service.actualizarNotasv2(objnota);
+		} catch (Exception ex) {
 			mensaje = "Nota no actualizada";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
+
 	@PostMapping("/actualizarNotaBimestre")
 	@ResponseBody
 	public ResultadoResponse actualizarNotaBimestre(@RequestBody NotaBimestre objnota) {
 		String mensaje = "Nota Bimestral actualizada correctamente";
 		Boolean respuesta = true;
-		try {		
-				notabservice.ActualizarNotaBimestral(objnota);		
-		}
-		catch (Exception ex) {
+		try {
+			notabservice.ActualizarNotaBimestral(objnota);
+		} catch (Exception ex) {
 			mensaje = "Nota Bimestral no actualizada";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
-	
-	
+
 	@GetMapping("/listarNotas")
 	@ResponseBody
 	public List<Notas> listarNotas() {
 
 		return service.listarNotas();
 	}
-/*
-	@DeleteMapping("/eliminarNota")
-	@ResponseBody
-	public ResultadoResponse eliminarAlumno(@RequestBody Alumno objAlumno) {
-
-		String mensaje = "Alumnon elimando correctamente";
-		Boolean respuesta = true;
-
-		try {
-			service.eliminarAlumno(objAlumno);
-		}
-
-		catch (Exception ex) {
-
-			mensaje = "Alumno no eliminado";
-			respuesta = false;
-		}
-
-		return new ResultadoResponse(respuesta, mensaje);
-	}*/
+	/*
+	 * @DeleteMapping("/eliminarNota")
+	 * 
+	 * @ResponseBody public ResultadoResponse eliminarAlumno(@RequestBody Alumno
+	 * objAlumno) {
+	 * 
+	 * String mensaje = "Alumnon elimando correctamente"; Boolean respuesta = true;
+	 * 
+	 * try { service.eliminarAlumno(objAlumno); }
+	 * 
+	 * catch (Exception ex) {
+	 * 
+	 * mensaje = "Alumno no eliminado"; respuesta = false; }
+	 * 
+	 * return new ResultadoResponse(respuesta, mensaje); }
+	 */
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<!-- font awesome kit -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.  5/jquery.mCustomScrollbar.min.css">
+<!-- estilos CSS -->
+<link rel="stylesheet" href="../css/css/cambio-contraseña.css">
+<title>Cambio de Contraseña</title>
+</head>
+</style>
+<body>
+
+	<header class="container-clave">
+		<div class="card-principal">
+			<nav>
+				<div class="imagen">
+					<img alt="" src="/img/golondrina.png"> <h1>Las Golondrinas</h1>
+				</div>
+				
+				<div class="especificaciones">
+					<h2>Importante:</h2>
+					<ul>
+						<li>La contraseña debe contener 
+						<span>8 caracteres como minimo</span></li>
+						<li>Te recomendamos cambiar tu contraseña por lo 
+						<span>menos 4 veces al año</span></li>
+						<li>Utilizar al menos <span>una letra mayúscula,
+						una letra minúscula y un número</span> para tu contraseña</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		
+		<div class="card-secundario">
+			<div class="fondo">
+			<form>
+			 	<h2>Cambio de Contraseña</h2>
+			 	<hr>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+					
+						<label for="usuario">Usuario:</label> <input type="text"
+							class="form-control" id="usuario">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputPassword4">.</label> <input
+							type="text" class="form-control" readonly="true" id="inputPassword4" value="@golondrinas.edu.pe">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAddress"></label> <input type="text"
+						class="form-control" id="inputAddress" placeholder="Contraseña actual">
+				</div>
+				<div class="form-group">
+					<label for="password"></label> <input type="password"
+						class="form-control" id="password"
+						placeholder="Nueva contraseña">
+					<label for="inputAddress2"></label> <input type="password"
+						class="form-control" id="password"
+						placeholder="Vuelva a escribir su contraseña">
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+			</form>
+			</div>
+		</div>
+	</header>
+
+</body>
+</html>
