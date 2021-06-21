@@ -638,7 +638,9 @@ call sp_MantRegistrarRoles('R001');
 insert into pago values('PA001','M001','2002-10-10',350.00,'Activo');
 insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo');
 insert into profesor values('D001','P008','U003','Juan Perez Huapaya Arias','Activo');
-
+insert bimestre values("B001",'Primer Bimestre');
+insert bimestre values("B002",'Segundo Bimestre');
+insert bimestre values("B003",'Tercer Bimestre');
  insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
   insert into Notas values ('NO002','A001','C001','B002',15,17,10,18,15,'Activo');
   insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
