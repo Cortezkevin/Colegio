@@ -1,5 +1,5 @@
-create database colegio3;
-use  colegio3;
+create database colegio4;
+use  colegio4;
 
 create table Persona(
 idPersona char(4) not null,

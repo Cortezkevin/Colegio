@@ -61,7 +61,11 @@ public class AlumnoController {
 		Boolean respuesta = true;
 
 		try {
-			service.registrarAlumno(objAlumno);
+			if(service.validarPersona(objAlumno) == false ) {
+				service.registrarAlumno(objAlumno);	
+			}
+			mensaje = "La persona seleccionada ya esta siendo usada";
+			respuesta = false;
 		}
 
 		catch (Exception ex) {

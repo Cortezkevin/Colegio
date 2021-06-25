@@ -126,9 +126,7 @@ CREATE  PROCEDURE sp_MantListarMatriculas()
 	select * from matricula ;
 
 CREATE  PROCEDURE sp_MantListarEstadoXPersona(in _idpersona char(4))
-select p.estado  from matricula m
-inner join persona p on m.idPersona = p.idPersona
-where p.idPersona = _idpersona
+select estado  from persona where idPersona =_idpersona;
 
 DELIMITER $$
 CREATE  PROCEDURE sp_MantRegistrarMatricula(IN _idpersona CHAR(4),in _idapoderado char(5) ,IN _idnivel CHAR(4),
@@ -159,13 +157,6 @@ BEGIN
 END$$
 DELIMITER ;
  
- /*
-DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarMatricula(IN _idmatricula CHAR(4),IN _idalumno CHAR(4),IN _idnivel CHAR(4),IN _idgrado CHAR(4),IN _idseccion CHAR(4),IN _fecha DATE)
-BEGIN
-	UPDATE matricula SET idAlumno = _idalumno, idNivel = _idnivel, idGrado = _idgrado, idSeccion = _idseccion, fecha = _fecha WHERE idMatricula= _idmatricula;
-END$$
-DELIMITER ;*/
 
 DELIMITER $$
 CREATE  PROCEDURE sp_MantActualizarMatricula(IN _idmatricula CHAR(4),IN _idpersona CHAR(4),IN _idapoderado char(5),
@@ -535,7 +526,6 @@ CREATE PROCEDURE sp_MantObtenerPago(IN _idpago CHAR(5))
     SELECT    p.idPago, p.idPersona, p.idUsuario, p.estado
     FROM   pago p WHERE p.idPago = _idpago;
     
-    
     CREATE  PROCEDURE sp_MantListarApoderados()
 	select a.idApoderado, a.idPersona, a.nombreCompleto, a.estado from apoderado a;
    
@@ -621,36 +611,51 @@ CREATE  PROCEDURE sp_MantListarCursoXBimestre(in _idalumno char(4), in _idcurso 
 select n.idcurso from notabimestres n where n.idalumno = _idalumno and n.idcurso = _idcurso;
 
 insert into grado values('G001','Primer Grado','Activo');
+insert into grado values('G002','Segundo Grado','Activo');
+insert into grado values('G003','Tercer Grado','Activo');
+insert into grado values('G004','Cuarto Grado','Activo');
 insert into seccion values('S001','Seccion A','Activo');
+insert into seccion values('S002','Seccion B','Activo');
+insert into seccion values('S003','Seccion C','Activo');
 insert into cargo values('R001','Alumno','Activo');
-insert into nivel values('N001','Primaria','Activo');
+insert into cargo values('R002','Docente','Activo');
+insert into cargo values('R003','Administrador','Activo');
+insert into nivel values('N001','Inicial','Activo');
+insert into nivel values('N002','Primaria','Activo');
 insert into persona values('P001','Kevin ','Cortez Quispe','Av. San Marcos','995624785','dr@gmail.com','72195679','20','Masculino','Ocupado');
 insert into persona values('P002','Victor','Martinez Ruiz','Av. Los paltos','995624785','dsadr@gmail.com','72197584','20','Masculino','Ocupado');
-insert into persona values('P003','Carlos Manuel','Huamani Huamani','Av. Los paltos','995624785','dsadr@gmail.com','72856216','20','Masculino','Activo');
+insert into persona values('P003','Carlos Manuel','Huamani Huamani','Av. Los paltos','995624785','dsadr@gmail.com','72856216','20','Masculino','Ocupado');
 insert into persona values('P004','Maria Isabel','Huamani Caceres','Av. Cipres','912238976','HCMI@gmail.com','72123279','32','Femenino','Activo');
 insert into persona values('P005','Juan Perez','Huapaya Arias','Av. Los paltos','988956147','JPHA@gmail.com','77896679','40','Masculino','Ocupado');
-insert into apoderado values('AP001','P002','Victor Martinez Ruiz','Activo');
+insert into persona values('P006','Enrique','Napan Torres','Av. Acención','958956147','ENT@gmail.com','71526679','19','Masculino','Activo');
+insert into persona values('P007','Junior','Arias Quispe','Av. Santa Rosa','981221147','JAQ@gmail.com','71456679','12','Masculino','Activo');
+insert into persona values('P008','Cristhian Joel','Castro Contreras','Av. Cipres','981132147','CJCC@gmail.com','77815329','42','Masculino','Activo');
+insert into apoderado values('AP001','P002','Victor Martinez Ruiz','Activo'); 
 insert into matricula values('M001','P001','AP001','N001','G001','S001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
 insert into usuario values('U001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P001','Ocupado','dfsddfs');
-insert into usuario values('U002','DJP123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R002','P005','Ocupado','dfsddfs');
+insert into usuario values('U002','CMHH123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P003','Ocupado','dfsddfs');
+insert into usuario values('U003','D123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R002','P005','Ocupado','dfsddfs');
 insert into alumno values('A001','P001','U001','M001','Primaria','Primer Grado','Seccion A','Wilfredo Cortez Pereda','Kevin Cortez Quispe','Activo');
-call sp_MantRegistrarRoles('R001');
+insert into user_role values('U001','R001');
+insert into user_role values('U002','R001');
+insert into user_role values('U003','R002');
+#call sp_MantRegistrarRoles('R001');
 insert into pago values('PA001','M001','2002-10-10',350.00,'Activo');
-insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo');
-insert into profesor values('D001','P008','U003','Juan Perez Huapaya Arias','Activo');
+insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo'); 
+insert into curso values('C002','N001','G001','Comunicación I','Comunicación I nivel primaria','Activo'); 
+insert into profesor values('D001','P005','U003','Juan Perez Huapaya Arias','Activo'); 
 insert bimestre values("B001",'Primer Bimestre');
 insert bimestre values("B002",'Segundo Bimestre');
 insert bimestre values("B003",'Tercer Bimestre');
+insert bimestre values("B004",'Cuarto Bimestre');
  insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
-  insert into Notas values ('NO002','A001','C001','B002',15,17,10,18,15,'Activo');
+  insert into Notas values ('NO002','A001','C001','B002',12,10,10,16,13,'Activo');
   insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
   
 CREATE  PROCEDURE sp_MantListarNotaBimestre(in _idalumno char(4))
 Select nb.idnotabimestre, nb.idalumno, nb.idcurso, c.nombre, nb.nota_bimestre1,nb.nota_bimestre2,nb.nota_bimestre3,nb.nota_bimestre4,nb.promedio_anual
  from notabimestres nb inner join curso c on nb.idCurso = c.idCurso
 where nb.idAlumno = _idalumno;
-
-
 
 DELIMITER $$
 CREATE PROCEDURE sp_MantRegistrarNotasBimestrales(IN idalumno char(4), IN _idcurso char(4),IN _bimestre1 double,IN _bimestre2 double,IN _bimestre3 double,IN _bimestre4 double, IN _promanual double)
@@ -668,3 +673,9 @@ BEGIN
     WHERE idNotaBimestre = _idnotabimestre;
 END$$
 DELIMITER ;
+
+CREATE  PROCEDURE sp_ManValidarPersonaxAlumno(IN _idpersona char(4))
+select idPersona from alumno where idPersona = _idpersona;
+
+CREATE  PROCEDURE sp_MantListarNombreUsuario(In _usuario varchar(45))
+select nombreUsuario from matricula where nombreUsuario = _usuario;

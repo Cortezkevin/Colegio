@@ -35,4 +35,28 @@ public class AlumnoService {
 
 		repository.EliminarAlumno(a.getIdalumno());
 	}
+	
+	public boolean validarPersona(Alumno a) {
+		String persona = repository.listarPersona(a.getIdpersona());
+		if(persona.equals(a.getIdpersona())) {
+			return true;
+		}
+		return false;
+	}
+	
+	/*public boolean validarUsuario(Alumno a) {
+		String persona = repository.listarUsuario(a.getIdusuario());
+		if(persona.equals(a.getIdusuario())) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validarMatricula(Alumno a) {
+		String persona = repository.listarMatricula(a.getIdmatricula());
+		if(persona.equals(a.getIdmatricula())) {
+			return true;
+		}
+		return false;
+	}*/
 }

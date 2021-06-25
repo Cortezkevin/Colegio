@@ -147,7 +147,7 @@
 								type="hidden" id="hddidmatricula" value="0">
 						</div>
 						<div class="form-group">
-							<label for="cboseccion">Seleccione Seccion</label> <select
+							<label for="cboseccion">Seleccione Sección</label> <select
 								class="form-control" id="cboseccion">
 								<option value="0">Seleccione</option>
 								<option th:each="seccion :${lstSeccion}"
@@ -159,7 +159,7 @@
 							<div class="form-group">
 								<label for="txtnomusuario">Ingrese Nombre de Usuario:</label> <input
 									type="text" class="form-control" id="txtnomusuario"
-									maxlength="35"> <span id="errornomusuario"
+									maxlength="20"> <span id="errornomusuario"
 									class="text-danger"></span>
 							</div>
 							<input type="hidden" id="hddidmatricula" value="0">
@@ -168,15 +168,15 @@
 							<div class="form-group">
 								<label for="txtcontrasena">Ingrese Contraseña:</label> <input
 									type="text" class="form-control" id="txtcontrasena"
-									maxlength="35"> <span id="errornomcontrasena"
+									maxlength="20"> <span id="errornomcontrasena"
 									class="text-danger"></span>
 							</div>
 							<input type="hidden" id="hddidmatricula" value="0">
 						</div>
 						<div class="form-group">
 							<div class="form-group">
-								<label for="txtmonto">Ingrese Monto:</label> <input type="text"
-									class="form-control" id="txtmonto" maxlength="35"> <span
+								<label for="txtmonto">Ingrese Monto:</label> <input type="text" onkeypress="return validarNumeros(event)"
+									class="form-control" id="txtmonto" maxlength="3"> <span
 									id="errormonto" class="text-danger"></span>
 							</div>
 							<input type="hidden" id="hddidmatricula" value="0">

@@ -68,7 +68,15 @@ public class MatriculaController {
 		String mensaje = "Matricula registrada correctamente";
 		Boolean respuesta = true;
 		try {
-				service.RegistrarMatricula(objMatricula);
+			if(service.validarEstado(objMatricula) ==  false && service.validarNombreUsuario(objMatricula) == false) {
+				service.RegistrarMatricula(objMatricula);	
+			}else if(service.validarNombreUsuario(objMatricula) == true) {
+				mensaje = "El nombre de usuario ingresado ya existe";
+				respuesta = false;}
+			else{
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;}
+
 		} catch (Exception ex) {
 			mensaje = "Matricula no registrada";
 			respuesta = false;

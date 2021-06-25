@@ -209,25 +209,24 @@ $(document).on("click", "#btnregistrarnota", function(){
 	if($("#txtexamen11").val() > 20 || $("#txtexamen22").val() > 20  || $("#txtexamen33").val() > 20  ||
 	   $("#txtexamen44").val() > 20  || $("#txtprom1").val() > 20) {
 		$("#errornotas").text("Una nota ingresada no es valida");
-	}else if($("#txtexamen11").val() == "" || $("#txtexamen22").val() == "" || $("#txtexamen33").val() == ""  ||
+	}/*else if($("#txtexamen11").val() == "" || $("#txtexamen22").val() == "" || $("#txtexamen33").val() == ""  ||
 	   $("#txtexamen44").val() == ""  || $("#txtprom1").val() == ""){
 		$("#errornotas").text("Un campo esta vacio");
-	}
+	}*/
 	else{$("#errornotas").text("");}
 	
 	if($("#txtexamen1").val() > 20 || $("#txtexamen2").val() > 20 || $("#txtexamen3").val() > 20 || 
 	   $("#txtexamen4").val() > 20 || $("#txtprom").val() > 20) {
 		$("#errornotas2").text("Una nota ingresada no es valida");
-	}else if($("#txtexamen1").val() == "" || $("#txtexamen2").val() == "" || $("#txtexamen3").val() == ""  ||
+	}/*else if($("#txtexamen1").val() == "" || $("#txtexamen2").val() == "" || $("#txtexamen3").val() == ""  ||
 	   $("#txtexamen4").val() == ""  || $("#txtprom").val() == ""){
 		$("#errornotas").text("Un campo esta vacio");
-	}else{$("#errornotas2").text("");}
+	}*/
+	else{$("#errornotas2").text("");}
 	
 	
-	if (($("#cbocurso3").val() !== "0" || $("#cbocurso").val() !== "0") && ( $("#txtexamen11").val() < 21 && $("#txtexamen11").val() != "" 
-	&& $("#txtexamen22").val() < 21 && $("#txtexamen22").val() != "" &&  $("#txtexamen33").val() < 21 && $("#txtexamen33").val() != "" && $("#txtexamen44").val() < 21 && $("#txtexamen44").val() != "" 
-	&& $("#txtprom1").val() < 21 && $("#txtprom1").val() != "" && $("#txtexamen1").val() < 21 && $("#txtexamen1").val() != "" && $("#txtexamen2").val() < 21 && $("#txtexamen2").val() != "" 
-	&&  $("#txtexamen3").val() < 21 && $("#txtexamen3").val() != "" && $("#txtexamen4").val() < 21 && $("#txtexamen4").val() != "" && $("#txtprom").val() < 21 && $("#txtprom").val() != "")) {
+	if (/*(*/$("#cbocurso3").val() !== "0" /*|| $("#cbocurso").val() !== "0")*/ && ( $("#txtexamen11").val() < 21 && $("#txtexamen11").val() != "" && $("#txtexamen22").val() < 21 && $("#txtexamen22").val() != "" &&  $("#txtexamen33").val() < 21 && $("#txtexamen33").val() != "" && $("#txtexamen44").val() < 21 && $("#txtexamen44").val() != "" && $("#txtprom1").val() < 21 && $("#txtprom1").val() != "") 
+	|| ($("#txtexamen1").val() < 21 && $("#txtexamen1").val() != "" && $("#txtexamen2").val() < 21 && $("#txtexamen2").val() != "" &&  $("#txtexamen3").val() < 21 && $("#txtexamen3").val() != "" && $("#txtexamen4").val() < 21 && $("#txtexamen4").val() != "" && $("#txtprom").val() < 21 && $("#txtprom").val() != "")) {
 		if ($("#hddidnota").val() === "0") {
 			$.ajax({
 				type: "POST",
@@ -453,9 +452,8 @@ $(document).on("click", "#btnregistrarnotabimestre", function(){
 		$("#errornotasbimestre").text("Un campo esta vacio");
 	}else{$("#errornotasbimestre").text("");}
 	
-	if (($("#cbocurso4").val() !== "0" || $("#cbocurso2").val() !== "0") && ( $("#txtbim11").val() < 21 && $("#txtbim11").val() != "" 
-	&& $("#txtbim22").val() < 21 && $("#txtbim22").val() != "" &&  $("#txtbim33").val() < 21 && $("#txtbim33").val() != "" && $("#txtbim44").val() < 21 && $("#txtbim44").val() != "" 
-	&& $("#txtproma1").val() < 21 && $("#txtproma1").val() != "" && $("#txtbim1").val() < 21 && $("#txtbim1").val() != "" && $("#txtbim2").val() < 21 && $("#txtbim2").val() != "" 
+	if (/*(*/$("#cbocurso4").val() !== "0"/* || $("#cbocurso2").val() !== "0")*/ && ( $("#txtbim11").val() < 21 && $("#txtbim11").val() != "" && $("#txtbim22").val() < 21 && $("#txtbim22").val() != "" &&  $("#txtbim33").val() < 21 && $("#txtbim33").val() != "" && $("#txtbim44").val() < 21 && $("#txtbim44").val() != "" && $("#txtproma1").val() < 21 && $("#txtproma1").val() != "") 
+	|| ($("#txtbim1").val() < 21 && $("#txtbim1").val() != "" && $("#txtbim2").val() < 21 && $("#txtbim2").val() != "" 
 	&&  $("#txtbim3").val() < 21 && $("#txtbim3").val() != "" && $("#txtbim4").val() < 21 && $("#txtbim4").val() != "" && $("#txtproma").val() < 21 && $("#txtproma").val() != "")) {
 		if ($("#hddidnotabimestral").val() === "0") {
 			$.ajax({

@@ -56,12 +56,12 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 		$("#errornomcontrasena").text("");
 	}
 	if ($("#txtmonto").val() === "") {
-		$("#errormonto").text("Es obligatorio una contraseña.");
+		$("#errormonto").text("Es obligatorio ingresar un monto.");
 	} else {
 		$("#errormonto").text("");
 	}
 	if ($("#txtnomfecha").val() === "") {
-		$("#errornomfecha").text("Es obligatorio la fecha.");
+		$("#errornomfecha").text("Es obligatorio una fecha.");
 	} else {
 		$("#errornomfecha").text("");
 	}
@@ -124,7 +124,7 @@ $(document).on("click", "#btnregistrarmatricula", function() {
 						Toast.fire({
 						  icon: 'error',
 						  title: resultado.mensaje
-						})
+						});
 				}
 				$("#modalmatricula").modal("hide");
 			}

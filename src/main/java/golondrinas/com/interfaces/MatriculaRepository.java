@@ -40,4 +40,7 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String> {
 	@Modifying
 	@Query(value = "{call sp_MantEliminarMatriculav2(:idmatricula)}", nativeQuery = true)
 	void EliminarMatricula(@Param("idmatricula") String idmatricula);
+	
+	@Query(value = "{call sp_MantListarNombreUsuario(:nombreUsuario)}",nativeQuery = true)
+	String ListarNombreUsuario(@Param("nombreUsuario") String nombreUsuario);
 }

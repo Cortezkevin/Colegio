@@ -51,19 +51,19 @@ $(document).on("click", "#btnregistrarpersona", function() {
 	telefono = 1;
 	dni = 1;
 	if($("#txtnombre").val() === ""){
-		$("#errornombre").text("Es obligatorio el nombre de la persona");
+		$("#errornombre").text("Es obligatorio ingresar un nombre");
 	}else{$("#errornombre").text("");}
 	
 	if($("#txtapellido").val() === ""){
-		$("#errorapellido").text("Es obligatorio el apellido de la persona");
+		$("#errorapellido").text("Es obligatorio ingresar un apellido");
 	}else{$("#errorapellido").text("");}
 	
 	if($("#txtdireccion").val() === ""){
-		$("#errordireccion").text("Es obligatorio la direccion de la persona");
+		$("#errordireccion").text("Es obligatorio ingresar una direccion");
 	}else{$("#errordireccion").text("");}
 	
 	if($("#txttelefono").val() === ""){
-		$("#errortelefono").text("Es obligatorio el telefono de la persona");
+		$("#errortelefono").text("Es obligatorio ingresar un telefono");
 	}else if($("#txttelefono").val().length < 9){
 		$("#errortelefono").text("El numero de telefono ingresado no es válido");
 		telefono = 2; 
@@ -81,7 +81,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 	}else{$("#errordni").text("");}
 	
 	if($("#txtedad").val() === ""){
-		$("#erroredad").text("Es obligatorio la edad de la persona");
+		$("#erroredad").text("Es obligatorio ingresar la edad");
 	}else if($("#txtedad").val() >= 0 && $("#txtedad").val() <= 3 ){
 		$("#erroredad").text("La edad ingresada no es valida");
 	}else{$("#erroredad").text("");}

@@ -17,17 +17,15 @@ import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.ApoderadoService;
 import golondrinas.com.service.PersonaService;
 
-
 @Controller
 @RequestMapping("/Apoderado")
 public class ApoderadoController {
-	
+
 	@Autowired
 	private PersonaService pservice;
-	
+
 	@Autowired
 	private ApoderadoService service;
-	
 
 	@GetMapping("/frmApoderado")
 	public String ListarApodrado(Model model) {
@@ -36,54 +34,55 @@ public class ApoderadoController {
 		model.addAttribute("lstpersona", pservice.listarPersona());
 		return "Apoderado/frmApoderado";
 	}
-	
+
 	@PostMapping("/registrarApoderado")
 	@ResponseBody
 	public ResultadoResponse registrarApoderado(@RequestBody Apoderado objApoderado) {
-		
+
 		String mensaje = "Apoderado registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			
+			if (service.validarEstado(objApoderado) == false) {
 				service.registrarApoderado(objApoderado);
+			}
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;
 
-		}
-		catch(Exception ex){
-			
+		} catch (Exception ex) {
+
 			mensaje = "Apoderado no registrado";
 			respuesta = false;
-			
+
 		}
-		
+
 		return new ResultadoResponse(respuesta, mensaje);
-		
+
 	}
-	
-	
+
 	@GetMapping("/listarApoderado")
 	@ResponseBody
-	public List<Apoderado> listarApoderado(){
-		
+	public List<Apoderado> listarApoderado() {
+
 		return service.listarApoderado();
 	}
-	
+
 	@DeleteMapping("/eliminarApoderado")
 	@ResponseBody
 	public ResultadoResponse eliminarApoderado(@RequestBody Apoderado obApoderado) {
-		
+
 		String mensaje = "Apoderado eliminado de form logica";
 		Boolean respuesta = true;
 		try {
-			
+
 			service.elliminarApoderado(obApoderado);
 		}
-		
+
 		catch (Exception ex) {
-			
+
 			mensaje = "Apoderado no eliminado";
 			respuesta = false;
 		}
-		
+
 		return new ResultadoResponse(respuesta, mensaje);
 	}
 
