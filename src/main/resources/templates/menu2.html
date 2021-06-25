@@ -61,27 +61,28 @@
 	<div  th:fragment="barra" class="wrapper fixed-left">
 		<nav id="sidebar">
 			<div class="sidebar-header">
-				<img alt="" src="img/golondrina.png" class="profile_image">
+				<img alt="" th:src="@{'/uploadsFotos/'+${listUserRole[0][4]}}" class="profile_image">
 				<h3>
 					<i class="fas fa-user"></i> <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
 				</h3>
 			</div>
-
-			<ul class="list-unstyled components" >
+		
+			<ul  class="list-unstyled components" >
 				<li><a th:href="@{/menu2}"><i class="fas fa-home" id="icon"></i>Home</a></li>
-				<li><a th:href="@{/Matriculas/frmMatricula}"><i
+				<li  th:if="${role =='Admin'}" ><a th:href="@{/Matriculas/frmMatricula}"><i
 						class="fas fa-clipboard" id="icon"></i>Matricula</a></li>
-				<li><a href=""><i class="fas fa-user-cog" id="icon"></i>Settings</a></li>
-				<li><a th:href="@{/Usuario/frmUsuario}"><i class="fas fa-layer-group" id="icon"></i>Usuarios</a></li>
-								<li><a th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>
-				<li><a th:href="@{/Nivel/frmNivel}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Nivel</a></li>
-				<li><a th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
-				<li><a th:href="@{/Seccion/ListaSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
-				<li><a th:href="@{/Persona/frmlistarPersona}"><i class="fas fa-check" id="icons"></i>Persona</a></li>
-				<li><a th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
-				<li><a th:href="@{/Notas/frmNotas}"><i class="fas fa-money-check-alt" id="icon"></i>Notas</a></li>
-				<li><a th:href="@{/Matriculas/frmMatricula}"><i class="fas fa-check" id="icons"></i>Matriculas</a></li>
-				<li><a th:href="@{/Apoderado/frmApoderado}"><i class="fas fa-check" id="icons"></i>Apoderado</a></li>
+				
+				<li th:if="${role =='Admin'}" ><a href=""><i class="fas fa-user-cog" id="icon"></i>Settings</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Usuario/frmUsuario}"><i class="fas fa-layer-group" id="icon"></i>Usuarios</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Nivel/frmNivel}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Nivel</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Seccion/ListaSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Persona/frmlistarPersona}"><i class="fas fa-check" id="icons"></i>Persona</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Notas/frmNotas}"><i class="fas fa-money-check-alt" id="icon"></i>Notas</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Matriculas/frmMatricula}"><i class="fas fa-check" id="icons"></i>Matriculas</a></li>
+				<li th:if="${role =='Admin'}" ><a th:href="@{/Apoderado/frmApoderado}"><i class="fas fa-check" id="icons"></i>Apoderado</a></li>
 
 			</ul>
 		</nav>
@@ -92,7 +93,7 @@
 			<div class="principal1">
 			
 				<div class="profil-box-header">
-					<img  src="/img/golondrina.png" alt="alumno" class="perfil">
+					<img  th:src="@{'/uploadsFotos/'+${listUserRole[0][4]}}" alt="alumno" class="perfil">
 				<div class="profil-vertical">
 					<h2>
 						Nombre del Estudiante <br>
@@ -104,20 +105,20 @@
 				</div>
 				</div>
 				<div class="codigo-box" >
-					<i class="fa fa-user fa-lg"></i>Código  <span>U09999</span>
+					<i class="fa fa-user fa-lg"></i>Código  <span th:text="${listUserRole[0][0]}">U09999</span>
 				</div>
 			</div>
 			
 			<div class="principal2">
 				<div class="historial-academico">
 			
-					<a th:href="@{/Calificaciones/frmcalificaciones}" class="logo-academico"><i class="fa fa-bar-chart-o emerald-bg"></i></a>
+					<a th:href="@{/Calificaciones/frmcalificaciones}" class="logo-academico"><i class="fa fa-bar-chart-o emerald-bg" style="margin-top: 5px"></i></a>
 					<span> <a th:href="@{/Calificaciones/frmcalificaciones}">Historial academico de Calificaciones</a></span>
-					<p>### ##### ########## <br> ###
-					 	#### #### ##########
+					<p>Matrículas Registradas y &nbsp;&nbsp;Resumen de Cursos Aprobados	 <br> 
+					 	
 					 </p>
 					<ul>
-						<li>#####</li>
+						<li>Calificación y Sección</li>
 						<li>#####</li>
 						<li>#####</li>
 					</ul>

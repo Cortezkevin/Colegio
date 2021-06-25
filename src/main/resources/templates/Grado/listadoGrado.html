@@ -4,11 +4,20 @@
 </head >
 <script type="text/javascript"
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
+<link rel="stylesheet" type="text/css" href="/../css/css/listGrados.css">
+
+<style>
+	#content{
+	/*visibility: hidden;*/
+	display: none;
+	
+}
+</style>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<div class="container-fluid cont" id="colorBack">
-		<div class="row">
-			<div class="col-lg-6 col-md8 xs-12" id="colorBack">
+		<div class="row" style="    margin-left: -80px;">
+			<div class="col-lg-4 col-md8 xs-12" id="colorBack">
 				<h2 align="center">Registro de Grados</h2>
 				<form th:action="@{/Grado/ListaGrado}"
 					th:object="${gradoForm}" method="post">
@@ -21,7 +30,7 @@
 					<button type="submit" class="btn btn-primary">Guardar</button>
 				</form>
 			</div>
-			<div class="col-lg-6 col-md8 xs-12" id="colorBack">
+			<div class="col-lg-8 col-md8 xs-12" id="colorBack">
 					<h2 align="center">Listar Grados</h2>
 				<table id="tblgrado" class="table table-striped table-bordered table-hover ">
 					<thead class="thead-dark">
@@ -154,7 +163,7 @@
 	
 
 
-	<a th:href="@{/Grado/RegistrarGrado}">Registrar Grado</a>
+	
 	
 	
 	<div>

@@ -26,4 +26,7 @@ public interface UserRoleRepository extends JpaRepository<User_role, String>{
 	void actualizarUserRole(@Param("pidusuario")String idusuario,
 			@Param("pidcargo")String idcargo);
 
+	
+	
+	
 }

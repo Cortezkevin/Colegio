@@ -1,5 +1,6 @@
 package golondrinas.com.service;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -34,5 +35,7 @@ public class UsuarioService{
 	public void actualizarUsuario(Usuario u) {
 		repository.ActualizarUsuario(u.getIdusuario(),u.getNombreusuario(),u.getContrasena(),u.getEstado(),u.getIdcargo(),u.getIdpersona(),u.getFoto());
 	}
-	
+	public Collection<Object[]> buscarUserCargo(String nomUsuario, String cargo) {
+		return (Collection<Object[]>) repository.buscarUserCargo(nomUsuario, cargo);
+		}
 }

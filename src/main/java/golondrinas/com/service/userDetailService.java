@@ -36,23 +36,14 @@ public class userDetailService implements UserDetailsService{
 			new UsernameNotFoundException("User does not exist!");
 		}else if(appUser.getEstado().equals("Activo") || appUser.getEstado().equals("Ocupado")) {
 			Set<GrantedAuthority> grantList=new HashSet<GrantedAuthority>();
-			//Cargo aea= cargorepo.findAll();
-		
-			//System.out.println(aea);
-			//Set <Cargo> aea=(Set<Cargo>) cargorepo.findAll();
-			//System.out.println(aea);
 			for(Cargo cargo: appUser.getRoles()) {
 				System.out.println(cargo);
 				GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(cargo.getNombre());
-				
-				//System.out.println(grantList+"***********************************");
 	            grantList.add(grantedAuthority);
 	    
 			}
 			 user=(UserDetails)new User(username,appUser.getContrasena(),grantList);
 		}
-		
-		
 		
 		return user;
 	}

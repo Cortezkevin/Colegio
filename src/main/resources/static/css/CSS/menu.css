@@ -182,6 +182,7 @@ a[data-toggle="collapse"] {
 .profile_image {
 	width: 100px;
 	height: 100px;
+	border: 8px ridge white;
 	border-radius: 100px;
 	margin-bottom: 10px;
 	display: block;
@@ -206,12 +207,12 @@ a[data-toggle="collapse"] {
     
 }
 .principal1{
-	border: 1px  solid blue;
+	
 	padding: 4px;
     
 }
 .principal2{
-	border: 1px  solid green;	
+	
 	padding: 4px;
    
 }

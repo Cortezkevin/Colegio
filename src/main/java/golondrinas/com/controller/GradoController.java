@@ -3,6 +3,8 @@ package golondrinas.com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Grado;
+import golondrinas.com.model.Usuario;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.GradoService;
+import golondrinas.com.service.UsuarioService;
 
 @Controller
 @RequestMapping("/Grado")
@@ -22,20 +26,24 @@ public class GradoController {
 
 	@Autowired
 	private GradoService service;
-
+	
+	@Autowired
+	private UsuarioService UserService;
+	
 	@GetMapping("/ListaGrado")
-	public String ListaGrado(Model model) {
-		// List<Grado> lst= service.listarGrado();
+	public String ListaGrado(Model model, Usuario objusuario,Authentication auth) {
+		String cargo="";
+		String UserName=auth.getName();
+		for(GrantedAuthority rol:auth.getAuthorities()) {
+			cargo=rol.getAuthority();
+		}
 		model.addAttribute("lstgrado", service.listarGrado());
 		model.addAttribute("gradoForm", new Grado());
+		
+		model.addAttribute("role",cargo);
+		model.addAttribute("listUserRole", UserService.buscarUserCargo(UserName, cargo));
 		return "Grado/listadoGrado";
 	}
-
-	/*
-	 * @GetMapping("/RegistrarGrado") public String RegistrarGrado(Model model) {
-	 * model.addAttribute("gradoForm", new Grado()); return "Grado/registroGrado"; }
-	 */
-
 	@PostMapping("/ListaGrado")
 	public String RegistrarGrado(@ModelAttribute("gradoForm") Grado gradoForm) {
 		if (service.validarNombre(gradoForm) == true) {

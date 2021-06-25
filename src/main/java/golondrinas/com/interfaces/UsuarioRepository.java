@@ -1,5 +1,6 @@
 package golondrinas.com.interfaces;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -44,4 +45,10 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 	@Query(value="{call sp_MantEliminarUsuario(:idusuario)}",
 			nativeQuery = true)
 	void EliminarUsuario(@Param("idusuario") String idUsuario);
-}
+	
+	@Transactional
+	@Modifying
+	@Query(value="{call sp_BuscarUsuarioRole(:nomusuario,:roles)}", nativeQuery = true)
+	Collection<Object[]> buscarUserCargo(@Param("nomusuario")String nomusuario,
+			@Param("roles")String roles);
+} 

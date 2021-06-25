@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.jsoup.select.Evaluator.IsEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,13 +54,22 @@ public class UsuarioController {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
+	
 
 	@GetMapping("/frmUsuario")
-	public String listar(Model model) {
+	public String listar(Model model,Authentication auth, Usuario objusuario) {
 		model.addAttribute("usuariolst", service.listarUsuarios());
+		System.out.println(service.listarSelectUsuario());
 		model.addAttribute("lstCargos",cargoservice.listarCargos());
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		model.addAttribute("usuarioForm", new Usuario());
+		String cargo="";
+		String UserName=auth.getName();
+		for(GrantedAuthority rol:auth.getAuthorities()) {
+			cargo=rol.getAuthority();
+		}
+		model.addAttribute("role",cargo);
+		model.addAttribute("listUserRole", service.buscarUserCargo(UserName, cargo));
 		return "Usuario/frmUsuario";
 	}
 
@@ -69,30 +80,7 @@ public class UsuarioController {
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		return "Usuario/registrarUsuario";
 	}
-	/*
-	@PostMapping("/registrarUsuario")
-	public String registrarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
-		//objUsuario.setFoto(picture.getBytes());
-		if(!foto.isEmpty()) {
-			
-			StringBuilder builder=new StringBuilder();
-			builder.append(System.getProperty("user.home"));
-			builder.append(File.separator);
-			builder.append("uploadsFotos");
-			builder.append(File.separator);
-			builder.append(foto.getOriginalFilename());
-			
-			byte[] bytes= foto.getBytes();
-			Path path=Paths.get(builder.toString());
-			Files.write(path,bytes);
-			objUsuario.setFoto(foto.getOriginalFilename());
-		}
-		objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
-		service.registrarUsuario(objUsuario);
-		UserRole.registrarUserRole(objUsuario.getIdcargo());
-		System.out.println("**************"+objUsuario.getIdcargo());
-		return "redirect:/Usuario/frmUsuario";
-	}*/
+	
 	
 	@GetMapping("/actualizarUsuario")
 	public String actualizarUsuario(Model model) {
@@ -103,7 +91,6 @@ public class UsuarioController {
 	}
 	@PostMapping("/actualizarUsuario")
 	public String actualizarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
-		//objUsuario.setFoto(picture.getBytes());
 		
 		if(!foto.isEmpty()) {
 			
@@ -121,6 +108,7 @@ public class UsuarioController {
 			objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
 		}
 		if(objUsuario.getIdusuario().equals("0")) {
+			
 			service.registrarUsuario(objUsuario);
 		}else {
 			service.actualizarUsuario(objUsuario);
@@ -133,36 +121,11 @@ public class UsuarioController {
 		System.out.println("**************"+objUsuario.getIdpersona());
 		System.out.println("**************"+objUsuario.getIdusuario());
 		
-		//UserRole.registrarUserRole(objUsuario.getIdcargo());
+		UserRole.registrarUserRole(objUsuario.getIdcargo());
 		
 		return "redirect:/Usuario/frmUsuario";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	@PostMapping("/actualizarUsuario")
-	@ResponseBody
-	public ResultadoResponse actualizarUsuario(@RequestBody Usuario objUsuario,@RequestPart("picture")MultipartFile foto )throws IOException {
-		String mensaje="Usuario Actualizado correctamente";
-		Boolean respuesta=true;
-		
-		try {
-			service.actualizarUsuario(objUsuario);
-		} catch (Exception ex) {
-			mensaje ="Error al actualizar";
-			respuesta=false;
-		}
-		
-		
-		return new ResultadoResponse(respuesta,mensaje);
-	}
-	*/
 	
 	@PostMapping("eliminarUsuario")
 	@ResponseBody
@@ -177,83 +140,6 @@ public class UsuarioController {
 		}
 		return new ResultadoResponse(respuesta,mensaje);
 	}
-	
-	
-	
-	
-	
-	
-	/*@PostMapping("/eliminarUsuario")
-	@ResponseBody
-	public ResultadoResponse eliminarUsuario1(@RequestBody Usuario objUsuario) {
-		String mensaje = "Usuario eliminado correctamente";
-		Boolean respuesta = true;
-		try {
-			service.eliminarUsuario(objUsuario);
-		} catch (Exception ex) {
-			mensaje = "Usuario no eliminado";
-			respuesta = false;
-		}
-		return new ResultadoResponse(respuesta, mensaje);
-	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*@PostMapping("/registrarUsuario")
-	@ResponseBody
-	public ResultadoResponse registrarUsuario(@RequestBody("picture")MultipartFile foto,Usuario objUsuario) {
-		
-		String mensaje = "Usuario registrado correctamente";
-		Boolean respuesta = true;
-		try {
-			StringBuilder builder=new StringBuilder();
-			builder.append(System.getProperty("user.home"));
-			builder.append(File.separator);
-			builder.append("uploadsFotos");
-			builder.append(File.separator);
-			builder.append(foto.getOriginalFilename());
-			
-			byte[] bytes= foto.getBytes();
-			Path path=Paths.get(builder.toString());
-			Files.write(path,bytes);
-			objUsuario.setFoto(foto.getOriginalFilename());
-			
-			service.registrarUsuario(objUsuario);
-		}catch(Exception ex){
-			mensaje = "Usuario no registrado";
-			respuesta = false;
-		}
-		return new ResultadoResponse(respuesta, mensaje);
-	}*/
 
 	@GetMapping("/listarUsuarios")
 	@ResponseBody
@@ -261,32 +147,4 @@ public class UsuarioController {
 		return service.listarUsuarios();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*@DeleteMapping("/eliminarUsuario")
-	public ResultadoResponse eliminarUsuario(@RequestBody Usuario objUsuario) {
-		String mensaje = "Usuario eliminado correctamente";
-		Boolean respuesta = true;
-		try {
-			service.eliminarUsuario(objUsuario);
-		}catch(Exception ex){
-			mensaje = "Usuario no eliminado";
-			respuesta = false;
-		}
-		return new ResultadoResponse(respuesta, mensaje);
-	}
-	
-	@GetMapping("/listarDetalleUsuario")
-	@ResponseBody
-	public List<DetalleUsuario> listarDetalleUsuario(@RequestParam("idusuario") String idusuario){
-		return detalleservice.listarDetalleUsuario(idusuario);
-	}
-*/
 }
