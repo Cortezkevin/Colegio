@@ -62,6 +62,7 @@ public class HomeController {
 		return "Calificaciones/frmcalificaciones";
 	}
 	@GetMapping("/Perfil/perfilEstudiante")
+<<<<<<< HEAD
 	public String perfilEstudiante(Authentication auth, Model model, Usuario objusuario) {
 		String cargo="";
 		String UserName=auth.getName();
@@ -81,6 +82,13 @@ public class HomeController {
 		}
 		model.addAttribute("role",cargo);
 		model.addAttribute("listUserRole", UserService.buscarUserCargo(UserName, cargo));
+=======
+	public String perfilEstudiante() {
+		return "/Perfil/miPerfil";
+	}
+	@GetMapping("/Perfil/cambioContraseña")
+	public String cambioContraseña() {
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 		return "/Perfil/cambioContraseña";
 	}
 }

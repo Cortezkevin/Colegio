@@ -9,9 +9,9 @@ import golondrinas.com.model.NotaBimestre;
 
 @Service
 public class NotaBimestreService {
-
 	@Autowired
 	private NotaBimestreRepository repository;
+<<<<<<< HEAD
 
 
 	public void RegistrarNotaBimestral(NotaBimestre n) {
@@ -24,6 +24,19 @@ public class NotaBimestreService {
 				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());
 	}
 	
+=======
+	
+	public void RegistrarNotaBimestral(NotaBimestre n) {
+		repository.RegistrarNotaBimestral(n.getIdalumno(), n.getIdcurso(), n.getNota_bimestre1(), n.getNota_bimestre2(),
+				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());
+	}
+	
+	public void ActualizarNotaBimestral(NotaBimestre n) {
+		repository.ActualizarNotaBimestral(n.getIdnotabimestre(), n.getIdalumno(), n.getIdcurso(), n.getNota_bimestre1(), n.getNota_bimestre2(),
+				n.getNota_bimestre3(), n.getNota_bimestre4(), n.getPromedio_anual());
+	}
+	
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 	public boolean validarCurso(NotaBimestre n) {
 		String curso = repository.CursoXBimestre(n.getIdalumno(), n.getIdcurso());
 		if(curso  == null) {

@@ -36,7 +36,15 @@
 						<tr>
 							<th scope="col">Id</th>
 							<th scope="col">Usuario</th>
+<<<<<<< HEAD
 							<th width="50px" scope="col">Contraseña</th>
+=======
+<<<<<<< HEAD
+							<th scope="col">ContraseÃ±a</th>
+=======
+							<th width="50px" scope="col">Contraseña</th>
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 							<th scope="col">Id Cargo</th>
 							<th scope="col">Id Persona</th>
 							<th scope="col">Estado</th>
@@ -69,12 +77,29 @@
 									th:data-estadousuario="${usuario.estado}"
 									th:data-codcargo="${usuario.idcargo}"
 									th:data-codpersona="${usuario.idpersona}"
+<<<<<<< HEAD
 									th:data-foto="${usuario.foto}"><i class="fas fa-user-edit"></i>Actualizar</button>
+=======
+<<<<<<< HEAD
+									th:data-estado="${usuario.estado}"
+									th:data-foto="${usuario.foto}">Actualizar</button>
+=======
+									th:data-foto="${usuario.foto}"><i class="fas fa-user-edit"></i>Actualizar</button>
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 							</td>
 							<td>
 								<button type="button" class="btn btn-danger btneliminarusuario"
 									th:data-codusuario="${usuario.idusuario}"
+<<<<<<< HEAD
 									th:data-nomusuario="${usuario.nombreusuario}"><i class="fas fa-user-times"></i>Eliminar</button>
+=======
+<<<<<<< HEAD
+									th:data-nomusuario="${usuario.nombreusuario}">Eliminar</button>
+=======
+									th:data-nomusuario="${usuario.nombreusuario}"><i class="fas fa-user-times"></i>Eliminar</button>
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 							</td>
 						</tr>
 					</tbody>
@@ -82,7 +107,15 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+
+
+=======
 	
+<<<<<<< HEAD
+=======
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 	<div th:replace="menu2::barra"></div>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -120,6 +153,18 @@
 								id="errorcontraseña" class="text-danger"></span>
 						</div>
 						<div class="form-group">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+							<label for="txtestado">Estado</label> <input type="text"
+								class="form-control" id="txtestado" maxlength="35"> <span
+								id="errorestado" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="cbocargos">Seleccione cargo</label> <select
+								class="form-control" id="cbocargos">
+=======
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 							<label for="txtcontraseña">Estado</label> <input
 								th:field="*{estado}" type="text" class="form-control"
 								id="txtestado" maxlength="35"> <span id="errorestado"
@@ -128,6 +173,10 @@
 						<div class="form-group">
 							<label for="cbocargos">Seleccione cargo</label> <select
 								class="form-control" id="cbocargos" th:field="*{idcargo}">
+<<<<<<< HEAD
+=======
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 
 								<option value="0">Seleccione</option>
 								<option th:each="cargo :${lstCargos}" th:text=${cargo.nombre}
@@ -136,16 +185,29 @@
 						</div>
 						<div class="form-group">
 							<label for="cbopersonas">Seleccione Persona</label> <select
+<<<<<<< HEAD
 								class="form-control" id="cbopersonas" th:field="*{idpersona}">
+=======
+<<<<<<< HEAD
+								class="form-control" id="cbopersonas">
+=======
+								class="form-control" id="cbopersonas" th:field="*{idpersona}">
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 								<option value="0">Seleccione</option>
 								<option th:each="persona :${lstPersonas}"
 									th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
 							</select> <span id="errorpersona" class="text-danger"></span>
 						</div>
 						<div class="form-group" id="tucotuco">
+<<<<<<< HEAD
+							<label for="txtfoto">ingrese una foto</label> <img
+								id="imgpreview" src="" width="50" height="50" border="1">
+=======
 							<label for="txtfoto">ingrese una foto</label>
 							<!--  -->
 							<img id="imgpreview" src="" width="50" height="50" border="1">
+>>>>>>> origin/fernando
 							<!--  <img id="toro" th:src="@{'/uploadsFotos/'+${usuario.foto}}"   height="70" width="70"/>-->
 							<input type="file" name="picture" class="form-control"
 								id="txtfoto" accept="image/*"> <span
@@ -171,12 +233,22 @@
 							})();
 						</script>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+						<input type="hidden" id="hddidusuario" value="0">
+=======
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 						<input type="hidden" th:field="*{idusuario}"  id="hddidusuario" value="0">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Cerrar</button>
 							<button type="submit" class="btn btn-primary">Guardar</button>
 						</div>
+<<<<<<< HEAD
+=======
+>>>>>>> origin/fernando
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 					</form>
 				</div>
 
@@ -260,9 +332,7 @@
 		<link rel="stylesheet"
 			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>
 
 	</div>

@@ -80,6 +80,7 @@ public class UsuarioController {
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		return "Usuario/registrarUsuario";
 	}
+<<<<<<< HEAD
 	
 	
 	@GetMapping("/actualizarUsuario")
@@ -91,6 +92,51 @@ public class UsuarioController {
 	}
 	@PostMapping("/actualizarUsuario")
 	public String actualizarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
+		
+=======
+	/*
+	@PostMapping("/registrarUsuario")
+	public String registrarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
+		//objUsuario.setFoto(picture.getBytes());
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
+		if(!foto.isEmpty()) {
+			
+			StringBuilder builder=new StringBuilder();
+			builder.append(System.getProperty("user.home"));
+			builder.append(File.separator);
+			builder.append("uploadsFotos");
+			builder.append(File.separator);
+			builder.append(foto.getOriginalFilename());
+			
+			byte[] bytes= foto.getBytes();
+			Path path=Paths.get(builder.toString());
+			Files.write(path,bytes);
+			objUsuario.setFoto(foto.getOriginalFilename());
+			objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
+		}
+<<<<<<< HEAD
+		if(objUsuario.getIdusuario().equals("0")) {
+			
+			service.registrarUsuario(objUsuario);
+		}else {
+=======
+		objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
+		service.registrarUsuario(objUsuario);
+		UserRole.registrarUserRole(objUsuario.getIdcargo());
+		System.out.println("**************"+objUsuario.getIdcargo());
+		return "redirect:/Usuario/frmUsuario";
+	}*/
+	
+	@GetMapping("/actualizarUsuario")
+	public String actualizarUsuario(Model model) {
+		model.addAttribute("usuarioForm", new Usuario());
+		model.addAttribute("lstCargos",cargoservice.listarCargos());
+		model.addAttribute("lstPersonas",personaservice.listarPersona());
+		return "Usuario/actualizarUsuario";
+	}
+	@PostMapping("/actualizarUsuario")
+	public String actualizarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
+		//objUsuario.setFoto(picture.getBytes());
 		
 		if(!foto.isEmpty()) {
 			
@@ -108,7 +154,6 @@ public class UsuarioController {
 			objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
 		}
 		if(objUsuario.getIdusuario().equals("0")) {
-			
 			service.registrarUsuario(objUsuario);
 		}else {
 			service.actualizarUsuario(objUsuario);
@@ -121,11 +166,41 @@ public class UsuarioController {
 		System.out.println("**************"+objUsuario.getIdpersona());
 		System.out.println("**************"+objUsuario.getIdusuario());
 		
-		UserRole.registrarUserRole(objUsuario.getIdcargo());
+		//UserRole.registrarUserRole(objUsuario.getIdcargo());
 		
 		return "redirect:/Usuario/frmUsuario";
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	@PostMapping("/actualizarUsuario")
+	@ResponseBody
+	public ResultadoResponse actualizarUsuario(@RequestBody Usuario objUsuario,@RequestPart("picture")MultipartFile foto )throws IOException {
+		String mensaje="Usuario Actualizado correctamente";
+		Boolean respuesta=true;
+		
+		try {
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
+			service.actualizarUsuario(objUsuario);
+		}
+		
+		
+<<<<<<< HEAD
+		System.out.println("**************"+objUsuario.getIdcargo());
+		System.out.println("**************"+objUsuario.getEstado());
+		System.out.println("**************"+objUsuario.getFoto());
+		System.out.println("**************"+objUsuario.getIdpersona());
+		System.out.println("**************"+objUsuario.getIdusuario());
+=======
+		return new ResultadoResponse(respuesta,mensaje);
+	}
+	*/
 	
 	@PostMapping("eliminarUsuario")
 	@ResponseBody
@@ -140,8 +215,106 @@ public class UsuarioController {
 		}
 		return new ResultadoResponse(respuesta,mensaje);
 	}
+	
+	
+	
+	
+	
+	
+	/*@PostMapping("/eliminarUsuario")
+	@ResponseBody
+	public ResultadoResponse eliminarUsuario1(@RequestBody Usuario objUsuario) {
+		String mensaje = "Usuario eliminado correctamente";
+		Boolean respuesta = true;
+		try {
+			service.eliminarUsuario(objUsuario);
+		} catch (Exception ex) {
+			mensaje = "Usuario no eliminado";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
+	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@PostMapping("/registrarUsuario")
+	@ResponseBody
+	public ResultadoResponse registrarUsuario(@RequestBody("picture")MultipartFile foto,Usuario objUsuario) {
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
+		
+		UserRole.registrarUserRole(objUsuario.getIdcargo());
+		
+		return "redirect:/Usuario/frmUsuario";
+	}
+	
+	
+<<<<<<< HEAD
+	@PostMapping("eliminarUsuario")
+	@ResponseBody
+=======
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@DeleteMapping("/eliminarUsuario")
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
+	public ResultadoResponse eliminarUsuario(@RequestBody Usuario objUsuario) {
+		String mensaje = "Usuario eliminado correctamente";
+		Boolean respuesta = true;
+		try {
+			service.eliminarUsuario(objUsuario);
+<<<<<<< HEAD
+		}catch (Exception ex) {
+			mensaje= "Usuario no eliminado";
+			respuesta=false;
+		}
+		return new ResultadoResponse(respuesta,mensaje);
+	}
 
 	@GetMapping("/listarUsuarios")
+=======
+		}catch(Exception ex){
+			mensaje = "Usuario no eliminado";
+			respuesta = false;
+		}
+		return new ResultadoResponse(respuesta, mensaje);
+	}
+	
+	@GetMapping("/listarDetalleUsuario")
+>>>>>>> e802e48cbd5ea1283d7a5662c72fd04f9ff8e418
 	@ResponseBody
 	public List<Usuario> listarUsuarios() {	
 		return service.listarUsuarios();

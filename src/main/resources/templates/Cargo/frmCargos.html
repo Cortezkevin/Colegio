@@ -3,7 +3,7 @@
 <head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
-	
+
 <script type="text/javascript"
 	th:src="@{/script/jsweb/cargo/frmCargos.js}"></script>
 	<style>
@@ -19,11 +19,13 @@
 		<div class="card-header badge-danger">LISTADO DE CARGOS</div>
 		<div class="card-body">
 
-			<button type="button" id="btnagregarcargo" class="btn btn-primary">Registrar Cargo</button>
+			<button type="button" id="btnagregarcargo" class="btn btn-primary">Registrar
+				Cargo</button>
 			<hr />
 			<div id="mensaje"></div>
 
-			<table id="tblcargo" class="table table-striped table-bordered table-hover ">
+			<table id="tblcargo"
+				class="table table-striped table-bordered table-hover ">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
@@ -71,8 +73,9 @@
 					<form>
 						<div class="form-group">
 							<label for="txtnomcargo">Ingrese el nombre del Cargo:</label> <input
-								 type="text" class="form-control" id="txtnomcargo" maxlength="35"  onkeypress="return validar(event)">
-							<span id="errornomcargo" class="text-danger"></span>
+								type="text" class="form-control" id="txtnomcargo" maxlength="35"
+								onkeypress="return validar(event)"> <span
+								id="errornomcargo" class="text-danger"></span>
 						</div>
 						<input type="hidden" id="hddidcargo" value="0">
 					</form>
@@ -86,8 +89,8 @@
 			</div>
 		</div>
 	</div>
-	
-		<!-- Modal Eliminar Grado -->
+
+	<!-- Modal Eliminar Grado -->
 	<div class="modal fade" id="modaleliminarcargo" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -100,24 +103,24 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<label id="mensajeeliminar"></label>
-					<input type="hidden" id="hddidcargoeliminar" value="0">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidcargoeliminar" value="0">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>
-					<button type="button" id="btneliminarcargo" 
-					class="btn btn-danger">Eliminar</button>
+					<button type="button" id="btneliminarcargo" class="btn btn-danger">Eliminar</button>
 				</div>
 			</div>
 		</div>
 	</div>
-<div th:replace="menu2::barra"></div>
+	<div th:replace="menu2::barra"></div>
 	<div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="../css/icons/script.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<script src="../css/icons/script.js"></script>				
+		<script src="../css/icons/script.js"></script>
 	</div>
 </body>
 </html>
