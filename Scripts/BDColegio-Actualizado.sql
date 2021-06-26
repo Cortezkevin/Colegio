@@ -167,6 +167,7 @@ foreign key (idMatricula) references Matricula(idMatricula)
  create table Bimestre(               ##
  idBimestre char(4) not null,      ##
 nombre char(20) null,                 ##
+estado char(20) null,
 primary key(idBimestre)
  );
 

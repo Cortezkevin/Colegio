@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import golondrinas.com.model.Profesor;
 
-
-
 @Repository
 public interface ProfesorRepository extends JpaRepository<Profesor, String>{
 
@@ -35,4 +33,7 @@ public interface ProfesorRepository extends JpaRepository<Profesor, String>{
 	@Modifying
 	@Query(value = "{call sp_MantEliminarProfesor(:idprofesor)}", nativeQuery = true)
 	void EliminarProfesor(@Param("idprofesor") String idprofesor);
+	
+	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
+	String listarEstado(@Param("idpersona") String idpersona);	
 }

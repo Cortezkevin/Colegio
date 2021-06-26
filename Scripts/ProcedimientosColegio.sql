@@ -679,3 +679,31 @@ select idPersona from alumno where idPersona = _idpersona;
 
 CREATE  PROCEDURE sp_MantListarNombreUsuario(In _usuario varchar(45))
 select nombreUsuario from matricula where nombreUsuario = _usuario;
+
+
+CREATE PROCEDURE sp_ManListarBimestre()
+SELECT * from bimestre ;
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarBimestre(IN nombre char(20))
+BEGIN
+	SET @idbimestre = (SELECT CONCAT('B',RIGHT(CONCAT('00',RIGHT(MAX(idBimestre),3) + 1),3)) FROM bimestre);	
+	INSERT INTO bimestre (idBimestre, nombre, estado) VALUES (@idbimestre,nombre,'Activo');
+END$$
+ DELIMITER ;
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarBimestre(IN _idbimestre CHAR(4), In _nombre char(20))
+BEGIN
+	UPDATE bimestre SET nombre = _nombre WHERE idBimestre= _idbimestre;
+END$$
+ DELIMITER ;
+
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantEliminarBimestre(IN _idbimestre CHAR(4))
+BEGIN
+	UPDATE bimestre SET estado = "Eliminado" WHERE idBimestre = _idbimestre; 
+END$$
+ DELIMITER ;
+

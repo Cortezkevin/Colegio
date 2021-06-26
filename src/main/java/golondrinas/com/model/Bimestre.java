@@ -7,13 +7,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bimestre")
-public class Bimestres {
+public class Bimestre {
 
 	@Id
 	private String idbimestre;
 	
 	@Column(name = "nombre")
 	private String nombre;
+	
+	@Column(name = "estado")
+	private String estado;
 
 	public String getIdbimestre() {
 		return idbimestre;
@@ -21,6 +24,10 @@ public class Bimestres {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getEstado() {
+		return estado;
 	}
 
 	public void setIdbimestre(String idbimestre) {
@@ -31,16 +38,22 @@ public class Bimestres {
 		this.nombre = nombre;
 	}
 
-	public Bimestres(String idbimestre, String nombre) {
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Bimestre(String idbimestre, String nombre, String estado) {
 		super();
 		this.idbimestre = idbimestre;
 		this.nombre = nombre;
+		this.estado = estado;
 	}
 
-	public Bimestres() {
+	public Bimestre() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	
 }

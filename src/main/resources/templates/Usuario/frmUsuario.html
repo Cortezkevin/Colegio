@@ -36,16 +36,16 @@
 						<tr>
 							<th scope="col">Id</th>
 							<th scope="col">Usuario</th>
-<<<<<<< HEAD
+
 							<!--<th scope="col">ContraseÃ±a</th>  -->
-=======
+
 							<th width="50px" scope="col">Contraseña</th>
->>>>>>> origin/fernando
+
 							<th scope="col">Id Cargo</th>
 							<th scope="col">Id Persona</th>
 							<th scope="col">Estado</th>
 							<th scope="col">Foto</th>
-							<th scope="col">Detalle</th>
+							<!-- <th scope="col">Detalle</th> -->
 							<th scope="col">Actualizar</th>
 							<th scope="col">Eliminar</th>
 						</tr>
@@ -61,10 +61,10 @@
 							<td><img id="toro"
 								th:src="@{'/uploadsFotos/'+${usuario.foto}}" height="120"
 								width="120" /></td>
-							<td>
+							<!-- <td>
 								<button type="button" class="btn btn-success btnverdetalle"
 									th:data-codusuario="${usuario.idusuario}">Ver Detalle</button>
-							</td>
+							</td> -->
 							<td>
 								<button type="button" class="btn btn-info btnactualizarusuario"
 									th:data-codusuario="${usuario.idusuario}"
@@ -73,21 +73,21 @@
 									th:data-estadousuario="${usuario.estado}"
 									th:data-codcargo="${usuario.idcargo}"
 									th:data-codpersona="${usuario.idpersona}"
-<<<<<<< HEAD
+
 									th:data-estado="${usuario.estado}"
 									th:data-foto="${usuario.foto}">Actualizar</button>
-=======
+
 									th:data-foto="${usuario.foto}"><i class="fas fa-user-edit"></i>Actualizar</button>
->>>>>>> origin/fernando
+
 							</td>
 							<td>
 								<button type="button" class="btn btn-danger btneliminarusuario"
 									th:data-codusuario="${usuario.idusuario}"
-<<<<<<< HEAD
+
 									th:data-nomusuario="${usuario.nombreusuario}">Eliminar</button>
-=======
+
 									th:data-nomusuario="${usuario.nombreusuario}"><i class="fas fa-user-times"></i>Eliminar</button>
->>>>>>> origin/fernando
+
 							</td>
 						</tr>
 					</tbody>
@@ -95,12 +95,10 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 
 
-=======
-	
->>>>>>> origin/fernando
+
+
 	<div th:replace="menu2::barra"></div>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -138,7 +136,7 @@
 								id="errorcontraseña" class="text-danger"></span>
 						</div>
 						<div class="form-group">
-<<<<<<< HEAD
+
 							<label for="txtestado">Estado</label> <input type="text"
 								class="form-control" id="txtestado" maxlength="35"> <span
 								id="errorestado" class="text-danger"></span>
@@ -146,7 +144,7 @@
 						<div class="form-group">
 							<label for="cbocargos">Seleccione cargo</label> <select
 								class="form-control" id="cbocargos">
-=======
+
 							<label for="txtcontraseña">Estado</label> <input
 								th:field="*{estado}" type="text" class="form-control"
 								id="txtestado" maxlength="35"> <span id="errorestado"
@@ -155,7 +153,7 @@
 						<div class="form-group">
 							<label for="cbocargos">Seleccione cargo</label> <select
 								class="form-control" id="cbocargos" th:field="*{idcargo}">
->>>>>>> origin/fernando
+
 
 								<option value="0">Seleccione</option>
 								<option th:each="cargo :${lstCargos}" th:text=${cargo.nombre}
@@ -164,25 +162,25 @@
 						</div>
 						<div class="form-group">
 							<label for="cbopersonas">Seleccione Persona</label> <select
-<<<<<<< HEAD
+
 								class="form-control" id="cbopersonas">
-=======
+
 								class="form-control" id="cbopersonas" th:field="*{idpersona}">
->>>>>>> origin/fernando
+
 								<option value="0">Seleccione</option>
 								<option th:each="persona :${lstPersonas}"
 									th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
 							</select> <span id="errorpersona" class="text-danger"></span>
 						</div>
 						<div class="form-group" id="tucotuco">
-<<<<<<< HEAD
+
 							<label for="txtfoto">ingrese una foto</label> <img
 								id="imgpreview" src="" width="50" height="50" border="1">
-=======
+
 							<label for="txtfoto">ingrese una foto</label>
 							<!--  -->
 							<img id="imgpreview" src="" width="50" height="50" border="1">
->>>>>>> origin/fernando
+
 							<!--  <img id="toro" th:src="@{'/uploadsFotos/'+${usuario.foto}}"   height="70" width="70"/>-->
 							<input type="file" name="picture" class="form-control"
 								id="txtfoto" accept="image/*"> <span
@@ -208,16 +206,16 @@
 							})();
 						</script>
 
-<<<<<<< HEAD
+
 						<input type="hidden" id="hddidusuario" value="0">
-=======
+
 						<input type="hidden" th:field="*{idusuario}"  id="hddidusuario" value="0">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Cerrar</button>
 							<button type="submit" class="btn btn-primary">Guardar</button>
 						</div>
->>>>>>> origin/fernando
+
 					</form>
 				</div>
 

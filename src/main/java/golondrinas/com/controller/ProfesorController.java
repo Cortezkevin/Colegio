@@ -50,8 +50,11 @@ public class ProfesorController {
 		Boolean respuesta = true;
 		
 		try {
-			
-			service.RegistrarProfesor(objProfesor);
+			if (service.validarEstado(objProfesor) == false) {
+				service.RegistrarProfesor(objProfesor);
+			}
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;
 		}
 		
 		catch(Exception ex) {
