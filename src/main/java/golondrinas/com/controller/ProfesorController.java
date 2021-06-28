@@ -37,7 +37,7 @@ public class ProfesorController {
 		
 		List<Profesor> listProfesor = service.listarProfesor();
 		model.addAttribute("lstprofesor",listProfesor);
-		model.addAttribute("lstpersona",pservice.listarPersona());
+		model.addAttribute("lstpersona",pservice.listarPersonaxtipo1());
 		model.addAttribute("lstusuario",uservice.listarUsuarios());
 		return "Profesor/frmProfesor";
 	}
@@ -50,13 +50,13 @@ public class ProfesorController {
 		Boolean respuesta = true;
 		
 		try {
-			if (service.validarEstado(objProfesor) == false) {
-				service.RegistrarProfesor(objProfesor);
-			}
-			mensaje = "La persona seleccionada ya esta siendo ocupada";
-			respuesta = false;
+			/*if (service.validarPersona(objProfesor) == true) {
+				mensaje = "La persona seleccionada ya esta siendo ocupada";
+				respuesta = false;
+		    }*/
+			service.RegistrarProfesor(objProfesor);
+			
 		}
-		
 		catch(Exception ex) {
 			
 			mensaje = "Profesor no registrado";
@@ -66,7 +66,7 @@ public class ProfesorController {
 		return new ResultadoResponse(respuesta, mensaje);
 	}
 	
-	@GetMapping("listarProfesores")
+	@GetMapping("/listarProfesores")
 	@ResponseBody
 	public List<Profesor> listarProfesor(){
 		

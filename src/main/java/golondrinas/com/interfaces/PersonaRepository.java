@@ -19,22 +19,31 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 	@Query(value = "{call sp_ManListarPersona()}", nativeQuery = true)
 	List<Persona> listarPersona();
 
+	@Query(value = "{call sp_MantListarPersonaXtipo1()}", nativeQuery = true)
+	List<Persona> listarPersonaxtipo1();
+	
+	@Query(value = "{call sp_MantListarPersonaXtipo2()}", nativeQuery = true)
+	List<Persona> listarPersonaxtipo2();
+	
+	@Query(value = "{call sp_MantListarPersonaXtipo3()}", nativeQuery = true)
+	List<Persona> listarPersonaxtipo3();
+	
 	@Query(value = "{call sp_ManSelectPersona()}", nativeQuery = true)
 	List<Persona> listarSelectPersona(); 
 	
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantRegistrarPersona(:nombreper, :apellidoper, :direccionper, :telefonoper, :emailper, :dniper, :edadper, :generoper)}", nativeQuery = true)
+	@Query(value = "{call sp_MantRegistrarPersona(:tipo, :nombreper, :apellidoper, :direccionper, :telefonoper, :emailper, :dniper, :edadper, :generoper)}", nativeQuery = true)
 
-	void registrarPersona(@Param("nombreper") String nombre, @Param("apellidoper") String apellido,
+	void registrarPersona(@Param("tipo") String tipo, @Param("nombreper") String nombre, @Param("apellidoper") String apellido,
 			@Param("direccionper") String direccion, @Param("telefonoper") Integer telefono,
 			@Param("emailper") String email, @Param("dniper") Integer dni, @Param("edadper") Integer edad,
 			@Param("generoper") String genero);
 
 	@Transactional
 	@Modifying
-	@Query(value = "{call sp_MantActualizarPersona(:idpersona, :nombreper, :apellidoper, :direccionper, :telefonoper, :emailper, :dniper, :edadper, :generoper)}", nativeQuery = true)
-	void actualizarPersona(@Param("idpersona") String idpersona, @Param("nombreper") String nombre,
+	@Query(value = "{call sp_MantActualizarPersona(:idpersona,:tipo, :nombreper, :apellidoper, :direccionper, :telefonoper, :emailper, :dniper, :edadper, :generoper)}", nativeQuery = true)
+	void actualizarPersona(@Param("idpersona") String idpersona,@Param("tipo") String tipo, @Param("nombreper") String nombre,
 			@Param("apellidoper") String apellido, @Param("direccionper") String direccion,
 			@Param("telefonoper") Integer telefono, @Param("emailper") String email, @Param("dniper") Integer dni,
 			@Param("edadper") Integer edad, @Param("generoper") String genero);

@@ -1,8 +1,9 @@
-create database colegio4;
-use  colegio4;
+create database colegio5;
+use  colegio5;
 
 create table Persona(
 idPersona char(4) not null,
+tipoPersona char(1) not null,
 nombres char(20) null,
 apellidos char(20) null,
 direccion char(20) null,

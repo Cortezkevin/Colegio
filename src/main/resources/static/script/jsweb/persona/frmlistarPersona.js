@@ -19,6 +19,7 @@ return patron.test(te); // 6
 
 
 $(document).on("click", "#btnagregarpersona", function() {
+	$("#txttipo").val("");
 	$("#txtnombre").val("");
 	$("#txtapellido").val("");
 	$("#txtdireccion").val("");
@@ -34,6 +35,7 @@ $(document).on("click", "#btnagregarpersona", function() {
 });
 
 $(document).on("click", ".btnactualizarpersona", function() {
+	$("#txttipo").val($(this).attr("data-tipo"));
 	$("#txtnombre").val($(this).attr("data-nombre"));
 	$("#txtapellido").val($(this).attr("data-apellido"));
 	$("#txtdireccion").val($(this).attr("data-direccion"));
@@ -50,6 +52,10 @@ $(document).on("click", ".btnactualizarpersona", function() {
 $(document).on("click", "#btnregistrarpersona", function() {
 	telefono = 1;
 	dni = 1;
+	if($("#txttipo").val() === "" || $("#txttipo").val() > 3 || $("#txttipo").val() < 1){
+		$("#errortipo").text("Ingrese la categoria de la persona: 1, 2 o 3");
+	}else{$("#errortipo").text("");}
+	
 	if($("#txtnombre").val() === ""){
 		$("#errornombre").text("Es obligatorio ingresar un nombre");
 	}else{$("#errornombre").text("");}
@@ -91,7 +97,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 	}else{$("#errorgenero").text("");}
 	
 	
-	 if($("#txtnombre").val() !== "" && $("#txtapellido").val() !== "" &&
+	 if($("#txttipo").val() !== "" && $("#txttipo").val() < 4 && $("#txttipo").val() > 0 && $("#txtnombre").val() !== "" && $("#txtapellido").val() !== "" &&
 	 $("#txtdireccion").val() !== "" && $("#txttelefono").val() !== "" &&
 	 $("#txtemail").val() !== "" && $("#txtdni").val() !== "" &&
 	 $("#txtedad").val() !== "" &&  $("#txtedad").val() >= 3 &&
@@ -102,6 +108,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 					contentType: "application/json",
 					url: "/Persona/registrarPersona",
 					data: JSON.stringify({
+						tipopersona: $("#txttipo").val(),
 						nombres: $("#txtnombre").val(),
 						apellidos: $("#txtapellido").val(),
 						direccion: $("#txtdireccion").val(),
@@ -166,6 +173,7 @@ $(document).on("click", "#btnregistrarpersona", function() {
 			url: "/Persona/actualizarPersona",
 			data: JSON.stringify({
 				idpersona:$("#hddidpersona").val(),
+				tipopersona: $("#txttipo").val(),
 				nombres: $("#txtnombre").val(),
 				apellidos: $("#txtapellido").val(),
 				direccion: $("#txtdireccion").val(),
@@ -330,6 +338,7 @@ function ListarPersona(){
 			$.each(resultado, function(index, value){
 				$("#tblpersona > tbody").append("<tr>"+
 				"<td>"+ value.idpersona + "</td>"+
+				"<td>"+ value.tipopersona + "</td>"+
 				"<td>"+ value.nombres + "</td>"+
 				"<td>"+ value.apellidos + "</td>"+
 				"<td>"+ value.direccion + "</td>"+
@@ -342,6 +351,7 @@ function ListarPersona(){
 				
 				"<td><button type='button' class='btn btn-info btnactualizarpersona'"+
 				" data-idpersona='"+value.idpersona+"'"+
+				" data-tipo='"+value.tipopersona+"'"+
 				" data-nombre='"+value.nombres+"'"+
 				" data-apellido='"+value.apellidos+"'"+
 				" data-direccion='"+value.direccion+"'"+
@@ -355,6 +365,7 @@ function ListarPersona(){
 				
 				"<td><button type='button' class='btn btn-danger btneliminarpersona'"+
 				" data-idpersona='"+value.idpersona+"'"+
+				" data-tipo='"+value.tipopersona+"'"+
 				" data-nombre='"+value.nombres+"'"+
 				" data-apellido='"+value.apellidos+"'"+
 				" data-direccion='"+value.direccion+"'"+

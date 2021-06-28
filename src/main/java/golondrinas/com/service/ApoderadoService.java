@@ -37,12 +37,13 @@ public class ApoderadoService {
 	}
 
 	
-	public boolean validarEstado(Apoderado m) {
-		String lista = repository.listarEstado(m.getIdpersona());
-		if (lista.equals("Ocupado")) {
-			return true;
+	public int validarEstado(Apoderado m) {
+		String lista = repository.validarApoderado(m.getIdpersona());
+		if (lista.equals(m.getIdpersona())) {
+			return 1;
+		}else {
+			return 2;
 		}
-		return false;
 	}
 
 }

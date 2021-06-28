@@ -36,4 +36,7 @@ public interface ProfesorRepository extends JpaRepository<Profesor, String>{
 	
 	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
 	String listarEstado(@Param("idpersona") String idpersona);	
+	
+	@Query(value = "{call sp_ValidarProfesor(:idpersona)}", nativeQuery = true)
+	String validarProfesor(@Param("idpersona") String idpersona);
 }

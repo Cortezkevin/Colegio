@@ -47,7 +47,7 @@ public class AlumnoController {
 	@GetMapping("/frmAlumno")
 	public String ListaAlumno(Model model) {
 		model.addAttribute("lstalumno", service.listarALumno());
-		model.addAttribute("lstpersona", pservice.listarPersona());
+		model.addAttribute("lstpersona", pservice.listarPersonaxtipo3());
 		model.addAttribute("lstusuario", uservice.listarUsuarios());
 		model.addAttribute("lstmatricula", mservice.listarMatriculas());
 		return "Alumno/frmAlumno";

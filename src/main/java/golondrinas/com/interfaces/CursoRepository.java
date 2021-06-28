@@ -29,5 +29,8 @@ public interface CursoRepository extends JpaRepository<Curso, String> {
 	@Modifying
 	@Query(value = "{call sp_MantEliminarCurso(:idcurso)}", nativeQuery = true)
 	void eliminarCurso(@Param("idcurso") String idcurso);
+	
+	@Query(value = "{call sp_ListarCursoXNombre(:nombre)}", nativeQuery = true)
+	String validarCurso(@Param("nombre") String nombre);
 
 }

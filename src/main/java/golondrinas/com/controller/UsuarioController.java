@@ -69,7 +69,7 @@ public class UsuarioController {
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		return "Usuario/registrarUsuario";
 	}
-	/*
+	
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
 		//objUsuario.setFoto(picture.getBytes());
@@ -92,7 +92,7 @@ public class UsuarioController {
 		UserRole.registrarUserRole(objUsuario.getIdcargo());
 		System.out.println("**************"+objUsuario.getIdcargo());
 		return "redirect:/Usuario/frmUsuario";
-	}*/
+	}
 	
 	@GetMapping("/actualizarUsuario")
 	public String actualizarUsuario(Model model) {
@@ -101,6 +101,7 @@ public class UsuarioController {
 		model.addAttribute("lstPersonas",personaservice.listarPersona());
 		return "Usuario/actualizarUsuario";
 	}
+	/*
 	@PostMapping("/actualizarUsuario")
 	public String actualizarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException{
 		//objUsuario.setFoto(picture.getBytes());
@@ -120,7 +121,7 @@ public class UsuarioController {
 			objUsuario.setFoto(foto.getOriginalFilename());
 			objUsuario.setContrasena(encoder.encode(objUsuario.getContrasena()));
 		}
-		if(objUsuario.getIdusuario().equals("0")) {
+		if(objUsuario.getIdusuario().equals(null)) {
 			service.registrarUsuario(objUsuario);
 		}else {
 			service.actualizarUsuario(objUsuario);
@@ -136,7 +137,7 @@ public class UsuarioController {
 		//UserRole.registrarUserRole(objUsuario.getIdcargo());
 		
 		return "redirect:/Usuario/frmUsuario";
-	}
+	}*/
 	
 	
 	

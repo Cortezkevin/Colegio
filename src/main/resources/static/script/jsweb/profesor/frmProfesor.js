@@ -28,7 +28,7 @@ $(document).on("click", "#btnregistrarprofesor", function() {
 	}
 	
 	if ($("#cbopersona").val() !== "0") {
-		if ($("#hddidalumno").val() === "0") {
+		if ($("#hddidprofesor").val() === "0") {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json",
@@ -61,7 +61,7 @@ $(document).on("click", "#btnregistrarprofesor", function() {
 						  icon: 'success',
 						  title: resultado.mensaje
 						})
-					ListarProfesor();;
+					ListarProfesor();
 				}else{
 					const Toast = Swal.mixin({
 						  toast: true,
@@ -90,7 +90,7 @@ $(document).on("click", "#btnregistrarprofesor", function() {
 				contentType: "application/json",
 				url: "/Profesor/registrarProfesor",
 				data: JSON.stringify({
-					idalumno: $("#hddidalumno").val(),
+					idprofesor: $("#hddidprofesor").val(),
 					idpersona: $("#cbopersona").val(),
 					idusuario: $("#cbousuario").val()
 				}),
@@ -219,17 +219,20 @@ function mostrarMensaje(mensaje, estilo) {
 function ListarProfesor() {
 	$.ajax({
 		type: "GET",
-		url: "/Profesor/listarProfesor",
+		url: "/Profesor/listarProfesores",
 		dataType: "json",
 		success: function(resultado) {
 			$("#tblprofesor > tbody").html("");
 			$.each(resultado, function(index, value) {
 				$("#tblprofesor > tbody").append("<tr>" +
-					"<td>" + value.idalumno + "</td>" +
+					"<td>" + value.idprofesor + "</td>" +
+					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.idusuario + "</td>" +
+					"<td>" + value.nombreusario + "</td>" +
 					"<td>" + value.estado + "</td>" +
 					"<td><button type='button' class='btn btn-info btnactualizarprofesor' " +
 					" data-codprofesor='" + value.idprofesor + "'" +
+					" data-codpersona='" + value.idpersona + "'" +
 					" data-codusuario='" + value.idusuario + "'" +
 					" data-estado='" + value.estado + "'>Actualizar</button>" +
 					"</td>" +

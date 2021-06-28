@@ -47,7 +47,11 @@ public class CursoController {
 		String mensaje = "Curso registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			service.registrarCurso(objCurso);
+			if(service.validarNombre(objCurso) == false) {
+				service.registrarCurso(objCurso);
+			}
+			mensaje = "El nombre del curso ingresado ya esta registrado";
+			respuesta = false;
 		}catch(Exception ex) {
 			mensaje = "Curso no registrado";
 			respuesta = false;

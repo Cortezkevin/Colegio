@@ -143,8 +143,7 @@
 								<option value="0">Seleccione</option>
 								<option th:each="grado :${lstGrado}" th:text=${grado.nombre}
 									th:value="${grado.idgrado}"></option>
-							</select> <span id="errorgrado" class="text-danger"></span><input
-								type="hidden" id="hddidmatricula" value="0">
+							</select> <span id="errorgrado" class="text-danger"></span>
 						</div>
 						<div class="form-group">
 							<label for="cboseccion">Seleccione Sección</label> <select
@@ -152,8 +151,7 @@
 								<option value="0">Seleccione</option>
 								<option th:each="seccion :${lstSeccion}"
 									th:text=${seccion.nombre} th:value="${seccion.idseccion}"></option>
-							</select> <span id="errorseccion" class="text-danger"></span><input
-								type="hidden" id="hddidmatricula" value="0">
+							</select> <span id="errorseccion" class="text-danger"></span>
 						</div>
 						<div class="form-group">
 							<div class="form-group">
@@ -162,7 +160,7 @@
 									maxlength="20"> <span id="errornomusuario"
 									class="text-danger"></span>
 							</div>
-							<input type="hidden" id="hddidmatricula" value="0">
+							
 						</div>
 						<div class="form-group">
 							<div class="form-group">
@@ -171,7 +169,7 @@
 									maxlength="20"> <span id="errornomcontrasena"
 									class="text-danger"></span>
 							</div>
-							<input type="hidden" id="hddidmatricula" value="0">
+							
 						</div>
 						<div class="form-group">
 							<div class="form-group">
@@ -179,7 +177,7 @@
 									class="form-control" id="txtmonto" maxlength="3"> <span
 									id="errormonto" class="text-danger"></span>
 							</div>
-							<input type="hidden" id="hddidmatricula" value="0">
+							
 						</div>
 						<div class="form-group">
 							<div class="form-group">
@@ -188,7 +186,7 @@
 									maxlength="35"> <span id="errornomfecha"
 									class="text-danger"></span>
 							</div>
-							<input type="hidden" id="hddidmatricula" value="0">
+							
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"

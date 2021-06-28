@@ -37,9 +37,9 @@ public class ProfesoreService {
 	}
 
 
-	public boolean validarEstado(Profesor m) {
-		String lista = repository.listarEstado(m.getIdpersona());
-		if (lista.equals("Ocupado")) {
+	public boolean validarPersona(Profesor m) {
+		String lista = repository.validarProfesor(m.getIdpersona());
+		if (lista.equals(m.getIdpersona())) {
 			return true;
 		}
 		return false;

@@ -10,6 +10,9 @@ public class Persona {
 	@Id
 	public String idpersona;
 	
+	@Column(name="tipopersona")
+	private String tipopersona;
+	
 	@Column(name = "nombres")
 	private String nombres;
 	
@@ -39,6 +42,10 @@ public class Persona {
 
 	public String getIdpersona() {
 		return idpersona;
+	}
+
+	public String getTipopersona() {
+		return tipopersona;
 	}
 
 	public String getNombres() {
@@ -81,6 +88,10 @@ public class Persona {
 		this.idpersona = idpersona;
 	}
 
+	public void setTipopersona(String tipopersona) {
+		this.tipopersona = tipopersona;
+	}
+
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
@@ -117,10 +128,11 @@ public class Persona {
 		this.estado = estado;
 	}
 
-	public Persona(String idpersona, String nombres, String apellidos, String direccion, Integer telefono, String email,
-			Integer dni, Integer edad, String genero, String estado) {
+	public Persona(String idpersona, String tipopersona, String nombres, String apellidos, String direccion,
+			Integer telefono, String email, Integer dni, Integer edad, String genero, String estado) {
 		super();
 		this.idpersona = idpersona;
+		this.tipopersona = tipopersona;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.direccion = direccion;

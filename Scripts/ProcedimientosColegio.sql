@@ -184,7 +184,7 @@ CREATE PROCEDURE sp_MantObtenerMatricula(IN _idmatricula CHAR(4))
    ##############################################################################################################
    ##Listar personas
 CREATE PROCEDURE sp_ManListarPersona()
-            SELECT    p.IdPersona, p.Nombres, p.Apellidos, p.Direccion, p.Telefono,
+            SELECT    p.IdPersona, p.tipoPersona, p.Nombres, p.Apellidos, p.Direccion, p.Telefono,
             p.Email, p.DNI, p.Edad, p.Genero, p.estado
             FROM persona p;
             
@@ -200,25 +200,33 @@ CREATE PROCEDURE sp_ManListarPersonaxTelefono(IN _telefono char(9))
     
 CREATE PROCEDURE sp_ManListarPersonaxEmail(IN _email char(20))
 	SELECT  * FROM persona where email = _email;    
- 
+    
+ CREATE  PROCEDURE sp_MantListarPersonaXtipo1()
+select * from persona where tipoPersona = '1';
+
+CREATE  PROCEDURE sp_MantListarPersonaXtipo2()
+select * from persona where tipoPersona = '2';
+
+CREATE  PROCEDURE sp_MantListarPersonaXtipo3()
+select * from persona where tipoPersona = '3';
 
 ##Registar persona
 DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarPersona(IN nombreper char(20), IN apellidoper char(20), IN direccionper char(20), IN telefonoper char(9),
+CREATE PROCEDURE sp_MantRegistrarPersona(In _tipo char(1),IN nombreper char(20), IN apellidoper char(20), IN direccionper char(20), IN telefonoper char(9),
                                             IN emailper char(20), IN dniper char(8), IN edadper INT, IN generoper char(10))
 BEGIN
     SET @idPersona = (SELECT CONCAT('P',RIGHT(CONCAT('00',RIGHT(MAX(idPersona),3) + 1),3)) FROM persona);	  
-    INSERT INTO Persona(idPersona, nombres, apellidos, direccion, telefono, email, dni, edad, genero, estado) 
-                        VALUES (@idPersona, nombreper, apellidoper, direccionper, telefonoper, emailper, dniper, edadper, generoper,'Activo');
+    INSERT INTO Persona(idPersona,tipoPersona, nombres, apellidos, direccion, telefono, email, dni, edad, genero, estado) 
+                        VALUES (@idPersona,_tipo, nombreper, apellidoper, direccionper, telefonoper, emailper, dniper, edadper, generoper,'Activo');
 END$$
  DELIMITER ;
 
 
 DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarPersona(IN _idPersona char(4), IN _nombreper char(20), IN _apellidoper char(20), IN _direccionper char(20), IN _telefonoper char(9),
+CREATE  PROCEDURE sp_MantActualizarPersona(IN _idPersona char(4),In _tipo char(1), IN _nombreper char(20), IN _apellidoper char(20), IN _direccionper char(20), IN _telefonoper char(9),
                                             IN _emailper char(20), IN _dniper char(8), IN _edadper INT, IN _generoper char(10))
 BEGIN
-    UPDATE persona SET nombres = _nombreper, apellidos = _apellidoper, direccion = _direccionper, telefono = _telefonoper, email = _emailper, dni = _dniper ,edad = _edadper, genero = _generoper WHERE idPersona = _idPersona;
+    UPDATE persona SET tipoPersona = _tipo,nombres = _nombreper, apellidos = _apellidoper, direccion = _direccionper, telefono = _telefonoper, email = _emailper, dni = _dniper ,edad = _edadper, genero = _generoper WHERE idPersona = _idPersona;
 END$$
 DELIMITER ;
  
@@ -294,7 +302,7 @@ inner join persona p on pr.idPersona = p.idPersona inner join usuario u on pr.id
    
    
 DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarProfesor(IN idprofesor char(4), IN _idpersona char(4), IN _idusuario char(4))
+CREATE PROCEDURE sp_MantRegistrarProfesor(IN _idpersona char(4), IN _idusuario char(4))
 BEGIN
     SET @idprofesor = (SELECT CONCAT('D',RIGHT(CONCAT('00',RIGHT(MAX(idProfesor),3) + 1),3)) FROM profesor);
     set @nombrecompleto = (select concat(p.nombres,' ',p.apellidos) as nombre_completo from persona p where p.idPersona = _idpersona);    
@@ -305,8 +313,6 @@ BEGIN
 							
 END$$
  DELIMITER ;
-
-
  
 
 ##Actualizar Profesor
@@ -405,6 +411,14 @@ BEGIN
 	SET @pidusuario = (SELECT CONCAT('U',RIGHT(CONCAT('00',RIGHT(MAX(idusuario),3) + 1),3)) FROM usuario);	
 	INSERT INTO usuario (idusuario, nombreusuario, contrasena, idcargo, idpersona,estado,foto) VALUES (@pidusuario,pnombreusuario,pcontraseña,pidcargo, pidpersona,'Activo',pfoto);
     update persona set estado = 'Ocupado' where idPersona = pidpersona;
+END$$
+ DELIMITER ;
+ 
+ DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarUsuario(IN _idusuario char(4), IN pnombreusuario CHAR(20),IN pcontrasena varCHAR(250), IN pidcargo CHAR(4), IN pidpersona CHAR(4),IN pfoto longblob)
+BEGIN
+	update usuario set nombreUsuario = pnombreusuario, contrasena = pcontrasena, idCargo = pidcargo, idPersona = pidpersona, foto = pfoto
+    where idUsuario = _idusuario;
 END$$
  DELIMITER ;
  
@@ -622,20 +636,25 @@ insert into cargo values('R002','Docente','Activo');
 insert into cargo values('R003','Administrador','Activo');
 insert into nivel values('N001','Inicial','Activo');
 insert into nivel values('N002','Primaria','Activo');
-insert into persona values('P001','Kevin ','Cortez Quispe','Av. San Marcos','995624785','dr@gmail.com','72195679','20','Masculino','Ocupado');
-insert into persona values('P002','Victor','Martinez Ruiz','Av. Los paltos','995624785','dsadr@gmail.com','72197584','20','Masculino','Ocupado');
-insert into persona values('P003','Carlos Manuel','Huamani Huamani','Av. Los paltos','995624785','dsadr@gmail.com','72856216','20','Masculino','Ocupado');
-insert into persona values('P004','Maria Isabel','Huamani Caceres','Av. Cipres','912238976','HCMI@gmail.com','72123279','32','Femenino','Activo');
-insert into persona values('P005','Juan Perez','Huapaya Arias','Av. Los paltos','988956147','JPHA@gmail.com','77896679','40','Masculino','Ocupado');
-insert into persona values('P006','Enrique','Napan Torres','Av. Acención','958956147','ENT@gmail.com','71526679','19','Masculino','Activo');
-insert into persona values('P007','Junior','Arias Quispe','Av. Santa Rosa','981221147','JAQ@gmail.com','71456679','12','Masculino','Activo');
-insert into persona values('P008','Cristhian Joel','Castro Contreras','Av. Cipres','981132147','CJCC@gmail.com','77815329','42','Masculino','Activo');
+insert into persona values('P001','3','Kevin ','Cortez Quispe','Av. San Marcos','995624785','dr@gmail.com','72195679','12','Masculino','Ocupado');
+insert into persona values('P002','2','Victor','Martinez Ruiz','Av. Los paltos','999924785','dsadr@gmail.com','72197584','20','Masculino','Ocupado');
+insert into persona values('P003','3','Carlos Manuel','Huamani Huamani','Av. Los paltos','914224785','dsadr@gmail.com','72856216','11','Masculino','Ocupado');
+insert into persona values('P004','2','Maria Isabel','Huamani Caceres','Av. Cipres','912238976','HCMI@gmail.com','72123279','32','Femenino','Ocupado');
+insert into persona values('P005','1','Juan Perez','Huapaya Arias','Av. Los paltos','988956147','JPHA@gmail.com','77896679','40','Masculino','Ocupado');
+insert into persona values('P006','2','Enrique','Napan Torres','Av. Acención','958956147','ENT@gmail.com','71526679','40','Masculino','Activo');
+insert into persona values('P007','3','Junior','Arias Quispe','Av. Santa Rosa','981221147','JAQ@gmail.com','71456679','12','Masculino','Activo');
+insert into persona values('P008','1','Cristhian Joel','Castro Contreras','Av. Cipres','981132147','CJCC@gmail.com','77815329','42','Masculino','Activo');
+insert into persona values('P009','2','Wilfredo','Cortez Pereda','Av. San Marcos','981258147','WCP@gmail.com','77351329','50','Masculino','Ocupado');
 insert into apoderado values('AP001','P002','Victor Martinez Ruiz','Activo'); 
-insert into matricula values('M001','P001','AP001','N001','G001','S001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
+insert into apoderado values('AP002','P004','Maria Isabel Huamani Caceres','Activo'); 
+insert into apoderado values('AP003','P009','Wilfredo Cortez Pereda','Activo'); 
+insert into matricula values('M001','P001','AP001','N002','G001','S001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
+insert into matricula values('M002','P003','AP002','N002','G001','S001','carlos123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
 insert into usuario values('U001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P001','Ocupado','dfsddfs');
 insert into usuario values('U002','CMHH123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P003','Ocupado','dfsddfs');
 insert into usuario values('U003','D123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R002','P005','Ocupado','dfsddfs');
-insert into alumno values('A001','P001','U001','M001','Primaria','Primer Grado','Seccion A','Wilfredo Cortez Pereda','Kevin Cortez Quispe','Activo');
+insert into alumno values('A001','P001','U001','M001','Inicial','Primer Grado','Seccion A','Wilfredo Cortez Pereda','Kevin Cortez Quispe','Activo');
+insert into alumno values('A002','P003','U002','M002','Inicial','Primer Grado','Seccion A','Maria Isabel Huamani Caceres','Carlos Manuel Huamani Huamani','Activo');
 insert into user_role values('U001','R001');
 insert into user_role values('U002','R001');
 insert into user_role values('U003','R002');
@@ -644,10 +663,10 @@ insert into pago values('PA001','M001','2002-10-10',350.00,'Activo');
 insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo'); 
 insert into curso values('C002','N001','G001','Comunicación I','Comunicación I nivel primaria','Activo'); 
 insert into profesor values('D001','P005','U003','Juan Perez Huapaya Arias','Activo'); 
-insert bimestre values("B001",'Primer Bimestre');
-insert bimestre values("B002",'Segundo Bimestre');
-insert bimestre values("B003",'Tercer Bimestre');
-insert bimestre values("B004",'Cuarto Bimestre');
+insert bimestre values("B001",'Primer Bimestre','Activo');
+insert bimestre values("B002",'Segundo Bimestre','Activo');
+insert bimestre values("B003",'Tercer Bimestre','Activo');
+insert bimestre values("B004",'Cuarto Bimestre','Activo');
  insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
   insert into Notas values ('NO002','A001','C001','B002',12,10,10,16,13,'Activo');
   insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
@@ -707,3 +726,8 @@ BEGIN
 END$$
  DELIMITER ;
 
+CREATE  PROCEDURE sp_ListarCursoXNombre(IN _nombre CHAR(20))
+select nombre from curso where nombre = _nombre;
+
+CREATE  PROCEDURE sp_ValidarProfesor(IN _idpersona CHAR(4))
+select idpersona from profesor where idpersona = _idpersona;

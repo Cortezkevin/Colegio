@@ -12,10 +12,17 @@
 	</script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
+	<br>
+	<br>
+	<br>    
+	<h2 align="center">REGISTRO DE USUARIOS</h2>
+				<hr />
 	<div class="container-fluid cont" id="colorBack">
 	
 		<div class="row">
-			
+			<div class="col-sm">
+    </div>
+
 			<div class="col-lg">
 				<form th:action="@{/Usuario/registrarUsuario}" th:object="${usuarioForm}" method="post" enctype="multipart/form-data">				
 					<div class="form-group">

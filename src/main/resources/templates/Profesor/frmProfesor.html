@@ -33,6 +33,7 @@
 						<th scope="col">ID</th>
 						<th scope="col">ID Persona</th>
 						<th scope="col">ID Usuario</th>
+						<th scope="col">Nombre Completo</th>
 						<th scope="col">Estado</th>
 						<th scope="col">Actualizar</th>
 						<th scope="col">Eliminar</th>
@@ -43,6 +44,7 @@
 						<td th:text="${profesor.idprofesor}"></td>
 						<td th:text="${profesor.idpersona}"></td>
 						<td th:text="${profesor.idusuario}"></td>
+						<td th:text="${profesor.nombreusario}"></td>
 						<td th:text="${profesor.estado}"></td>
 						<td>
 							<button type="button" class="btn btn-info btnactualizarprofesor"
@@ -80,7 +82,8 @@
 						<option value="0">Seleccione</option>
 						<option th:each="persona :${lstpersona}"
 							th:text=${persona.nombres} th:value="${persona.idpersona}"></option>
-					</select> <span id="errorpersona" class="text-danger"></span>
+					</select><input type="hidden"
+						id="hddidprofesor" value="0"> <span id="errorpersona" class="text-danger"></span>
 				</div>
 				<input type="hidden" id="hddidprofesor" value="0">
 				<div class="modal-body">

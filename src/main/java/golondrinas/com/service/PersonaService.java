@@ -22,29 +22,28 @@ public class PersonaService {
 		return repository.findAll();
 	}
 	
+	public List<Persona> listarPersonaxtipo1() {
+		return repository.listarPersonaxtipo1();
+	}
+	public List<Persona> listarPersonaxtipo2() {
+		return repository.listarPersonaxtipo2();
+	}
+	public List<Persona> listarPersonaxtipo3() {
+		return repository.listarPersonaxtipo3();
+	}
 	public List<Persona> listarSelectPersona(){
 		return repository.listarSelectPersona();
 	}
 
 	public void registrarPersona(Persona persona) {
 		
-		repository.registrarPersona(persona.getNombres(), persona.getApellidos(), persona.getDireccion(),
+		repository.registrarPersona(persona.getTipopersona(), persona.getNombres(), persona.getApellidos(), persona.getDireccion(),
 				persona.getTelefono(), persona.getEmail(), persona.getDni(), persona.getEdad(),
 				persona.getGenero());
-		/*if (persona.getIdpersona() == null) {
-			repository.registrarPersona(persona.getNombres(), persona.getApellidos(), persona.getDireccion(),
-					persona.getTelefono(), persona.getEmail(), persona.getDni(), persona.getEdad(),
-					persona.getGenero());
-
-		} else {
-			repository.actualizarPersona(persona.getIdpersona(), persona.getNombres(), persona.getApellidos(),
-					persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
-					persona.getEdad(), persona.getGenero());
-		}*/
 
 	}
 	public void actualizarPersona(Persona persona) {
-		repository.actualizarPersona(persona.getIdpersona(), persona.getNombres(), persona.getApellidos(),
+		repository.actualizarPersona(persona.getIdpersona(),persona.getTipopersona(), persona.getNombres(), persona.getApellidos(),
 				persona.getDireccion(), persona.getTelefono(), persona.getEmail(), persona.getDni(),
 				persona.getEdad(), persona.getGenero());
 	}

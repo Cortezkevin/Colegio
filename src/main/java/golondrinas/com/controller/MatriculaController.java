@@ -54,7 +54,7 @@ public class MatriculaController {
 	@GetMapping("/frmMatricula")
 	public String frmMatricula(Model model) {
 		model.addAttribute("lstMat", service.listarMatriculas());
-		model.addAttribute("lstPersona", pservice.listarPersona());
+		model.addAttribute("lstPersona", pservice.listarPersonaxtipo3());
 		model.addAttribute("lstApoderado", apservice.listarApoderado());
 		model.addAttribute("lstNivel", nService.listarNivel());
 		model.addAttribute("lstGrado", gService.listarGrado());
@@ -68,11 +68,11 @@ public class MatriculaController {
 		String mensaje = "Matricula registrada correctamente";
 		Boolean respuesta = true;
 		try {
-			if(service.validarEstado(objMatricula) ==  false && service.validarNombreUsuario(objMatricula) == false) {
+			if(service.validarEstado(objMatricula) ==  false /*&& service.validarNombreUsuario(objMatricula) == false*/) {
 				service.RegistrarMatricula(objMatricula);	
-			}else if(service.validarNombreUsuario(objMatricula) == true) {
+			}/*else if(service.validarNombreUsuario(objMatricula) == true) {
 				mensaje = "El nombre de usuario ingresado ya existe";
-				respuesta = false;}
+				respuesta = false;}*/
 			else{
 			mensaje = "La persona seleccionada ya esta siendo ocupada";
 			respuesta = false;}

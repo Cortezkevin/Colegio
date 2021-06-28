@@ -31,7 +31,7 @@ public class ApoderadoController {
 	public String ListarApodrado(Model model) {
 		List<Apoderado> listarApoderado = service.listarApoderado();
 		model.addAttribute("lstApoderado", listarApoderado);
-		model.addAttribute("lstpersona", pservice.listarPersona());
+		model.addAttribute("lstpersona", pservice.listarPersonaxtipo2());
 		return "Apoderado/frmApoderado";
 	}
 
@@ -42,11 +42,12 @@ public class ApoderadoController {
 		String mensaje = "Apoderado registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			if (service.validarEstado(objApoderado) == false) {
-				service.registrarApoderado(objApoderado);
-			}
-			mensaje = "La persona seleccionada ya esta siendo ocupada";
-			respuesta = false;
+			/*if (service.validarEstado(objApoderado) == 1) {
+				mensaje = "La persona seleccionada ya esta siendo ocupada";
+				respuesta = false;
+
+			}*/
+			service.registrarApoderado(objApoderado);
 
 		} catch (Exception ex) {
 

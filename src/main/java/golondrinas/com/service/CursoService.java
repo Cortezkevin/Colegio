@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.CursoRepository;
+import golondrinas.com.model.Cargo;
 import golondrinas.com.model.Curso;
+import golondrinas.com.model.Grado;
 
 @Service
 public class CursoService {
@@ -32,4 +34,11 @@ public class CursoService {
 		repository.eliminarCurso(curso.getIdcurso());
 	}
 
+	public boolean validarNombre(Curso obj) {
+		String Nombre = repository.validarCurso(obj.getNombre()); 
+		if(Nombre.equals(obj.getNombre())) {
+			return true;
+		}
+		return false;
+	}
 }
