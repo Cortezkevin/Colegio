@@ -48,7 +48,7 @@ public class AlumnoController {
 	public String ListaAlumno(Model model) {
 		model.addAttribute("lstalumno", service.listarALumno());
 		model.addAttribute("lstpersona", pservice.listarPersonaxtipo3());
-		model.addAttribute("lstusuario", uservice.listarUsuarios());
+		model.addAttribute("lstusuario", uservice.listarUsuarioXR001());
 		model.addAttribute("lstmatricula", mservice.listarMatriculas());
 		return "Alumno/frmAlumno";
 	}
@@ -61,11 +61,20 @@ public class AlumnoController {
 		Boolean respuesta = true;
 
 		try {
-			if(service.validarPersona(objAlumno) == false ) {
+			if(service.validarPersona(objAlumno) ==  0 && service.validarUsuario(objAlumno) == 0) {
 				service.registrarAlumno(objAlumno);	
-			}
-			mensaje = "La persona seleccionada ya esta siendo usada";
-			respuesta = false;
+			}else if(service.validarPersona(objAlumno) == 2) {
+				mensaje = "La persona seleccionada ha sido eliminada";
+				respuesta = false;}
+			else if(service.validarUsuario(objAlumno) == 2) {
+				mensaje = "El usuario seleccionado ha sido eliminado";
+				respuesta = false;}
+			else if(service.validarUsuario(objAlumno) == 1) {
+				mensaje = "El usuario seleccionado ya esta siendo ocupado";
+				respuesta = false;}
+			else{
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;}
 		}
 
 		catch (Exception ex) {

@@ -38,12 +38,13 @@ public class ApoderadoService {
 
 	
 	public int validarEstado(Apoderado m) {
-		String lista = repository.validarApoderado(m.getIdpersona());
-		if (lista.equals(m.getIdpersona())) {
+		String lista = repository.listarEstado(m.getIdpersona());
+		if(lista.equals("Ocupado")) {
 			return 1;
-		}else {
+		}else if(lista.equals("Eliminado")) {
 			return 2;
 		}
+		return 0;
 	}
 
 }

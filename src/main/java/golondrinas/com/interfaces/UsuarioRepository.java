@@ -44,4 +44,13 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 	@Query(value="{call sp_MantEliminarUsuario(:idusuario)}",
 			nativeQuery = true)
 	void EliminarUsuario(@Param("idusuario") String idUsuario);
+	
+	@Query(value = "{call sp_ListarEstadoXUsuario(:idusuario)}", nativeQuery = true)
+	String validarUsuario(@Param("idusuario") String idusuario);
+	
+	@Query(value = "{call sp_ListarUsuarioXR001()}", nativeQuery = true)
+	List<Usuario> listarUsuarioXR001();
+	
+	@Query(value = "{call sp_ListarUsuarioXR002()}", nativeQuery = true)
+	List<Usuario> listarUsuarioXR002();
 }

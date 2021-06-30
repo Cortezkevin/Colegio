@@ -37,11 +37,23 @@ public class ProfesoreService {
 	}
 
 
-	public boolean validarPersona(Profesor m) {
-		String lista = repository.validarProfesor(m.getIdpersona());
-		if (lista.equals(m.getIdpersona())) {
-			return true;
+	public int validarProfesor(Profesor m) {
+		String lista = repository.listarEstado(m.getIdpersona());
+		if(lista.equals("Ocupado")) {
+			return 1;
+		}else if(lista.equals("Eliminado")) {
+			return 2;
 		}
-		return false;
+		return 0;
+	}
+	
+	public int validarUsuario(Profesor m) {
+		String lista = repository.validarUsuario(m.getIdusuario());
+		if(lista.equals("Ocupado")) {
+			return 1;
+		}else if(lista.equals("Eliminado")) {
+			return 2;
+		}
+		return 0;
 	}
 }

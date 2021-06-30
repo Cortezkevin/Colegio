@@ -68,11 +68,11 @@ public class MatriculaController {
 		String mensaje = "Matricula registrada correctamente";
 		Boolean respuesta = true;
 		try {
-			if(service.validarEstado(objMatricula) ==  false /*&& service.validarNombreUsuario(objMatricula) == false*/) {
+			if(service.validarEstado(objMatricula) ==  0 /*&& service.validarNombreUsuario(objMatricula) == false*/) {
 				service.RegistrarMatricula(objMatricula);	
-			}/*else if(service.validarNombreUsuario(objMatricula) == true) {
-				mensaje = "El nombre de usuario ingresado ya existe";
-				respuesta = false;}*/
+			}else if(service.validarEstado(objMatricula) == 2) {
+				mensaje = "La persona seleccionada ha sido eliminada";
+				respuesta = false;}
 			else{
 			mensaje = "La persona seleccionada ya esta siendo ocupada";
 			respuesta = false;}

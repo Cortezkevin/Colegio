@@ -96,15 +96,45 @@ $(document).on("click", "#btneliminarusuario", function() {
 		data: JSON.stringify({
 			idusuario: $("#hddidusuarioeliminar").val()
 		}),
-		success: function(resultado) {
-			var estilo = "danger";
-			if (resultado.respuesta) {
-				estilo = "success";
-				ListarUsuarios();
+		success: function(resultado){
+				if(resultado.respuesta){
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+
+						Toast.fire({
+						  icon: 'success',
+						  title: resultado.mensaje
+						})
+					ListarUsuarios();
+				}else{
+					const Toast = Swal.mixin({
+						  toast: true,
+						  position: 'top-end',
+						  showConfirmButton: false,
+						  timer: 3000,
+						  timerProgressBar: true,
+						  didOpen: (toast) => {
+						    //toast.addEventListener('mouseenter', Swal.stopTimer)
+						    toast.addEventListener('mouseleave', Swal.resumeTimer)
+						  }
+						})
+						
+						Toast.fire({
+						  icon: 'error',
+						  title: resultado.mensaje
+						})
+				}
+				$("#modaleliminarusuario").modal("hide");
 			}
-			mostrarMensaje(resultado.mensaje, estilo);
-			$("#modaleliminarusuario").modal("hide");
-		}
 	});
 });
 function ListarUsuarios() {
@@ -123,9 +153,6 @@ function ListarUsuarios() {
 					"<td>" + value.idpersona + "</td>" +
 					"<td>" + value.estado + "</td>" +
 					"<td><img src='/uploadsFotos/"+value.foto  +"'" +"height='120' width='120' /></td>"+
-					"<td><button type='button' class='btn btn-success btnverdetalle' " +
-					" data-codusuario='" + value.idusuario + "'>Ver Detalle</button>" +
-					"</td>"+
 					"<td><button type='button' class='btn btn-info btnactualizarusuario' " +
 					" data-codusuario='" + value.idusuario + "'" +
 					" data-nomusuario='" + value.nombreusuario + "'" +

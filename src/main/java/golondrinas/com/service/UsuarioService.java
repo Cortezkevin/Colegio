@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.UsuarioRepository;
+import golondrinas.com.model.Apoderado;
+import golondrinas.com.model.Persona;
 import golondrinas.com.model.Usuario;
 
 
@@ -18,6 +20,14 @@ public class UsuarioService{
 	
 	public List<Usuario> listarUsuarios(){
 		return (List<Usuario>) repository.findAll();
+	}
+	
+	public List<Usuario> listarUsuarioXR001(){
+		return repository.listarUsuarioXR001();
+	}
+	
+	public List<Usuario> listarUsuarioXR002(){
+		return repository.listarUsuarioXR002();
 	}
 	
 	public List<Usuario> listarSelectUsuario(){
@@ -35,4 +45,12 @@ public class UsuarioService{
 		repository.ActualizarUsuario(u.getIdusuario(),u.getNombreusuario(),u.getContrasena(),u.getEstado(),u.getIdcargo(),u.getIdpersona(),u.getFoto());
 	}
 	
+	public boolean validarEstado(Usuario p) {
+		String lista = repository.validarUsuario(p.getIdusuario());
+		if(lista.equals("Ocupado")) {
+			return true;
+		}
+		return false;
+	}
+
 }

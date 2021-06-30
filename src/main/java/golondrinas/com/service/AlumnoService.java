@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.AlumnoRepository;
 import golondrinas.com.model.Alumno;
+import golondrinas.com.model.Profesor;
 
 @Service
 public class AlumnoService {
@@ -36,27 +37,23 @@ public class AlumnoService {
 		repository.EliminarAlumno(a.getIdalumno());
 	}
 	
-	public boolean validarPersona(Alumno a) {
-		String persona = repository.listarPersona(a.getIdpersona());
-		if(persona.equals(a.getIdpersona())) {
-			return true;
+	public int validarPersona(Alumno a) {
+		String lista = repository.listarEstado(a.getIdpersona());
+		if(lista.equals("Ocupado")) {
+			return 1;
+		}else if(lista.equals("Eliminado")) {
+			return 2;
 		}
-		return false;
+		return 0;
 	}
 	
-	/*public boolean validarUsuario(Alumno a) {
-		String persona = repository.listarUsuario(a.getIdusuario());
-		if(persona.equals(a.getIdusuario())) {
-			return true;
+	public int validarUsuario(Alumno m) {
+		String lista = repository.validarUsuario(m.getIdusuario());
+		if(lista.equals("Ocupado")) {
+			return 1;
+		}else if(lista.equals("Eliminado")) {
+			return 2;
 		}
-		return false;
+		return 0;
 	}
-	
-	public boolean validarMatricula(Alumno a) {
-		String persona = repository.listarMatricula(a.getIdmatricula());
-		if(persona.equals(a.getIdmatricula())) {
-			return true;
-		}
-		return false;
-	}*/
 }

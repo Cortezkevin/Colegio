@@ -34,11 +34,11 @@ public interface ApoderadoRepository  extends JpaRepository<Apoderado, String>{
 	@Query(value = "{call sp_MantEliminarApoderado(:idapoderado)}", nativeQuery = true)
 	void EliminarApoderado(@Param("idapoderado") String idapoderado);
 
-	/*@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
-	String listarEstado(@Param("idpersona") String idpersona);	*/
+	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
+	String listarEstado(@Param("idpersona") String idpersona);
 	
-	@Query(value = "{call sp_MantValidarApoderado(:idpersona)}", nativeQuery = true)
-	String validarApoderado(@Param("idpersona") String idpersona);
+	/*@Query(value = "{call sp_MantValidarApoderado(:idpersona)}", nativeQuery = true)
+	String validarApoderado(@Param("idpersona") String idpersona);*/
 	
 	
 }

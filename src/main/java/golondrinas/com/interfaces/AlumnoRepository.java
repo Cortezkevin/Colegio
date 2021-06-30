@@ -37,16 +37,11 @@ public interface AlumnoRepository extends JpaRepository<Alumno, String> {
 	@Query(value = "{call sp_MantEliminarAlumno(:idalumno)}", nativeQuery = true)
 	void EliminarAlumno(@Param("idalumno") String idalumno);
 	
+	@Query(value = "{call sp_ListarEstadoXUsuario(:idusuario)}", nativeQuery = true)
+	String validarUsuario(@Param("idusuario") String idusuario);
 	
+	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
+	String listarEstado(@Param("idpersona") String idpersona);	
 	
-	@Query(value = "{call sp_ManValidarPersonaxAlumno(:idpersona)}", nativeQuery = true)
-	String listarPersona(@Param("idpersona") String idpersona);
-	
-	/*@Query(value = "{call sp_ManValidarUsuarioxAlumno(:idusuario)}", nativeQuery = true)
-	String listarUsuario(@Param("idusuario") String idusuario);
-	
-	@Query(value = "{call sp_ManValidarMatriculaxAlumno(:idmatricula)}", nativeQuery = true)
-	String listarMatricula(@Param("idmatricula") String idmatricula);
-	*/
 	
 }

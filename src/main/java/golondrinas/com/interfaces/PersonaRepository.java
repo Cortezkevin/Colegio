@@ -62,4 +62,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 	@Query(value = "{call sp_ManListarPersonaxEmail(:email)}", nativeQuery = true)
 	List<Persona> listarPersonaxEmail(@Param("email") String email);
 	
+	
+	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
+	String listarEstado(@Param("idpersona") String idpersona);	
+	
 }

@@ -42,12 +42,15 @@ public class ApoderadoController {
 		String mensaje = "Apoderado registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			/*if (service.validarEstado(objApoderado) == 1) {
-				mensaje = "La persona seleccionada ya esta siendo ocupada";
-				respuesta = false;
+			if(service.validarEstado(objApoderado) ==  0 /*&& service.validarNombreUsuario(objMatricula) == false*/) {
+				service.registrarApoderado(objApoderado);	
+			}else if(service.validarEstado(objApoderado) == 2) {
+				mensaje = "La persona seleccionada ha sido eliminada";
+				respuesta = false;}
+			else{
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;}
 
-			}*/
-			service.registrarApoderado(objApoderado);
 
 		} catch (Exception ex) {
 

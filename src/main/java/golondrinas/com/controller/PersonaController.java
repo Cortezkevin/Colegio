@@ -88,7 +88,13 @@ public class PersonaController {
 		String mensaje = "Persona eliminado correctamente";
 		Boolean respuesta = true;
 		try {
-			service.eliminarPersona(objPersona);
+			if(service.validarEstado(objPersona) == false) {
+				service.eliminarPersona(objPersona);
+			}
+			else {
+			mensaje = "La persona a eliminar esta siendo ocupada";
+			respuesta = false;}
+			
 		} catch (Exception ex) {
 			mensaje = "Persona no eliminado";
 			respuesta = false;

@@ -38,23 +38,31 @@ public class ProfesorController {
 		List<Profesor> listProfesor = service.listarProfesor();
 		model.addAttribute("lstprofesor",listProfesor);
 		model.addAttribute("lstpersona",pservice.listarPersonaxtipo1());
-		model.addAttribute("lstusuario",uservice.listarUsuarios());
+		model.addAttribute("lstusuario",uservice.listarUsuarioXR002());
 		return "Profesor/frmProfesor";
 	}
 	
 	@PostMapping("/registrarProfesor")
 	@ResponseBody
 	public ResultadoResponse registrarProfesor(@RequestBody Profesor objProfesor) {
-		
 		String mensaje = "Profesor registrado correctamente";
 		Boolean respuesta = true;
-		
 		try {
-			/*if (service.validarPersona(objProfesor) == true) {
-				mensaje = "La persona seleccionada ya esta siendo ocupada";
-				respuesta = false;
-		    }*/
-			service.RegistrarProfesor(objProfesor);
+			if(service.validarProfesor(objProfesor) ==  0 && service.validarUsuario(objProfesor) == 0) {
+				service.RegistrarProfesor(objProfesor);	
+			}else if(service.validarProfesor(objProfesor) == 2) {
+				mensaje = "La persona seleccionada ha sido eliminada";
+				respuesta = false;}
+			else if(service.validarUsuario(objProfesor) == 2) {
+				mensaje = "El usuario seleccionado ha sido eliminado";
+				respuesta = false;}
+			else if(service.validarUsuario(objProfesor) == 1) {
+				mensaje = "El usuario seleccionado ya esta siendo ocupado";
+				respuesta = false;}
+			else{
+			mensaje = "La persona seleccionada ya esta siendo ocupada";
+			respuesta = false;}
+
 			
 		}
 		catch(Exception ex) {

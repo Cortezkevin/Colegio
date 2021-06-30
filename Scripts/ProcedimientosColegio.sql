@@ -202,13 +202,13 @@ CREATE PROCEDURE sp_ManListarPersonaxEmail(IN _email char(20))
 	SELECT  * FROM persona where email = _email;    
     
  CREATE  PROCEDURE sp_MantListarPersonaXtipo1()
-select * from persona where tipoPersona = '1';
+select * from persona where (tipoPersona = '1') and (estado = 'Activo' or estado = 'Ocupado');
 
 CREATE  PROCEDURE sp_MantListarPersonaXtipo2()
-select * from persona where tipoPersona = '2';
+select * from persona where (tipoPersona = '2') and (estado = 'Activo' or estado = 'Ocupado');
 
 CREATE  PROCEDURE sp_MantListarPersonaXtipo3()
-select * from persona where tipoPersona = '3';
+select * from persona where (tipoPersona = '3') and (estado = 'Activo' or estado = 'Ocupado');
 
 ##Registar persona
 DELIMITER $$
@@ -730,4 +730,15 @@ CREATE  PROCEDURE sp_ListarCursoXNombre(IN _nombre CHAR(20))
 select nombre from curso where nombre = _nombre;
 
 CREATE  PROCEDURE sp_ValidarProfesor(IN _idpersona CHAR(4))
-select idpersona from profesor where idpersona = _idpersona;
+select estado from persona where idpersona = _idpersona;
+
+CREATE  PROCEDURE sp_ListarEstadoXUsuario(IN _idusuario CHAR(4))
+select estado from usuario where idusuario = _idusuario;
+
+delete from profesor where idprofesor = 'D002';
+
+CREATE  PROCEDURE sp_ListarUsuarioXR001()
+select * from usuario where (idcargo = 'R001') and (estado = 'Activo' or estado = 'Ocupado');
+
+CREATE  PROCEDURE sp_ListarUsuarioXR002()
+select * from usuario where (idcargo = 'R002') and (estado = 'Activo' or estado = 'Ocupado');

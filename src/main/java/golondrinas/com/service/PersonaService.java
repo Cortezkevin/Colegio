@@ -93,4 +93,12 @@ public class PersonaService {
 		return 0;
 	}
 
+	
+	public boolean validarEstado(Persona p) {
+		String lista = repository.listarEstado(p.getIdpersona());
+		if(lista.equals("Ocupado")) {
+			return true;
+		}
+		return false;
+	}
 }
