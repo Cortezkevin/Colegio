@@ -72,7 +72,11 @@ public class NivelController {
 		Boolean respuesta = true;
 		
 		try {
-			service.eliminarNivel(objNivel);
+			if(service.validarEstadoNivel(objNivel) == false) {
+			service.eliminarNivel(objNivel);}
+			else {
+				mensaje = "El Nivel a eliminar esta siendo ocupado";
+				respuesta = false;}
 		}
 		
 		catch (Exception ex){

@@ -68,7 +68,13 @@ public class GradoController {
 		String mensaje = "Grado eliminado correctamente";
 		Boolean respuesta = true;
 		try {
-			service.eliminarGrado(objGrado);
+			if (service.validarEstadoGrado(objGrado) == false) {
+				service.eliminarGrado(objGrado);
+			} else {
+				mensaje = "El Grado a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
+
 		} catch (Exception ex) {
 			mensaje = "Grado no eliminado";
 			respuesta = false;

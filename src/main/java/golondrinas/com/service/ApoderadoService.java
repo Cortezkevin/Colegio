@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.ApoderadoRepository;
 import golondrinas.com.model.Apoderado;
-import golondrinas.com.model.Matricula;
+import golondrinas.com.model.Nivel;
+
 
 @Service
 public class ApoderadoService {
@@ -17,6 +18,10 @@ public class ApoderadoService {
 
 	public List<Apoderado> listarApoderado() {
 		return repository.listarApoderado();
+	}
+	
+	public List<Apoderado> listarApoderadoValidos() {
+		return repository.listarApoderadoValidos();
 	}
 
 	public void registrarApoderado(Apoderado o) {
@@ -45,6 +50,14 @@ public class ApoderadoService {
 			return 2;
 		}
 		return 0;
+	}
+	
+	public boolean validarEstadoApoderado(Apoderado n){
+		String lista = repository.ValidarEstadoApoderado(n.getIdapoderado());
+		if(lista.equals("Ocupado")) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -3,9 +3,15 @@
 <head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
-	
+<style>
+	#content{
+		display:none !important;
+	}
+</style>	
 <script type="text/javascript"
 	th:src="@{/script/jsweb/bimestre/frmBimestre.js}"></script>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<div class="card">
@@ -64,7 +70,7 @@
 					<form>
 						<div class="form-group">
 							<label for="txtnombimestre">Ingrese el nombre del Bimestre:</label> <input
-								 type="text" class="form-control" id="txtnombimestre" maxlength="35"  onkeypress="return validar(event)">
+								 type="text" class="form-control" id="txtnombimestre" maxlength="35"  onkeypress="return validarLetras(event)">
 							<span id="errornombimestre" class="text-danger"></span>
 						</div>
 						<input type="hidden" id="hddidbimestre" value="0">

@@ -39,18 +39,18 @@ public class ApoderadoController {
 	@ResponseBody
 	public ResultadoResponse registrarApoderado(@RequestBody Apoderado objApoderado) {
 
-		String mensaje = "Apoderado registrado correctamente";
+		String mensaje = "Apoderado: "+objApoderado.getNombrecompleto()+", registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			if(service.validarEstado(objApoderado) ==  0 /*&& service.validarNombreUsuario(objMatricula) == false*/) {
-				service.registrarApoderado(objApoderado);	
-			}else if(service.validarEstado(objApoderado) == 2) {
+			if (service.validarEstado(objApoderado) == 0 /* && service.validarNombreUsuario(objMatricula) == false */) {
+				service.registrarApoderado(objApoderado);
+			} else if (service.validarEstado(objApoderado) == 2) {
 				mensaje = "La persona seleccionada ha sido eliminada";
-				respuesta = false;}
-			else{
-			mensaje = "La persona seleccionada ya esta siendo ocupada";
-			respuesta = false;}
-
+				respuesta = false;
+			} else {
+				mensaje = "La persona seleccionada ya esta siendo ocupada";
+				respuesta = false;
+			}
 
 		} catch (Exception ex) {
 
@@ -74,11 +74,16 @@ public class ApoderadoController {
 	@ResponseBody
 	public ResultadoResponse eliminarApoderado(@RequestBody Apoderado obApoderado) {
 
-		String mensaje = "Apoderado eliminado de form logica";
+		String mensaje = "Apoderado eliminado de forma logica";
 		Boolean respuesta = true;
 		try {
 
-			service.elliminarApoderado(obApoderado);
+			if (service.validarEstadoApoderado(obApoderado) == false) {
+				service.elliminarApoderado(obApoderado);
+			} else {
+				mensaje = "El Apoderado a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
 		}
 
 		catch (Exception ex) {

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import golondrinas.com.interfaces.CargoRepository;
 import golondrinas.com.model.Cargo;
+import golondrinas.com.model.Nivel;
 
 @Service
 public class CargoService {
@@ -17,6 +17,10 @@ public class CargoService {
 	
 	public List<Cargo> listarCargos(){
 		return repository.listarCargos();
+	}
+	
+	public List<Cargo> listarCargoValidos() {
+		return repository.listarCargoValidos();
 	}
 	
 	public void registrarCargo(Cargo cargo) {
@@ -32,8 +36,6 @@ public class CargoService {
 	}
 	
 	
-	//DE VALIDACION/*
-	
 	public boolean validarNombre(Cargo obj) {
 		List<Cargo> listadoNombres = repository.listarCargoxNombre(obj.getNombre()); 
 		for (Cargo cargo : listadoNombres) {
@@ -41,6 +43,14 @@ public class CargoService {
 				return true;
 			}
 			break;
+		}
+		return false;
+	}
+	
+	public boolean validarEstadoCargo(Cargo n){
+		String lista = repository.ValidarEstadoCargo(n.getIdcargo());
+		if(lista.equals("Ocupado")) {
+			return true;
 		}
 		return false;
 	}

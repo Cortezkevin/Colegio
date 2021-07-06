@@ -72,11 +72,12 @@ public class NotasController {
 
 	@GetMapping("/frmNotas")
 	public String frmNota(Model model) {
-		model.addAttribute("lstnivel", nivelservice.listarNivel());
-		model.addAttribute("lstgrado", gradoservice.listarGrado());
-		model.addAttribute("lstseccion", seccionservice.listarSeccion());
-		model.addAttribute("lstcurso", cservice.listarCursos());
-		model.addAttribute("lstbimestre", bimestresservice.listarBimestres());
+		model.addAttribute("lstnivel", nivelservice.listarNivelValidos());
+		model.addAttribute("lstgrado", gradoservice.listarGradoValidos());
+		model.addAttribute("lstseccion", seccionservice.listarSeccionValidos());
+		model.addAttribute("lstcurso", cservice.listarCursosValidos());
+		model.addAttribute("lstbimestre", bimestresservice.listarBimestreValidos());
+		
 		return "Notas/frmNotas";
 	}
 

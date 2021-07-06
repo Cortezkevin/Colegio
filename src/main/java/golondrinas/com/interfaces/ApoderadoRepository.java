@@ -18,6 +18,9 @@ public interface ApoderadoRepository  extends JpaRepository<Apoderado, String>{
 	@Query(value = "{call sp_MantListarApoderados()}", nativeQuery = true)
 	List<Apoderado> listarApoderado();
 	
+	@Query(value = "{call sp_ApoderadoXEstado()}", nativeQuery = true)
+	List<Apoderado> listarApoderadoValidos();
+	
 	@Transactional
 	@Modifying
 	@Query(value="{call sp_MantRegistrarApoderado(:idpersona)}", nativeQuery = true)
@@ -37,8 +40,8 @@ public interface ApoderadoRepository  extends JpaRepository<Apoderado, String>{
 	@Query(value = "{call sp_MantListarEstadoXPersona(:idpersona)}", nativeQuery = true)
 	String listarEstado(@Param("idpersona") String idpersona);
 	
-	/*@Query(value = "{call sp_MantValidarApoderado(:idpersona)}", nativeQuery = true)
-	String validarApoderado(@Param("idpersona") String idpersona);*/
+	@Query(value = "{call sp_EstadoXApoderado(:idapoderado)}", nativeQuery = true)
+	String ValidarEstadoApoderado(@Param("idapoderado") String idapoderado);
 	
 	
 }

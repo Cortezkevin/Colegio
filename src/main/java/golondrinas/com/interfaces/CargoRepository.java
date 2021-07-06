@@ -19,6 +19,9 @@ public interface CargoRepository extends JpaRepository<Cargo, String>{
 			nativeQuery = true)
 	List<Cargo> listarCargos(); 
 	
+	@Query(value = "{call sp_CargoXEstado()}", nativeQuery = true)
+	List<Cargo> listarCargoValidos();
+	
 	@Transactional
 	@Modifying
 	@Query(value="{call sp_MantRegistrarCargo(:nombre)}",
@@ -41,11 +44,6 @@ public interface CargoRepository extends JpaRepository<Cargo, String>{
 	@Query(value="{call sp_MantListarCargoxNombre(:nombre)}",nativeQuery = true)
 	List<Cargo> listarCargoxNombre(@Param("nombre") String nombre);
 	
-	// PROBANDO VALIDACION POR NOMBRE
-	///
-	/*@Query(value = "{call sp_MantObtenerCargoxNombre(:nombre)}", nativeQuery = true)
-	List<Cargo> listarCargoxNombre(@Param("nombre") String nombre);*/
-	/*
-	@Query(value = "{call sp_MantObtenerListaNombres()}", nativeQuery = true)
-	List<Cargo> listarCargoxNombre();*/
+	@Query(value = "{call sp_EstadoXCargo(:idcargo)}", nativeQuery = true)
+	String ValidarEstadoCargo(@Param("idcargo") String idcargo);
 }

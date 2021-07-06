@@ -55,10 +55,10 @@ public class MatriculaController {
 	public String frmMatricula(Model model) {
 		model.addAttribute("lstMat", service.listarMatriculas());
 		model.addAttribute("lstPersona", pservice.listarPersonaxtipo3());
-		model.addAttribute("lstApoderado", apservice.listarApoderado());
-		model.addAttribute("lstNivel", nService.listarNivel());
-		model.addAttribute("lstGrado", gService.listarGrado());
-		model.addAttribute("lstSeccion", sService.listarSeccion());
+		model.addAttribute("lstApoderado", apservice.listarApoderadoValidos());
+		model.addAttribute("lstNivel", nService.listarNivelValidos());
+		model.addAttribute("lstGrado", gService.listarGradoValidos());
+		model.addAttribute("lstSeccion", sService.listarSeccionValidos());
 		return "Matriculas/frmMatricula";
 	}
 

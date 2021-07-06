@@ -18,6 +18,9 @@ public interface NivelRepository extends JpaRepository<Nivel, String>{
 	@Query(value= "{call sp_MantListarNivel()}", nativeQuery = true)
 	List<Nivel> listarNiveles();
 	
+	@Query(value = "{call sp_NivelXEstado()}", nativeQuery = true)
+	List<Nivel> listarNivelValidos();
+	
 	@Transactional
 	@Modifying
 	@Query(value = "{call sp_MantRegistrarNivel(:nombre)}", nativeQuery = true)
@@ -35,5 +38,9 @@ public interface NivelRepository extends JpaRepository<Nivel, String>{
 	
 	@Query(value = "call sp_MantListarNivelxNombre(:nombre)", nativeQuery = true)
 	List<Nivel> ListarNivelxNombre(@Param("nombre") String nombre);
+	
+	
+	@Query(value = "{call sp_EstadoXNivel(:idnivel)}", nativeQuery = true)
+	String ValidarEstadoNivel(@Param("idnivel") String idnivel);
 	
 }

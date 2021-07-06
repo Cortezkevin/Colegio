@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.AlumnoRepository;
 import golondrinas.com.model.Alumno;
-import golondrinas.com.model.Profesor;
 
 @Service
 public class AlumnoService {
@@ -56,4 +55,14 @@ public class AlumnoService {
 		}
 		return 0;
 	}
+	
+	public boolean validarEstadoAlumno(Alumno n){
+		String lista = repository.ValidarEstadoAlumno(n.getIdalumno());
+		if(lista.equals("Ocupado")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 }

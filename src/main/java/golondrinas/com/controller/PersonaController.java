@@ -92,7 +92,7 @@ public class PersonaController {
 				service.eliminarPersona(objPersona);
 			}
 			else {
-			mensaje = "La persona a eliminar esta siendo ocupada";
+			mensaje = "La Persona: "+objPersona.getNombres()+" "+objPersona.getApellidos()+", esta siendo ocupada";
 			respuesta = false;}
 			
 		} catch (Exception ex) {

@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.CursoRepository;
-import golondrinas.com.model.Cargo;
 import golondrinas.com.model.Curso;
-import golondrinas.com.model.Grado;
+import golondrinas.com.model.Nivel;
 
 @Service
 public class CursoService {
@@ -20,6 +19,9 @@ public class CursoService {
 		return repository.findAll();
 	}
 	
+	public List<Curso> listarCursosValidos(){
+		return repository.listarCursoValidos();
+	}
 	
 	public void registrarCurso(Curso curso) {
 		if(curso.getIdcurso() == null) {
@@ -41,4 +43,13 @@ public class CursoService {
 		}
 		return false;
 	}
+	
+	public boolean validarEstadoCurso(Curso n){
+		String lista = repository.ValidarEstadoCurso(n.getIdcurso());
+		if(lista.equals("Ocupado")) {
+			return true;
+		}
+		return false;
+	}
+	
 }

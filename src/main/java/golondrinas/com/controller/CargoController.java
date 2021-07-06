@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import golondrinas.com.model.response.ResultadoResponse;
 
 import golondrinas.com.model.Cargo;
@@ -39,23 +38,22 @@ public class CargoController {
 
 	@PostMapping("/registrarCargo")
 	@ResponseBody
-	public ResultadoResponse registrarCargo( @RequestBody Cargo objCargo) {
+	public ResultadoResponse registrarCargo(@RequestBody Cargo objCargo) {
 		String mensaje = "Cargo registrado correctamente";
-		Boolean respuesta = true;		
+		Boolean respuesta = true;
 		try {
-				if(service.validarNombre(objCargo) == false) {
-					service.registrarCargo(objCargo);	
-				}
-				else {
-					mensaje = "Nombre de cargo "+objCargo.getNombre().toString() +" ya existe";
-					respuesta = false;
-				}
-			} catch (Exception ex) {
-				mensaje = "Cargo no registrado";
+			if (service.validarNombre(objCargo) == false) {
+				service.registrarCargo(objCargo);
+			} else {
+				mensaje = "Nombre de cargo " + objCargo.getNombre().toString() + " ya existe";
 				respuesta = false;
 			}
-					
-	return new ResultadoResponse(respuesta, mensaje);
+		} catch (Exception ex) {
+			mensaje = "Cargo no registrado";
+			respuesta = false;
+		}
+
+		return new ResultadoResponse(respuesta, mensaje);
 	}
 
 	@GetMapping("/listarCargos")
@@ -70,7 +68,12 @@ public class CargoController {
 		String mensaje = "Cargo eliminado de forma logica";
 		Boolean respuesta = true;
 		try {
-			service.eliminarCargo(objCargo);
+			if (service.validarEstadoCargo(objCargo) == false) {
+				service.eliminarCargo(objCargo);
+			} else {
+				mensaje = "El Cargo a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
 		} catch (Exception ex) {
 			mensaje = "Cargo no eliminado";
 			respuesta = false;

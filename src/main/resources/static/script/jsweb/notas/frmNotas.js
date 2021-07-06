@@ -20,6 +20,7 @@ $(document).on("click", "#btnbuscar" , function(){
 				seccion: seccion
 			},
 			success: function(resultado){
+				console.log(resultado);
 				$("#tblalumno").html("");
 				$.each(resultado, function(index, value){
 					$("#tblalumno").append("<div class='col mb-4'>"+

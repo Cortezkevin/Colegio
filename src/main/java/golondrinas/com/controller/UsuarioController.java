@@ -153,7 +153,7 @@ public class UsuarioController {
 				service.eliminarUsuario(objUsuario);
 			}
 			else {
-			mensaje = "El usuario a eliminar esta siendo ocupado";
+			mensaje = "El Usuario a eliminar esta siendo ocupado";
 			respuesta = false;}
 		} catch (Exception ex) {
 			mensaje = "Usuario no eliminado";

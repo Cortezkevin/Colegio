@@ -18,21 +18,19 @@ import golondrinas.com.service.CursoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.NivelService;
 
-
-
 @Controller
 @RequestMapping("/Curso")
 public class CursoController {
-	
-	@Autowired 
+
+	@Autowired
 	private CursoService service;
-	
-	@Autowired 
+
+	@Autowired
 	private NivelService nservice;
-	
-	@Autowired 
+
+	@Autowired
 	private GradoService gservice;
-	
+
 	@GetMapping("/frmListarCurso")
 	public String frmListarCurso(Model model) {
 		model.addAttribute("listcursos", service.listarCursos());
@@ -40,46 +38,49 @@ public class CursoController {
 		model.addAttribute("lstgrado", gservice.listarGrado());
 		return "Curso/frmListarCurso";
 	}
-	
+
 	@PostMapping("/registrarCurso")
 	@ResponseBody
 	public ResultadoResponse registrarCurso(@RequestBody Curso objCurso) {
 		String mensaje = "Curso registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			if(service.validarNombre(objCurso) == false) {
-				service.registrarCurso(objCurso);
-			}
-			mensaje = "El nombre del curso ingresado ya esta registrado";
-			respuesta = false;
-		}catch(Exception ex) {
+			/* if(service.validarNombre(objCurso) == false) { */
+			service.registrarCurso(objCurso);
+			/*
+			 * }else { mensaje = "El nombre del curso ingresado ya esta registrado";
+			 * respuesta = false; }
+			 */
+		} catch (Exception ex) {
 			mensaje = "Curso no registrado";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
+
 	@GetMapping("/listarCursos")
 	@ResponseBody
-	public List<Curso> listarCursos(){
+	public List<Curso> listarCursos() {
 		return service.listarCursos();
 	}
-	
+
 	@DeleteMapping("/eliminarCurso")
 	@ResponseBody
 	public ResultadoResponse eliminarCurso(@RequestBody Curso objCurso) {
 		String mensaje = "Curso eliminado correctamente";
 		Boolean respuesta = true;
 		try {
-			service.eliminarCurso(objCurso);
-		}catch(Exception ex) {
+			if (service.validarEstadoCurso(objCurso) == false) {
+				service.eliminarCurso(objCurso);
+			} else {
+				mensaje = "El Curso a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
+		} catch (Exception ex) {
 			mensaje = "Curso no eliminado";
 			respuesta = false;
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
-	
-	
 
 }

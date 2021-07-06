@@ -15,6 +15,9 @@ import golondrinas.com.model.Seccion;
 @Repository
 public interface SeccionRepository extends JpaRepository<Seccion, String>{
 	
+	@Query(value = "{call sp_SeccionXEstado()}", nativeQuery = true)
+	List<Seccion> listarSeccionValidos();
+	
 	@Transactional
 	@Modifying
 	@Query(value="{call sp_MantRegistrarSeccion(:pnombre)}",nativeQuery = true)
@@ -36,4 +39,7 @@ public interface SeccionRepository extends JpaRepository<Seccion, String>{
 	
 	@Query(value = "{call sp_ManListarSeccionxNombre(:nombre)}", nativeQuery = true)
 	List<Seccion> listarSeccionxNombre(@Param("nombre") String nombre);
+	
+	@Query(value = "{call sp_EstadoXSeccion(:idseccion)}", nativeQuery = true)
+	String ValidarEstadoSeccion(@Param("idseccion") String idseccion);
 }

@@ -22,61 +22,69 @@ public class BimestreController {
 
 	@Autowired
 	private BimestreService service;
-	
+
 	@GetMapping("/frmBimestres")
 	public String listarBimestre(Model model) {
-		
+
 		List<Bimestre> listarBimestre = service.listarBimestres();
-		model.addAttribute("lstBimestre",listarBimestre);
+		model.addAttribute("lstBimestre", listarBimestre);
 		return "Bimestre/frmBimestre";
 	}
-	
+
 	@PostMapping("/registrarBimestre")
 	@ResponseBody
 	public ResultadoResponse resgistrarBimestre(@RequestBody Bimestre objBimestre) {
-		
+
 		String mensaje = "Bimestre registrado correctamente";
 		Boolean respuesta = true;
-		
+
 		try {
-			
-			service.registrarBimestre(objBimestre);
+			if (service.validarNombre(objBimestre) == false) {
+				service.registrarBimestre(objBimestre);
+			} else {
+				mensaje = "El nombre del bimestre ingresado ya esta registrado";
+				respuesta = false;
+			}
 		}
-		
-		catch(Exception ex) {
-			
+
+		catch (Exception ex) {
+
 			mensaje = "Bimestre no registrado";
 			respuesta = false;
 		}
-		
+
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
-	
+
 	@GetMapping("/listarBimestre")
 	@ResponseBody
-	public List<Bimestre> listarBimestre(){
-		
+	public List<Bimestre> listarBimestre() {
+
 		return service.listarBimestres();
 	}
-	
+
 	@DeleteMapping("/eliminarBimestre")
 	@ResponseBody
 	public ResultadoResponse eliminarBimestre(@RequestBody Bimestre objBimestre) {
-		
+
 		String mensaje = "Bimestre eliminado de forma logica";
 		Boolean respuesta = true;
 		try {
-			
-			service.eliminarBimestre(objBimestre);
+
+			if (service.validarEstadoBimestre(objBimestre) == false) {
+				service.eliminarBimestre(objBimestre);
+			} else {
+				mensaje = "El Bimestre a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
 		}
-		
+
 		catch (Exception e) {
-			
+
 			mensaje = "Bimestre no eliminado";
 			respuesta = false;
 		}
-		
+
 		return new ResultadoResponse(respuesta, mensaje);
 	}
 }

@@ -31,7 +31,7 @@ public class AlumnoController {
 
 	@Autowired
 	private UsuarioService uservice;
-	
+
 	@Autowired
 	private PersonaService pservice;
 
@@ -40,7 +40,7 @@ public class AlumnoController {
 
 	@Autowired
 	private MatriculaService mservice;
-	
+
 	@Autowired
 	private DetalleAlumnoService daservice;
 
@@ -61,20 +61,21 @@ public class AlumnoController {
 		Boolean respuesta = true;
 
 		try {
-			if(service.validarPersona(objAlumno) ==  0 && service.validarUsuario(objAlumno) == 0) {
-				service.registrarAlumno(objAlumno);	
-			}else if(service.validarPersona(objAlumno) == 2) {
+			if (service.validarPersona(objAlumno) == 0 && service.validarUsuario(objAlumno) == 0) {
+				service.registrarAlumno(objAlumno);
+			} else if (service.validarPersona(objAlumno) == 2) {
 				mensaje = "La persona seleccionada ha sido eliminada";
-				respuesta = false;}
-			else if(service.validarUsuario(objAlumno) == 2) {
+				respuesta = false;
+			} else if (service.validarUsuario(objAlumno) == 2) {
 				mensaje = "El usuario seleccionado ha sido eliminado";
-				respuesta = false;}
-			else if(service.validarUsuario(objAlumno) == 1) {
+				respuesta = false;
+			} else if (service.validarUsuario(objAlumno) == 1) {
 				mensaje = "El usuario seleccionado ya esta siendo ocupado";
-				respuesta = false;}
-			else{
-			mensaje = "La persona seleccionada ya esta siendo ocupada";
-			respuesta = false;}
+				respuesta = false;
+			} else {
+				mensaje = "La persona seleccionada ya esta siendo ocupada";
+				respuesta = false;
+			}
 		}
 
 		catch (Exception ex) {
@@ -101,7 +102,12 @@ public class AlumnoController {
 		Boolean respuesta = true;
 
 		try {
-			service.eliminarAlumno(objAlumno);
+			if (service.validarEstadoAlumno(objAlumno) == false) {
+				service.eliminarAlumno(objAlumno);
+			} else {
+				mensaje = "El Alumno a eliminar esta siendo ocupado";
+				respuesta = false;
+			}
 		}
 
 		catch (Exception ex) {
@@ -112,7 +118,7 @@ public class AlumnoController {
 
 		return new ResultadoResponse(respuesta, mensaje);
 	}
-	
+
 	@GetMapping("/listarDetalleAlumno")
 	@ResponseBody
 	public List<DetalleAlumno> listarDetalleAlumnos(@RequestParam("idalumno") String idalumno) {

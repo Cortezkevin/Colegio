@@ -73,7 +73,12 @@ public class SeccionController {
 		String mensaje = "Seccion Eliminada";
 		Boolean respuesta = true;
 		try {
-			service.eliminarSeccion(objSeccion);
+			if (service.validarEstadoSeccion(objSeccion) == false) {
+				service.eliminarSeccion(objSeccion);
+			} else {
+				mensaje = "La Seccion a eliminar esta siendo ocupada";
+				respuesta = false;
+			}
 		} catch (Exception e) {
 			mensaje = "Seccion no eliminada";
 			respuesta = false;
@@ -86,5 +91,5 @@ public class SeccionController {
 	public List<Seccion> listarSecciones() {
 		return service.listarSeccion();
 	}
-	
+
 }

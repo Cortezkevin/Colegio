@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+</head>
+<style>
+#content {
+	display: none !important;
+}
+</style>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/alumno/frmAsistenciaAlumno.js}"></script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header badge-secondary text-center">ALUMNOS</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="cbonivel">Seleccione Nivel:</label> <select
+								class="form-control" id="cbonivel">
+								<option value="0">Seleccione</option>
+								<option th:each="nivel :${lstnivel}" th:text="${nivel.nombre}"
+									th:value="${nivel.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cbogrado">Seleccione Grado:</label> <select
+								class="form-control" id="cbogrado">
+								<option value="0">Seleccione</option>
+								<option th:each="grado :${lstgrado}" th:text="${grado.nombre}"
+									th:value="${grado.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cboseccion">Seleccione Sección:</label> <select
+								class="form-control" id="cboseccion">
+								<option value="0">Seleccione</option>
+								<option th:each="seccion :${lstseccion}"
+									th:text="${seccion.nombre}" th:value="${seccion.nombre}"></option>
+							</select>
+						</div>
+						<button class="btn btn-success" type="button" id="btnbuscar">Buscar</button>
+						<!-- <hr />
+						<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="modalasistencia" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Asitencia de
+						Alumnos</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<label for="txtfecha">Fecha:</label> <input type="date"
+						id="txtfecha" class="form-control" placeholder="fecha"> <span
+						id="errorfecha" class="text-danger"></span>
+
+					<form>
+						<div class="form-group">
+							<label for="cboalumno">Seleccione Alumno:</label> <select
+								class="form-control" id="cboalumno"> 
+								<option value="0">Seleccione</option>
+								<!--
+								 <option th:each="a :${lstalumnos}"
+									th:text="${a.nombrecompleto}" th:value="${a.idalumno}"></option>-->
+							</select> <span id="erroralumno" class="text-danger"></span><input
+								type="hidden" id="hddidasistencia" value="0"><input
+								type="hidden" id="hddidalumno" value="0">
+						</div>
+						<div class="form-group">
+							<label for="cboestado">Estado:</label> <select
+								class="form-control" id="cboestado">
+								<option value="0">Seleccione</option>
+								<option th:each="estado :${estado}" th:text="${estado}"
+									th:value="${estado}"></option>
+							</select><span id="errorestado" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="txtcomentario">Comentario:</label> <input type="text"
+								id="txtcomentario" class="form-control" maxlength="40"
+								onkeypress="return validarNumeros(event)">
+						</div>
+						<div><button id="btnregistrarasistencia" type="button"
+						class="btn btn-secondary">Guardar</button></div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="btnprueba" type="button"
+						class="btn btn-secondary">Guardar</button>
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div th:replace="menu2::barra"></div>
+	<div>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="../css/icons/script.js"></script>
+	</div>
+</body>
+</html>

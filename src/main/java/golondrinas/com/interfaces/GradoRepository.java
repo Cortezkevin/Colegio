@@ -13,30 +13,30 @@ import org.springframework.stereotype.Repository;
 import golondrinas.com.model.Grado;
 
 @Repository
-public interface GradoRepository extends JpaRepository<Grado, String>{
-	
-	
-	
-	@Transactional
-	@Modifying
-	@Query(value="{call sp_MantActualizarGrado(:pidgrado, :pnombregrado, :pestado)}",
-	nativeQuery=true)
-	void actualizarGrado(@Param("pidgrado") String codgrado,
-	@Param("pnombregrado")String pnombre,
-	@Param("pestado")String estado);
+public interface GradoRepository extends JpaRepository<Grado, String> {
+
+	@Query(value = "{call sp_GradoXEstado()}", nativeQuery = true)
+	List<Grado> listarGradosValidos();
 	
 	@Transactional
 	@Modifying
-	@Query(value="{call sp_MantRegistrarGrado(:nombregrado)}", nativeQuery = true)
-	void registrarGrado(@Param("nombregrado")String  nombregrado);
-	
-	
+	@Query(value = "{call sp_MantActualizarGrado(:pidgrado, :pnombregrado, :pestado)}", nativeQuery = true)
+	void actualizarGrado(@Param("pidgrado") String codgrado, @Param("pnombregrado") String pnombre,
+			@Param("pestado") String estado);
+
 	@Transactional
 	@Modifying
-	@Query(value="{call sp_MantEliminarGrado(:idgrado)}", nativeQuery = true)
-	void eliminarGrado(@Param("idgrado")String idgrado);
+	@Query(value = "{call sp_MantRegistrarGrado(:nombregrado)}", nativeQuery = true)
+	void registrarGrado(@Param("nombregrado") String nombregrado);
+
+	@Transactional
+	@Modifying
+	@Query(value = "{call sp_MantEliminarGrado(:idgrado)}", nativeQuery = true)
+	void eliminarGrado(@Param("idgrado") String idgrado);
+
+	@Query(value = "{call sp_ManListarGradoxNombre(:nombre)}", nativeQuery = true)
+	List<Grado> listarGradoxNombre(@Param("nombre") String nombre);
 	
-	
-	@Query(value= "{call sp_ManListarGradoxNombre(:nombre)}", nativeQuery = true)
-	List<Grado> listarGradoxNombre(@Param("nombre") String nombre); 
+	@Query(value = "{call sp_EstadoXGrado(:idgrado)}", nativeQuery = true)
+	String ValidarEstadoGrado(@Param("idgrado") String idgrado);
 }

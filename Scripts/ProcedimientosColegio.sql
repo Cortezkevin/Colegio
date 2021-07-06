@@ -154,6 +154,10 @@ BEGIN
     
 	update persona set estado = 'Ocupado' where idPersona = _idpersona;
     update usuario set estado = 'Ocupado'  where idUsuario = @idusuario;
+    update apoderado set estado = 'Ocupado' where idApoderado = _idapoderado;
+    update nivel set estado = 'Ocupado' where idNivel= _idnivel;
+    update seccion set estado = 'Ocupado' where idSeccion = _idseccion;
+    update grado set estado = 'Ocupado' where idGrado = _idgrado;
 END$$
 DELIMITER ;
  
@@ -251,11 +255,13 @@ CREATE PROCEDURE sp_MantObtenerPersona(IN _idPersona CHAR(4))
    
    ##Registrar Curso
 DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarCurso(IN idnivel char(4), IN idgrado char(4),IN nombre char(20), IN descripcion char(40))
+CREATE PROCEDURE sp_MantRegistrarCurso(IN _idnivel char(4), IN _idgrado char(4),IN nombre char(20), IN descripcion char(40))
 BEGIN
     SET @idcurso = (SELECT CONCAT('C',RIGHT(CONCAT('00',RIGHT(MAX(IdCurso),3) + 1),3)) FROM curso);#####################################################################
     INSERT INTO Curso(idCurso, idNivel, idGrado, Nombre, Descripcion, Estado) 
-                        VALUES (@idcurso, idnivel, idgrado, nombre, descripcion, 'Activo');
+                        VALUES (@idcurso, _idnivel, _idgrado, nombre, descripcion, 'Activo');
+                        update nivel set estado = 'Ocupado' where idNivel = _idnivel;
+                        update grado set estado = 'Ocupado' where idGrado = _idgrado;
 END$$
  DELIMITER ;
 
@@ -411,6 +417,7 @@ BEGIN
 	SET @pidusuario = (SELECT CONCAT('U',RIGHT(CONCAT('00',RIGHT(MAX(idusuario),3) + 1),3)) FROM usuario);	
 	INSERT INTO usuario (idusuario, nombreusuario, contrasena, idcargo, idpersona,estado,foto) VALUES (@pidusuario,pnombreusuario,pcontraseña,pidcargo, pidpersona,'Activo',pfoto);
     update persona set estado = 'Ocupado' where idPersona = pidpersona;
+    update cargo set estado = 'Ocupado' where idCargo = pidcargo;
 END$$
  DELIMITER ;
  
@@ -586,7 +593,7 @@ END$$
 #PROCEDIMIENTOS NOTAS
 CREATE  PROCEDURE sp_MantListarAlumnosxAula(in nivel char(20), in grado char(20), in seccion char(20))
     select a.idAlumno, a.nombreCompleto, a.apoderado from alumno a 
-    where a.nivel = nivel and a.grado = grado and a.seccion = seccion;
+    where a.nivel = nivel and a.grado = grado and a.seccion = seccion and (a.estado = 'Activo' or a.estado = 'Ocupado');
     
 DELIMITER $$
 create procedure sp_RegistrarNotaxCurso(in _idalumno char(4), in _idcurso char(4), in _idbimestre char(4), in _examen1 double,
@@ -595,7 +602,9 @@ BEGIN
     SET @idnota = (SELECT CONCAT('NO',RIGHT(CONCAT('00',RIGHT(MAX(idNotas),3) + 1),3)) FROM notas);
     INSERT INTO Notas(idNotas, idAlumno, idCurso, idBimestre,examen1, examen2, examen3, examen4, promedio, estado) 
                         VALUES (@idnota,_idalumno, _idcurso, _idbimestre,_examen1, _examen2, _examen3, _examen4, _promedio,'Activo');
-												
+				update alumno set estado = 'Ocupado' where idAlumno = _idalumno;
+                update curso set estado = 'Ocupado' where idCurso = _idcurso;
+                update bimestre set estado = 'Ocupado' where idBimestre = _idbimestre;
 END$$
  DELIMITER ;
 
@@ -648,8 +657,8 @@ insert into persona values('P009','2','Wilfredo','Cortez Pereda','Av. San Marcos
 insert into apoderado values('AP001','P002','Victor Martinez Ruiz','Activo'); 
 insert into apoderado values('AP002','P004','Maria Isabel Huamani Caceres','Activo'); 
 insert into apoderado values('AP003','P009','Wilfredo Cortez Pereda','Activo'); 
-insert into matricula values('M001','P001','AP001','N002','G001','S001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
-insert into matricula values('M002','P003','AP002','N002','G001','S001','carlos123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
+insert into matricula values('M001','P001','AP001','N001','G001','S001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
+insert into matricula values('M002','P003','AP002','N001','G001','S001','carlos123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6',100.0,'2002-10-10','Activo');
 insert into usuario values('U001','Kevin123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P001','Ocupado','dfsddfs');
 insert into usuario values('U002','CMHH123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R001','P003','Ocupado','dfsddfs');
 insert into usuario values('U003','D123','$2a$04$rwAEqg.wIeWGot/iHN3.4OHPTlF3/cM0tO4PMySLy0bdbYRMYrzL6','R002','P005','Ocupado','dfsddfs');
@@ -735,10 +744,62 @@ select estado from persona where idpersona = _idpersona;
 CREATE  PROCEDURE sp_ListarEstadoXUsuario(IN _idusuario CHAR(4))
 select estado from usuario where idusuario = _idusuario;
 
-delete from profesor where idprofesor = 'D002';
+#delete from profesor where idprofesor = 'D002';
 
 CREATE  PROCEDURE sp_ListarUsuarioXR001()
 select * from usuario where (idcargo = 'R001') and (estado = 'Activo' or estado = 'Ocupado');
 
 CREATE  PROCEDURE sp_ListarUsuarioXR002()
 select * from usuario where (idcargo = 'R002') and (estado = 'Activo' or estado = 'Ocupado');
+####
+CREATE  PROCEDURE sp_ListarBimestreXNombre(in _nombre char(20))
+select nombre from bimestre where nombre = _nombre;
+ 
+ CREATE  PROCEDURE sp_NivelXEstado()
+select * from nivel where (estado = 'Activo' or estado = 'Ocupado');  ###########
+
+ CREATE  PROCEDURE sp_GradoXEstado()
+select * from grado where (estado = 'Activo' or estado = 'Ocupado');
+
+ CREATE  PROCEDURE sp_SeccionXEstado()
+select * from seccion where (estado = 'Activo' or estado = 'Ocupado');
+
+ CREATE  PROCEDURE sp_CargoXEstado()
+select * from cargo where (estado = 'Activo' or estado = 'Ocupado');
+
+ CREATE  PROCEDURE sp_BimestreXEstado()
+select * from bimestre where (estado = 'Activo' or estado = 'Ocupado');
+
+ CREATE  PROCEDURE sp_ApoderadoXEstado()
+select * from apoderado where (estado = 'Activo' or estado = 'Ocupado');
+
+ CREATE  PROCEDURE sp_CursoXEstado()
+select * from curso where (estado = 'Activo' or estado = 'Ocupado');
+
+##
+ CREATE  PROCEDURE sp_EstadoXNivel(in _idnivel char(4))
+select estado from nivel where idNivel = _idnivel;
+
+ CREATE  PROCEDURE sp_EstadoXGrado(in _idgrado char(4))
+select estado from grado where idGrado = _idgrado;
+
+CREATE  PROCEDURE sp_EstadoXSeccion(in _idseccion char(4))
+select estado from seccion where idSeccion = _idseccion;
+
+ CREATE  PROCEDURE sp_EstadoXApoderado(in _idapoderado char(4))
+select estado from apoderado where idApoderado = _idapoderado;
+
+CREATE  PROCEDURE sp_EstadoXBimestre(in _idbimestre char(4))
+select estado from bimestre where idBimestre = _idbimestre;
+
+CREATE  PROCEDURE sp_EstadoXAlumno(in _idalumno char(4))
+select estado from alumno where idAlumno = _idalumno;
+
+CREATE  PROCEDURE sp_EstadoXCargo(in _idcargo char(4))
+select estado from cargo where idCargo = _idcargo;
+
+CREATE  PROCEDURE sp_EstadoXCurso(in _idcurso char(4))
+select estado from curso where idCurso = _idcurso;
+
+CREATE  PROCEDURE sp_EstadoXMatricula(in _idmatricula char(4))
+select estado from matricula where idMatricula = _idmatricula;
