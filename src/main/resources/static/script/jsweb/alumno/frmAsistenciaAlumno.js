@@ -36,6 +36,10 @@ $(document).on("click", "#btnbuscar", function() {
 				)});
 				
 				$("#modalasistencia").modal("show");
+				
+					var date = new Date();
+					var hoy = date.toLocaleDateString();
+					$("#txtf").val(hoy);
 			}
 
 		});
@@ -73,7 +77,7 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 	alert($("#txtfecha").val())
 	
 	alert($("#cboalumno").val())*/
-	var fecha = $("#txtfecha").val();
+	//var fecha = $("#txtfecha").val();
 	var alumno = $("#cboalumno").val();
 	if (alumno === "0") {
 		$("#erroralumno").text("Es obligatorio seleccionar un alumno");
@@ -91,7 +95,7 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 				url: "/AsistenciaAlumno/registrarAsistencia",
 				data: JSON.stringify({
 					idalumno: $("#cboalumno").val(),
-					fecha: fecha,
+					fecha: $("#txtf").val(),
 					estado: $("#cboestado").val(),
 					comentario: $("#txtcomentario").val(),
 				}),

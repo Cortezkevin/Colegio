@@ -59,7 +59,7 @@ public class AsistenciaAlumnoService {
 	
 	
 	public boolean validarAsistenciaXFecha(AsistenciaAlumno a) {
-		List<String> lista = repository.validarAsistenciaXFecha(a.getFecha());
+		List<String> lista = repository.validarAsistenciaXFecha(a.getFecha(), a.getIdalumno());
 		for (String alummos : lista) {
 			if (alummos.equals(a.getIdalumno())) {
 				return true;

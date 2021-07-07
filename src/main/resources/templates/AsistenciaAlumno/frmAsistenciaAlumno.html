@@ -61,7 +61,7 @@
 
 	<div class="modal fade" id="modalasistencia" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Asitencia de
@@ -73,14 +73,18 @@
 				</div>
 				<div class="modal-body">
 
-					<label for="txtfecha">Fecha:</label> <input type="date"
+					<!-- <label for="txtfecha">Fecha:</label> <input type="date"
 						id="txtfecha" class="form-control" placeholder="fecha"> <span
-						id="errorfecha" class="text-danger"></span>
+						id="errorfecha" class="text-danger"></span> -->
+					<div class="form-group">
+						<label for="txtf">Fecha:</label> <input type="text"
+							id="txtf" class="form-control" disabled = true>
+					</div>
 
 					<form>
 						<div class="form-group">
 							<label for="cboalumno">Seleccione Alumno:</label> <select
-								class="form-control" id="cboalumno"> 
+								class="form-control" id="cboalumno">
 								<option value="0">Seleccione</option>
 								<!--
 								 <option th:each="a :${lstalumnos}"
@@ -100,15 +104,16 @@
 						<div class="form-group">
 							<label for="txtcomentario">Comentario:</label> <input type="text"
 								id="txtcomentario" class="form-control" maxlength="40"
-								onkeypress="return validarNumeros(event)">
+								onkeypress="return validarNumeros(event)" placeholder = "opcional">
 						</div>
-						<div><button id="btnregistrarasistencia" type="button"
-						class="btn btn-secondary">Guardar</button></div>
+						<div>
+							<button id="btnregistrarasistencia" type="button"
+								class="btn btn-secondary">Guardar</button>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button id="btnprueba" type="button"
-						class="btn btn-secondary">Guardar</button>
+					<button id="btnprueba" type="button" class="btn btn-secondary">Guardar</button>
 
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cerrar</button>

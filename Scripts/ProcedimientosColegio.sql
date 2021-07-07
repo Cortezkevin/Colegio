@@ -128,7 +128,7 @@ CREATE  PROCEDURE sp_MantListarMatriculas()
 CREATE  PROCEDURE sp_MantListarEstadoXPersona(in _idpersona char(4))
 select estado  from persona where idPersona =_idpersona;
 
-DELIMITER $$
+ DELIMITER $$
 CREATE  PROCEDURE sp_MantRegistrarMatricula(IN _idpersona CHAR(4),in _idapoderado char(5) ,IN _idnivel CHAR(4),
 	IN _idgrado CHAR(4),IN _idseccion CHAR(4),in _nombreUsuario varchar(45),in _contrasena char(200), in monto double,IN fecha DATE)
 BEGIN
@@ -138,8 +138,6 @@ BEGIN
     VALUES (@idmatricula, _idpersona,_idapoderado,_idnivel,_idgrado,_idseccion,_nombreUsuario,_contrasena,monto,fecha,'Activo');
     
     set @idusuario = (SELECT CONCAT('U',RIGHT(CONCAT('00',RIGHT(MAX(idUsuario),3) + 1),3)) FROM usuario);	
-    #set @nombreusuario = (SELECT CONCAT('A',RIGHT(CONCAT('0',RIGHT(dni,8)),9)) FROM persona where idpersona = _idpersona );
-    #set  @contrasena = (select  CONCAT(RIGHT(CONCAT(LEFT(p.apellidos,1),LEFT(p.dni,8)),10))  from persona p where p.idPersona = _idpersona );
     set @Cargo = (select idcargo from cargo where nombre = 'Alumno');
     INSERT INTO usuario (idUsuario, nombreUsuario, contrasena, idCargo, idPersona,estado,foto) VALUES (@idusuario,_nombreUsuario,_contrasena,@Cargo, _idpersona,'Activo','no tiene');
     
@@ -151,6 +149,9 @@ BEGIN
     set @idalumno = (SELECT CONCAT('A',RIGHT(CONCAT('00',RIGHT(MAX(idAlumno),3) + 1),3)) FROM alumno);
     insert into alumno (idAlumno, idPersona, idUsuario, idMatricula, nivel, grado, seccion, apoderado ,nombreCompleto, estado) 
     values (@idalumno, _idpersona, @idUsuario, @idMatricula, @nivel, @grado, @seccion,@apoderado,@alumno,'Activo') ;
+    
+	SET @idreporte = (SELECT CONCAT('RA',RIGHT(CONCAT('00',RIGHT(MAX(idReporte),3) + 1),3)) FROM ReporteAsistenciaAlumno);	
+    insert into ReporteAsistenciaAlumno values(@idreporte,@idalumno,@alumno,0,0,0);
     
 	update persona set estado = 'Ocupado' where idPersona = _idpersona;
     update usuario set estado = 'Ocupado'  where idUsuario = @idusuario;
