@@ -3,12 +3,6 @@
 <head th:replace="menu2::head">
 <meta charset="UTF-8">
 </head>
-<script type="text/javascript">
-	$(document).ready(function() {
-		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-		$('.asistenciaList').DataTable();
-	});
-</script>
 
 <style>
 #scroll {
@@ -25,8 +19,10 @@
 	display: none !important;
 }
 </style>
+
 <script type="text/javascript"
-	th:src="@{/script/jsweb/alumno/frmAsistenciaAlumno.js}"></script>
+	th:src="@{/script/jsweb/profesor/frmAsistenciaProfesor.js}"></script>
+
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<br>
@@ -37,37 +33,69 @@
 			<div class="col"></div>
 			<div class="col-8">
 				<div class="card">
-					<div class="card-header badge-secondary text-center">ALUMNOS</div>
+					<div class="card-header badge-secondary text-center">PROFESORES</div>
 					<div class="card-body">
-						<div class="form-group">
-							<label for="cbonivel">Seleccione Nivel:</label> <select
-								class="form-control" id="cbonivel">
-								<option value="0">Seleccione</option>
-								<option th:each="nivel :${lstnivel}" th:text="${nivel.nombre}"
-									th:value="${nivel.nombre}"></option>
-							</select>
-						</div>
+						<div class="row">
+							<div class="col-8">
+								<!-- <div id="scroll"> -->
+								<table id="tblasistencia" class="table">
+									<thead>
+										<tr>
+											<th>Nombre</th>
+											<th>Asistencias</th>
+											<th>Inasistencias</th>
+											<th>Tardanzas</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="r:${lstreporte}">
+											<td th:text="${r.nombreprofesor}"></td>
+											<td th:text="${r.asis}"></td>
+											<td th:text="${r.inasis}"></td>
+											<td th:text="${r.tard}"></td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- </div> -->
+							</div>
+							<div class="col-4">
+								<div class="form-group">
+									<label for="txtf">Fecha:</label> <input type="text" id="txtf"
+										class="form-control" disabled=true th:value="${fecha}">
+								</div>
 
-						<div class="form-group">
-							<label for="cbogrado">Seleccione Grado:</label> <select
-								class="form-control" id="cbogrado">
-								<option value="0">Seleccione</option>
-								<option th:each="grado :${lstgrado}" th:text="${grado.nombre}"
-									th:value="${grado.nombre}"></option>
-							</select>
+								<form>
+									<div class="form-group">
+										<label for="cboprofesor">Seleccione Profesor:</label> <select
+											class="form-control" id="cboprofesor">
+											<option value="0">Seleccione</option>
+											<option th:each="a :${listadoAsistencia}"
+												th:text="${a.nombreusario}" th:value="${a.idprofesor}"></option>
+										</select> <span id="errorprofesor" class="text-danger"></span><input
+											type="hidden" id="hddidasistencia" value="0"><input
+											type="hidden" id="hddidprofesor" value="0">
+									</div>
+									<div class="form-group">
+										<label for="cboestado">Estado:</label> <select
+											class="form-control" id="cboestado">
+											<option value="0">Seleccione</option>
+											<option th:each="estado :${estado}" th:text="${estado}"
+												th:value="${estado}"></option>
+										</select><span id="errorestado" class="text-danger"></span>
+									</div>
+									<div class="form-group">
+										<label for="txtcomentario">Comentario:</label> <input
+											type="text" id="txtcomentario" class="form-control"
+											maxlength="40" onkeypress="return validarNumeros(event)"
+											placeholder="opcional">
+									</div>
+									<div>
+										<button id="btnregistrarasistencia" type="button"
+											class="btn btn-secondary">Guardar</button>
+									</div>
+								</form>
+							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="cboseccion">Seleccione Sección:</label> <select
-								class="form-control" id="cboseccion">
-								<option value="0">Seleccione</option>
-								<option th:each="seccion :${lstseccion}"
-									th:text="${seccion.nombre}" th:value="${seccion.nombre}"></option>
-							</select>
-						</div>
-						<button class="btn btn-success" type="button" id="btnbuscar">Buscar</button>
-						<!-- <hr />
-						<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div> -->
 					</div>
 				</div>
 			</div>

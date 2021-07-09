@@ -47,7 +47,7 @@
 
   			<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     			<a class="dropdown-item" th:href="@{/Perfil/perfilEstudiante}"><i class="fas fa-id-card"></i>Mi perfil</a> 
-					<a	class="dropdown-item" href="#"><i class="fa fa-power-off"></i>Cerrar sesión</a> 
+					<a	class="dropdown-item" th:href="@{/logout}"><i class="fa fa-power-off"></i>Cerrar sesión</a> 
   			</div>
 		</div>
 		
@@ -73,25 +73,24 @@
 						class="fas fa-clipboard" id="icon"></i>Matricula</a></li>
 				<li><a href=""><i class="fas fa-user-cog" id="icon"></i>Settings</a></li>
 				<li><a th:href="@{/Usuario/registrarUsuario}"><i class="fas fa-layer-group" id="icon"></i>Registrar Usuario</a></li>
-				<li><a th:href="@{/Usuario/frmUsuario}"><i class="fas fa-layer-group" id="icon"></i>Usuarios</a></li>
-								<li><a th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>
-				<li><a th:href="@{/Nivel/frmNivel}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Nivel</a></li>
-				<li><a th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
-				<li><a th:href="@{/Seccion/ListaSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
-				<li><a th:href="@{/Apoderado/frmApoderado}"><i class="fas fa-check" id="icons"></i>Apoderado</a></li>
-				<li><a th:href="@{/Persona/frmlistarPersona}"><i class="fas fa-check" id="icons"></i>Persona</a></li>
-				<li><a th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
+				<li><a  th:href="@{/Usuario/frmUsuario}"><i class="fas fa-layer-group" id="icon"></i>Usuarios</a></li>
+				<li><a  th:href="@{/Cargo/frmCargos}"><i class="fas fa-layer-group" id="icon"></i>Cargos</a></li>
+				<li><a  th:href="@{/Nivel/frmNivel}"><i class="fas fa-chalkboard-teacher" id="icon"></i></i>Nivel</a></li>
+				<li><a  th:href="@{/Grado/ListaGrado}"><i class="fas fa-graduation-cap" id="icon">></i>Grados</a></li>
+				<li><a  th:href="@{/Seccion/ListaSeccion}"><i class="fas fa-hands-helping" id="icon"></i>Secciones</a></li>
+				<li><a  th:href="@{/Apoderado/frmApoderado}"><i class="fas fa-check" id="icons"></i>Apoderado</a></li>
+				<li><a  th:href="@{/Persona/frmlistarPersona}"><i class="fas fa-check" id="icons"></i>Persona</a></li>
+				<li><a  th:href="@{/Alumno/frmAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Alumnos</a></li>
 				<li><a th:href="@{/Bimestre/frmBimestres}"><i class="fas fa-money-check-alt" id="icon"></i>Bimestres</a></li>
 				<li><a th:href="@{/Notas/frmNotas}"><i class="fas fa-money-check-alt" id="icon"></i>Notas</a></li>
+				<li><a th:href="@{/AsistenciaProfesor/frmAsistenciaProfesor}"><i class="fas fa-money-check-alt" id="icon"></i>Asistencia Profesor</a></li>
+				<li><a th:href="@{/AsistenciaAlumno/frmAsistenciaAlumno}"><i class="fas fa-money-check-alt" id="icon"></i>Asistencia Alumnos</a></li>
 				<li><a th:href="@{/Profesor/frmProfesor}"><i class="fas fa-check" id="icons"></i>Profesor</a></li>
 				<li><a th:href="@{/Curso/frmListarCurso}"><i class="fas fa-check" id="icons"></i>Cursos</a></li>
-				
-				
-
 			</ul>
 		</nav>
-
-		<div id="content">
+</div>
+		<div id="content" th:if="${cargo == 'R001'}">
 			<!--  <div class="principal"></div>*-->
 			
 			<div class="principal1">
@@ -99,17 +98,15 @@
 				<div class="profil-box-header">
 					<img  src="/img/golondrina.png" alt="alumno" class="perfil">
 				<div class="profil-vertical">
-					<h2>
-						Nombre del Estudiante <br>
-						Apellido del Estudiante
-					</h2>
+					<h2 th:text="${listUser[0][7]}"></h2>
+					<h2 th:text="${listUser[0][8]}"></h2>
 					<div>
 					<i class="fa fa-graduation-cap"></i>Estudiante
 					</div>
 				</div>
 				</div>
 				<div class="codigo-box" >
-					<i class="fa fa-user fa-lg"></i>Código  <span>U09999</span>
+					<i class="fa fa-user fa-lg"></i>Código  <span th:text="${listUser[0][0]}">U09999</span>
 				</div>
 			</div>
 			
@@ -130,7 +127,7 @@
 			</div>
 		</div>
 
-	</div>
+	
 	
 	
 	

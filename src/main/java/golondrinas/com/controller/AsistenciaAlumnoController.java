@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.AlumnosXAula;
 import golondrinas.com.model.AsistenciaAlumno;
+import golondrinas.com.model.ReporteAsistenciaAlumnos;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.AlumnosXAulaService;
 import golondrinas.com.service.AsistenciaAlumnoService;
 import golondrinas.com.service.GradoService;
 import golondrinas.com.service.NivelService;
+import golondrinas.com.service.ReporteAsistenciaAlumnosService;
 import golondrinas.com.service.SeccionService;
 
 @Controller
@@ -44,6 +46,9 @@ public class AsistenciaAlumnoController {
 	
 	@Autowired
 	private SeccionService sservice;
+	
+	@Autowired
+	private ReporteAsistenciaAlumnosService raservice;
 	
 	@GetMapping("/frmAsistenciaAlumno")
 	public String frmAsistencia(Model model) {
@@ -92,4 +97,12 @@ public class AsistenciaAlumnoController {
 		}
 		return new ResultadoResponse(respuesta, mensaje);
 	}
+	
+	
+	@GetMapping("/frmReporteAsistencia")
+	@ResponseBody
+	public List<ReporteAsistenciaAlumnos> listarReporte(@RequestParam("nivel") String n, @RequestParam("grado") String g,
+			@RequestParam("seccion") String s) {
+		return raservice.listarReporteAsistenciaAlumnos(n, g, s);
+	} 
 }

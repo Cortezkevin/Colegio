@@ -24,7 +24,7 @@ public class AsistenciaAlumnoService {
 		return repository.findAll();
 	}
 
-	public void Asistencia(boolean boton, AsistenciaAlumno a) {
+	/*public void Asistencia(boolean boton, AsistenciaAlumno a) {
 
 		// boton = false;
 		Timer timer = new Timer();
@@ -47,14 +47,14 @@ public class AsistenciaAlumnoService {
 			}
 		};
 		timer.schedule(tarea, new Date(), 10000);
-	}
+	}*/
 	
 	public void registrarAsistencia(AsistenciaAlumno asis) {
 		if(asis.getIdasistencia() == null ){
 				repository.RegistrarAsistenciaAlumno(asis.getIdalumno(), asis.getFecha(), asis.getEstado(), asis.getComentario());	
-		}else {
+		}/*else {
 			repository.ActualizarAsistenciaAlumno(asis.getIdasistencia(), asis.getEstado(),asis.getComentario());
-		}
+		}*/
 	}
 	
 	

@@ -1,5 +1,6 @@
 package golondrinas.com.interfaces;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -53,4 +54,14 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 	
 	@Query(value = "{call sp_ListarUsuarioXR002()}", nativeQuery = true)
 	List<Usuario> listarUsuarioXR002();
+	
+	
+	@Transactional
+	@Query(value="{call sp_listUserLogin(:idusuario)}", nativeQuery=true)
+	Collection<Object[]> listUserLogin(@Param("idusuario")String idUsuario);
+	
+	
+	@Query(value="{call sp_CargoXUsuario(:usuario)}",nativeQuery = true)
+	String cargoXUsuario(@Param("usuario") String usuario);
+	
 }

@@ -28,16 +28,19 @@ public interface AsistenciaAlumnoRepository extends JpaRepository<AsistenciaAlum
 	void RegistrarAsistenciaAlumno(@Param("idalumno") String idalumno, @Param("fecha") String fecha,
 			@Param("estado") String estado, @Param("comentario") String comentario);
 	
-	@Transactional
+	/*@Transactional
 	@Modifying
 	@Query(value = "{call sp_MantActualizarAsistenciaAlumno(:idasistencia, :estado, :comentario)}", nativeQuery = true)
 	void ActualizarAsistenciaAlumno(@Param("idasistencia") String idasistencia,
-			@Param("estado") String estado, @Param("comentario") String comentario);
+			@Param("estado") String estado, @Param("comentario") String comentario);*/
 	
-	@Query(value = "{call sp_MantIdAsistenciaAlumnoXFecha(:idalumno, :fecha)}", nativeQuery = true)
-	String IdAsistenciaAlumnoXFecha(@Param("idalumno") String idalumno, @Param("fecha") Date fecha);
+	/*@Query(value = "{call sp_MantIdAsistenciaAlumnoXFecha(:idalumno, :fecha)}", nativeQuery = true)
+	String IdAsistenciaAlumnoXFecha(@Param("idalumno") String idalumno, @Param("fecha") Date fecha);*/
 	
 	
 	@Query(value = "{call sp_MantValidarAsistenciaXFecha(:fecha, :idalumno)}", nativeQuery = true)
 	List<String> validarAsistenciaXFecha(@Param("fecha") String fecha, @Param("idalumno") String idalumno);
+	
+
+	
 }

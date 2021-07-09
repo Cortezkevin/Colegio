@@ -151,7 +151,7 @@ BEGIN
     values (@idalumno, _idpersona, @idUsuario, @idMatricula, @nivel, @grado, @seccion,@apoderado,@alumno,'Activo') ;
     
 	SET @idreporte = (SELECT CONCAT('RA',RIGHT(CONCAT('00',RIGHT(MAX(idReporte),3) + 1),3)) FROM ReporteAsistenciaAlumno);	
-    insert into ReporteAsistenciaAlumno values(@idreporte,@idalumno,@alumno,0,0,0);
+    insert into ReporteAsistenciaAlumno values(@idreporte,@idalumno,@nivel,@grado,@seccion,@alumno,0,0,0);
     
 	update persona set estado = 'Ocupado' where idPersona = _idpersona;
     update usuario set estado = 'Ocupado'  where idUsuario = @idusuario;
@@ -318,6 +318,8 @@ BEGIN
 	update persona set estado = 'Ocupado' where idPersona = _idpersona;
     update usuario set estado = 'Ocupado'  where idUsuario = _idusuario;
 							
+	SET @idreporte = (SELECT CONCAT('RP',RIGHT(CONCAT('00',RIGHT(MAX(idReporteP),3) + 1),3)) FROM ReporteAsistenciaProfesor);	
+    insert into ReporteAsistenciaProfesor values(@idreporte,@idprofesor,@nombrecompleto,0,0,0);
 END$$
  DELIMITER ;
  
@@ -417,7 +419,7 @@ CREATE  PROCEDURE sp_MantRegistrarUsuario(IN pnombreusuario CHAR(20),IN pcontras
 BEGIN
 	SET @pidusuario = (SELECT CONCAT('U',RIGHT(CONCAT('00',RIGHT(MAX(idusuario),3) + 1),3)) FROM usuario);	
 	INSERT INTO usuario (idusuario, nombreusuario, contrasena, idcargo, idpersona,estado,foto) VALUES (@pidusuario,pnombreusuario,pcontraseña,pidcargo, pidpersona,'Activo',pfoto);
-    update persona set estado = 'Ocupado' where idPersona = pidpersona;
+    #update persona set estado = 'Ocupado' where idPersona = pidpersona;
     update cargo set estado = 'Ocupado' where idCargo = pidcargo;
 END$$
  DELIMITER ;
@@ -655,6 +657,7 @@ insert into persona values('P006','2','Enrique','Napan Torres','Av. Acención','
 insert into persona values('P007','3','Junior','Arias Quispe','Av. Santa Rosa','981221147','JAQ@gmail.com','71456679','12','Masculino','Activo');
 insert into persona values('P008','1','Cristhian Joel','Castro Contreras','Av. Cipres','981132147','CJCC@gmail.com','77815329','42','Masculino','Activo');
 insert into persona values('P009','2','Wilfredo','Cortez Pereda','Av. San Marcos','981258147','WCP@gmail.com','77351329','50','Masculino','Ocupado');
+insert into persona values('P010','3','Silvana','Rodriguez Ruiz','Av. Cipres','923145782','SRR@gmail.com','74114754','12','Femenino','Activo');
 insert into apoderado values('AP001','P002','Victor Martinez Ruiz','Activo'); 
 insert into apoderado values('AP002','P004','Maria Isabel Huamani Caceres','Activo'); 
 insert into apoderado values('AP003','P009','Wilfredo Cortez Pereda','Activo'); 

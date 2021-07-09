@@ -26,20 +26,20 @@
 			</div>
 			<div class="columna-2 columna-estilos">
 				<div class="columna-div">
-					<strong>Codigo</strong> 
+					<strong >Codigo</strong> 
 				</div>
 					
 				<div class="columna-div">
-					:<span> #########</span>
+					:<span th:text="${listUser[0][0]}"> #########</span>
 				</div>
 			</div>
 			<div class="columna-3 columna-estilos">
 				<div class="columna-div">
-					<strong>Apellidos y<br> Nombres</strong> 
+					<strong >Apellidos y<br> Nombres</strong> 
 				</div>
 					<span>:</span>
 				<div class="columna-div">
-					<span>Rojo Ortiz, Fernando Jesus </span>
+					<span th:text="${listUser[0][1]}">Rojo Ortiz, Fernando Jesus </span>
 				</div>
 				
 			</div>
@@ -49,7 +49,7 @@
 				</div>
 					
 				<div class="columna-div">
-					:<span> 4to°  </span>
+					:<span th:text="${listUser[0][5]}"> 4to°  </span>
 				</div>
 			</div>
 			<div class="columna-5 columna-estilos">

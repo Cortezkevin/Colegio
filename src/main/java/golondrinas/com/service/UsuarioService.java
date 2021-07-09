@@ -1,5 +1,6 @@
 package golondrinas.com.service;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -52,5 +53,15 @@ public class UsuarioService{
 		}
 		return false;
 	}
+	
+	
+	public Collection<Object[]>listUserLogin(String idusuario){
+		return (Collection<Object[]>) repository.listUserLogin(idusuario);
+	}
+	
+	public String cargoXUsuario(String usuario) {
+		return repository.cargoXUsuario(usuario);
+	}
+	
 
 }

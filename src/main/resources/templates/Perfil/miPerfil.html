@@ -31,12 +31,12 @@
 				<img alt="Estudiante" src="/img/golondrina.png">
 			</div>
 
-			<h3>Nombre Y Apellido del Estudiante</h3>
+			<h3 th:text="${listUser[0][1]}">Nombre Y Apellido del Estudiante</h3>
 			<div class="estudiante">Estudiante</div>
 			<div class="card-contenido">
 				<div class="info-codigo-promedio ">
-					<h3>
-						1234 <span>código</span>
+					<h3 >
+						<a th:text="${listUser[0][0]}">1234</a> <span>código</span>
 					</h3>
 					<h3>
 						13.456 <span>Promedio</span>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="card-info-estudiante mg-t-20">
-				<div class="estudiante-grado mg-15 estudiante-hover"> <i class="fa fa-university"></i>Grado: 4° cuarto Grado</div>
+				<div class="estudiante-grado mg-15 estudiante-hover"> <i class="fa fa-university"></i>Grado: 4° <a th:text="${listUser[0][5]}">cuarto Grado</a></div>
 				<div class="estudiante-escuela mg-15 estudiante-hover"><i class="fa fa-university"></i> Escuela: Institucion
 					educativa particular Las Golondrinas</div>
 				<div class="estudiante-plan-estudios mg-15 estudiante-hover"> <i class="fa fa-graduation-cap"></i>Plan de
@@ -82,7 +82,7 @@
 									<td class="text-center"><i class="fa fa-credit-card"></i>
 									</td>
 									<td><strong>DNI</strong></td>
-									<td><span>74847910</span></td>
+									<td><span th:text="${listUser[0][9]}">74847910</span></td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-legal"></i></td>
@@ -92,7 +92,7 @@
 								<tr>
 									<td class="text-center"><i class="fas fa-restroom"></i></td>
 									<td><strong>SEXO</strong></td>
-									<td><span> ######## </span></td>
+									<td><span th:text="${listUser[0][13]}"> ######## </span></td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-calendar"></i></td>
@@ -107,7 +107,7 @@
 								<tr>
 									<td class="text-center"><i class="fa fa-phone"></i></td>
 									<td><strong>TELÉFONO</strong></td>
-									<td>#######</td>
+									<td th:text="${listUser[0][10]}">#######</td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-mobile-phone"></i>
@@ -123,7 +123,7 @@
 								<tr>
 									<td class="text-center"><i class="fa fa-envelope"></i></td>
 									<td><strong>CORREO PERSONAL</strong></td>
-									<td>userName@gmail.com</td>
+									<td th:text="${listUser[0][12]}">userName@gmail.com</td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-map-marker"></i></td>
@@ -133,7 +133,7 @@
 								<tr>
 									<td class="text-center"><i class="fa fa-map-marker"></i></td>
 									<td><strong>DIRECCIÓN</strong></td>
-									<td>Lugar exacto</td>
+									<td th:text="${listUser[0][11]}">Lugar exacto</td>
 								</tr>
 							</tbody>
 						</table>

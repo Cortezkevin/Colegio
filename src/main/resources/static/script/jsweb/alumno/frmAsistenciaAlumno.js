@@ -44,6 +44,29 @@ $(document).on("click", "#btnbuscar", function() {
 
 		});
 		$("#cboalumno").empty();
+		
+		
+		$.ajax({
+			type: "GET",
+			url: "/AsistenciaAlumno/frmReporteAsistencia",
+			data: {
+				nivel: nivel,
+				grado: grado,
+				seccion: seccion
+			},
+			success: function(resultado) {
+				$("#tblasistencia > tbody").html("");
+			$.each(resultado, function(index, value){
+				$("#tblasistencia > tbody").append("<tr>"+
+				"<td>"+ value.nombrealumno + "</td>"+
+				"<td class='text-center'>"+ value.asis + "</td>"+
+				"<td class='text-center'>"+ value.inasis + "</td>"+
+				"<td class='text-center'>"+ value.tard + "</td>"+
+				"</tr>");
+			});	
+			}
+
+		});
 		/*$(document).on("change", "#cboalumno", function(){
 	 		alert($("#cboalumno").val())
 	 		alert($("#txtfecha").val())
@@ -73,11 +96,13 @@ $(document).on("click", "#btnbuscar", function() {
 });
 
 $(document).on("click", "#btnregistrarasistencia", function(){
-	/*alert("hola");
-	alert($("#txtfecha").val())
+	/*alert($("#txtfecha").val())*/
 	
-	alert($("#cboalumno").val())*/
+	//alert($("#cboalumno").val())
 	//var fecha = $("#txtfecha").val();
+	var nivel = $("#cbonivel").val();
+	var grado = $("#cbogrado").val();
+	var seccion = $("#cboseccion").val();
 	var alumno = $("#cboalumno").val();
 	if (alumno === "0") {
 		$("#erroralumno").text("Es obligatorio seleccionar un alumno");
@@ -88,7 +113,7 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 	}
 	
 	if ($("#cboestado").val() !== "0" && $("#cboalumno").val() !== "0") {
-		if ($("#hddidasistencia").val() === "0") {
+		//if ($("#hddidasistencia").val() === "0") {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json",
@@ -117,6 +142,7 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 						  icon: 'success',
 						  title: resultado.mensaje
 						})
+						ListarAsistencias(nivel,grado,seccion);
 				}else{
 					const Toast = Swal.mixin({
 						  toast: true,
@@ -136,8 +162,8 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 				}
 			}
 			});
-		}
-		else {
+		/*}
+		/*else {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json",
@@ -184,7 +210,31 @@ $(document).on("click", "#btnregistrarasistencia", function(){
 				}
 			}
 			});
-		}
+		}*/
 	}
 });
+
+function ListarAsistencias(nivel, grado, seccion) {
+	$.ajax({
+		type: "GET",
+		url: "/AsistenciaAlumno/frmReporteAsistencia",
+		data:{
+			nivel: nivel,
+			grado: grado,
+			seccion: seccion
+		},
+		dataType: 'json',
+		success: function(resultado){
+			$("#tblasistencia > tbody").html("");
+			$.each(resultado, function(index, value){
+				$("#tblasistencia > tbody").append("<tr>"+
+				"<td>"+ value.nombrealumno + "</td>"+
+				"<td class='text-center'>"+ value.asis + "</td>"+
+				"<td class='text-center'>"+ value.inasis + "</td>"+
+				"<td class='text-center'>"+ value.tard + "</td>"+
+				"</tr>");
+			});			
+		}
+	});
+}
 
