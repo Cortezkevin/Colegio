@@ -72,4 +72,8 @@ public class AsistenciaAlumnoService {
 	/*public String IdAsistenciaAlumnoXFecha(String idalumno, Date fecha) {
 		return repository.IdAsistenciaAlumnoXFecha(idalumno, fecha);
 	}*/
+	
+	public List<AsistenciaAlumno> listarFaltas( String idalumno){
+		return repository.asistenciaFaltas(idalumno);
+	}
 }

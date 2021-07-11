@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+</head>
+
+<style>
+#scroll {
+	border: 1px solid;
+	height: 200px;
+	width: 740px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+</style>
+
+<style>
+#content {
+	display: none !important;
+}
+</style>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/alumno/frmJustificaciones.js}"></script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-8">
+				<div class="card">
+					<div class="card-header badge-secondary text-center">ALUMNOS</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="cbonivel">Seleccione Nivel:</label> <select
+								class="form-control" id="cbonivel">
+								<option value="0">Seleccione</option>
+								<option th:each="nivel :${lstnivel}" th:text="${nivel.nombre}"
+									th:value="${nivel.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cbogrado">Seleccione Grado:</label> <select
+								class="form-control" id="cbogrado">
+								<option value="0">Seleccione</option>
+								<option th:each="grado :${lstgrado}" th:text="${grado.nombre}"
+									th:value="${grado.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cboseccion">Seleccione Sección:</label> <select
+								class="form-control" id="cboseccion">
+								<option value="0">Seleccione</option>
+								<option th:each="seccion :${lstseccion}"
+									th:text="${seccion.nombre}" th:value="${seccion.nombre}"></option>
+							</select>
+						</div>
+						<button class="btn btn-success" type="button" id="btnbuscar">Buscar</button>
+						<!-- <hr />
+						<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="modaljustificacion" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Justificaciones</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<!--  <div class="row">
+						<div class="col-6">-->
+						<h5 align="center">ALUMNOS</h5>
+						  <div id="scroll"> 
+						<table id="tblalumnos" class="table">
+							<thead>
+								<tr>
+									<th>Codigo</th>
+									<th>Alumno</th>
+									<th>Justificaciones</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						 </div> 
+						<!-- </div> -->
+						<br/>
+						<!--  <div class="col-6">-->
+						<h5 align="center">FALTAS Y JUSTIFICACIONES</h5>
+						 <div id="scroll">
+						<table id="tblfaltas" class="table">
+							<thead>
+								<tr>
+									<th>IdAlumno</th>
+									<th>IdAsistencia</th>
+									<th>Fecha</th>
+									<th>Estado</th>
+									<th>Justificar Faltas </th> 
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						</div>  
+
+					<br/>
+
+					<form>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="txta">Codigo Alumno:</label> <input type="text"
+										id="txta" class="form-control" disabled=true>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label for="txtc">Codigo Asistencia:</label> <input type="text"
+										id="txtc" class="form-control" disabled=true>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="txtf">Fecha Falta:</label> <input type="text"
+										id="txtf" class="form-control" disabled=true>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label for="txtfa">Fecha Actual:</label> <input type="text"
+										id="txtfa" class="form-control" disabled=true>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="txtdescripcion">Descripcion:</label>
+							<textarea type="text" id="txtdescripcion" class="form-control"
+								maxlength="40" onkeypress="return validarNumeros(event)"
+								placeholder="Motivo"></textarea>
+							<span id="errordescripcion" class="text-danger"></span>
+						</div>
+						<div>
+							<button id="btnregistrarjustificacion" type="button"
+								class="btn btn-secondary">Guardar</button>
+						</div>
+					</form>
+				</div>
+
+</div>
+
+				<div class="modal-footer">
+					<!-- <button id="btnprueba" type="button" class="btn btn-secondary">Guardar</button> -->
+
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div th:replace="menu2::barra"></div>
+	<div>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+		<link rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="../css/icons/script.js"></script>
+	</div>
+</body>
+</html>

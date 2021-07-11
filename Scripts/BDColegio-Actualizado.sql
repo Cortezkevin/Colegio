@@ -232,5 +232,44 @@ foreign key (idMatricula) references Matricula(idMatricula)
  );
  
 
+ ###########TABLA HORARIOS
+ create table Horario(
+idHorario char(4) not null,
+Nivel char(20) not null,
+Grado char(20) not null,
+Seccion char(20) not null,
+Dia char(20) not null,
+Curso char(40) not null,
+Hora_Inicio char(6) not null,
+Hora_Fin char(6) not null,
+estado char(20) null,
+primary key (idHorario)
+);
+/*
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
+in _curso char(40),in _horainicio char(6),in _horafin char(6))
+BEGIN
+	SET @idhora = (SELECT CONCAT('H',RIGHT(CONCAT('00',RIGHT(MAX(idHorario),3) + 1),3)) FROM horario);	
+	INSERT INTO horario VALUES (@idhora,_nivel,_grado,_seccion,_dia,_curso,_horainicio, _horafin, 'Activo');
+END$$
+ DELIMITER ;
  
-
+     DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarHorario(in _idhorario char(4),in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
+in _curso char(40),in _horainicio char(6),in _horafin char(6))
+BEGIN
+		update horarios set dia = _dia, curso = _curso, hora_inicio = _horainicio, hora_fin = horafin where idhorario = _idhorario;
+END$$
+ DELIMITER ;
+ 
+     DELIMITER $$
+CREATE  PROCEDURE sp_MantEliminarHorario(in _idhorario char(4))
+BEGIN
+		update horarios set estado = 'Eliminado' where idhorario = _idhorario;
+END$$
+ DELIMITER ;
+ 
+CREATE  PROCEDURE sp_MantListarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20))
+select dia, curso, hora_Inicio, hora_fin from horario where nivel = _nivel and grado = _grado and seccion = _seccion;
+*/

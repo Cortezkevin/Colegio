@@ -2,7 +2,7 @@ create table AsistenciaAlumno(
 idAsistencia char(5) not null,
 idAlumno char(4) not null,
 nombreAlumno char(40) not null,
-fecha  char(10) not  null,
+fecha  char(11) not  null,
 /*asis int not null,
 inasis int not null,
 dias int not null,*/
@@ -16,7 +16,7 @@ create table AsistenciaProfesor(
 idAsistenciaP char(5) not null,
 idProfesor char(4) not null,
 nombreProfesor char(40) not null,
-fecha  char(10) not  null,
+fecha  char(11) not  null,
 estado char(20) not null,
 comentario varchar(40) not null,
 primary key(idAsistenciaP),
@@ -54,7 +54,7 @@ insert into asistenciaAlumno values("AS002","A002","Carlos Manuel Huamani Huaman
 insert into asistenciaAlumno values("AS003","A001","Kevin Cortez Quispe","3/7/2021","Presente","");
 insert into asistenciaAlumno values("AS004","A002","Carlos Manuel Huamani Huamani","3/7/2021","Tarde","Problemas de Internet");
 #insert into asistenciaAlumno values("AS006","A003","Junior Arias Quispe","3/7/2021","Presente","");
-insert into asistenciaAlumno values("AS005","A001","Kevin Cortez Quispe","4/7/2021","Ausente","");
+insert into asistenciaAlumno values("AS005","A001","Kevin Cortez Quispe","4/7/2021","Justificado","");
 insert into asistenciaAlumno values("AS006","A002","Carlos Manuel Huamani Huamani","4/7/2021","Presente","");
 #insert into asistenciaAlumno values("AS009","A003","Junior Arias Quispe","4/7/2021","Presente","");
 insert into asistenciaAlumno values("AS007","A001","Kevin Cortez Quispe","5/7/2021","Presente","");
@@ -67,7 +67,7 @@ insert into ReporteAsistenciaAlumno values('RA002','A002','Inicial','Primer Grad
 #insert into ReporteAsistenciaAlumno values('RA004','A004','Primaria','Segundo Grado','Seccion B','Piero Torrez Lorenzo',1,0,0);
 
 DELIMITER $$
-CREATE  PROCEDURE sp_MantRegistrarAsistenciaAlumno(IN _idalumno char(4), in _fecha char(10), in _estado char(20), in _comentario varchar(40))
+CREATE  PROCEDURE sp_MantRegistrarAsistenciaAlumno(IN _idalumno char(4), in _fecha char(11), in _estado char(20), in _comentario varchar(40))
 BEGIN
 	SET @idasis = (SELECT CONCAT('AS',RIGHT(CONCAT('00',RIGHT(MAX(idAsistencia),3) + 1),3)) FROM asistenciaAlumno);	
     set @nombrecompleto = (select nombreCompleto from alumno where idalumno = _idalumno); 
@@ -84,7 +84,7 @@ END$$
  
  
 DELIMITER $$
-CREATE  PROCEDURE sp_MantRegistrarAsistenciaProfesor(IN _idprofesor char(4), in _fecha char(10), in _estado char(20), in _comentario varchar(40))
+CREATE  PROCEDURE sp_MantRegistrarAsistenciaProfesor(IN _idprofesor char(4), in _fecha char(11), in _estado char(20), in _comentario varchar(40))
 BEGIN
 	SET @idasis = (SELECT CONCAT('AS',RIGHT(CONCAT('00',RIGHT(MAX(idAsistenciaP),3) + 1),3)) FROM asistenciaProfesor);	
     set @nombrecompleto = (select nombreCompleto from profesor where idProfesor = _idprofesor); 
