@@ -24,9 +24,9 @@ $(document).on("click", "#btnbuscar", function() {
 				$("#tblalumnos > tbody").html("");
 				$.each(resultado, function(index, value){
 				$("#tblalumnos > tbody").append("<tr>"+
-				"<td>"+ value.idalumno + "</td>"+
+				"<td class='text-center'>"+ value.idalumno + "</td>"+
 				"<td class='text-center'>"+ value.nombrecompleto + "</td>"+
-				"<td><button type='button' class='btn btn-info btncargarjusti' " +
+				"<td class='text-center'><button type='button' class='btn btn-info btncargarjusti' " +
 					" data-codalumno='" + value.idalumno + "'>Faltas</button>" +
 					"</td>" +
 				"</tr>");
@@ -59,12 +59,12 @@ $(document).on("click", ".btncargarjusti", function() {
 				$("#tblfaltas > tbody").html("");
 				$.each(resultado, function(index, value){
 				$("#tblfaltas > tbody").append("<tr>"+
-				"<td>"+ value.idalumno + "</td>"+
-				"<td>"+ value.idasistencia + "</td>"+
-				"<td>"+ value.fecha + "</td>"+
+				"<td class='text-center'>"+ value.idalumno + "</td>"+
+				"<td class='text-center'>"+ value.idasistencia + "</td>"+
+				"<td class='text-center'>"+ value.fecha + "</td>"+
 				"<td class='text-center'>"+ value.estado + "</td>"+
 				//"<td class='text-center'>"+ value.comentario + "</td>"+
-				"<td><button type='button' class='btn btn-info btnregistrarjusti' " +
+				"<td class='text-center'><button type='button' class='btn btn-info btnregistrarjusti' " +
 					" data-alumno='" + value.idalumno + "'" +
 					" data-fecha='" + value.fecha + "'" +
 					" data-codasistencia='" + value.idasistencia + "'>Justificar</button>" +
@@ -160,12 +160,12 @@ function ListarFaltas(codalumno) {
 			$("#tblfaltas > tbody").html("");
 				$.each(resultado, function(index, value){
 				$("#tblfaltas > tbody").append("<tr>"+
-				"<td>"+ value.idalumno + "</td>"+
-				"<td>"+ value.idasistencia + "</td>"+
-				"<td>"+ value.fecha + "</td>"+
+				"<td class='text-center'>"+ value.idalumno + "</td>"+
+				"<td class='text-center'>"+ value.idasistencia + "</td>"+
+				"<td class='text-center'>"+ value.fecha + "</td>"+
 				"<td class='text-center'>"+ value.estado + "</td>"+
 				//"<td class='text-center'>"+ value.comentario + "</td>"+
-				"<td><button type='button' class='btn btn-info btnregistrarjusti' " +
+				"<td class='text-center'><button type='button' class='btn btn-info btnregistrarjusti' " +
 					" data-alumno='" + value.idalumno + "'" +
 					" data-fecha='" + value.fecha + "'" +
 					" data-codasistencia='" + value.idasistencia + "'>Justificar</button>" +

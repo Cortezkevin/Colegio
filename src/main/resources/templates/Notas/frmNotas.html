@@ -9,9 +9,9 @@
 <script type="text/javascript"
 	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>
 <style>
-	#content{
-		display:none !important;
-	}
+#content {
+	display: none !important;
+}
 </style>
 <body>
 	<nav th:replace="menu2::menu"></nav>
@@ -21,7 +21,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col"></div>
-			<div class="col-8">
+			<div class="col-12">
 				<div class="card">
 					<div class="card-header badge-secondary text-center">ALUMNOS</div>
 					<div class="card-body">
@@ -437,12 +437,64 @@
 	</div>
 
 
-
-
-
-
-
-
+	<div class="modal fade" id="modalasistencias" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Asistencias</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table id="tblasistencia" class="table">
+						<thead>
+							<tr>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Estado</th>
+								<th class="text-center">Comentario</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modaljustificaciones" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Justificaciones</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table id="tbljustificaciones" class="table">
+						<thead>
+							<tr>
+								<th class="text-center">Fecha de Ausencia</th>
+								<th class="text-center">Fecha de Justificacion</th>
+								<th class="text-center">Motivo de Falta</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

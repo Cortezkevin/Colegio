@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import golondrinas.com.model.Alumno;
 import golondrinas.com.model.AlumnosXAula;
+import golondrinas.com.model.AsistenciaAlumno;
+import golondrinas.com.model.Justificaciones;
 import golondrinas.com.model.NBimestreXAlumno;
 import golondrinas.com.model.NotaBimestre;
 import golondrinas.com.model.NotaXCurso;
@@ -23,9 +25,11 @@ import golondrinas.com.model.Notas;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
 import golondrinas.com.service.AlumnosXAulaService;
+import golondrinas.com.service.AsistenciaAlumnoService;
 import golondrinas.com.service.BimestreService;
 import golondrinas.com.service.CursoService;
 import golondrinas.com.service.GradoService;
+import golondrinas.com.service.JustificacionService;
 import golondrinas.com.service.NBimestreXAlumnoService;
 import golondrinas.com.service.NivelService;
 import golondrinas.com.service.NotaBimestreService;
@@ -69,6 +73,12 @@ public class NotasController {
 
 	@Autowired
 	private NotaBimestreService notabservice;
+	
+	@Autowired
+	private AsistenciaAlumnoService asitenciaService;
+	
+	@Autowired
+	private JustificacionService justificacionService;
 
 	@GetMapping("/frmNotas")
 	public String frmNota(Model model) {
@@ -191,4 +201,20 @@ public class NotasController {
 	 * 
 	 * return new ResultadoResponse(respuesta, mensaje); }
 	 */
+	
+	
+	@GetMapping("/frmAsistencia")
+	@ResponseBody
+	public List<AsistenciaAlumno> listarAsistencia(@RequestParam("idalumno") String n, Model model) {
+		model.addAttribute("lstasitencia", asitenciaService.asistenciaXAlumno(n));
+		return asitenciaService.asistenciaXAlumno(n);
+	}
+	
+	@GetMapping("/frmJustificaciones")
+	@ResponseBody
+	public List<Justificaciones> listarJustificaciones(@RequestParam("idalumno") String n, Model model) {
+		model.addAttribute("lstasitencia", justificacionService.ListarJustificaciones(n));
+		return justificacionService.ListarJustificaciones(n);
+	}	
+
 }

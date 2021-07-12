@@ -100,7 +100,7 @@ foreign key (idCurso) references Curso(idCurso),
 foreign key (idSeccion) references Seccion(idSeccion),
 foreign key (idProfesor) references Profesor(idProfesor)
 );
-
+/*
 create table Horario(
 idHorario char(4) not null,
 idNivel char(4) not null,
@@ -118,7 +118,7 @@ foreign key (idNivel) references Nivel(idNivel),
 foreign key (idGrado) references Grado(idGrado),
 #foreign key (idCursoProgramado) references CursoProgramado(idCursoProgramado),
 foreign key (idHora) references Hora(idHora)
-);
+);*/
 ##FALTA AGREGAR 
 create table Apoderado(
 idApoderado char(5) not null,
@@ -231,20 +231,21 @@ foreign key (idMatricula) references Matricula(idMatricula)
  primary key (user_id, role_id)
  );
  
-
+/*
  ###########TABLA HORARIOS
- create table Horario(
+create table Horario(
 idHorario char(4) not null,
 Nivel char(20) not null,
 Grado char(20) not null,
 Seccion char(20) not null,
 Dia char(20) not null,
 Curso char(40) not null,
-Hora_Inicio char(6) not null,
-Hora_Fin char(6) not null,
+Hora_Inicio char(10) not null,
+Hora_Fin char(10) not null,
 estado char(20) null,
 primary key (idHorario)
-);
+);*/
+
 /*
 DELIMITER $$
 CREATE  PROCEDURE sp_MantRegistrarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
@@ -255,21 +256,24 @@ BEGIN
 END$$
  DELIMITER ;
  
-     DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarHorario(in _idhorario char(4),in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
-in _curso char(40),in _horainicio char(6),in _horafin char(6))
+DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarHorario(in _idhorario char(4),in _dia char(20),
+in _curso char(40),in _horainicio char(10),in _horafin char(10))
 BEGIN
-		update horarios set dia = _dia, curso = _curso, hora_inicio = _horainicio, hora_fin = horafin where idhorario = _idhorario;
+		update horario set dia = _dia, curso = _curso, hora_inicio = _horainicio, hora_fin = _horafin where idhorario = _idhorario;
 END$$
  DELIMITER ;
+ 
  
      DELIMITER $$
 CREATE  PROCEDURE sp_MantEliminarHorario(in _idhorario char(4))
 BEGIN
-		update horarios set estado = 'Eliminado' where idhorario = _idhorario;
+		update horario set estado = 'Eliminado' where idhorario = _idhorario;
 END$$
  DELIMITER ;
  
 CREATE  PROCEDURE sp_MantListarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20))
-select dia, curso, hora_Inicio, hora_fin from horario where nivel = _nivel and grado = _grado and seccion = _seccion;
-*/
+select * from horario where nivel = _nivel and grado = _grado and seccion = _seccion;
+
+
+insert into horario values('H001','Inicial','Primer Grado','Seccion A','Lunes','Matematica I','7:00 AM','9:00 AM','Activo');*/

@@ -17,14 +17,26 @@ public class Horario {
 	@Id
 	private String idhorario;
 	
-	@Column(name="idnivel")
-	private String idnivel;
+	@Column(name="nivel")
+	private String nivel;
 	
-	@Column(name="idgrado")
-	private String idgrado;
+	@Column(name="grado")
+	private String grado;
 	
-	@Column(name="idcursoprogramado")
-	private String idcursoprogramado;
+	@Column(name="seccion")
+	private String seccion;
+	
+	@Column(name="dia")
+	private String dia;
+	
+	@Column(name="curso")
+	private String curso;
+	
+	@Column(name="hora_inicio")
+	private String hora_inicio;
+	
+	@Column(name="hora_fin")
+	private String hora_fin;
 	
 	@Column(name="estado")
 	private String estado;
@@ -33,16 +45,32 @@ public class Horario {
 		return idhorario;
 	}
 
-	public String getIdnivel() {
-		return idnivel;
+	public String getNivel() {
+		return nivel;
 	}
 
-	public String getIdgrado() {
-		return idgrado;
+	public String getGrado() {
+		return grado;
 	}
 
-	public String getIdcursoprogramado() {
-		return idcursoprogramado;
+	public String getSeccion() {
+		return seccion;
+	}
+
+	public String getDia() {
+		return dia;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public String getHora_inicio() {
+		return hora_inicio;
+	}
+
+	public String getHora_fin() {
+		return hora_fin;
 	}
 
 	public String getEstado() {
@@ -53,28 +81,49 @@ public class Horario {
 		this.idhorario = idhorario;
 	}
 
-	public void setIdnivel(String idnivel) {
-		this.idnivel = idnivel;
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 
-	public void setIdgrado(String idgrado) {
-		this.idgrado = idgrado;
+	public void setGrado(String grado) {
+		this.grado = grado;
 	}
 
-	public void setIdcursoprogramado(String idcursoprogramado) {
-		this.idcursoprogramado = idcursoprogramado;
+	public void setSeccion(String seccion) {
+		this.seccion = seccion;
+	}
+
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public void setHora_inicio(String hora_inicio) {
+		this.hora_inicio = hora_inicio;
+	}
+
+	public void setHora_fin(String hora_fin) {
+		this.hora_fin = hora_fin;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Horario(String idhorario, String idnivel, String idgrado, String idcursoprogramado, String estado) {
+	public Horario(String idhorario, String nivel, String grado, String seccion, String dia, String curso,
+			String hora_inicio, String hora_fin, String estado) {
 		super();
 		this.idhorario = idhorario;
-		this.idnivel = idnivel;
-		this.idgrado = idgrado;
-		this.idcursoprogramado = idcursoprogramado;
+		this.nivel = nivel;
+		this.grado = grado;
+		this.seccion = seccion;
+		this.dia = dia;
+		this.curso = curso;
+		this.hora_inicio = hora_inicio;
+		this.hora_fin = hora_fin;
 		this.estado = estado;
 	}
 
@@ -82,6 +131,8 @@ public class Horario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 
 	
 }

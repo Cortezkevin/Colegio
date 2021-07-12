@@ -44,4 +44,7 @@ public interface AsistenciaAlumnoRepository extends JpaRepository<AsistenciaAlum
 	@Query(value = "{call sp_MantListarAsistenciasFaltas(:idalumno)}", nativeQuery = true)
 	List<AsistenciaAlumno> asistenciaFaltas( @Param("idalumno") String idalumno);
 	
+	@Query(value = "{call sp_MantListarAsistenciasXAlumno(:idalumno)}", nativeQuery = true)
+	List<AsistenciaAlumno> asistenciasXAlumno( @Param("idalumno") String idalumno);
+	
 }

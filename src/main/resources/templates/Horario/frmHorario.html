@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="menu2::head">
+<meta charset="UTF-8">
+</head>
+<style>
+#content {
+	display: none !important;
+}
+</style>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/horario/frmHorario.js}"></script>
+<body>
+	<nav th:replace="menu2::menu"></nav>
+	<!-- <div class="card">
+		<div class="card-header badge-danger">Lista de Horario</div>
+		<div class="card-body">
+
+			<button type="button" id="btnagregarhorario" class="btn btn-primary">Registrar Horario</button>
+			<hr />
+			<div id="mensaje"></div>
+
+			<table id="tblhorario" class="table table-striped table-bordered table-hover ">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Dia</th>
+						<th scope="col">Curso</th>
+						<th scope="col">Hora Inicio</th>
+						<th scope="col">Hora Final</th>
+						<th scope="col">Actualizar</th>
+						<th scope="col">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="horario:${lstHorario}">
+						<td th:text="${horario.idhorario}"></td>
+						<td th:text="${horario.dia}"></td>
+						<td th:text="${horario.idcurso}"></td>
+						<td th:text="${horario.horaini}"></td>
+						<td th:text="${horario.horafin}"></td>
+						<td>
+							<button type="button" class="btn btn-info btnactualizarhorario"
+								th:data-codhorario="${horario.idhorario}"
+								th:data-dia="${horario.dia}"
+								th:data-codcurso="${horario.idcurso}"
+								th:data-codhoraini="${horario.horaini}"
+								th:data-codhoraini="${horario.horafin}"
+								th:data-estado="${horario.estado}">Actualizar</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger btneliminarhorario"
+								th:data-codbimestre="${horario.idbimestre}">Eliminar</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div> -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-8">
+				<div class="card">
+					<div class="card-header badge-secondary text-center">HORARIOS</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="cbonivel">Seleccione Nivel:</label> <select
+								class="form-control" id="cbonivel">
+								<option value="0">Seleccione</option>
+								<option th:each="nivel :${lstnivel}" th:text="${nivel.nombre}"
+									th:value="${nivel.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cbogrado">Seleccione Grado:</label> <select
+								class="form-control" id="cbogrado">
+								<option value="0">Seleccione</option>
+								<option th:each="grado :${lstgrado}" th:text="${grado.nombre}"
+									th:value="${grado.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="cboseccion">Seleccione Sección:</label> <select
+								class="form-control" id="cboseccion">
+								<option value="0">Seleccione</option>
+								<option th:each="seccion :${lstseccion}"
+									th:text="${seccion.nombre}" th:value="${seccion.nombre}"></option>
+							</select>
+						</div>
+						<button class="btn btn-success" type="button" id="btnbuscar">Buscar</button>
+						<!-- <hr />
+						<div id="tblalumno" class="row row-cols-1 row-cols-md-3"></div> -->
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+
+	<!-- Modal Registrar y Actualizar Horario-->
+	<div class="modal fade" id="modalhorario" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Horario</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				<div class="row" >
+					<div class="col-8">
+							<!-- <div id="scroll"> -->
+							<table id="tblhorario" class="table">
+								<thead>
+									<tr>
+										<th>Dia</th>
+										<th>Curso</th>
+										<th>Hora Inicio</th>
+										<th>Hora Fin</th>
+										<th>Estado</th>
+										<th>Editar</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<!-- </div> -->
+						</div>
+					
+				<div class="col-4">
+					<form>
+						<div class="form-group">
+							<label for="txtdia">Dia:</label> <input type="text"
+								class="form-control" id="txtdia"> <span id="errordia"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="cbocurso">Seleccione curso</label> <select
+								class="form-control" id="cbocurso">
+								<option value="0">Seleccione</option>
+								<option th:each="curso :${lstcurso}" th:text=${curso.nombre}
+									th:value="${curso.nombre}"></option>
+							</select> <span id="errorcurso" class="text-danger"></span> <input
+								type="hidden" id="hddidcurso" value="0" />
+						</div>
+						<div class="form-group">
+							<label for="txthoraini">Hora Inicio:</label> <input type="text"
+								class="form-control" id="txthoraini"> <span
+								id="errorhi" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label for="txthoraini">Hora Final:</label> <input type="text"
+								class="form-control" id="txthorafin"> <span
+								id="errorhf" class="text-danger"></span>
+						</div>
+
+						<input type="hidden" id="hddidhorario" value="0">
+						
+						<button type="button" id="btnregistrarhorario"
+						class="btn btn-primary">Guardar</button>
+						
+						<button type="button" id="btnlimpiarcampos"
+						class="btn btn-primary">Nuevo</button>
+					</form>
+					<span id="nivel"></span>
+					<span id="grado"></span>
+					<span id="seccion"></span>
+				</div>
+				</div>
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Eliminar Horario -->
+	<div class="modal fade" id="modaleliminarhorario" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Horario</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidhorarioeliminar" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+					<button type="button" id="btneliminarhorario"
+						class="btn btn-danger">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="menu2::barra"></div>
+	<div>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="../css/icons/script.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="../css/icons/script.js"></script>
+	</div>
+</body>
+</html>

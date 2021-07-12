@@ -51,8 +51,15 @@ public class AsistenciaAlumnoService {
 	
 	public void registrarAsistencia(AsistenciaAlumno asis) {
 		if(asis.getIdasistencia() == null ){
+			if(asis.getComentario().equals("")) {
+				asis.setComentario("Sin Comentario");
 				repository.RegistrarAsistenciaAlumno(asis.getIdalumno(), asis.getFecha(), asis.getEstado(), asis.getComentario());	
-		}/*else {
+			}
+			else{
+				repository.RegistrarAsistenciaAlumno(asis.getIdalumno(), asis.getFecha(), asis.getEstado(), asis.getComentario());
+			}
+			}
+				/*else {
 			repository.ActualizarAsistenciaAlumno(asis.getIdasistencia(), asis.getEstado(),asis.getComentario());
 		}*/
 	}
@@ -75,5 +82,9 @@ public class AsistenciaAlumnoService {
 	
 	public List<AsistenciaAlumno> listarFaltas( String idalumno){
 		return repository.asistenciaFaltas(idalumno);
+	}
+	
+	public List<AsistenciaAlumno> asistenciaXAlumno(String idalumno){
+		return repository.asistenciasXAlumno(idalumno);
 	}
 }

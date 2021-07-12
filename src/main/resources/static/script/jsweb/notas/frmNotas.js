@@ -31,13 +31,17 @@ $(document).on("click", "#btnbuscar" , function(){
 					"<p class='card-text text-white'>Nombre Completo: "+value.nombrecompleto+ "<br />" +	
 					"<p class='card-text text-white'>Apoderado: "+value.apoderado+ "<br />" +	
 					"<button data-codalumno='"+value.idalumno+"'data-codbimestre='"+"0"+
-					"' type='button' class='btn btn-dark btnvernotas'>Ver Notas</button>"+
+					"' type='button' class='btn btn-dark btnvernotas'>Notas</button>"+
 					"<button data-codalumno='"+value.idalumno+"'data-codbimestre='"+"0"+
-					"' type='button' class='btn btn-primary btnagregarnotas'>Registrar Notas</button>"+
+					"' type='button' class='btn btn-primary btnagregarnotas'>Registrar Notas</button>"+"<br />" +
 					"<button data-codalumno='"+value.idalumno+
-					"' type='button' class='btn btn-dark btnvernotasbimestre'>Ver Notas Bimestrales</button>"+
+					"' type='button' class='btn btn-dark btnvernotasbimestre'>Notas Bimestrales</button>"+"<br />" +
 					"<button data-codalumno='"+value.idalumno+
-					"' type='button' class='btn btn-primary btnbimestrenotas'>Registrar Notas Bimestrales</button>"+
+					"' type='button' class='btn btn-primary btnbimestrenotas'>Registrar Notas Bimestrales</button>"+"<br />" +
+					"<button data-codalumno='"+value.idalumno+
+					"' type='button' class='btn btn-primary btnasistencias'>Asistencias</button>"+"<br />" +
+					"<button data-codalumno='"+value.idalumno+
+					"' type='button' class='btn btn-primary btnjustificaciones'>Justificaciones</button>"+
 					"</p></div></div></div>");
 					$("#tblalumno").show();
 				});
@@ -686,3 +690,50 @@ $.ajax({
 		}
 	});
 }
+
+
+
+$(document).on("click", ".btnasistencias", function() {
+	$.ajax({
+		type: "GET",
+		url: "/Notas/frmAsistencia",
+		data:{
+			idalumno: $(this).attr("data-codalumno"),
+		},
+		dataType: 'json',
+		success: function(resultado){
+			$("#tblasistencia > tbody").html("");
+			$.each(resultado, function(index, value){
+				$("#tblasistencia > tbody").append("<tr>"+
+				"<td class='text-center'>"+ value.fecha + "</td>"+
+				"<td class='text-center'>"+ value.estado + "</td>"+
+				"<td class='text-center'>"+ value.comentario + "</td>"+
+				"</tr>");
+			});		
+			$("#modalasistencias").modal("show");	
+		}
+	});
+});
+
+
+$(document).on("click", ".btnjustificaciones", function() {
+	$.ajax({
+		type: "GET",
+		url: "/Notas/frmJustificaciones",
+		data:{
+			idalumno: $(this).attr("data-codalumno"),
+		},
+		dataType: 'json',
+		success: function(resultado){
+			$("#tbljustificaciones > tbody").html("");
+			$.each(resultado, function(index, value){
+				$("#tbljustificaciones > tbody").append("<tr>"+
+				"<td class='text-center'>"+ value.fecha_falta + "</td>"+
+				"<td class='text-center'>"+ value.fecha_justi + "</td>"+
+				"<td class='text-center'>"+ value.descripcion + "</td>"+
+				"</tr>");
+			});		
+			$("#modaljustificaciones").modal("show");	
+		}
+	});
+});
