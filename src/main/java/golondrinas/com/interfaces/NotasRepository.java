@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 
 import golondrinas.com.model.AlumnosXAula;
+import golondrinas.com.model.NotaXCurso;
 import golondrinas.com.model.Notas;
 
 @Controller
@@ -46,7 +47,7 @@ public interface NotasRepository extends JpaRepository<Notas, String>{
 	
 	@Query(value = "{call sp_MantListarCursoXBimestreXAlumno(:idalumno, :idbimestre, :idcurso)}", nativeQuery = true)
 	String listarCursoXBimestre(@Param("idalumno") String idalumno, @Param("idbimestre") String idbimestre, @Param("idcurso") String idcurso);
-	
-	
+
+
 	
 }

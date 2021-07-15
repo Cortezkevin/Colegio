@@ -680,10 +680,29 @@ insert bimestre values("B001",'Primer Bimestre','Activo');
 insert bimestre values("B002",'Segundo Bimestre','Activo');
 insert bimestre values("B003",'Tercer Bimestre','Activo');
 insert bimestre values("B004",'Cuarto Bimestre','Activo');
- insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
-  insert into Notas values ('NO002','A001','C001','B002',12,10,10,16,13,'Activo');
-  insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
+insert into Notas values ('NO001','A001','C001','B001',15,17,10,18,15,'Activo');
+insert into Notas values ('NO002','A001','C001','B002',12,10,10,16,13,'Activo');
+insert into NotaBimestres values('NB001','A001','C001',00,00,00,00,00,'Activo');
   
+insert into asistenciaAlumno values("AS001","A001","Kevin Cortez Quispe","2/7/2021","Presente","Sin Comentario");
+insert into asistenciaAlumno values("AS002","A002","Carlos Manuel Huamani Huamani","2/7/2021","Tarde","Problemas de Internet");
+insert into asistenciaAlumno values("AS003","A001","Kevin Cortez Quispe","3/7/2021","Presente","Sin Comentario");
+insert into asistenciaAlumno values("AS004","A002","Carlos Manuel Huamani Huamani","3/7/2021","Tarde","Problemas de Internet");
+insert into asistenciaAlumno values("AS005","A001","Kevin Cortez Quispe","4/7/2021","Justificado","Sin Comentario");
+insert into asistenciaAlumno values("AS006","A002","Carlos Manuel Huamani Huamani","4/7/2021","Presente","Sin Comentario");
+insert into asistenciaAlumno values("AS007","A001","Kevin Cortez Quispe","5/7/2021","Presente","Sin Comentario");
+insert into asistenciaAlumno values("AS008","A002","Carlos Manuel Huamani Huamani","5/7/2021","Presente","Sin Comentario");
+
+insert into ReporteAsistenciaAlumno values('RA001','A001','Inicial','Primer Grado','Seccion A','Kevin Cortez Quispe',3,1,0);
+insert into ReporteAsistenciaAlumno values('RA002','A002','Inicial','Primer Grado','Seccion A','Carlos Manuel Huamani Huamani',2,0,2);
+  
+insert into asistenciaProfesor values("AS001","D001","Juan Perez Huapaya Arias","7/7/2021","Presente","");
+insert into ReporteAsistenciaProfesor values('RP001','D001','Juan Perez Huapaya Arias',2,0,0);
+
+insert into Justificaciones VALUES ('J001', 'AS005', '4/7/2021','10/7/2021', 'Corte de Luz');
+ 
+insert into horario values('H001','Inicial','Primer Grado','Seccion A','Lunes','Matematica I','7:00 AM','9:00 AM','Activo');
+
 CREATE  PROCEDURE sp_MantListarNotaBimestre(in _idalumno char(4))
 Select nb.idnotabimestre, nb.idalumno, nb.idcurso, c.nombre, nb.nota_bimestre1,nb.nota_bimestre2,nb.nota_bimestre3,nb.nota_bimestre4,nb.promedio_anual
  from notabimestres nb inner join curso c on nb.idCurso = c.idCurso
@@ -807,3 +826,163 @@ select estado from curso where idCurso = _idcurso;
 
 CREATE  PROCEDURE sp_EstadoXMatricula(in _idmatricula char(4))
 select estado from matricula where idMatricula = _idmatricula;
+
+##ASISTENCIAS
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarAsistenciaAlumno(IN _idalumno char(4), in _fecha char(11), in _estado char(20), in _comentario varchar(40))
+BEGIN
+	SET @idasis = (SELECT CONCAT('AS',RIGHT(CONCAT('00',RIGHT(MAX(idAsistencia),3) + 1),3)) FROM asistenciaAlumno);	
+    set @nombrecompleto = (select nombreCompleto from alumno where idalumno = _idalumno); 
+	insert into asistenciaAlumno values(@idasis, _idalumno, @nombrecompleto, _fecha, _estado, _comentario);
+
+set @asis = (select count(estado) from asistenciaAlumno where estado = 'Presente' and idalumno = _idalumno);
+set @inasis = (select count(estado) from asistenciaAlumno where (estado = 'Ausente' or estado = 'Justificado') and idalumno = _idalumno);
+set @tard = (select count(estado) from asistenciaAlumno where estado = 'Tarde' and idalumno = _idalumno);
+set @idreporte = (select idReporte from reporteasistenciaalumno where idalumno = _idalumno);
+
+update reporteasistenciaalumno set asis = @asis, inasis = @inasis, tard = @tard  where idReporte = @idreporte;
+END$$
+ DELIMITER ;
+ 
+ 
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarAsistenciaProfesor(IN _idprofesor char(4), in _fecha char(11), in _estado char(20), in _comentario varchar(40))
+BEGIN
+	SET @idasis = (SELECT CONCAT('AS',RIGHT(CONCAT('00',RIGHT(MAX(idAsistenciaP),3) + 1),3)) FROM asistenciaProfesor);	
+    set @nombrecompleto = (select nombreCompleto from profesor where idProfesor = _idprofesor); 
+	insert into asistenciaProfesor values(@idasis, _idprofesor, @nombrecompleto, _fecha, _estado, _comentario);
+
+set @asis = (select count(estado) from asistenciaProfesor where estado = 'Presente' and idprofesor = _idprofesor);
+set @inasis = (select count(estado) from asistenciaProfesor where (estado = 'Ausente' or estado = 'Justificado') and idprofesor = _idprofesor);
+set @tard = (select count(estado) from asistenciaProfesor where estado = 'Tarde' and idprofesor = _idprofesor);
+set @idreporte = (select idReporteP from reporteasistenciaprofesor where idprofesor = _idprofesor);
+
+update reporteasistenciaprofesor set asis = @asis, inasis = @inasis, tard = @tard  where idReporteP = @idreporte;
+END$$
+ DELIMITER ;
+/*
+insert into asistenciaProfesor values("AS001","D001","Juan Perez Huapaya Arias","7/7/2021","Presente","");
+
+insert into ReporteAsistenciaProfesor values('RP001','D001','Juan Perez Huapaya Arias',2,0,0);
+ */
+ create procedure sp_MantIdAsistenciaAlumnoXFecha(in _idalumno char(4), in _fecha date)
+ select idAsistencia from asistenciaAlumno where idAlumno = _idalumno and fecha = _fecha ;
+ 
+ 
+ create procedure sp_MantValidarAsistenciaXFecha(in _fecha char(10), in _idalumno char(4))
+ select idAlumno from asistenciaAlumno where fecha = _fecha and idalumno = _idalumno ;
+ 
+  create procedure sp_MantValidarAsistenciaXFechaProfesor(in _fecha char(10), in _idprofesor char(4))
+ select idProfesor from asistenciaProfesor where fecha = _fecha and idprofesor = _idprofesor ;
+
+
+create procedure sp_MantListarReporteAsistencias(in _nivel char(20), in _grado char(20), in _seccion char(20))
+select nombrealumno, asis, inasis, tard from reporteasistenciaalumno where nivel = _nivel and grado = _grado and seccion = _seccion;
+   
+create procedure sp_MantListarReporteAsistenciasP()
+select nombreprofesor, asis, inasis, tard from reporteasistenciaprofesor;   
+   ####
+   
+DELIMITER $$
+CREATE PROCEDURE sp_listUserLogin(IN _idusuario char(40))
+BEGIN 
+select a.idalumno,a.nombrecompleto,a.apoderado,m.idmatricula,m.idnivel,g.nombre as Gnombre,s.nombre as Snombre,
+	p.nombres,p.apellidos,p.dni,p.telefono, p.direccion, p.email, p.genero,
+    p.edad,a.estado, u.idcargo,u.foto from usuario u
+inner join alumno a on u.idusuario= a.idusuario
+inner join persona p on p.idpersona = a.idpersona
+inner join matricula m on a.idmatricula = m.idmatricula
+inner join grado g on m.idgrado= g.idgrado
+inner join seccion s on m.idseccion=s.idseccion
+where u.nombreusuario= _idusuario;
+END$$
+DELIMITER ;
+
+create procedure sp_CargoXUsuario(in _usuario char(30))
+select c.idcargo from usuario u inner join cargo c on u.idcargo = c.idcargo
+where u.nombreusuario = _usuario;
+
+
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarJustificacion(in _idAsistencia char(5),in _fechafalta char(11), in _fechajusti char(11),in _descripcion char(60))
+BEGIN
+	SET @id= (SELECT CONCAT('J',RIGHT(CONCAT('00',RIGHT(MAX(idJustificacion),3) + 1),3)) FROM Justificaciones);	
+	INSERT INTO Justificaciones VALUES (@id, _idAsistencia, _fechafalta,_fechajusti, _descripcion);
+    
+    update asistenciaAlumno set estado = 'Justificado' where idAsistencia = _idAsistencia;
+END$$
+ DELIMITER ;
+ 
+ CREATE  PROCEDURE sp_MantListarAsistenciasFaltas(in _idalumno char(4))
+select * from asistenciaalumno where idalumno = _idalumno and (estado = 'Ausente' or estado = "Justificado" );
+ 
+ CREATE  PROCEDURE sp_MantListarAsistenciasXAlumno(in _idalumno char(4))
+select * from asistenciaalumno where idalumno = _idalumno;
+
+ CREATE  PROCEDURE sp_MantListarJustificacion(in _idalumno char(4))
+select j.* from justificaciones j
+inner join asistenciaalumno a on j.idAsistencia = a.idAsistencia
+where a.idalumno = _idalumno; /*and (estado = 'Ausente' or estado = 'Justificado');*/
+
+ CREATE  PROCEDURE sp_MantValidarJustificacion(in _idasistencia char(5))
+select estado from asistenciaalumno where idasistencia = _idasistencia;
+
+#HORARIOS
+
+
+DELIMITER $$
+CREATE  PROCEDURE sp_MantRegistrarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
+in _curso char(40),in _horainicio char(10),in _horafin char(10))
+BEGIN
+	SET @idhora = (SELECT CONCAT('H',RIGHT(CONCAT('00',RIGHT(MAX(idHorario),3) + 1),3)) FROM horario);	
+	INSERT INTO horario VALUES (@idhora,_nivel,_grado,_seccion,_dia,_curso,_horainicio, _horafin, 'Activo');
+END$$
+ DELIMITER ;
+ 
+     DELIMITER $$
+CREATE  PROCEDURE sp_MantActualizarHorario(in _idhorario char(4),in _dia char(20),
+in _curso char(40),in _horainicio char(10),in _horafin char(10))
+BEGIN
+		update horario set dia = _dia, curso = _curso, hora_inicio = _horainicio, hora_fin = _horafin where idhorario = _idhorario;
+END$$
+ DELIMITER ;
+ 
+     DELIMITER $$
+CREATE  PROCEDURE sp_MantEliminarHorario(in _idhorario char(4))
+BEGIN
+		update horario set estado = 'Eliminado' where idhorario = _idhorario;
+END$$
+ DELIMITER ;
+ 
+CREATE  PROCEDURE sp_MantListarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20))
+select * from horario where nivel = _nivel and grado = _grado and seccion = _seccion;
+
+CREATE  PROCEDURE sp_MantValidarHorario(in _curso char(40), in _dia char(20),in _nivel char(20),in _grado char(20),in _seccion char(20))
+select curso from horario where curso = _curso and dia = _dia and nivel = _nivel and grado = _grado and seccion = _seccion;
+
+
+
+create procedure sp_MantCodigoAlumnoXUsuario(in usuario char(20))
+select a.idalumno from alumno a inner join usuario u on a.idusuario = u.idusuario
+where u.nombreUsuario = usuario;
+
+
+create procedure sp_MantListarNotasXBimestre1(in _idalumno char(4))
+select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+where idalumno = _idalumno and idBimestre = 'B001';
+
+
+
+create procedure sp_MantListarNotasXBimestre2(in _idalumno char(4))
+select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+where idalumno = _idalumno and idBimestre = 'B002';
+
+create procedure sp_MantListarNotasXBimestre3(in _idalumno char(4))
+select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+where idalumno = _idalumno and idBimestre = 'B003';
+
+create procedure sp_MantListarNotasXBimestre4(in _idalumno char(4))
+select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+where idalumno = _idalumno and idBimestre = 'B004';

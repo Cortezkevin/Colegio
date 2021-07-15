@@ -47,4 +47,6 @@ public interface AlumnoRepository extends JpaRepository<Alumno, String> {
 	String ValidarEstadoAlumno(@Param("idalumno") String idnivel);
 	
 	
+	@Query(value = "{call sp_MantCodigoAlumnoXUsuario(:usuario)}", nativeQuery = true)
+	String CodigoAlumnoXUsuario(@Param("usuario") String usuario);
 }

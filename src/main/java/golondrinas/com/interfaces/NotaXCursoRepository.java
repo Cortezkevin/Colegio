@@ -16,4 +16,5 @@ public interface NotaXCursoRepository extends JpaRepository<NotaXCurso, String>{
 	@Query(value = "{call sp_MantListarNotaxCurso(:idalumno, :idbimestre)}", nativeQuery = true)
 	List<NotaXCurso> listarNotasXCurso(@Param("idalumno") String idalumno, @Param("idbimestre") String idbimestre);
 	
+
 }

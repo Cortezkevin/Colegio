@@ -84,20 +84,24 @@
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
-					<th scope="col" class="text-center">#</th>
-					<th scope="col" class="text-center">First</th>
-					<th scope="col" class="text-center">Last</th>
-					<th scope="col" class="text-center">Handle</th>
+					<th scope="col" class="text-center">Curso</th>
+					<th scope="col" class="text-center">Examen 1</th>
+					<th scope="col" class="text-center">Examen 2</th>
+					<th scope="col" class="text-center">Examen 3</th>
+					<th scope="col" class="text-center">Examen 4</th>
+					<th scope="col" class="text-center">Promedio</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row" class="text-center">1</th>
-					<td class="text-center">Mark</td>
-					<td class="text-center">Otto</td>
-					<td class="text-center">@mdo</td>
+				<tr  th:each="n:${lstNotaBim1}">
+					<th scope="row" class="text-center" th:text="${n.curso}"></th>
+					<td class="text-center" th:text="${n.examen1}"></td>
+					<td class="text-center" th:text="${n.examen2}"></td>
+					<td class="text-center" th:text="${n.examen3}"></td>
+					<td class="text-center" th:text="${n.examen4}"></td>
+					<td class="text-center" th:text="${n.promedio}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th class="text-center" scope="row">2</th>
 					<td class="text-center">Jacob</td>
 					<td class="text-center">Thornton</td>
@@ -108,7 +112,7 @@
 					<td class="text-center">Larry</td>
 					<td class="text-center">the Bird</td>
 					<td class="text-center">@twitter</td>
-				</tr>
+				</tr> -->
 			</tbody>
 
 		</table>
@@ -116,20 +120,24 @@
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
-					<th class="text-center" scope="col">#</th>
-					<th class="text-center" scope="col">First</th>
-					<th class="text-center" scope="col">Last</th>
-					<th class="text-center" scope="col">Handle</th>
+					<th scope="col" class="text-center">Curso</th>
+					<th scope="col" class="text-center">Examen 1</th>
+					<th scope="col" class="text-center">Examen 2</th>
+					<th scope="col" class="text-center">Examen 3</th>
+					<th scope="col" class="text-center">Examen 4</th>
+					<th scope="col" class="text-center">Promedio</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th class="text-center" scope="row">1</th>
-					<td class="text-center">Mark</td>
-					<td class="text-center">Otto</td>
-					<td class="text-center">@mdo</td>
+				<tr  th:each="n:${lstNotaBim2}">
+					<th scope="row" class="text-center" th:text="${n.curso}"></th>
+					<td class="text-center" th:text="${n.examen1}"></td>
+					<td class="text-center" th:text="${n.examen2}"></td>
+					<td class="text-center" th:text="${n.examen3}"></td>
+					<td class="text-center" th:text="${n.examen4}"></td>
+					<td class="text-center" th:text="${n.promedio}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th class="text-center" scope="row">2</th>
 					<td class="text-center">Jacob</td>
 					<td class="text-center">Thornton</td>
@@ -140,7 +148,7 @@
 					<td class="text-center">Larry</td>
 					<td class="text-center">the Bird</td>
 					<td class="text-center">@twitter</td>
-				</tr>
+				</tr> -->
 			</tbody>
 
 		</table>
@@ -148,20 +156,24 @@
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
-					<th class="text-center" scope="col">#</th>
-					<th class="text-center" scope="col">First</th>
-					<th class="text-center" scope="col">Last</th>
-					<th class="text-center" scope="col">Handle</th>
+					<th scope="col" class="text-center">Curso</th>
+					<th scope="col" class="text-center">Examen 1</th>
+					<th scope="col" class="text-center">Examen 2</th>
+					<th scope="col" class="text-center">Examen 3</th>
+					<th scope="col" class="text-center">Examen 4</th>
+					<th scope="col" class="text-center">Promedio</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th class="text-center" scope="row">1</th>
-					<td class="text-center">Mark</td>
-					<td class="text-center">Otto</td>
-					<td class="text-center">@mdo</td>
+				<tr  th:each="n:${lstNotaBim3}">
+					<th scope="row" class="text-center" th:text="${n.curso}"></th>
+					<td class="text-center" th:text="${n.examen1}"></td>
+					<td class="text-center" th:text="${n.examen2}"></td>
+					<td class="text-center" th:text="${n.examen3}"></td>
+					<td class="text-center" th:text="${n.examen4}"></td>
+					<td class="text-center" th:text="${n.promedio}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th class="text-center" scope="row">2</th>
 					<td class="text-center">Jacob</td>
 					<td class="text-center">Thornton</td>
@@ -172,7 +184,7 @@
 					<td class="text-center">Larry</td>
 					<td class="text-center">the Bird</td>
 					<td class="text-center">@twitter</td>
-				</tr>
+				</tr> -->
 			</tbody>
 
 		</table>
@@ -180,20 +192,24 @@
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
-					<th class="text-center" scope="col">#</th>
-					<th class="text-center" scope="col">First</th>
-					<th class="text-center" scope="col">Last</th>
-					<th class="text-center" scope="col">Handle</th>
+					<th scope="col" class="text-center">Curso</th>
+					<th scope="col" class="text-center">Examen 1</th>
+					<th scope="col" class="text-center">Examen 2</th>
+					<th scope="col" class="text-center">Examen 3</th>
+					<th scope="col" class="text-center">Examen 4</th>
+					<th scope="col" class="text-center">Promedio</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th class="text-center" scope="row">1</th>
-					<td class="text-center">Mark</td>
-					<td class="text-center">Otto</td>
-					<td class="text-center">@mdo</td>
+				<tr  th:each="n:${lstNotaBim4}">
+					<th scope="row" class="text-center" th:text="${n.curso}"></th>
+					<td class="text-center" th:text="${n.examen1}"></td>
+					<td class="text-center" th:text="${n.examen2}"></td>
+					<td class="text-center" th:text="${n.examen3}"></td>
+					<td class="text-center" th:text="${n.examen4}"></td>
+					<td class="text-center" th:text="${n.promedio}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th class="text-center" scope="row">2</th>
 					<td class="text-center">Jacob</td>
 					<td class="text-center">Thornton</td>
@@ -204,7 +220,7 @@
 					<td class="text-center">Larry</td>
 					<td class="text-center">the Bird</td>
 					<td class="text-center">@twitter</td>
-				</tr>
+				</tr> -->
 			</tbody>
 
 		</table>

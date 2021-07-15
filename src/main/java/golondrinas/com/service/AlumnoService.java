@@ -64,5 +64,8 @@ public class AlumnoService {
 		return false;
 	}
 	
+	public String CodigoAlumnoXUsuario(String u) {
+		return repository.CodigoAlumnoXUsuario(u);
+	}
 	
 }

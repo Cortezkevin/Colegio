@@ -55,14 +55,13 @@ public class HorarioController {
 		String mensaje = "Horario registrado correctamente";
 		Boolean respuesta = true;
 		try {
-			//if(service.validarNombre(objHorario) == false) {
+			if(service.validarHorario(objHorario) == false) {
 				service.registrarHorario(objHorario);
-			//}
-			
-			/*else {
-				mensaje = "El Horario ya esta registrado";
-				respuesta = false;
-			}*/
+			}
+			else {
+			mensaje = "Ya se registro el curso "+objHorario.getCurso()+" en el dia "+objHorario.getDia();
+			respuesta = false;
+			}
 		} catch (Exception ex) {
 			mensaje = "No se registro";
 			respuesta = false;

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import golondrinas.com.interfaces.NotaBimestreRepository;
 import golondrinas.com.interfaces.NotaXCursoRepository;
 import golondrinas.com.interfaces.NotasRepository;
 import golondrinas.com.model.AlumnosXAula;
@@ -14,6 +15,9 @@ import golondrinas.com.model.Notas;
 
 @Service
 public class NotasService {
+	
+	/*@Autowired
+	private NotaBimestreRepository nbrepo;*/
 
 	@Autowired
 	private NotasRepository repository;
@@ -26,6 +30,8 @@ public class NotasService {
 	public void registrarNotasv2(Notas n) {
 		repository.RegistrarNotasv2(n.getIdalumno(), n.getIdcurso(), n.getIdbimestre(), n.getExamen1(), n.getExamen2(),
 				n.getExamen3(), n.getExamen4(), n.getPromedio());
+		
+		//nbrepo.RegistrarNotaBimestral(n.getIdalumno(), n.getIdcurso(),0.0,0.0,0.0,0.0,0.0);
 	}
 
 	public void actualizarNotasv2(Notas n) {
@@ -42,4 +48,7 @@ public class NotasService {
 			return false;
 			
 	}
+
+	
+	
 }

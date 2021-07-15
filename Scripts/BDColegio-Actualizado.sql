@@ -1,5 +1,5 @@
-create database colegio5;
-use  colegio5;
+create database colegio6;
+use  colegio6;
 
 create table Persona(
 idPersona char(4) not null,
@@ -88,7 +88,7 @@ dia char(10) null,
 estado char(20) null,
 primary key (idHora)
 );
-
+##### NO SE USA
 create table CursoProgramado(
 idCursoProgramado char(4) not null,
 idCurso char(4) not null,
@@ -100,25 +100,7 @@ foreign key (idCurso) references Curso(idCurso),
 foreign key (idSeccion) references Seccion(idSeccion),
 foreign key (idProfesor) references Profesor(idProfesor)
 );
-/*
-create table Horario(
-idHorario char(4) not null,
-idNivel char(4) not null,
-idGrado char(4) not null,
-#idCursoProgramado char(4) not null,
-hLunes char(40) not null,
-hMartes char(40) not null,
-hMiercoles char(40) not null,
-hJueves char(40) not null,
-hViernes char(40) not null,
-idHora char(4) not null,
-estado char(20) null,
-primary key (idHorario),
-foreign key (idNivel) references Nivel(idNivel),
-foreign key (idGrado) references Grado(idGrado),
-#foreign key (idCursoProgramado) references CursoProgramado(idCursoProgramado),
-foreign key (idHora) references Hora(idHora)
-);*/
+
 ##FALTA AGREGAR 
 create table Apoderado(
 idApoderado char(5) not null,
@@ -231,8 +213,6 @@ foreign key (idMatricula) references Matricula(idMatricula)
  primary key (user_id, role_id)
  );
  
-/*
- ###########TABLA HORARIOS
 create table Horario(
 idHorario char(4) not null,
 Nivel char(20) not null,
@@ -244,36 +224,61 @@ Hora_Inicio char(10) not null,
 Hora_Fin char(10) not null,
 estado char(20) null,
 primary key (idHorario)
-);*/
+);
 
-/*
-DELIMITER $$
-CREATE  PROCEDURE sp_MantRegistrarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20),in _dia char(20),
-in _curso char(40),in _horainicio char(6),in _horafin char(6))
-BEGIN
-	SET @idhora = (SELECT CONCAT('H',RIGHT(CONCAT('00',RIGHT(MAX(idHorario),3) + 1),3)) FROM horario);	
-	INSERT INTO horario VALUES (@idhora,_nivel,_grado,_seccion,_dia,_curso,_horainicio, _horafin, 'Activo');
-END$$
- DELIMITER ;
- 
-DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarHorario(in _idhorario char(4),in _dia char(20),
-in _curso char(40),in _horainicio char(10),in _horafin char(10))
-BEGIN
-		update horario set dia = _dia, curso = _curso, hora_inicio = _horainicio, hora_fin = _horafin where idhorario = _idhorario;
-END$$
- DELIMITER ;
- 
- 
-     DELIMITER $$
-CREATE  PROCEDURE sp_MantEliminarHorario(in _idhorario char(4))
-BEGIN
-		update horario set estado = 'Eliminado' where idhorario = _idhorario;
-END$$
- DELIMITER ;
- 
-CREATE  PROCEDURE sp_MantListarHorario(in _nivel char(20),in _grado char(20),in _seccion char(20))
-select * from horario where nivel = _nivel and grado = _grado and seccion = _seccion;
+create table AsistenciaAlumno(
+idAsistencia char(5) not null,
+idAlumno char(4) not null,
+nombreAlumno char(40) not null,
+fecha  char(11) not  null,
+estado char(20) not null,
+comentario varchar(40) not null,
+primary key(idAsistencia),
+foreign key(idAlumno) references Alumno(idAlumno)
+);
 
+create table AsistenciaProfesor(
+idAsistenciaP char(5) not null,
+idProfesor char(4) not null,
+nombreProfesor char(40) not null,
+fecha  char(11) not  null,
+estado char(20) not null,
+comentario varchar(40) not null,
+primary key(idAsistenciaP),
+foreign key(idProfesor) references Profesor(idProfesor)
+);
 
-insert into horario values('H001','Inicial','Primer Grado','Seccion A','Lunes','Matematica I','7:00 AM','9:00 AM','Activo');*/
+create table ReporteAsistenciaAlumno(
+idReporte char(5) not null,
+idAlumno char(4) not null,
+nivel char(20) not null,
+grado char(20) not null,
+seccion char(20) not null,
+nombreAlumno char(40) not null,
+asis int not null,
+inasis int not null,
+tard int not null,
+primary key(idReporte),
+foreign key(idAlumno) references Alumno(idAlumno)
+);
+
+create table ReporteAsistenciaProfesor(
+idReporteP char(5) not null,
+idProfesor char(4) not null,
+nombreProfesor char(40) not null,
+asis int not null,
+inasis int not null,
+tard int not null,
+primary key(idReporteP),
+foreign key(idProfesor) references Profesor(idProfesor)
+);
+
+create table Justificaciones(
+idJustificacion char(4) not null,
+idAsistencia char(5) not null,
+fecha_falta char(11) not null,
+fecha_justi char(11) not null,
+descripcion char(60) not null,
+primary key(idJustificacion),
+foreign key(idAsistencia) references AsistenciaAlumno(idAsistencia)
+);

@@ -36,6 +36,14 @@ public class HorarioService {
 		repository.EliminarHorario(horario.getIdhorario());
 	}
 	
+	public boolean validarHorario(Horario h) {
+		String curso = repository.validarHorario(h.getCurso(), h.getDia(), h.getNivel(), h.getGrado(), h.getSeccion());
+		if(curso == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	
 	/*public boolean validarNombre(Horario obj) {
 		List<String> lista = repository.validarNombre(obj.getDia(), obj.getEstado(), obj.getHorafin(), obj.getHoraini(), obj.getIdcurso(), obj.getIdgrado(), obj.getIdnivel(), obj.getSeccion());

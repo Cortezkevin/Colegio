@@ -46,6 +46,10 @@ public interface HorarioRepository extends JpaRepository<Horario, String>{
 	@Query(value = "{call sp_MantEliminarHorario(:idhorario)}", nativeQuery = true)
 	void EliminarHorario(@Param("idhorario") String idhorario);
 	
+	@Query(value = "{call sp_MantValidarHorario(:curso, :dia, :nivel, :grado, :seccion)}", nativeQuery = true)
+	String validarHorario(@Param("curso") String curso,@Param("dia") String dia,@Param("nivel") String nivel,
+			@Param("grado") String grado,@Param("seccion") String seccion);
+	
 	
 	@Query(value = "{call sp_MantValidarNombre(:idcurso, :idnivel, :idgrado, :idseccion, :hora_inicio, :hora_fin, :dia, :estado)}", nativeQuery = true)
 	List<String> validarNombre(@Param("idcurso") String idcurso, @Param("idnivel") String idnivel, @Param("idgrado") String idgrado, @Param("idseccion") String idseccion, 
