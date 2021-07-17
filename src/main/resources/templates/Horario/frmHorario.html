@@ -10,6 +10,8 @@
 </style>
 <script type="text/javascript"
 	th:src="@{/script/jsweb/horario/frmHorario.js}"></script>
+<script type="text/javascript"
+	th:src="@{/script/jsweb/validacion/validarDatos.js}"></script>	
 <body>
 	<nav th:replace="menu2::menu"></nav>
 	<br/>
@@ -93,7 +95,7 @@
 				<div class="col-4">
 					<form>
 						<div class="form-group">
-							<label for="txtdia">Dia:</label> <input type="text"
+							<label for="txtdia">Dia:</label> <input type="text" onkeypress="return validarLetras(event)"
 								class="form-control" id="txtdia"> <span id="errordia"
 								class="text-danger"></span>
 						</div>
@@ -112,7 +114,7 @@
 								id="errorhi" class="text-danger"></span>
 						</div>
 						<div class="form-group">
-							<label for="txthoraini">Hora Final:</label> <input type="text"
+							<label for="txthorafin">Hora Final:</label> <input type="text"
 								class="form-control" id="txthorafin"> <span
 								id="errorhf" class="text-danger"></span>
 						</div>

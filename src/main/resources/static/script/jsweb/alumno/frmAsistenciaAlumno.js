@@ -44,7 +44,8 @@ $(document).on("click", "#btnbuscar", function() {
 
 		});
 		$("#cboalumno").empty();
-		
+		$("#errorestado").text("");
+		$("#erroralumno").text("");
 		
 		$.ajax({
 			type: "GET",

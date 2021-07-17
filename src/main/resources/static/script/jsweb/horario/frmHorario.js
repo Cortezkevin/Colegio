@@ -22,7 +22,8 @@ $(document).on("click", "#btnbuscar", function() {
 				grado: grado,
 				seccion: seccion
 			},
-			success: function(resultado) {		
+			success: function(resultado) {	
+
 			$("#tblhorario > tbody").html("");
 			$.each(resultado, function(index, value){
 				$("#tblhorario > tbody").append("<tr>"+
@@ -53,6 +54,11 @@ $(document).on("click", "#btnbuscar", function() {
 				$("#txthorafin").val("");
 				$("#hddidhorario").val("0");
 				$("#hddidcurso").val("0");
+				
+				$("#errorcurso").text("");
+				$("#errordia").text("");
+				$("#errorhf").text("");
+				$("#errorhi").text("");
 			}
 
 		});
@@ -66,6 +72,10 @@ $(document).on("click", "#btnlimpiarcampos", function() {
 	$("#hddidhorario").val("0");
 	$("#cbocurso").val("0");
 	$("#hddidhorario").val("0");
+	$("#errorcurso").text("");	
+	$("#errordia").text("");	
+	$("#errorhf").text("");	
+	$("#errorhi").text("");	
 });
 
 
@@ -87,17 +97,17 @@ $(document).on("click", "#btnregistrarhorario", function() {
 	if ($("#txtdia").val() === "") {
 		$("#errordia").text("Es obligatorio ingresar un dia.");
 	} else {
-		$("#errorhorafinal").text("");
+		$("#errordia").text("");
 	}
 	if ($("#txthorafin").val() === "") {
-		$("#errorhorafin").text("Es obligatorio la hora final.");
+		$("#errorhf").text("Es obligatorio la hora final.");
 	} else {
-		$("#errorhorafinal").text("");
+		$("#errorhf").text("");
 	}
 	if ($("#txthoraini").val() === "") {
-		$("#errorhoraini").text("Es obligatorio la hora Inicial.");
+		$("#errorhi").text("Es obligatorio la hora Inicial.");
 	} else {
-		$("#errorhoraini").text("");
+		$("#errorhi").text("");
 	}
 	if ($("#txthoraini").val() !== "" && $("#txthorafin") !== "" && $("#txtdia") !== "" && idcurso !== "0") {
 		if ($("#hddidhorario").val() === "0") {

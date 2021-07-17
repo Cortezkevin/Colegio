@@ -20,7 +20,6 @@ $(document).on("click", "#btnbuscar", function() {
 				seccion: seccion
 			},
 			success: function(resultado) {
-				
 				$("#tblalumnos > tbody").html("");
 				$.each(resultado, function(index, value){
 				$("#tblalumnos > tbody").append("<tr>"+
@@ -33,13 +32,19 @@ $(document).on("click", "#btnbuscar", function() {
 				
 				$("#modaljustificacion").modal("show");
 				
-					
-				
 					var date = new Date();
 					var hoy = date.toLocaleDateString();
 					$("#txtfa").val(hoy);
 			})}
+			
 		});	
+
+		$("#errordescripcion").text("");
+		$("#txta").val("");
+		$("#txtc").val("");
+		$("#txtf").val("");
+		$("#txtdescripcion").val("");
+		
 	}
 });
 
@@ -89,13 +94,15 @@ $(document).on("click", ".btnregistrarjusti", function() {
 
 
 $(document).on("click", "#btnregistrarjustificacion", function(){
-alert($("#txtc").val())
+//alert($("#txtc").val())
 if($("#txtdescripcion").val() === ""){
 		$("#errordescripcion").text("Es obligatorio ingresar el motivo de la falta");
 	}else{$("#errordescripcion").text("");}
-
+if($("#txtc").val() === ""){
+	alert("Seleccione una falta")
+}
 	
-	if ($("#txtdescripcion").val() !== "") {
+	if ($("#txtdescripcion").val() !== "" && $("#txtc") !== "") {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json",
