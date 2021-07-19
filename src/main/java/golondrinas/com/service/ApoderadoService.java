@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.ApoderadoRepository;
 import golondrinas.com.model.Apoderado;
-import golondrinas.com.model.Nivel;
-
 
 @Service
 public class ApoderadoService {
@@ -19,7 +17,7 @@ public class ApoderadoService {
 	public List<Apoderado> listarApoderado() {
 		return repository.listarApoderado();
 	}
-	
+
 	public List<Apoderado> listarApoderadoValidos() {
 		return repository.listarApoderadoValidos();
 	}
@@ -41,20 +39,19 @@ public class ApoderadoService {
 		repository.EliminarApoderado(o.getIdapoderado());
 	}
 
-	
 	public int validarEstado(Apoderado m) {
 		String lista = repository.listarEstado(m.getIdpersona());
-		if(lista.equals("Ocupado")) {
+		if (lista.equals("Ocupado")) {
 			return 1;
-		}else if(lista.equals("Eliminado")) {
+		} else if (lista.equals("Eliminado")) {
 			return 2;
 		}
 		return 0;
 	}
-	
-	public boolean validarEstadoApoderado(Apoderado n){
+
+	public boolean validarEstadoApoderado(Apoderado n) {
 		String lista = repository.ValidarEstadoApoderado(n.getIdapoderado());
-		if(lista.equals("Ocupado")) {
+		if (lista.equals("Ocupado")) {
 			return true;
 		}
 		return false;

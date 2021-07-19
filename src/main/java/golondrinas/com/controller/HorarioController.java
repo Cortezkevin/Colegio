@@ -41,7 +41,7 @@ public class HorarioController {
 
 	
 	@GetMapping("/frmHorario")
-	public String frmHorario(Model model) {
+	public String frmHorario( Model model) {
 		model.addAttribute("lstnivel", nservice.listarNivelValidos());
 		model.addAttribute("lstgrado", gservice.listarGradoValidos());
 		model.addAttribute("lstseccion", sservice.listarSeccionValidos());

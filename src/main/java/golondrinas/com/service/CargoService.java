@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.CargoRepository;
 import golondrinas.com.model.Cargo;
-import golondrinas.com.model.Nivel;
 
 @Service
 public class CargoService {

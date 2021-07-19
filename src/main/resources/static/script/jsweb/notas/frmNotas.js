@@ -45,6 +45,7 @@ $(document).on("click", "#btnbuscar" , function(){
 					"</p></div></div></div>");
 					$("#tblalumno").show();
 				});
+						
 			}
 		});
 	}
@@ -88,6 +89,12 @@ $(document).on("click", ".btnvernotas", function(){
 		}
 	});
 $(document).on("click", "#buscarnotabimestre", function(){
+	$("#cbocurso").val("0");
+	$("#txtexamen1").val("00");
+	$("#txtexamen2").val("00");
+	$("#txtexamen3").val("00");
+	$("#txtexamen4").val("00");
+	$("#txtprom").val("00");
 	$.ajax({
 		type: "GET",
 		url: "/Notas/frmCursoXNota",
@@ -118,6 +125,7 @@ $(document).on("click", "#buscarnotabimestre", function(){
 					" data-promedio='" + value.promedio + "'" + "'>Editar</button>" +
 					"</td>" +
 				"</tr>");
+				
 			});	
 		}
 	});
@@ -157,6 +165,12 @@ $(document).on("click", ".btnagregarnotas", function() {
 		}
 	});
 $(document).on("click", "#buscarnotabimestre2", function(){
+	$("#cbocurso3").val("0");
+	$("#txtexamen11").val("00");
+	$("#txtexamen22").val("00");
+	$("#txtexamen33").val("00");
+	$("#txtexamen44").val("00");
+	$("#txtprom1").val("00");
 	$.ajax({
 		type: "GET",
 		url: "/Notas/frmCursoXNota",

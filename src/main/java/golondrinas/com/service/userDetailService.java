@@ -2,7 +2,6 @@ package golondrinas.com.service;
 
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,16 +35,11 @@ public class userDetailService implements UserDetailsService{
 			new UsernameNotFoundException("User does not exist!");
 		}else if(appUser.getEstado().equals("Activo") || appUser.getEstado().equals("Ocupado")) {
 			Set<GrantedAuthority> grantList=new HashSet<GrantedAuthority>();
-			//Cargo aea= cargorepo.findAll();
-		
-			//System.out.println(aea);
-			//Set <Cargo> aea=(Set<Cargo>) cargorepo.findAll();
-			//System.out.println(aea);
+
 			for(Cargo cargo: appUser.getRoles()) {
 				System.out.println(cargo);
 				GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(cargo.getNombre());
 				
-				//System.out.println(grantList+"***********************************");
 	            grantList.add(grantedAuthority);
 	    
 			}

@@ -14,19 +14,19 @@ public class ReporteNotasService {
 	@Autowired
 	private ReporteNotasRepository repository;
 	
-	public List<ReporteNotas> listarNotasXBimestre1(String idalumno){
-		return repository.listarNotasXBimestre1(idalumno);
+	public List<ReporteNotas> listarNotasXBimestre_1(String idalumno){
+		return repository.listarNotasXBimestre_1(idalumno);
 	}
 	
-	public List<ReporteNotas> listarNotasXBimestre2(String idalumno){
-		return repository.listarNotasXBimestre2(idalumno);
+	public List<ReporteNotas> NotasBimestre_2(String idalumno){
+		return repository.listarNotasXBimestre_2(idalumno);
 	}
 	
-	public List<ReporteNotas> listarNotasXBimestre3(String idalumno){
-		return repository.listarNotasXBimestre3(idalumno);
+	public List<ReporteNotas> listarNotasXBimestre_3(String idalumno){
+		return repository.listarNotasXBimestre_3(idalumno);
 	}
 	
-	public List<ReporteNotas> listarNotasXBimestre4(String idalumno){
-		return repository.listarNotasXBimestre4(idalumno);
+	public List<ReporteNotas> listarNotasXBimestre_4(String idalumno){
+		return repository.listarNotasXBimestre_4(idalumno);
 	}
 }

@@ -18,10 +18,6 @@ public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 
 	 public Optional<Usuario> findByNombreusuario(String nombreusuario);
 	
-	/*@Query(value="{call sp_MantListarUsuarios()}",
-			nativeQuery = true)
-	List<Usuario> listarUsuarios();
-	*/
 	@Query(value = "{call sp_ManSelectUsuario()}", nativeQuery = true) 
 	List<Usuario> listarSelectUsuario(); 
 	 

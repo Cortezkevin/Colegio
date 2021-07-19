@@ -8,6 +8,8 @@ import javax.persistence.Id;
 public class ReporteNotas {
 
 	@Id
+	private String idnotas;
+	
 	@Column(name="curso")
 	private String curso;
 	

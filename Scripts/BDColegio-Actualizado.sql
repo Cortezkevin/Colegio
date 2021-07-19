@@ -1,5 +1,5 @@
-create database colegio6;
-use  colegio6;
+create database colegio7;
+use  colegio7;
 
 create table Persona(
 idPersona char(4) not null,
@@ -80,28 +80,6 @@ foreign key (idNivel) references Nivel(idNivel),
 foreign key (idGrado) references Grado(idGrado)
 );
 
-create table Hora(
-idHora char(4) not null,
-horaInicio char(10) null,
-horaFin char(10) null,
-dia char(10) null,
-estado char(20) null,
-primary key (idHora)
-);
-##### NO SE USA
-create table CursoProgramado(
-idCursoProgramado char(4) not null,
-idCurso char(4) not null,
-idSeccion char(4) not null,
-idProfesor char(4) not null,
-estado char(20) null,
-primary key (idCursoProgramado),
-foreign key (idCurso) references Curso(idCurso),
-foreign key (idSeccion) references Seccion(idSeccion),
-foreign key (idProfesor) references Profesor(idProfesor)
-);
-
-##FALTA AGREGAR 
 create table Apoderado(
 idApoderado char(5) not null,
 idPersona char(4) not null,
@@ -147,9 +125,9 @@ foreign key (idUsuario) references Usuario(idUsuario),
 foreign key (idMatricula) references Matricula(idMatricula)
 );
 
- create table Bimestre(               ##
- idBimestre char(4) not null,      ##
-nombre char(20) null,                 ##
+ create table Bimestre(              
+ idBimestre char(4) not null,     
+nombre char(20) null,                 
 estado char(20) null,
 primary key(idBimestre)
  );
@@ -158,7 +136,7 @@ create table Notas(
 idNotas char(5) not null,
 idAlumno char(4) not null,
 idCurso char(4) not null,
-idBimestre char(4) not null,        ##
+idBimestre char(4) not null,        
 examen1 double null,
 examen2 double null,
 examen3 double null,
@@ -184,16 +162,6 @@ estado char(20) null,
 primary key (idNotaBimestre),
 foreign key (idAlumno) references Alumno(idAlumno),
 foreign key (idCurso) references Curso(idCurso)
-);
-
-create table Pago(
-idPago char(5) not null,
-idMatricula char(4) not null,
-fechaPago date null,
-monto Double null,
-estado char(20) null,
-primary key(idPago),
-foreign key (idMatricula) references Matricula(idMatricula)
 );
 
  create table Asistencias(

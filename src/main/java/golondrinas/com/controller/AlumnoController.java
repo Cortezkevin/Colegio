@@ -17,11 +17,8 @@ import golondrinas.com.model.Alumno;
 import golondrinas.com.model.DetalleAlumno;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AlumnoService;
-import golondrinas.com.service.ApoderadoService;
 import golondrinas.com.service.DetalleAlumnoService;
-import golondrinas.com.service.GradoService;
 import golondrinas.com.service.MatriculaService;
-import golondrinas.com.service.NivelService;
 import golondrinas.com.service.PersonaService;
 import golondrinas.com.service.UsuarioService;
 

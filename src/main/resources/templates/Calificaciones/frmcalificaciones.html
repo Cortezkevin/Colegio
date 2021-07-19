@@ -67,7 +67,7 @@
 				</div>
 					
 				<div class="columna-div" >
-					:<span> yy/MM/dd </span>
+					:<span th:text="${hoy}" > yy/MM/dd </span>
 				</div>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 
 	<div class="panel-body">
 		<h4><span class="label label-info">Periodo Academico  2021-1</span></h4>
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="tblbimestre1"  class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">Curso</th>
@@ -93,31 +93,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr  th:each="n:${lstNotaBim1}">
-					<th scope="row" class="text-center" th:text="${n.curso}"></th>
-					<td class="text-center" th:text="${n.examen1}"></td>
-					<td class="text-center" th:text="${n.examen2}"></td>
-					<td class="text-center" th:text="${n.examen3}"></td>
-					<td class="text-center" th:text="${n.examen4}"></td>
-					<td class="text-center" th:text="${n.promedio}"></td>
+				<tr  th:each="a : ${bimestre_1}">
+					<th scope="row" class="text-center" th:text="${a.curso}"></th>
+					<td class="text-center" th:text="${a.examen1}"></td>
+					<td class="text-center" th:text="${a.examen2}"></td>
+					<td class="text-center" th:text="${a.examen3}"></td>
+					<td class="text-center" th:text="${a.examen4}"></td>
+					<td class="text-center" th:text="${a.promedio}"></td>
 				</tr>
-				<!-- <tr>
-					<th class="text-center" scope="row">2</th>
-					<td class="text-center">Jacob</td>
-					<td class="text-center">Thornton</td>
-					<td class="text-center">@fat</td>
-				</tr>
-				<tr>
-					<th class="text-center" scope="row">3</th>
-					<td class="text-center">Larry</td>
-					<td class="text-center">the Bird</td>
-					<td class="text-center">@twitter</td>
-				</tr> -->
 			</tbody>
 
 		</table>
 		<h4><span class="label label-info">Periodo Academico  2021-2</span></h4>
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="tblbimestre2" class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">Curso</th>
@@ -129,31 +117,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr  th:each="n:${lstNotaBim2}">
-					<th scope="row" class="text-center" th:text="${n.curso}"></th>
-					<td class="text-center" th:text="${n.examen1}"></td>
-					<td class="text-center" th:text="${n.examen2}"></td>
-					<td class="text-center" th:text="${n.examen3}"></td>
-					<td class="text-center" th:text="${n.examen4}"></td>
-					<td class="text-center" th:text="${n.promedio}"></td>
+				<tr  th:each="n2 : ${bimestre_2}">
+					<th scope="row" class="text-center" th:text="${n2.curso}"></th>
+					<td class="text-center" th:text="${n2.examen1}"></td>
+					<td class="text-center" th:text="${n2.examen2}"></td>
+					<td class="text-center" th:text="${n2.examen3}"></td>
+					<td class="text-center" th:text="${n2.examen4}"></td>
+					<td class="text-center" th:text="${n2.promedio}"></td>
 				</tr>
-				<!-- <tr>
-					<th class="text-center" scope="row">2</th>
-					<td class="text-center">Jacob</td>
-					<td class="text-center">Thornton</td>
-					<td class="text-center">@fat</td>
-				</tr>
-				<tr>
-					<th class="text-center" scope="row">3</th>
-					<td class="text-center">Larry</td>
-					<td class="text-center">the Bird</td>
-					<td class="text-center">@twitter</td>
-				</tr> -->
 			</tbody>
 
 		</table>
 		<h4><span class="label label-info">Periodo Academico  2021-3</span></h4>
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="tblbimestre3" class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">Curso</th>
@@ -165,31 +141,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr  th:each="n:${lstNotaBim3}">
-					<th scope="row" class="text-center" th:text="${n.curso}"></th>
-					<td class="text-center" th:text="${n.examen1}"></td>
-					<td class="text-center" th:text="${n.examen2}"></td>
-					<td class="text-center" th:text="${n.examen3}"></td>
-					<td class="text-center" th:text="${n.examen4}"></td>
-					<td class="text-center" th:text="${n.promedio}"></td>
+				<tr  th:each="n3 : ${bimestre_3}">
+					<th scope="row" class="text-center" th:text="${n3.curso}"></th>
+					<td class="text-center" th:text="${n3.examen1}"></td>
+					<td class="text-center" th:text="${n3.examen2}"></td>
+					<td class="text-center" th:text="${n3.examen3}"></td>
+					<td class="text-center" th:text="${n3.examen4}"></td>
+					<td class="text-center" th:text="${n3.promedio}"></td>
 				</tr>
-				<!-- <tr>
-					<th class="text-center" scope="row">2</th>
-					<td class="text-center">Jacob</td>
-					<td class="text-center">Thornton</td>
-					<td class="text-center">@fat</td>
-				</tr>
-				<tr>
-					<th class="text-center" scope="row">3</th>
-					<td class="text-center">Larry</td>
-					<td class="text-center">the Bird</td>
-					<td class="text-center">@twitter</td>
-				</tr> -->
 			</tbody>
 
 		</table>
 		<h4><span class="label label-info">Periodo Academico  2021-4</span></h4>
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table id="tblbimestre4" class="table table-striped table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
 					<th scope="col" class="text-center">Curso</th>
@@ -201,31 +165,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr  th:each="n:${lstNotaBim4}">
-					<th scope="row" class="text-center" th:text="${n.curso}"></th>
-					<td class="text-center" th:text="${n.examen1}"></td>
-					<td class="text-center" th:text="${n.examen2}"></td>
-					<td class="text-center" th:text="${n.examen3}"></td>
-					<td class="text-center" th:text="${n.examen4}"></td>
-					<td class="text-center" th:text="${n.promedio}"></td>
+				<tr  th:each="n4:${bimestre_4}">
+					<th scope="row" class="text-center" th:text="${n4.curso}"></th>
+					<td class="text-center" th:text="${n4.examen1}"></td>
+					<td class="text-center" th:text="${n4.examen2}"></td>
+					<td class="text-center" th:text="${n4.examen3}"></td>
+					<td class="text-center" th:text="${n4.examen4}"></td>
+					<td class="text-center" th:text="${n4.promedio}"></td>
 				</tr>
-				<!-- <tr>
-					<th class="text-center" scope="row">2</th>
-					<td class="text-center">Jacob</td>
-					<td class="text-center">Thornton</td>
-					<td class="text-center">@fat</td>
-				</tr>
-				<tr>
-					<th class="text-center" scope="row">3</th>
-					<td class="text-center">Larry</td>
-					<td class="text-center">the Bird</td>
-					<td class="text-center">@twitter</td>
-				</tr> -->
 			</tbody>
 
 		</table>
 	</div>
-
 
 
 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import golondrinas.com.model.Cargo;
 import golondrinas.com.model.Seccion;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.SeccionService;
@@ -32,11 +31,6 @@ public class SeccionController {
 		return "Seccion/listadoSeccion";
 	}
 
-	/*
-	 * @GetMapping("/RegistrarSeccion") public String RegistrarSeccion(Model model)
-	 * { model.addAttribute("seccionForm", new Seccion()); return
-	 * "Seccion/registroSeccion"; }
-	 */
 
 	@PostMapping("/ListaSeccion")
 	public String RegistrarSeccion(@ModelAttribute("seccionForm") Seccion seccionForm) {

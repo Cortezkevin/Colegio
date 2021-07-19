@@ -1,14 +1,9 @@
 package golondrinas.com.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,10 +15,7 @@ public class Seccion {
 
 	@Column(name = "nombre")
 	private String nombre;
-/*
-	@OneToMany(mappedBy = "seccion")
-	private Collection<Matricula> itemsMatricula = new ArrayList<>();
-*/
+	
 	@Column(name="estado")
 	private String estado;
 	public String getIdseccion() {

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.BimestreRepository;
 import golondrinas.com.model.Bimestre;
-import golondrinas.com.model.Nivel;
 
 @Service
 public class BimestreService {

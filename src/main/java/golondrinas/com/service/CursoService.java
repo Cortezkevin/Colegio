@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.CursoRepository;
 import golondrinas.com.model.Curso;
-import golondrinas.com.model.Nivel;
 
 @Service
 public class CursoService {

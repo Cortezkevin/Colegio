@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import golondrinas.com.model.AsistenciaAlumno;
 import golondrinas.com.model.AsistenciaProfesor;
-import golondrinas.com.model.ReporteAsistenciaAlumnos;
 import golondrinas.com.model.ReporteAsistenciaProfesor;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.AsistenciaProfesorService;

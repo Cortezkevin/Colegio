@@ -7,26 +7,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.jsoup.select.Evaluator.IsEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import golondrinas.com.model.DetalleUsuario;
 import golondrinas.com.model.Usuario;
 import golondrinas.com.model.response.ResultadoResponse;
 import golondrinas.com.service.CargoService;
-import golondrinas.com.service.DetallerUsuarioService;
 import golondrinas.com.service.PersonaService;
 import golondrinas.com.service.UserRoleService;
 import golondrinas.com.service.UsuarioService;
@@ -69,7 +64,7 @@ public class UsuarioController {
 
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(@RequestParam("picture") MultipartFile foto, Usuario objUsuario) throws IOException {
-		// objUsuario.setFoto(picture.getBytes());
+
 		if (!foto.isEmpty()) {
 
 			StringBuilder builder = new StringBuilder();

@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import golondrinas.com.model.NotaXCurso;
-import golondrinas.com.model.Notas;
 
 @Repository
 public interface NotaXCursoRepository extends JpaRepository<NotaXCurso, String>{

@@ -1,6 +1,5 @@
 package golondrinas.com.interfaces;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -27,16 +26,6 @@ public interface AsistenciaAlumnoRepository extends JpaRepository<AsistenciaAlum
 	@Query(value = "{call sp_MantRegistrarAsistenciaAlumno(:idalumno, :fecha, :estado, :comentario)}", nativeQuery = true)
 	void RegistrarAsistenciaAlumno(@Param("idalumno") String idalumno, @Param("fecha") String fecha,
 			@Param("estado") String estado, @Param("comentario") String comentario);
-	
-	/*@Transactional
-	@Modifying
-	@Query(value = "{call sp_MantActualizarAsistenciaAlumno(:idasistencia, :estado, :comentario)}", nativeQuery = true)
-	void ActualizarAsistenciaAlumno(@Param("idasistencia") String idasistencia,
-			@Param("estado") String estado, @Param("comentario") String comentario);*/
-	
-	/*@Query(value = "{call sp_MantIdAsistenciaAlumnoXFecha(:idalumno, :fecha)}", nativeQuery = true)
-	String IdAsistenciaAlumnoXFecha(@Param("idalumno") String idalumno, @Param("fecha") Date fecha);*/
-	
 	
 	@Query(value = "{call sp_MantValidarAsistenciaXFecha(:fecha, :idalumno)}", nativeQuery = true)
 	List<String> validarAsistenciaXFecha(@Param("fecha") String fecha, @Param("idalumno") String idalumno);

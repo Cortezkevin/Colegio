@@ -113,12 +113,12 @@
 									<td class="text-center"><i class="fa fa-mobile-phone"></i>
 									</td>
 									<td><strong>CELULAR</strong></td>
-									<td>9########</td>
+									<td th:text="${listUser[0][10]}">9########</td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-envelope"></i></td>
 									<td><strong>CORREO INSTITUCIONAL</strong></td>
-									<td>userName@golondrinas.edu.pe</td>
+									<td><a th:text="${usuario}">userName</a>@golondrinas.edu.pe</td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-envelope"></i></td>
@@ -128,7 +128,7 @@
 								<tr>
 									<td class="text-center"><i class="fa fa-map-marker"></i></td>
 									<td><strong>DOMICILIO</strong></td>
-									<td>LIMA / LIMA / distrito</td>
+									<td>LIMA / LIMA / Mala</td>
 								</tr>
 								<tr>
 									<td class="text-center"><i class="fa fa-map-marker"></i></td>

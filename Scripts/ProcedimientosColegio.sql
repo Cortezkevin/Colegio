@@ -419,7 +419,6 @@ CREATE  PROCEDURE sp_MantRegistrarUsuario(IN pnombreusuario CHAR(20),IN pcontras
 BEGIN
 	SET @pidusuario = (SELECT CONCAT('U',RIGHT(CONCAT('00',RIGHT(MAX(idusuario),3) + 1),3)) FROM usuario);	
 	INSERT INTO usuario (idusuario, nombreusuario, contrasena, idcargo, idpersona,estado,foto) VALUES (@pidusuario,pnombreusuario,pcontraseña,pidcargo, pidpersona,'Activo',pfoto);
-    #update persona set estado = 'Ocupado' where idPersona = pidpersona;
     update cargo set estado = 'Ocupado' where idCargo = pidcargo;
 END$$
  DELIMITER ;
@@ -468,90 +467,9 @@ BEGIN
 	UPDATE nivel SET estado='Eliminado' WHERE idNivel = _idnivel;
 END$$
  DELIMITER ;
-
-CREATE PROCEDURE sp_MantObtenerNivel(IN _idnivel CHAR(4))
-	SELECT	n.idNivel, n.nombre
-	FROM	 nivel n WHERE n.idNivel = _idnivel;
     
-                   ##############################
-     
-   ##PROCEDIMIENTOS ALMACENADOS DE HORA
-   
-         DELIMITER $$
-CREATE  PROCEDURE sp_MantRegistrarHora(IN horainicio CHAR(10),IN horafin CHAR(10),IN dia CHAR(10))
-BEGIN
-	SET @idhora = (SELECT CONCAT('H',RIGHT(CONCAT('00',RIGHT(MAX(idHora),3) + 1),3)) FROM hora);	
-	INSERT INTO hora (idHora, horaInicio, horaFin, dia, estado) VALUES (@idhora,horainicio, horafin, dia, 'Activo');
-END$$
- DELIMITER ;
-
-
-DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarHora(IN _idhora CHAR(4),IN _horainicio CHAR(10),IN _horafin CHAR(10),IN _dia CHAR(10))
-BEGIN
-	UPDATE hora SET horaInicio = _horainicio,horaFin = _horafin, dia = _dia WHERE idHora= _idhora;
-END$$
- DELIMITER ;
- 
-DELIMITER $$
-CREATE  PROCEDURE sp_MantEliminarHora(IN _idhora CHAR(4))
-BEGIN
-	UPDATE hora SET estado = 'Eliminado' WHERE idHora = _idhora;
-END$$
- DELIMITER ;
-
-CREATE PROCEDURE sp_MantObtenerHora(IN _idhora CHAR(4))
-	SELECT	h.idHora, h.horaInicio, h.horaFin, h.dia
-	FROM	 hora h WHERE h.idHora = _idhora;
- 
-   ###########################################
-   ##PROCEDIMIENTOS ALMACENADOS DE PAGO
-   
-       CREATE  PROCEDURE sp_MantListarPago()
-	select p.idpago, p.idmatricula, p.fechapago, p.monto, p.estado from pago p;
-   
-   
-   
-   
-   ##Registrar Pago
-DELIMITER $$
-CREATE PROCEDURE sp_MantRegistrarPago(IN idmatricula char(4), IN fechapago DATE, IN _monto Double)
-BEGIN
-    SET @idpago = (SELECT CONCAT('PA',RIGHT(CONCAT('00',RIGHT(MAX(idPago),3) + 1),3)) FROM pago);
-    INSERT INTO Pago(idPago, idMatricula, FechaPago, monto, estado) 
-                        VALUES (@idpago, idmatricula, fechapago,_monto, 'Activo');
-END$$
- DELIMITER ;
- 
-
-##Actualizar Pago
-DELIMITER $$
-CREATE  PROCEDURE sp_MantActualizarPago(IN _idpago char(5), IN _idmatricula char(4), IN _fechapago DATE,IN _monto double, IN _estado char(20))
-BEGIN
-    UPDATE Pago SET idMatricula = _idmatricula, idFechaPago = _fechapago, monto = _monto, estado = _estado
-    WHERE idPago = idpago;
-END$$
-DELIMITER 
-
- 
-
-##Eliminar Pago
-DELIMITER $$
-CREATE  PROCEDURE sp_MantEliminarPago(IN _idpago CHAR(5))
-BEGIN
-    UPDATE pago SET estado = "Eliminado" WHERE idPago = _idpago; 
-END$$
-DELIMITER ;
-
- 
-
-##Obtener Pago
-CREATE PROCEDURE sp_MantObtenerPago(IN _idpago CHAR(5))
-    SELECT    p.idPago, p.idPersona, p.idUsuario, p.estado
-    FROM   pago p WHERE p.idPago = _idpago;
-    
-    CREATE  PROCEDURE sp_MantListarApoderados()
-	select a.idApoderado, a.idPersona, a.nombreCompleto, a.estado from apoderado a;
+CREATE  PROCEDURE sp_MantListarApoderados()
+select a.idApoderado, a.idPersona, a.nombreCompleto, a.estado from apoderado a;
    
 DELIMITER $$
 CREATE  PROCEDURE sp_MantRegistrarApoderado(IN _idpersona CHAR(4))
@@ -671,8 +589,7 @@ insert into alumno values('A002','P003','U002','M002','Inicial','Primer Grado','
 insert into user_role values('U001','R001');
 insert into user_role values('U002','R001');
 insert into user_role values('U003','R002');
-#call sp_MantRegistrarRoles('R001');
-insert into pago values('PA001','M001','2002-10-10',350.00,'Activo');
+
 insert into curso values('C001','N001','G001','Matematica I','Matematica I nivel primaria','Activo'); 
 insert into curso values('C002','N001','G001','Comunicación I','Comunicación I nivel primaria','Activo'); 
 insert into profesor values('D001','P005','U003','Juan Perez Huapaya Arias','Activo'); 
@@ -809,7 +726,7 @@ select estado from grado where idGrado = _idgrado;
 CREATE  PROCEDURE sp_EstadoXSeccion(in _idseccion char(4))
 select estado from seccion where idSeccion = _idseccion;
 
- CREATE  PROCEDURE sp_EstadoXApoderado(in _idapoderado char(4))
+ CREATE  PROCEDURE sp_EstadoXApoderado(in _idapoderado char(5))
 select estado from apoderado where idApoderado = _idapoderado;
 
 CREATE  PROCEDURE sp_EstadoXBimestre(in _idbimestre char(4))
@@ -969,20 +886,20 @@ select a.idalumno from alumno a inner join usuario u on a.idusuario = u.idusuari
 where u.nombreUsuario = usuario;
 
 
-create procedure sp_MantListarNotasXBimestre1(in _idalumno char(4))
-select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+create procedure sp_MantListarNotasXBimestre_1(in _idalumno char(4))
+select n.idnotas,c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
 where idalumno = _idalumno and idBimestre = 'B001';
 
 
 
-create procedure sp_MantListarNotasXBimestre2(in _idalumno char(4))
-select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+create procedure sp_MantListarNotasXBimestre_2(in _idalumno char(4))
+select n.idnotas, c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
 where idalumno = _idalumno and idBimestre = 'B002';
 
-create procedure sp_MantListarNotasXBimestre3(in _idalumno char(4))
-select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+create procedure sp_MantListarNotasXBimestre_3(in _idalumno char(4))
+select n.idnotas,c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
 where idalumno = _idalumno and idBimestre = 'B003';
 
-create procedure sp_MantListarNotasXBimestre4(in _idalumno char(4))
-select c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
+create procedure sp_MantListarNotasXBimestre_4(in _idalumno char(4))
+select n.idnotas,c.nombre as curso, n.examen1, n.examen2, n.examen3, n.examen4, n.promedio from notas n inner join curso c on n.idcurso = c.idcurso
 where idalumno = _idalumno and idBimestre = 'B004';

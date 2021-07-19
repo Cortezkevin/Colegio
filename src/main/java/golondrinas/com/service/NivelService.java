@@ -17,7 +17,7 @@ public class NivelService {
 	public List<Nivel> listarNivel() {
 		return repository.listarNiveles();
 	}
-	
+
 	public List<Nivel> listarNivelValidos() {
 		return repository.listarNivelValidos();
 	}
@@ -50,16 +50,13 @@ public class NivelService {
 		}
 		return false;
 	}
-	
-	
-	public boolean validarEstadoNivel(Nivel n){
+
+	public boolean validarEstadoNivel(Nivel n) {
 		String lista = repository.ValidarEstadoNivel(n.getIdnivel());
-		if(lista.equals("Ocupado")) {
+		if (lista.equals("Ocupado")) {
 			return true;
 		}
 		return false;
 	}
-	
-	
-	
+
 }

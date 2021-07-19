@@ -1,34 +1,22 @@
 package golondrinas.com.model;
 
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="nivel") 
-public class Nivel{
+@Table(name = "nivel")
+public class Nivel {
 
 	@Id
 	private String idnivel;
-	
-	@Column(name="nombre")
+
+	@Column(name = "nombre")
 	private String nombre;
-	
-	@Column(name="estado")
+
+	@Column(name = "estado")
 	private String estado;
-/*
-	@OneToMany(mappedBy = "nivel")
-	private Collection<Matricula> itemsMatricula=new ArrayList<>();
-*/
 
 	public String getIdnivel() {
 		return idnivel;
@@ -66,6 +54,4 @@ public class Nivel{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

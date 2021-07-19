@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import golondrinas.com.interfaces.SeccionRepository;
-import golondrinas.com.model.Nivel;
 import golondrinas.com.model.Seccion;
 
 @Service
@@ -18,7 +17,7 @@ public class SeccionService {
 	public List<Seccion> listarSeccion() {
 		return repository.findAll();
 	}
-	
+
 	public List<Seccion> listarSeccionValidos() {
 		return repository.listarSeccionValidos();
 	}
@@ -45,10 +44,10 @@ public class SeccionService {
 		}
 		return false;
 	}
-	
-	public boolean validarEstadoSeccion(Seccion n){
+
+	public boolean validarEstadoSeccion(Seccion n) {
 		String lista = repository.ValidarEstadoSeccion(n.getIdseccion());
-		if(lista.equals("Ocupado")) {
+		if (lista.equals("Ocupado")) {
 			return true;
 		}
 		return false;
